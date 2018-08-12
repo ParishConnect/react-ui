@@ -1,6 +1,4 @@
 import * as React from "react";
-import styled from "styled-components";
-import { numOrString } from "../utils/typeSwitch";
 import { Appearance, Border } from "../utils/enum";
 import Box from "aluminum-box";
 import LayerAppearances from "./styles/appearances";
@@ -9,7 +7,7 @@ import BorderColors from "./styles/border-colors";
 
 export interface PaneProps {
 	appearance?: Appearance | string;
-	border?: Border;
+	border?: Border | boolean;
 	elevation?: number;
 	hoverElevation?: number;
 	activeElevation?: number;
@@ -29,7 +27,7 @@ export default class Pane extends React.PureComponent<PaneProps> {
 			hoverElevation,
 			activeElevation,
 
-			border = "default",
+			border,
 			borderTop,
 			borderRight,
 			borderBottom,
@@ -44,7 +42,27 @@ export default class Pane extends React.PureComponent<PaneProps> {
 
 		let elevationStyle;
 		if (elevation) {
-			elevationStyle = ElevationStyles[elevation];
+			if (appearance) {
+				switch (appearance) {
+					case "blue":
+						elevationStyle = ElevationStyles.blue[elevation];
+						break;
+					case "red":
+						elevationStyle = ElevationStyles.red[elevation];
+						break;
+					case "purple":
+						elevationStyle = ElevationStyles.purple[elevation];
+						break;
+					case "yellow":
+						elevationStyle = ElevationStyles.yellow[elevation];
+						break;
+					default:
+						elevationStyle = ElevationStyles.default[elevation];
+						break;
+				}
+			} else {
+				elevationStyle = ElevationStyles.default[elevation];
+			}
 		}
 
 		const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
@@ -60,9 +78,9 @@ export default class Pane extends React.PureComponent<PaneProps> {
 			} else if (borderSideProperty === true) {
 				// Use default, which is now muted, border color when explicitly a true boolean
 				return `1px solid ${BorderColors.muted}`;
-			} else if (Object.prototype.hasOwnProperty.call(BorderColors, border)) {
+			} else if (typeof border !== "boolean" && Object.prototype.hasOwnProperty.call(BorderColors, border)) {
 				return `1px solid ${border && BorderColors[border]}`;
-			} else if (typeof border === "boolean") {
+			} else if (border) {
 				return `1px solid ${BorderColors.muted}`;
 			}
 
@@ -94,16 +112,31 @@ const _Box = Box.extend<any>`
 	transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
 
 	&:hover {
+	${
+		props.shadowColor
+			? `
+			transform: translateY(-1px);
+			box-shadow: ${ElevationStyles[props.shadowColor][props.hoverElevation]}
+	`
+			: `
 		transform: translateY(-2px);
-		box-shadow: ${ElevationStyles[props.hoverElevation]}
-	}
-	`};
+		box-shadow: ${ElevationStyles.default[props.hoverElevation]}
+	`
+	}`};
 
 	${props =>
 		props.activeElevation &&
 		` &:active {
+			${
+				props.shadowColor
+					? `
 			transform: translateY(-1px);
-			box-shadow: ${ElevationStyles[props.activeElevation]}
+			box-shadow: ${ElevationStyles[props.shadowColor][props.activeElevation]}
+			`
+					: `
+			transform: translateY(-1px);
+			box-shadow: ${ElevationStyles.default[props.activeElevation]}
 		}
-	`};
+	`
+			}`};
 `;

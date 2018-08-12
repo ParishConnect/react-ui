@@ -3,7 +3,11 @@ export enum Appearance {
 	"light",
 	"medium",
 	"dark",
-	"selected"
+	"selected",
+	"blue",
+	"red",
+	"purple",
+	"yellow"
 }
 
 export enum Border {

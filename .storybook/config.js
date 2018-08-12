@@ -1,6 +1,8 @@
 import { configure } from "@storybook/react";
 import { setAddon, addDecorator } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
 import JSXAddon from "storybook-addon-jsx";
+addDecorator(withKnobs);
 setAddon(JSXAddon);
 
 // automatically import all files ending in *.stories.js
