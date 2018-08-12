@@ -1,0 +1,28 @@
+{
+	"backgroundColor": "#efefef",
+	"header": {
+		"h1": {
+			"marginRight": "20px",
+			"fontSize": "22px",
+			"display": "inline"
+		},
+		"body": {
+			"paddingTop": 0,
+			"paddingBottom": 0,
+			"td": {
+				"border": "solid 1px black"
+			}
+		},
+		"h2": {
+			"display": "inline",
+			"color": "#999"
+		}
+	},
+	"infoBody": {
+		"boxShadow": "0 1.5px 3px rgba(0,0,0,0.12)",
+		"borderRadius": "5px",
+		"backgroundColor": "#fff",
+		"padding": "5px 15px",
+		"lineHeight": "2"
+	}
+}
