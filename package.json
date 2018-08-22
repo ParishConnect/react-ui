@@ -1,6 +1,6 @@
 {
 	"name": "aluminum-ui",
-	"version": "0.0.2-beta.2",
+	"version": "0.0.2-beta.3",
 	"description": "Clean Performant Component Library built on aluminum-box",
 	"main": "build/lib/index.js",
 	"types": "build/lib/index.d.ts",
@@ -43,16 +43,19 @@
 		"react-docgen-typescript-webpack-plugin": "^1.1.0",
 		"react-test-renderer": "^16.4.2",
 		"storybook-addon-jsx": "^5.3.0",
+		"styled-components": "^3.4.2",
 		"ts-jest": "^22.4.2",
 		"typescript": "^2.9.2"
 	},
 	"dependencies": {
 		"@types/lodash": "^4.14.116",
 		"@types/node": "^10.5.7",
-		"aluminum-box": "^0.0.2",
+		"aluminum-box": "^0.0.3",
 		"lodash": "^4.17.10",
 		"react": "^16.3.1",
-		"react-dom": "^16.3.1",
+		"react-dom": "^16.3.1"
+	},
+	"peerDependencies": {
 		"styled-components": "^3.4.2"
 	},
 	"scripts": {
