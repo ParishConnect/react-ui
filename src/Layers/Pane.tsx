@@ -72,16 +72,16 @@ export default class Pane extends React.PureComponent<PaneProps> {
 			borderLeft
 		].map(borderSideProperty => {
 			if (Object.prototype.hasOwnProperty.call(BorderColors, borderSideProperty)) {
-				return `1px solid ${borderSideProperty &&
+				return `0.5px solid ${borderSideProperty &&
 					typeof borderSideProperty !== "boolean" &&
 					BorderColors[borderSideProperty]}`;
 			} else if (borderSideProperty === true) {
 				// Use default, which is now muted, border color when explicitly a true boolean
-				return `1px solid ${BorderColors.muted}`;
+				return `0.5px solid ${BorderColors.muted}`;
 			} else if (typeof border !== "boolean" && Object.prototype.hasOwnProperty.call(BorderColors, border)) {
-				return `1px solid ${border && BorderColors[border]}`;
+				return `0.5px solid ${border && BorderColors[border]}`;
 			} else if (border) {
-				return `1px solid ${BorderColors.muted}`;
+				return `0.5px solid ${BorderColors.muted}`;
 			}
 
 			return borderSideProperty;
@@ -89,6 +89,8 @@ export default class Pane extends React.PureComponent<PaneProps> {
 
 		return (
 			<_Box
+				width={this.props.width || "auto"}
+				height={this.props.height || "auto"}
 				borderTop={_borderTop}
 				borderRight={_borderRight}
 				borderBottom={_borderBottom}
@@ -104,7 +106,7 @@ export default class Pane extends React.PureComponent<PaneProps> {
 }
 
 const _Box = Box.extend<any>`
-	${props =>
+	${(props: any) =>
 		props.hoverElevation &&
 		`
 	transition-duration: 150ms;
@@ -124,7 +126,7 @@ const _Box = Box.extend<any>`
 	`
 	}`};
 
-	${props =>
+	${(props: any) =>
 		props.activeElevation &&
 		` &:active {
 			${
