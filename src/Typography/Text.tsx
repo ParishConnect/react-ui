@@ -10,9 +10,10 @@ const isDev = process.env.NODE_ENV === "development" || !process.env.NODE_ENV;
 
 export interface TextProps {
 	extend?: any;
-	element?: string;
+	is?: string;
 	size?: Size | string | number;
 	fontFamily?: FontFamily | string;
+	color?: string;
 	isUppercase?: Boolean;
 	textStyles?: Object;
 	textUppercaseStyles?: Object;
@@ -32,9 +33,9 @@ export default class Text extends React.PureComponent<TextProps> {
 
 	render() {
 		const {
-			element = "span",
+			is = "span",
 			size = 500,
-			color,
+			color = "default",
 			fontFamily = "ui",
 			textStyles,
 			textUppercaseStyles = false,
@@ -59,7 +60,7 @@ export default class Text extends React.PureComponent<TextProps> {
 
 		return (
 			<Box
-				is="span"
+				is={is}
 				{...(color ? { color: TextColors[color] || color } : {})}
 				fontFamily={FontFamilies[fontFamily] || fontFamily}
 				{...textStyle}

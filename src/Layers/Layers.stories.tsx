@@ -44,8 +44,8 @@ stories
 				hoverElevation={select("Hover Elevation", elevationOptions, 10)}
 				activeElevation={select("Active Elevation", elevationOptions, 10)}
 				border={boolean("Border", true)}
-				width={100}
-				height={25}
+				width={300}
+				height={100}
 			/>
 		))
 	)
@@ -65,8 +65,8 @@ stories
 				hoverElevation={select("Hover Elevation", elevationOptions, 10)}
 				activeElevation={select("Active Elevation", elevationOptions, 10)}
 				border={boolean("Border", true)}
-				width={100}
-				height={25}
+				width={300}
+				height={100}
 			/>
 		))
 	);

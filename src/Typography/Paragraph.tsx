@@ -12,7 +12,7 @@ export interface ParagraphProps {
 const textStyleTransformation = ({ lineHeight = "10", ...textStyle }) => ({
 	...textStyle,
 	// Multiply line height by 1.1
-	lineHeight: `${Math.round(parseFloat(lineHeight) * 1.1)}px`
+	lineHeight: `${Math.round(parseFloat(lineHeight) * 1.08)}px`
 });
 
 const textStyles = mapValues(TextStyles, textStyleTransformation);
