@@ -48,6 +48,7 @@ class SearchInput extends PureComponent {
           />
         </Box>
         <TextInput
+          borderRadius={height}
           height={height}
           paddingLeft={height}
           appearance={appearance}

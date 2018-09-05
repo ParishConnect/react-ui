@@ -16,6 +16,7 @@
 import {
   colors,
   elevations,
+  gradients,
   fills,
   palette,
   scales
@@ -88,6 +89,7 @@ export default {
   // Foundational Styles.
   colors,
   elevations,
+  gradients,
   fills,
   palette,
   scales,

@@ -1,5 +1,6 @@
 import palette from './palette'
 import scales from './scales'
+import gradients from './gradients'
 
 /**
  * This object are functional colors being used the default theme.
@@ -24,7 +25,16 @@ export default {
     redTint: palette.red.lightest,
     blueTint: palette.blue.lightest,
     purpleTint: palette.purple.lightest,
-    tealTint: palette.teal.lightest
+    tealTint: palette.teal.lightest,
+
+    // Gradients
+    yellow: gradients.yellow,
+    green: gradients.green,
+    orange: gradients.orange,
+    red: gradients.red,
+    blue: gradients.blue,
+    purple: gradients.purple,
+    teal: gradients.teal
   },
 
   /**

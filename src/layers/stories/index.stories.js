@@ -19,7 +19,7 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.elevations.neutral.map((style, index) => (
               <Pane key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Pane>
@@ -65,7 +65,7 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.elevations.neutral.map((style, index) => (
               <Card key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Card>

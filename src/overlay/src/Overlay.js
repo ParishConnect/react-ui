@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from 'ui-box'
+import { keyframes } from 'emotion'
+import Box from 'ui-box'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
@@ -17,7 +18,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = css.keyframes('fadeInAnimation', {
+const fadeInAnimation = keyframes('fadeInAnimation', {
   from: {
     opacity: 0
   },
@@ -26,7 +27,7 @@ const fadeInAnimation = css.keyframes('fadeInAnimation', {
   }
 })
 
-const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
+const fadeOutAnimation = keyframes('fadeOutAnimation', {
   from: {
     opacity: 1
   },

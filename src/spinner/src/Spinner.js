@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { css } from 'ui-box'
+import Box from 'ui-box'
+import { keyframes } from 'emotion'
 import { withTheme } from '../../theme'
 
-const loadingKeyframes = css.keyframes('loading', {
+const loadingKeyframes = keyframes('loading', {
   '0%': {
     transform: 'rotate(0)'
   },
@@ -12,7 +13,7 @@ const loadingKeyframes = css.keyframes('loading', {
   }
 })
 
-const loadingCircleKeyframes = css.keyframes('loading-circle', {
+const loadingCircleKeyframes = keyframes('loading-circle', {
   '0%': {
     strokeDashoffset: 600
   },

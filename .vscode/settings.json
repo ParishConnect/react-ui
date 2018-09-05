@@ -1,4 +1,7 @@
 {
   "eslint.enable": false,
-  "xo.enable": true
+  "xo.enable": true,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  }
 }

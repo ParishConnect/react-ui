@@ -7,8 +7,18 @@ import colors from './foundational-styles/colors'
  * @param {String} bottom - color.
  * @return {String} CSS background propery.
  */
-const linearGradient = (top, bottom) => {
-  return `linear-gradient(to bottom, ${top}, ${bottom})`
+const linearGradient = (top, bottom, angle = -49) => {
+  return `linear-gradient(${angle}deg, ${bottom}, ${top})`
+}
+
+/**
+ * @param {String} start - color.
+ * @param {String} end - color.
+ * @param {Number} angle - angle (optional)
+ * @return {String} CSS background propery.
+ */
+const angleGradient = (start, end, angle = -49) => {
+  return `linear-gradient(${angle}deg, ${start} 10%, ${end})`
 }
 
 /**
@@ -36,7 +46,7 @@ const getTextColorForIntent = (intent, defaultColor) => {
 const getLinearGradientWithStates = (
   startColor,
   endColor,
-  intensityMultiplier = 1
+  intensityMultiplier = 0.3
 ) => {
   return {
     base: linearGradient(startColor, endColor),
@@ -111,6 +121,7 @@ const getPrimaryButtonStylesForIntent = intent => {
 
 export {
   linearGradient,
+  angleGradient,
   getTextColorForIntent,
   getLinearGradientWithStates,
   getPrimaryButtonStylesForIntent

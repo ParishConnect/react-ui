@@ -77,13 +77,16 @@ const getBackground = background => {
 /**
  * Get box-shadow (elevation).
  * @param {string} level — level of elevation.
+ * @param {string} color - color of elevation.
  * @return {string} elevation box-shadow.
  */
-const getElevation = level => {
+const getElevation = (level, color = 'neutral') => {
   /**
    * There is no fallback, undefined will be returned.
    */
-  return elevations[level]
+  return color in elevations
+    ? elevations[color][level]
+    : elevations.neutral[level]
 }
 
 /**

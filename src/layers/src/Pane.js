@@ -86,7 +86,7 @@ class Pane extends PureComponent {
       ':hover': {
         ...(css[':hover'] || {}),
         transform: 'translateY(-2px)',
-        boxShadow: theme.getElevation(hoverElevation)
+        boxShadow: theme.getElevation(hoverElevation, this.props.background)
       }
     }
   }
@@ -99,7 +99,7 @@ class Pane extends PureComponent {
       ':active': {
         ...(css[':active'] || {}),
         transform: 'translateY(-1px)',
-        boxShadow: theme.getElevation(activeElevation)
+        boxShadow: theme.getElevation(activeElevation, this.props.background)
       }
     }
   }
@@ -148,7 +148,7 @@ class Pane extends PureComponent {
       ...props
     } = this.props
 
-    const elevationStyle = theme.getElevation(elevation)
+    const elevationStyle = theme.getElevation(elevation, background)
     const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
     const activeElevationStyle = this.getActiveElevationStyle(
       activeElevation,

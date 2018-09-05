@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'ui-box'
+import { keyframes } from 'emotion'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
@@ -14,7 +14,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 200
 
-const openAnimation = css.keyframes('openAnimation', {
+const openAnimation = keyframes('openAnimation', {
   from: {
     transform: 'scale(0.8)',
     opacity: 0
@@ -25,7 +25,7 @@ const openAnimation = css.keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = css.keyframes('closeAnimation', {
+const closeAnimation = keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
     opacity: 1

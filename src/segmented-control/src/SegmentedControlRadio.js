@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { css } from 'glamor'
+import { css } from 'emotion'
 import cx from 'classnames'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
