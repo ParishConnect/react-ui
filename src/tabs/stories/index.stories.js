@@ -146,6 +146,7 @@ storiesOf('tabs', module)
                     id={tab}
                     onSelect={() => onSelect(index)}
                     isSelected={index === selectedIndex}
+                    appearance="blue"
                     aria-controls={`panel-${tab}`}
                   >
                     {tab}

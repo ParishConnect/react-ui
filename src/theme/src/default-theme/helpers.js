@@ -17,7 +17,7 @@ const linearGradient = (top, bottom, angle = -49) => {
  * @param {Number} angle - angle (optional)
  * @return {String} CSS background propery.
  */
-const angleGradient = (start, end, angle = -49) => {
+const angleGradient = (start, end, angle = -25) => {
   return `linear-gradient(${angle}deg, ${start} 10%, ${end})`
 }
 

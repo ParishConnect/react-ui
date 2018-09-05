@@ -14,7 +14,7 @@ export default class SidebarTab extends PureComponent {
   static styles = {
     width: '100%',
     paddingX: 0,
-    paddingLeft: 8,
+    paddingLeft: 10,
     marginX: 0,
     marginBottom: 4,
     justifyContent: 'auto'
