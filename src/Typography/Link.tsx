@@ -16,7 +16,7 @@ export default class Link extends React.PureComponent<LinkProps> {
 		is: "a"
 	};
 	render() {
-		return <_Text is={this.props.is} fontFamily="display" marginTop={0} marginBottom={0} {...this.props} />;
+		return <_Text as={this.props.is} fontFamily="display" marginTop={0} marginBottom={0} {...this.props} />;
 	}
 }
 

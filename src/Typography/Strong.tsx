@@ -3,6 +3,6 @@ import Text, { TextProps } from "./Text";
 
 export default class Strong extends React.PureComponent<TextProps> {
 	render() {
-		return <Text is="strong" fontWeight={600} {...this.props} />;
+		return <Text as="strong" fontWeight={600} {...this.props} />;
 	}
 }

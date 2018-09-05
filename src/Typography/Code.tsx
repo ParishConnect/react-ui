@@ -3,6 +3,6 @@ import Text, { TextProps } from "./Text";
 
 export default class Code extends React.PureComponent<TextProps> {
 	render() {
-		return <Text is="code" fontFamily="mono" {...this.props} />;
+		return <Text as="code" fontFamily="mono" {...this.props} />;
 	}
 }

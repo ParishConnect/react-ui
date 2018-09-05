@@ -8,12 +8,11 @@ const textStyleTransformation = ({ fontSize, ...textStyle }: any) => ({
 	fontSize: `${Math.round(parseInt(fontSize, 10) * 0.8)}px`
 });
 
-const textStyles = mapValues(TextStyles, textStyleTransformation);
-
 export default class Small extends React.PureComponent<TextProps> {
 	render() {
+		const textStyles = mapValues(TextStyles, textStyleTransformation);
 		console.log(textStyles);
 
-		return <Text is="small" textStyles={textStyles} {...this.props} />;
+		return <Text as="small" textStyles={textStyles} {...this.props} />;
 	}
 }

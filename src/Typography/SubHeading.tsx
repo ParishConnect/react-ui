@@ -14,7 +14,7 @@ export default class SubHeading extends React.PureComponent<TextProps> {
 	render() {
 		return (
 			<Text
-				is="h3"
+				as="h3"
 				color="dark"
 				fontFamily="display"
 				marginTop={0}

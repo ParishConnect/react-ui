@@ -8,6 +8,10 @@
   dependencies:
     "@babel/highlight" "7.0.0-rc.0"
 
+"@babel/helper-plugin-utils@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0.tgz#bbb3fbee98661c569034237cc03967ba99b4f250"
+
 "@babel/highlight@7.0.0-rc.0":
   version "7.0.0-rc.0"
   resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.0.0-rc.0.tgz#3f356ec31768ba1b03c74dc4437ca047bb56a845"
@@ -19,6 +23,26 @@
 "@babel/parser@7.0.0-beta.53":
   version "7.0.0-beta.53"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0-beta.53.tgz#1f45eb617bf9463d482b2c04d349d9e4edbf4892"
+
+"@babel/plugin-syntax-typescript@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0.tgz#90f4fe0a741ae9c0dcdc3017717c05a0cbbd5158"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-transform-typescript@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0.tgz#71bf13cae08117ae5dc1caec5b90938d8091a01e"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-typescript" "^7.0.0"
+
+"@babel/preset-typescript@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.0.0.tgz#1e65c8b863ff5b290f070d999c810bb48a8e3904"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-transform-typescript" "^7.0.0"
 
 "@storybook/addon-actions@3.4.10":
   version "3.4.10"
@@ -262,8 +286,8 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
 
 "@types/node@^10.5.7":
-  version "10.9.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.0.tgz#d2824d342b1d733e22ef169708bd254924db16bd"
+  version "10.9.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
 "@types/prop-types@*":
   version "15.5.5"
@@ -278,8 +302,8 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.3.5":
-  version "16.4.11"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.11.tgz#330f3d864300f71150dc2d125e48644c098f8770"
+  version "16.4.13"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.13.tgz#1385f5dc3486aa493849a32ccce626a817543e28"
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -405,12 +429,15 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-aluminum-box@0.0.5-beta.5:
-  version "0.0.5-beta.5"
-  resolved "https://registry.yarnpkg.com/aluminum-box/-/aluminum-box-0.0.5-beta.5.tgz#054ea3c96fdb1683df5f5914a3eec820fe07f38d"
+aluminum-box@0.1.0-beta.0:
+  version "0.1.0-beta.0"
+  resolved "https://registry.yarnpkg.com/aluminum-box/-/aluminum-box-0.1.0-beta.0.tgz#416afd70e709e181109b303b484e9b9258325bb8"
   dependencies:
+    "@babel/preset-typescript" "^7.0.0"
     "@types/lodash" "^4.14.116"
     "@types/node" "^10.5.7"
+    babel-plugin-styled-components "^1.6.2"
+    clean-element "^1.0.0"
     clean-tag "^2.0.0"
     lodash "^4.17.10"
     react-dom "^16.3.1"
@@ -996,6 +1023,13 @@ babel-plugin-react-docgen@^1.9.0:
     babel-types "^6.24.1"
     lodash "^4.17.0"
     react-docgen "^3.0.0-beta11"
+
+babel-plugin-styled-components@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.6.2.tgz#f8e188079c3aa6751cc7066ed537e97a008427f2"
+  dependencies:
+    lodash "^4.17.10"
+    semver "^5.5.1"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -2000,6 +2034,10 @@ clean-css@4.1.x:
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.11.tgz#2ecdf145aba38f54740f26cefd0ff3e03e125d6a"
   dependencies:
     source-map "0.5.x"
+
+clean-element@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/clean-element/-/clean-element-1.0.0.tgz#e9db041b943b8b6258c4792922306cd03969c227"
 
 clean-tag@^2.0.0:
   version "2.0.0"
@@ -6733,6 +6771,10 @@ schema-utils@^0.4.0, schema-utils@^0.4.5:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
+semver@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
+
 send@0.16.2:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/send/-/send-0.16.2.tgz#6ecca1e0f8c156d141597559848df64730a6bbc1"
@@ -7445,9 +7487,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+typescript@^3.1.0-dev.20180810:
+  version "3.1.0-dev.20180905"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.0-dev.20180905.tgz#9e144c5e60d8fcc0d218274fd545c0012799823a"
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

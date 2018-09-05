@@ -14,7 +14,7 @@ export default class Heading extends React.PureComponent<TextProps> {
 	render() {
 		return (
 			<Text
-				is="h2"
+				as="h2"
 				color="dark"
 				fontFamily="display"
 				marginTop={0}

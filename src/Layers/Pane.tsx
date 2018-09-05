@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled from "styled-components";
 import { Appearance, Border } from "../utils/enum";
 import Box from "aluminum-box";
 import LayerAppearances from "./styles/appearances";
@@ -89,6 +90,7 @@ export default class Pane extends React.PureComponent<PaneProps> {
 
 		return (
 			<_Box
+				blacklist={[...Box.defaultProps!.blacklist, "appearance", "elevation", "hoverElevation", "activeElevation"]}
 				width={this.props.width || "auto"}
 				height={this.props.height || "auto"}
 				borderTop={_borderTop}
@@ -105,40 +107,40 @@ export default class Pane extends React.PureComponent<PaneProps> {
 	}
 }
 
-const _Box = Box.extend<any>`
+const _Box = styled(Box)<any>`
 	${(props: any) =>
 		props.hoverElevation &&
 		`
 	transition-duration: 150ms;
 	transition-property: box-shadow, transform;
 	transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
-
+	
 	&:hover {
-	${
-		props.shadowColor
-			? `
+		${
+			props.shadowColor
+				? `
 			transform: translateY(-1px);
 			box-shadow: ${ElevationStyles[props.shadowColor][props.hoverElevation]}
-	`
-			: `
-		transform: translateY(-2px);
-		box-shadow: ${ElevationStyles.default[props.hoverElevation]}
-	`
-	}`};
+			`
+				: `
+			transform: translateY(-2px);
+			box-shadow: ${ElevationStyles.default[props.hoverElevation]}
+			`
+		}`};
 
 	${(props: any) =>
 		props.activeElevation &&
 		` &:active {
-			${
-				props.shadowColor
-					? `
-			transform: translateY(-1px);
-			box-shadow: ${ElevationStyles[props.shadowColor][props.activeElevation]}
-			`
-					: `
-			transform: translateY(-1px);
-			box-shadow: ${ElevationStyles.default[props.activeElevation]}
-		}
-	`
-			}`};
+				${
+					props.shadowColor
+						? `
+					transform: translateY(-1px);
+					box-shadow: ${ElevationStyles[props.shadowColor][props.activeElevation]}
+					`
+						: `
+					transform: translateY(-1px);
+					box-shadow: ${ElevationStyles.default[props.activeElevation]}
+				}
+				`
+				}`};
 `;

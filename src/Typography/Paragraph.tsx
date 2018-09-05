@@ -19,6 +19,6 @@ const textStyles = mapValues(TextStyles, textStyleTransformation);
 
 export default class Paragraph extends React.PureComponent<ParagraphProps> {
 	render() {
-		return <Text is="p" marginTop={0} marginBottom={0} textStyles={textStyles} {...this.props} />;
+		return <Text as="p" marginTop={0} marginBottom={0} textStyles={textStyles} {...this.props} />;
 	}
 }

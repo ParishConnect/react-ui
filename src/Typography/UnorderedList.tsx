@@ -5,7 +5,7 @@ export default class UnorderedList extends React.PureComponent<Props> {
 	render() {
 		return (
 			<Box
-				is="ul"
+				as="ul"
 				margin={0}
 				marginLeft="1.1em"
 				padding={0}

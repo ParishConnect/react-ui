@@ -1,4 +1,13 @@
 {
+	"plugins": [
+		[
+			"babel-plugin-styled-components",
+			{
+				"displayName": false,
+				"ssr": true
+			}
+		]
+	],
 	"presets": ["env", "stage-0", "react"],
 	"sourceMaps": "inline"
 }

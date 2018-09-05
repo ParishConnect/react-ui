@@ -9,8 +9,7 @@ import Box from "aluminum-box";
 const isDev = process.env.NODE_ENV === "development" || !process.env.NODE_ENV;
 
 export interface TextProps {
-	extend?: any;
-	is?: string;
+	as?: string;
 	size?: Size | string | number;
 	fontFamily?: FontFamily | string;
 	color?: string;
@@ -22,7 +21,7 @@ export interface TextProps {
 
 export default class Text extends React.PureComponent<TextProps> {
 	static defaultProps = {
-		element: "span",
+		as: "span",
 		size: 500,
 		color: "default",
 		fontFamily: "ui",
@@ -33,7 +32,7 @@ export default class Text extends React.PureComponent<TextProps> {
 
 	render() {
 		const {
-			is = "span",
+			as = "span",
 			size = 500,
 			color = "default",
 			fontFamily = "ui",
@@ -60,7 +59,7 @@ export default class Text extends React.PureComponent<TextProps> {
 
 		return (
 			<Box
-				is={is}
+				is={as}
 				{...(color ? { color: TextColors[color] || color } : {})}
 				fontFamily={FontFamilies[fontFamily] || fontFamily}
 				{...textStyle}
