@@ -23,14 +23,8 @@ const defaultAppearance = appearance => {
           : scales.neutral.N3A,
       boxShadow:
         typeof appearance !== 'undefined'
-          ? `0 0 1px ${tinycolor(palette[appearance].base).lighten(
-              20
-            )}, 0 3px 6px -3px ${tinycolor(palette[appearance].base).lighten(
-              20
-            )}`
-          : `0 0 1px ${scales.neutral.N4A}, 0 3px 6px -3px ${
-              scales.neutral.N4A
-            }`,
+          ? `0 1px 4px -1px ${tinycolor(palette[appearance].base).lighten(20)}`
+          : `0 1px 4px -px ${scales.neutral.N4A}`,
       color:
         typeof appearance !== 'undefined'
           ? tinycolor(palette[appearance].base).isDark()

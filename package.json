@@ -108,6 +108,7 @@
     "space": true,
     "semicolon": false,
     "rules": {
+      "no-negated-condition": "off",
       "indent": ["off"],
       "react/jsx-indent-props": ["off"],
       "react/jsx-indent": ["off"],
