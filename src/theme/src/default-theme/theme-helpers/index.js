@@ -12,8 +12,8 @@ import { fontFamilies, headings, paragraph, text } from '../typography/'
  * @return {number} border radius
  */
 const getBorderRadiusForControlHeight = height => {
-  if (height <= 40) return 3
-  return 4
+  if (height <= 40) return 5
+  return 8
 }
 
 /**

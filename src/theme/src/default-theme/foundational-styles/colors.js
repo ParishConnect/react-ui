@@ -1,3 +1,4 @@
+import { linearGradient } from '../helpers'
 import palette from './palette'
 import scales from './scales'
 import gradients from './gradients'
@@ -28,13 +29,13 @@ export default {
     tealTint: palette.teal.lightest,
 
     // Gradients
-    yellow: gradients.yellow,
-    green: gradients.green,
-    orange: gradients.orange,
-    red: gradients.red,
-    blue: gradients.blue,
-    purple: gradients.purple,
-    teal: gradients.teal
+    yellow: linearGradient(gradients.yellow.start, gradients.yellow.end),
+    green: linearGradient(gradients.green.start, gradients.green.end),
+    orange: linearGradient(gradients.orange.start, gradients.orange.end),
+    red: linearGradient(gradients.red.start, gradients.red.end),
+    blue: linearGradient(gradients.blue.start, gradients.blue.end),
+    purple: linearGradient(gradients.purple.start, gradients.purple.end),
+    teal: linearGradient(gradients.teal.start, gradients.teal.end)
   },
 
   /**

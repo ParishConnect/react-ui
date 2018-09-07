@@ -21,7 +21,7 @@ buttonsStory.add('Common', () => (
         options: [
           { label: 'Height 24', value: 24 },
           { label: 'Height 32', value: 32 },
-          { label: 'Height 40', value: 40 }
+          { label: 'Height 45', value: 45 }
         ],
         value: 32
       }}
@@ -413,6 +413,7 @@ buttonsStory.add('Button isLoading', () => (
       {({ state, setState }) => (
         <Button
           marginRight={16}
+          appearance="primary"
           isLoading={state.isLoading}
           onClick={() => {
             setState({

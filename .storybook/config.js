@@ -8,12 +8,12 @@ setOptions({
    * Name to display in the top left corner
    * @type {String}
    */
-  name: '🌲 Evergreen',
+  name: '〽️ Aluminum',
   /**
    * URL for name in top left corner to link to
    * @type {String}
    */
-  url: 'https://github.com/segmentio/evergreen',
+  url: 'https://github.com/hennessyevan/aluminum-ui',
   /**
    * Show story component as full screen
    * @type {Boolean}

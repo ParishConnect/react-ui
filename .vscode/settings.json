@@ -3,5 +3,7 @@
   "xo.enable": true,
   "files.associations": {
     "*.js": "javascriptreact"
-  }
+  },
+  "editor.fontSize": 12.5,
+  "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace"
 }

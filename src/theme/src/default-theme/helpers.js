@@ -1,13 +1,13 @@
 import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
-import colors from './foundational-styles/colors'
+import { colors, gradients } from './foundational-styles'
 
 /**
  * @param {String} top - color.
  * @param {String} bottom - color.
  * @return {String} CSS background propery.
  */
-const linearGradient = (top, bottom, angle = -49) => {
+const linearGradient = (top, bottom, angle = -25) => {
   return `linear-gradient(${angle}deg, ${bottom}, ${top})`
 }
 
@@ -74,7 +74,7 @@ const getLinearGradientWithStates = (
  * @param {Intent} intent - intent of the gradient.
  * @return {Object} { base, hover, active }
  */
-const getPrimaryButtonStylesForIntent = intent => {
+const getPrimaryButtonStylesForIntent = (intent, themeColor) => {
   switch (intent) {
     case Intent.SUCCESS: {
       const startColor = '#23C277'
@@ -92,7 +92,7 @@ const getPrimaryButtonStylesForIntent = intent => {
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)
-          .setAlpha(0.4)
+          .setAlpha(1)
           .toString()
       }
     }
@@ -107,8 +107,8 @@ const getPrimaryButtonStylesForIntent = intent => {
       }
     }
     default: {
-      const startColor = '#0788DE'
-      const endColor = '#116AB8'
+      const startColor = themeColor ? gradients[themeColor].start : '#0788DE'
+      const endColor = themeColor ? gradients[themeColor].end : '#116AB8'
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)

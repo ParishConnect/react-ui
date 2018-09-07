@@ -1,6 +1,6 @@
 import { Themer } from '../../../../themer/'
 import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
+import { palette, scales, colors } from '../foundational-styles/'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
@@ -18,11 +18,12 @@ const disabled = defaultControlStyles.disabled
  * @param {string} intent - none, success, warning, danger.
  * @return {Object} the appearance of the button.
  */
-const getButtonAppearance = (appearance, intent) => {
+const getButtonAppearance = (appearance, intent, themeColor = 'blue') => {
   switch (appearance) {
     case 'primary': {
       const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
-        intent
+        intent,
+        themeColor
       )
       return Themer.createButtonAppearance({
         disabled,
@@ -30,7 +31,7 @@ const getButtonAppearance = (appearance, intent) => {
           color: 'white',
           backgroundColor: 'white',
           backgroundImage: linearGradient.base,
-          boxShadow: `inset 0 0 0 1px ${focusColor}, 0 1px 3px ${focusColor}`,
+          boxShadow: `inset 0 0 0 0px ${focusColor}, 0 1px 3px ${focusColor}`,
           transition: 'box-shadow 125ms, background-image 125ms'
         },
         hover: {
@@ -52,7 +53,10 @@ const getButtonAppearance = (appearance, intent) => {
       })
     }
     case 'minimal': {
-      const intentTextColor = getTextColorForIntent(intent, scales.blue.B9)
+      const intentTextColor = getTextColorForIntent(
+        intent,
+        palette[themeColor].base
+      )
       return Themer.createButtonAppearance({
         disabled,
         base: {
@@ -74,7 +78,7 @@ const getButtonAppearance = (appearance, intent) => {
     }
     case 'default':
     default: {
-      const intentTextColor = getTextColorForIntent(intent)
+      const intentTextColor = getTextColorForIntent(intent, colors.text.default)
       return Themer.createButtonAppearance({
         disabled,
         base: {

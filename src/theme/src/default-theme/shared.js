@@ -11,7 +11,7 @@ const defaultControlStyles = {
   },
   base: {
     backgroundColor: 'white',
-    backgroundImage: linearGradient('#FFFFFF', '#F4F5F7'),
+    backgroundImage: linearGradient('#F4F5F7', '#F4F5F7'),
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N3A}, inset 0 -1px 1px 0 ${
       scales.neutral.N2A
     }`

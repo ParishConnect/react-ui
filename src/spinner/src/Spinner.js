@@ -66,7 +66,7 @@ class Spinner extends PureComponent {
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
           <Box
             is="circle"
-            css={inner(theme.spinnerColor)}
+            css={inner(theme.spinnerColor(theme.themeColor))}
             cx="75"
             cy="75"
             r="60"

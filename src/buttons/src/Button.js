@@ -123,7 +123,11 @@ class Button extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getButtonClassName(appearance, intent)
+    const themedClassName = theme.getButtonClassName(
+      appearance,
+      intent,
+      theme.themeColor
+    )
     const textSize = theme.getTextSizeForControlHeight(height)
 
     const borderRadius = theme.getBorderRadiusForControlHeight(height)

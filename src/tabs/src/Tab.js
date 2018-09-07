@@ -73,7 +73,7 @@ class Tab extends PureComponent {
       height,
       onSelect,
       isSelected,
-      appearance = 'blue',
+      appearance,
       ...props
     } = this.props
 
@@ -100,7 +100,7 @@ class Tab extends PureComponent {
 
     return (
       <Text
-        className={theme.getTabClassName(appearance)}
+        className={theme.getTabClassName(theme.themeColor)}
         is={is}
         size={textSize}
         height={height}

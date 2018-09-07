@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import tinycolor from 'tinycolor2'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
@@ -174,7 +175,7 @@ class Switch extends PureComponent {
     } = this.props
 
     const checked = isControlled(this) ? checkedProps : this.state.checked
-    const themedClassName = theme.getSwitchClassName(appearance)
+    const themedClassName = theme.getSwitchClassName(theme.themeColor)
 
     return (
       <Box is="label" display="block" width={height * 2} {...props}>
@@ -196,7 +197,18 @@ class Switch extends PureComponent {
             data-checked={checked}
             css={iconContainerStyle}
           >
-            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
+            {hasCheckIcon && (
+              <CheckIcon
+                fill={
+                  theme.palette[theme.themeColor]
+                    ? tinycolor(theme.palette[theme.themeColor]).isLight()
+                      ? theme.scales.neutral.N7
+                      : 'currentColor'
+                    : 'currentColor'
+                }
+                size={height / 2 - 3}
+              />
+            )}
           </Box>
           <Box
             width={height * 2}

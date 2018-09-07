@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import { scales } from '../../theme/src/default-theme/foundational-styles'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
@@ -116,7 +117,14 @@ export default class SegmentedControl extends PureComponent {
     }
 
     return (
-      <Box display="flex" marginRight={-1} height={height} {...props}>
+      <Box
+        display="flex"
+        backgroundColor={scales.neutral.N5}
+        borderRadius={999}
+        marginRight={-1}
+        height={height}
+        {...props}
+      >
         {options.map((option, index) => {
           return (
             <SegmentedControlRadio

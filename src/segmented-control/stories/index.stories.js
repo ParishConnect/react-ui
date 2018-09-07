@@ -13,17 +13,18 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     <Component
       initialState={{
         options: [
-          { label: 'Hourly', value: 'hourly' },
-          { label: 'Daily', value: 'daily' },
-          { label: 'Monthly', value: 'monthly' }
+          { label: 'Month', value: 'month' },
+          { label: 'Week', value: 'week' },
+          { label: 'Day', value: 'day' }
         ],
-        value: 'hourly'
+        value: 'month'
       }}
     >
       {({ state, setState }) => (
         <SegmentedControl
           name="time"
-          width={240}
+          width={280}
+          height={36}
           options={state.options}
           value={state.value}
           onChange={value => setState({ value })}
