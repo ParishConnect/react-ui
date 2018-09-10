@@ -10,12 +10,10 @@ function withTheme(WrappedComponent, themeColor = 'blue') {
     render() {
       return (
         <ThemeConsumer>
-          {theme => (
-            <WrappedComponent
-              theme={{ ...theme, themeColor }}
-              {...this.props}
-            />
-          )}
+          {theme => {
+            theme.themeColor = themeColor
+            return <WrappedComponent theme={theme} {...this.props} />
+          }}
         </ThemeConsumer>
       )
     }
