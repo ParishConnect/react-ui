@@ -1,6 +1,6 @@
 import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
-import { colors, elevations } from '../foundational-styles/'
+import { colors, elevations, palette } from '../foundational-styles/'
 import { fontFamilies, headings, paragraph, text } from '../typography/'
 
 /**
@@ -106,7 +106,7 @@ const getIconColor = color => {
  * @param {Intent} intent
  * @return {Object} properties
  */
-const getIconForIntent = intent => {
+const getIconForIntent = (intent, defaultColor) => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -116,7 +116,10 @@ const getIconForIntent = intent => {
       return { icon: 'warning-sign', color: 'warning' }
     case Intent.NONE:
     default:
-      return { icon: 'info-sign', color: 'info' }
+      return {
+        icon: 'info-sign',
+        color: (palette[defaultColor] && palette[defaultColor].base) || 'info'
+      }
   }
 }
 

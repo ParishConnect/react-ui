@@ -1,6 +1,6 @@
 import tinycolor from 'tinycolor2'
 import { Intent } from '../../../constants'
-import { colors, gradients } from './foundational-styles'
+import { colors, gradients, palette } from './foundational-styles'
 
 /**
  * @param {String} top - color.
@@ -34,7 +34,10 @@ const getTextColorForIntent = (intent, defaultColor) => {
     case Intent.WARNING:
       return colors.text.warning
     default:
-      return defaultColor || colors.text.default
+      return (
+        (palette[defaultColor] && palette[defaultColor].base) ||
+        colors.text.default
+      )
   }
 }
 
