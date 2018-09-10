@@ -34,7 +34,7 @@ const gradients = {
       .lighten(10)
       .saturate(20)
       .spin(-18),
-    end: palette.blue.base
+    end: tinycolor(palette.blue.base).lighten(10)
   },
   purple: {
     start: tinycolor(palette.red.base)

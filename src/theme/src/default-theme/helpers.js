@@ -80,8 +80,8 @@ const getLinearGradientWithStates = (
 const getPrimaryButtonStylesForIntent = (intent, themeColor) => {
   switch (intent) {
     case Intent.SUCCESS: {
-      const startColor = '#23C277'
-      const endColor = '#399D6C'
+      const startColor = '#2AF598'
+      const endColor = '#00D3B2'
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)

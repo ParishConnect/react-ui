@@ -1,9 +1,7 @@
 import tinycolor from 'tinycolor2'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
-import gradients from '../foundational-styles/gradients'
-import palette from '../foundational-styles/palette'
+import { scales, colors, palette } from '../foundational-styles/'
 
 const defaultAppearance = appearance => {
   return Themer.createTabAppearance({
@@ -17,10 +15,9 @@ const defaultAppearance = appearance => {
       boxShadow: `0 0 0 2px ${scales.blue.B5A}`
     },
     active: {
-      background:
-        typeof appearance !== 'undefined'
-          ? gradients[appearance]
-          : scales.neutral.N3A,
+      background: colors.background[appearance]
+        ? colors.background[appearance]
+        : scales.neutral.N3A,
       boxShadow:
         typeof appearance !== 'undefined'
           ? `0 1px 4px -1px ${tinycolor(palette[appearance].base).lighten(20)}`
