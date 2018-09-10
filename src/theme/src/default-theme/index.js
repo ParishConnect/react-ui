@@ -86,6 +86,8 @@ import {
 } from './theme-helpers/'
 
 export default {
+  // Theme Color
+  themeColor: 'blue',
   // Foundational Styles.
   colors,
   elevations,
