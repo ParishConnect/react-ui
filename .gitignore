@@ -1,2 +1,8 @@
+*.log
 node_modules
-build
+.DS_Store
+/commonjs/
+/esm/
+/.out/
+/docs/public/
+.cache
