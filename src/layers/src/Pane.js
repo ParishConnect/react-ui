@@ -16,6 +16,13 @@ class Pane extends PureComponent {
     ...Box.propTypes,
 
     /**
+     * Appearance
+     * Values: 'gradient', 'solid', 'white'
+     * --- Uses themeColor property
+     */
+    appearance: PropTypes.string,
+
+    /**
      * Background property.
      * `tint1`, `tint2` etc. from `theme.colors.background` are available.
      */
@@ -128,10 +135,24 @@ class Pane extends PureComponent {
     return borderSideProperty
   }
 
+  getBackgroundAppearance = (appearance, background, theme) => {
+    switch (appearance) {
+      case 'gradient':
+        return theme.colors.background[theme.themeColor]
+      case 'solid':
+        return theme.colors.background[`${theme.themeColor}Tint`]
+      case 'white':
+        return 'white'
+      default:
+        return background
+    }
+  }
+
   render() {
     const {
       theme,
 
+      appearance,
       background,
 
       elevation,
@@ -164,6 +185,12 @@ class Pane extends PureComponent {
       this.getBorderSideProperty({ borderSideProperty, border })
     )
 
+    const themedBackground = this.getBackgroundAppearance(
+      appearance,
+      background,
+      theme
+    )
+
     return (
       <Box
         borderTop={_borderTop}
@@ -171,7 +198,9 @@ class Pane extends PureComponent {
         borderBottom={_borderBottom}
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
-        background={theme.getBackground(background)}
+        background={
+          appearance ? themedBackground : theme.getBackground(background)
+        }
         css={{
           ...css,
           ...hoverElevationStyle,

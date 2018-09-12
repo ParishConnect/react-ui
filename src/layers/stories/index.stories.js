@@ -81,6 +81,7 @@ storiesOf('layers', module)
           <Pane overflow="auto">
             <Card
               {...cardStyle}
+              appearance="gradient"
               elevation={1}
               hoverElevation={3}
               activeElevation={2}
