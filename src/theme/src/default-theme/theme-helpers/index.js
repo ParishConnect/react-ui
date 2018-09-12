@@ -4,6 +4,18 @@ import { colors, elevations, palette } from '../foundational-styles/'
 import { fontFamilies, headings, paragraph, text } from '../typography/'
 
 /**
+ * Get Theme Color for all components
+ * @param {string} themeColor
+ * @return {string} themeColor
+ */
+const getThemeColor = themeColor => {
+  if (palette[themeColor]) {
+    return themeColor
+  }
+  return 'blue'
+}
+
+/**
  * Controls include:
  * - Button
  * - IconButton
@@ -182,6 +194,7 @@ const getTextColor = color => {
 }
 
 export {
+  getThemeColor,
   getBorderRadiusForControlHeight,
   getTextSizeForControlHeight,
   getIconSizeForButton,

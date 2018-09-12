@@ -44,7 +44,9 @@ class Link extends PureComponent {
   render() {
     const { theme, className, color, ...props } = this.props
 
-    const themedClassName = theme.getLinkClassName(color || theme.themeColor)
+    const themedClassName = theme.getLinkClassName(
+      color || theme.getThemeColor()
+    )
 
     return (
       <Text

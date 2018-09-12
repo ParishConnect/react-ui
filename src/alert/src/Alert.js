@@ -180,7 +180,7 @@ class Alert extends PureComponent {
           {hasAction && (
             <Pane flexShrink={0}>
               <Heading
-                color={getTextColorForIntent(intent, theme.themeColor)}
+                color={getTextColorForIntent(intent, theme.getThemeColor())}
                 size={100}
                 isUppercase
               >

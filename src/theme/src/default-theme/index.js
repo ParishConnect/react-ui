@@ -68,6 +68,7 @@ import {
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
+  getThemeColor,
   getBorderRadiusForControlHeight,
   getTextSizeForControlHeight,
   getIconSizeForButton,
@@ -87,7 +88,7 @@ import {
 
 export default {
   // Theme Color
-  themeColor: 'blue',
+  getThemeColor,
   // Foundational Styles.
   colors,
   elevations,
