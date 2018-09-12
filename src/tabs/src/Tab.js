@@ -100,7 +100,7 @@ class Tab extends PureComponent {
 
     return (
       <Text
-        className={theme.getTabClassName(theme.getThemeColor())}
+        className={theme.getTabClassName(theme.themeColor)}
         is={is}
         size={textSize}
         height={height}

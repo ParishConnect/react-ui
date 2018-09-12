@@ -116,7 +116,7 @@ class SegmentedControlRadio extends PureComponent {
     } = this.props
 
     const themedClassName = theme.getSegmentedControlRadioClassName(
-      theme.getThemeColor() || appearance
+      theme.themeColor || appearance
     )
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)

@@ -12,16 +12,6 @@ const linearGradient = (top, bottom, angle = -25) => {
 }
 
 /**
- * @param {String} start - color.
- * @param {String} end - color.
- * @param {Number} angle - angle (optional)
- * @return {String} CSS background propery.
- */
-const angleGradient = (start, end, angle = -25) => {
-  return `linear-gradient(${angle}deg, ${start} 10%, ${end})`
-}
-
-/**
  * @param {Intent} intent
  * @return {String} color
  */
@@ -124,7 +114,6 @@ const getPrimaryButtonStylesForIntent = (intent, themeColor) => {
 
 export {
   linearGradient,
-  angleGradient,
   getTextColorForIntent,
   getLinearGradientWithStates,
   getPrimaryButtonStylesForIntent

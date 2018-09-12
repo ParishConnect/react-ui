@@ -175,7 +175,7 @@ class Switch extends PureComponent {
     } = this.props
 
     const checked = isControlled(this) ? checkedProps : this.state.checked
-    const themedClassName = theme.getSwitchClassName(theme.getThemeColor())
+    const themedClassName = theme.getSwitchClassName(theme.themeColor)
 
     return (
       <Box is="label" display="block" width={height * 2} {...props}>
@@ -200,8 +200,8 @@ class Switch extends PureComponent {
             {hasCheckIcon && (
               <CheckIcon
                 fill={
-                  theme.palette[theme.getThemeColor()]
-                    ? tinycolor(theme.palette[theme.getThemeColor()]).isLight()
+                  theme.palette[theme.themeColor]
+                    ? tinycolor(theme.palette[theme.themeColor]).isLight()
                       ? theme.scales.neutral.N7
                       : 'currentColor'
                     : 'currentColor'

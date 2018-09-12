@@ -126,7 +126,7 @@ class Button extends PureComponent {
     const themedClassName = theme.getButtonClassName(
       appearance,
       intent,
-      theme.getThemeColor()
+      theme.themeColor
     )
     const textSize = theme.getTextSizeForControlHeight(height)
 
