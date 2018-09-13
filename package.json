@@ -105,6 +105,7 @@
     "space": true,
     "semicolon": false,
     "rules": {
+      "import/prefer-default-export": "off",
       "no-negated-condition": "off",
       "indent": ["off"],
       "react/jsx-indent-props": ["off"],
