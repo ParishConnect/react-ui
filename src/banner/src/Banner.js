@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Box from 'ui-box'
+import tinyColor from 'tinycolor2'
 import PropTypes from 'prop-types'
 import Pane from '../../layers/src/Pane'
 import Text from '../../typography/src/Text'
@@ -20,6 +21,11 @@ class Banner extends PureComponent {
      * Subtitle appears underneath the title and is optional
      */
     subtitle: PropTypes.string,
+
+    /**
+     * One of the tints from background colors
+     */
+    hoverTint: PropTypes.string,
 
     /**
      * Add optional icon support for action
@@ -61,6 +67,10 @@ class Banner extends PureComponent {
       ':hover': {
         ...(css[':hover'] || {}),
         background: theme.getBackground(hoverTint)
+      },
+      ':active': {
+        ...(css[':active'] || {}),
+        background: `${tinyColor(theme.getBackground(hoverTint)).darken(3)}`
       }
     }
   }
@@ -68,7 +78,7 @@ class Banner extends PureComponent {
   render() {
     const {
       theme,
-      height,
+      height = 65,
       color,
       children,
       subtitle,

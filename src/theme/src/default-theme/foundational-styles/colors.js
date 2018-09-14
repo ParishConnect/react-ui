@@ -29,7 +29,7 @@ export default {
     tealTint: palette.teal.lightest,
 
     // Gradients
-    yellow: linearGradient(gradients.yellow.start, gradients.yellow.end),
+    neutral: linearGradient(gradients.neutral.start, gradients.neutral.end),
     green: linearGradient(gradients.green.start, gradients.green.end),
     orange: linearGradient(gradients.orange.start, gradients.orange.end),
     red: linearGradient(gradients.red.start, gradients.red.end),

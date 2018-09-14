@@ -1,18 +1,21 @@
 import tinycolor from 'tinycolor2'
 import palette from './palette'
+import scales from './scales'
 
 /* Gradients are used for layers, button and indicators */
 
 const gradients = {
-  yellow: {
-    start: palette.yellow.light,
-    end: palette.yellow.dark
+  neutral: {
+    start: tinycolor(scales.neutral.N7)
+      .saturate(8)
+      .spin(-15),
+    end: scales.neutral.N10
   },
   green: {
     start: tinycolor(palette.green.base)
       .lighten(5)
-      .saturate(10)
-      .spin(-35),
+      .saturate(-10)
+      .spin(-15),
     end: palette.green.dark
   },
   orange: {
