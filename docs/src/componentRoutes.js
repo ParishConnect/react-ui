@@ -16,6 +16,10 @@ module.exports = [
     path: '/components/badges'
   },
   {
+    name: 'Banner',
+    path: '/components/banner'
+  },
+  {
     name: 'Buttons',
     path: '/components/buttons'
   },

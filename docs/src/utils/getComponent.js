@@ -4,6 +4,7 @@ import colorsDocs from '../../../src/colors/docs/'
 import typographyDocs from '../../../src/typography/docs/'
 import layersDocs from '../../../src/layers/docs/'
 import buttonsDocs from '../../../src/buttons/docs'
+import bannerDocs from '../../../src/banner/docs'
 import autocompleteDocs from '../../../src/autocomplete/docs/'
 import badgesDocs from '../../../src/badges/docs/'
 import comboboxDocs from '../../../src/combobox/docs/'
@@ -34,6 +35,7 @@ const map = {
   radio: radioDocs,
   'segmented control': segmentedControlDocs,
   badges: badgesDocs,
+  banner: bannerDocs,
   buttons: buttonsDocs,
   table: tableDocs,
   dialog: dialogDocs,

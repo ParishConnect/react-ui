@@ -24,9 +24,12 @@ export default class Root extends React.Component {
                 <div className="Home-inner">
                   <h1>React Based UI Framework</h1>
                   <p>
-                    It is build and maintained open&#8209;source&nbsp;by&nbsp;
-                    <NativeLink className="Link" href="https://segment.com/">
-                      Segment
+                    It is built and maintained open&#8209;source&nbsp;by&nbsp;
+                    <NativeLink
+                      className="Link"
+                      href="https://hennessyevan.com/"
+                    >
+                      Evan Hennessy
                     </NativeLink>.
                   </p>
                   <div>
@@ -40,7 +43,7 @@ export default class Root extends React.Component {
                       Components
                     </Button>
                     <NativeLink
-                      href="https://github.com/segmentio/evergreen"
+                      href="https://github.com/hennessyevan/aluminum-ui"
                       style={{
                         width: 136
                       }}

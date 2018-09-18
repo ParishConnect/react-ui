@@ -33,6 +33,11 @@ class Banner extends PureComponent {
     icon: PropTypes.string
   }
 
+  static defaultProps = {
+    height: 75,
+    width: 325
+  }
+
   getActionDescriptor = (action, color, theme) => {
     if (action.icon) {
       return (
