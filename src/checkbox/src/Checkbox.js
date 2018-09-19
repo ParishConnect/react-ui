@@ -105,7 +105,7 @@ class Checkbox extends PureComponent {
     checked: false,
     indeterminate: false,
     onChange: () => {},
-    appearance: 'default'
+    appearance: 'blue'
   }
 
   setIndeterminate = el => {
@@ -130,7 +130,9 @@ class Checkbox extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getCheckboxClassName(appearance)
+    const themedClassName = theme.getCheckboxClassName(
+      theme.themeColor || 'blue'
+    )
 
     return (
       <Box

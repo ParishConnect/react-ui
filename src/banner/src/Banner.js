@@ -13,9 +13,17 @@ class Banner extends PureComponent {
     ...Pane.propTypes,
 
     /**
-     * Title is the theme colored text and is required
+     * The action attached to the banner. Passed as a function (optional)
      */
-    title: PropTypes.string,
+    action: PropTypes.shape({
+      title: PropTypes.string,
+      action: PropTypes.func
+    }),
+
+    /**
+     * The title of the banner. When a string is passed it is wrapped in a `<Text size={400} />` component.
+     */
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
     /**
      * Subtitle appears underneath the title and is optional
