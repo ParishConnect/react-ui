@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { Text } from '../../typography/'
 import { ThemeConsumer } from '../../theme'
 import Pane from '../src/Pane'
@@ -40,10 +40,11 @@ const implementationDetails = (
     <p>
       The <code>Pane</code> component maps almost directly to the{' '}
       <code>Box</code> from{' '}
-      <a href="https://github.com/segmentio/ui-box">ui-box</a>. This means you
-      can pass everything to <code>Pane</code> that you can pass to{' '}
-      <code>Box</code>. The <code>Card</code> component simply maps to the{' '}
-      <code>Pane</code> component with a default border-radius.
+      <a href="https://github.com/segmentio/@hennessyevan/aluminum-box">
+        @hennessyevan/aluminum-box
+      </a>. This means you can pass everything to <code>Pane</code> that you can
+      pass to <code>Box</code>. The <code>Card</code> component simply maps to
+      the <code>Pane</code> component with a default border-radius.
     </p>
 
     <h4>Pass Styles Directly to Pane & Card</h4>
@@ -135,9 +136,10 @@ const components = [
         <p>
           The <code>Pane</code> component maps almost directly to the{' '}
           <code>Box</code> from{' '}
-          <a href="https://github.com/segmentio/ui-box">ui-box</a>. This means
-          you can pass everything to <code>Pane</code> that you can pass to{' '}
-          <code>Box</code>.
+          <a href="https://github.com/segmentio/@hennessyevan/aluminum-box">
+            @hennessyevan/aluminum-box
+          </a>. This means you can pass everything to <code>Pane</code> that you
+          can pass to <code>Box</code>.
         </p>
         <p>
           Because the <code>Pane</code> component directly maps to a{' '}

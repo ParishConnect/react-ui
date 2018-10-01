@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import { Text } from '../../typography/'
 import Icon, { IconNames } from '../src/Icon'

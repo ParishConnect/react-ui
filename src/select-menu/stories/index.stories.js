@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import Component from '@reactions/component'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import options from '../docs/starwars-options'
 import Manager from '../docs/Manager'
 import { SelectMenu } from '../../select-menu'

@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Popover from '../src/Popover'
 import { Position } from '../../constants'
 import { Button } from '../../buttons'

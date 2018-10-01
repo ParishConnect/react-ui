@@ -45,7 +45,7 @@ export default () => {
                   </strong>
                   {` `}
                   For example, Aluminum implements most components on top of a{' '}
-                  <NativeLink href="https://github.com/segmentio/ui-box">
+                  <NativeLink href="https://github.com/segmentio/@hennessyevan/aluminum-box">
                     Box primitive
                   </NativeLink>{' '}
                   which allows for a lot of customization.

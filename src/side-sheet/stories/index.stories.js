@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { SideSheet } from '../../side-sheet'
 import { Heading, Paragraph } from '../../typography'
 import { Card, Pane } from '../../layers'

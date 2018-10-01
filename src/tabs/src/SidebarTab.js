@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Tab from './Tab'
 
 export default class SidebarTab extends PureComponent {

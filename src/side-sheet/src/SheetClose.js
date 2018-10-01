@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { css, keyframes } from 'emotion'
 import { Icon } from '../../icon'
 import { Position } from '../../constants'

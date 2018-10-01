@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { InlineAlert, Alert } from '../../alert'
 import { Heading } from '../../typography'
 

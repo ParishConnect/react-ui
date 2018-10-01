@@ -33,7 +33,7 @@ As a general rule of thumb try to follow these constraints:
 
 * Write down how you would like to use this component.
 * Write down the component API and prop types.
-* Try to use `ui-box` for your components.
+* Try to use `@hennessyevan/aluminum-box` for your components.
 * Try to make all heights possible.
 * Base the text style (font size) on the height.
 

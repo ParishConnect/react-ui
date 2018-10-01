@@ -4,7 +4,7 @@ module.exports = ({ componentName }) => {
   return `
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 
 export default class ${componentName} extends PureComponent {
   static propTypes = {}

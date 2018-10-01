@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import TextInput from '../src/TextInput'
 import TextInputField from '../src/TextInputField'
 import { Label } from '../../typography'

@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import toaster from '../src/'
 import { Button } from '../../buttons/'
 import { Heading, Paragraph, Ul, Li } from '../../typography/'

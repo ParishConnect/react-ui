@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import Radio from '../src/Radio'
 import RadioGroup from '../src/RadioGroup'

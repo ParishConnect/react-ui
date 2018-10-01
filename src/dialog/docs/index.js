@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Dialog from '../src/Dialog'
 import { Button } from '../../buttons'
 import { Paragraph } from '../../typography'

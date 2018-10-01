@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import SearchInput from '../src/SearchInput'
 
 /* eslint-disable import/no-unresolved, import/no-webpack-loader-syntax */

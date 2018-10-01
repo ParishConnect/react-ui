@@ -1,7 +1,7 @@
 /* eslint react/no-array-index-key: 0, eqeqeq: 0, no-eq-null: 0 */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { IconNames, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
 import { withTheme } from '../../theme'
 

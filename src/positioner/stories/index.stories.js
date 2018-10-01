@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 
 storiesOf('positioner', module).add('Positioner', () => (
   <Box padding={40}>

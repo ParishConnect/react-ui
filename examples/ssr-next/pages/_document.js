@@ -6,13 +6,13 @@ import { extractStyles } from 'evergreen-ui'
 export default class MyDocument extends Document {
   static async getInitialProps({ renderPage }) {
     const page = renderPage()
-    // `css` is a string with css from both glamor and ui-box.
+    // `css` is a string with css from both glamor and @hennessyevan/aluminum-box.
     // No need to get the glamor css manually if you are using it elsewhere in your app.
     //
     // `hydrationScript` is a script you should render on the server.
-    // It contains a stringified version of the glamor and ui-box caches.
+    // It contains a stringified version of the glamor and @hennessyevan/aluminum-box caches.
     // Evergreen will look for that script on the client and automatically hydrate
-    // both glamor and ui-box.
+    // both glamor and @hennessyevan/aluminum-box.
     const { css, hydrationScript } = extractStyles()
     return {
       ...page,

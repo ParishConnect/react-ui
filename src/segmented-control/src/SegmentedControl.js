@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import Box, {
+  spacing,
+  position,
+  layout,
+  dimensions
+} from '@hennessyevan/aluminum-box'
 import { scales } from '../../theme/src/default-theme/foundational-styles'
 import SegmentedControlRadio from './SegmentedControlRadio'
 

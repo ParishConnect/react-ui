@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import tinyColor from 'tinycolor2'
 import PropTypes from 'prop-types'
 import Pane from '../../layers/src/Pane'

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import tinycolor from 'tinycolor2'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout } from 'ui-box'
+import Box, { spacing, position, layout } from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
 
 const animationEasing = {

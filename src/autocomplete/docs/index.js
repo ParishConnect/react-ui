@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import starWarsNames from 'starwars-names'
 import Autocomplete from '../src/Autocomplete'
 import { TextInput } from '../../text-input'

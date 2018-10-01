@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import CornerDialog from '../src/CornerDialog'
 import { Button } from '../../buttons'
 import { Manager } from '../../manager'

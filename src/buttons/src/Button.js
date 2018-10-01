@@ -1,7 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { dimensions, spacing, position, layout } from 'ui-box'
+import {
+  dimensions,
+  spacing,
+  position,
+  layout
+} from '@hennessyevan/aluminum-box'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'

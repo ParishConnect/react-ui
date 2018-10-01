@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Alert from '../src/Alert'
 import InlineAlert from '../src/InlineAlert'
 import { Button } from '../../buttons'

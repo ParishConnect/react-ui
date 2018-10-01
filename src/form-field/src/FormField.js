@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { dimensions, spacing, position, layout } from 'ui-box'
+import Box, {
+  dimensions,
+  spacing,
+  position,
+  layout
+} from '@hennessyevan/aluminum-box'
 import FormFieldLabel from './FormFieldLabel'
 import FormFieldDescription from './FormFieldDescription'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
