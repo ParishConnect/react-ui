@@ -39,7 +39,7 @@ const getTextColorForIntent = (intent, defaultColor) => {
 const getLinearGradientWithStates = (
   startColor,
   endColor,
-  intensityMultiplier = 0.3
+  intensityMultiplier = 1.3
 ) => {
   return {
     base: linearGradient(startColor, endColor),

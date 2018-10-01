@@ -15,14 +15,13 @@ const defaultAppearance = themeColor => {
     base: {
       color: 'white',
       backgroundColor: 'white',
-      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, white)`,
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
-        scales.neutral.N3A
-      }`
+      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
+        scales.neutral.N2A
+      })`,
+      boxShadow: `inset 0 -1px 1px 0 ${scales.neutral.N3A}`
     },
     disabled: {
       cursor: 'not-allowed',
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
       backgroundColor: scales.neutral.N2A,
       backgroundImage: 'none'
     },
@@ -30,7 +29,7 @@ const defaultAppearance = themeColor => {
       backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
         scales.neutral.N1A
       })`,
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${
+      boxShadow: `inset 0 0 0 1px ${scales.neutral.N3A}, inset 0 -1px 1px 0 ${
         scales.neutral.N2A
       }`
     },
@@ -47,16 +46,14 @@ const defaultAppearance = themeColor => {
     checked: {
       color: 'white',
       backgroundImage: primaryStyle(themeColor).linearGradient.base,
-      boxShadow: `inset 0 0 0 1px ${tinycolor(palette[themeColor].base).lighten(
-        15
-      ) || scales.neutral.N5A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
+      boxShadow: `0 0 1px ${tinycolor(palette[themeColor].base).darken() ||
+        scales.neutral.N5A}`
     },
     checkedHover: {
       color: 'white',
       backgroundImage: primaryStyle(themeColor).linearGradient.hover,
-      boxShadow: `0 1px 1px ${palette[themeColor].base ||
-        scales.neutral.N5A}, inset 0 -1px 1px 0 ${palette[themeColor].base ||
-        scales.neutral.N2A}`
+      boxShadow: `0 0 1px ${tinycolor(palette[themeColor].base).darken(15) ||
+        scales.neutral.N5A}`
     },
     checkedDisabled: {
       color: scales.neutral.N6A,
