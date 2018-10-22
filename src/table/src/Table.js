@@ -14,25 +14,15 @@ import SelectMenuCell from './SelectMenuCell'
 
 export default class Table extends PureComponent {
   static Body = TableBody
-
   static VirtualBody = TableVirtualBody
-
   static Head = TableHead
-
   static HeaderCell = TableHeaderCell
-
   static TextHeaderCell = TextTableHeaderCell
-
   static SearchHeaderCell = SearchTableHeaderCell
-
   static Row = TableRow
-
   static Cell = TableCell
-
   static TextCell = TextTableCell
-
   static EditableCell = EditableCell
-
   static SelectMenuCell = SelectMenuCell
 
   static propTypes = {

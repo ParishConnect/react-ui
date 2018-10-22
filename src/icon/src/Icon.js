@@ -1,7 +1,7 @@
 /* eslint react/no-array-index-key: 0, eqeqeq: 0, no-eq-null: 0 */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { IconNames, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
 import { withTheme } from '../../theme'
 
@@ -15,7 +15,6 @@ export { IconNames }
 
 class Icon extends PureComponent {
   static SIZE_STANDARD = 16
-
   static SIZE_LARGE = 20
 
   static propTypes = {
@@ -87,8 +86,7 @@ class Icon extends PureComponent {
 
     if (icon == null) {
       return null
-    }
-    if (typeof icon !== 'string') {
+    } else if (typeof icon !== 'string') {
       return icon
     }
 

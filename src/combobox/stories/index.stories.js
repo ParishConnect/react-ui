@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import starWarsNames from 'starwars-names'
-import { Combobox } from '..'
+import { Combobox } from '../../combobox'
 import { Heading } from '../../typography'
 
 // Generate a big list of items

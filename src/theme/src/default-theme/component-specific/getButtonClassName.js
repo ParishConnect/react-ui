@@ -1,6 +1,6 @@
-import { Themer } from '../../../../themer'
+import { Themer } from '../../../../themer/'
 import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
+import { palette, scales, colors } from '../foundational-styles/'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
@@ -10,7 +10,7 @@ import { defaultControlStyles } from '../shared'
 /**
  * Disabled styles are all the same for all buttons.
  */
-const { disabled } = defaultControlStyles
+const disabled = defaultControlStyles.disabled
 
 /**
  * Get button appearance.
@@ -18,11 +18,12 @@ const { disabled } = defaultControlStyles
  * @param {string} intent - none, success, warning, danger.
  * @return {Object} the appearance of the button.
  */
-const getButtonAppearance = (appearance, intent) => {
+const getButtonAppearance = (appearance, intent, themeColor) => {
   switch (appearance) {
     case 'primary': {
       const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
-        intent
+        intent,
+        themeColor
       )
       return Themer.createButtonAppearance({
         disabled,
@@ -30,17 +31,15 @@ const getButtonAppearance = (appearance, intent) => {
           color: 'white',
           backgroundColor: 'white',
           backgroundImage: linearGradient.base,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N5A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 0px ${focusColor}, 0 1px 3px ${focusColor}`,
+          transition: 'box-shadow 125ms, background-image 125ms'
         },
         hover: {
-          backgroundImage: linearGradient.hover
+          backgroundImage: linearGradient.hover,
+          boxShadow: `inset 0 0 0 1px ${focusColor}, 0 2px 5px ${focusColor}`
         },
         focus: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+          boxShadow: `inset 0 0 0 1px ${focusColor}, 0 2px 5px ${focusColor}`
         },
         active: {
           backgroundImage: linearGradient.active,
@@ -49,14 +48,15 @@ const getButtonAppearance = (appearance, intent) => {
           }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
         },
         focusAndActive: {
-          boxShadow: `0 0 0 3px ${focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${focusColor}, 0 2px 5px ${focusColor}`
         }
       })
     }
     case 'minimal': {
-      const intentTextColor = getTextColorForIntent(intent, scales.blue.B9)
+      const intentTextColor = getTextColorForIntent(
+        intent,
+        palette[themeColor].base
+      )
       return Themer.createButtonAppearance({
         disabled,
         base: {
@@ -78,7 +78,7 @@ const getButtonAppearance = (appearance, intent) => {
     }
     case 'default':
     default: {
-      const intentTextColor = getTextColorForIntent(intent)
+      const intentTextColor = getTextColorForIntent(intent, colors.text.default)
       return Themer.createButtonAppearance({
         disabled,
         base: {

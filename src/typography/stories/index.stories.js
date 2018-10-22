@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import {
   Text,
   Paragraph,
@@ -14,7 +14,7 @@ import {
   UnorderedList,
   OrderedList,
   ListItem
-} from '..'
+} from '../../typography'
 
 const TextSizes = [300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]

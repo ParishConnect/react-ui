@@ -42,8 +42,8 @@ class Tab extends PureComponent {
 
   static styles = {
     display: 'inline-flex',
-    fontWeight: 500,
-    paddingX: 8,
+    fontWeight: 700,
+    paddingX: 12,
     marginX: 4,
     borderRadius: 3,
     lineHeight: '28px',
@@ -77,7 +77,7 @@ class Tab extends PureComponent {
       ...props
     } = this.props
 
-    const textSize = theme.getTextSizeForControlHeight(height)
+    const textSize = theme.getTextSizeForControlHeight(height) * 1.3
 
     let elementBasedProps
     if (is === 'a') {
@@ -100,7 +100,7 @@ class Tab extends PureComponent {
 
     return (
       <Text
-        className={theme.getTabClassName(appearance)}
+        className={theme.getTabClassName(theme.themeColor)}
         is={is}
         size={textSize}
         height={height}

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { Portal } from '../../portal'
-import { Stack } from '../../stack'
+import { Stack } from '../../stack/'
 import { StackingOrder, Position } from '../../constants'
 import getPosition from './getPosition'
 
@@ -46,9 +46,7 @@ export default class Positioner extends PureComponent {
       Position.TOP_RIGHT,
       Position.BOTTOM,
       Position.BOTTOM_LEFT,
-      Position.BOTTOM_RIGHT,
-      Position.LEFT,
-      Position.RIGHT
+      Position.BOTTOM_RIGHT
     ]).isRequired,
 
     /**
@@ -158,8 +156,8 @@ export default class Positioner extends PureComponent {
       // https://github.com/segmentio/evergreen/issues/255
       // We need to ceil the width and height to prevent jitter when
       // the window is zoomed (when `window.devicePixelRatio` is not an integer)
-      height = Math.round(positionerRect.height)
-      width = Math.round(positionerRect.width)
+      height = Math.ceil(positionerRect.height)
+      width = Math.ceil(positionerRect.width)
     } else {
       // When the animation is in flight use `offsetWidth/Height` which
       // does not calculate the `transform` property as part of its result.
@@ -229,18 +227,17 @@ export default class Positioner extends PureComponent {
           return (
             <React.Fragment>
               {target({ getRef: this.getTargetRef, isShown })}
-
-              <Transition
-                in={isShown}
-                timeout={animationDuration}
-                onEnter={this.handleEnter}
-                onEntered={this.props.onOpenComplete}
-                onExited={this.handleExited}
-                unmountOnExit
-              >
-                {state => (
-                  <Portal>
-                    {children({
+              <Portal>
+                <Transition
+                  in={isShown}
+                  timeout={animationDuration}
+                  onEnter={this.handleEnter}
+                  onEntered={this.props.onOpenComplete}
+                  onExited={this.handleExited}
+                  unmountOnExit
+                >
+                  {state =>
+                    children({
                       top,
                       left,
                       state,
@@ -258,10 +255,10 @@ export default class Positioner extends PureComponent {
                       },
                       getRef: this.getRef,
                       animationDuration
-                    })}
-                  </Portal>
-                )}
-              </Transition>
+                    })
+                  }
+                </Transition>
+              </Portal>
             </React.Fragment>
           )
         }}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import { css } from 'glamor'
+import Box from '@hennessyevan/aluminum-box'
+import { css } from 'emotion'
 import cx from 'classnames'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
@@ -20,13 +20,13 @@ const wrapperClass = css({
   flex: 1,
   cursor: 'pointer',
   marginLeft: '-1px',
-  [`:first-child .${labelClass}`]: {
-    borderTopLeftRadius: 3,
-    borderBottomLeftRadius: 3
+  [`:first-child`]: {
+    borderTopLeftRadius: 999,
+    borderBottomLeftRadius: 999
   },
-  [`:last-child .${labelClass}`]: {
-    borderTopRightRadius: 3,
-    borderBottomRightRadius: 3
+  [`:last-child`]: {
+    borderTopRightRadius: 999,
+    borderBottomRightRadius: 999
   }
 })
 
@@ -115,7 +115,9 @@ class SegmentedControlRadio extends PureComponent {
       isLastItem
     } = this.props
 
-    const themedClassName = theme.getSegmentedControlRadioClassName(appearance)
+    const themedClassName = theme.getSegmentedControlRadioClassName(
+      theme.themeColor || appearance
+    )
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
@@ -149,7 +151,7 @@ class SegmentedControlRadio extends PureComponent {
           is="label"
           cursor="pointer"
           htmlFor={id}
-          fontWeight={500}
+          fontWeight={700}
           size={textSize}
           className={`${labelClass}`}
         >

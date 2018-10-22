@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
-import { Avatar } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { Avatar } from '../../avatar'
 import { Heading, Paragraph } from '../../typography'
 
 const names = [
@@ -101,8 +101,7 @@ storiesOf('avatar', module).add('Avatar', () => (
       <StoryHeader>
         <StoryHeading>Avatar sizes</StoryHeading>
         <StoryDescription>
-          Use 8px grid: 16, 24, 32, 40, 96, 128.
-          <br />
+          Use 8px grid: 16, 24, 32, 40, 96, 128.<br />
           Use solid colors for avatars under 24px.
         </StoryDescription>
       </StoryHeader>
@@ -132,8 +131,7 @@ storiesOf('avatar', module).add('Avatar', () => (
       <StoryHeader>
         <StoryHeading>Manual Solid Colors</StoryHeading>
         <StoryDescription>
-          Pass the isSolid prop.
-          <br />
+          Pass the isSolid prop.<br />
           {colors.join(', ')}
         </StoryDescription>
       </StoryHeader>

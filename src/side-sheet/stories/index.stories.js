@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
-import { SideSheet } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { SideSheet } from '../../side-sheet'
 import { Heading, Paragraph } from '../../typography'
 import { Card, Pane } from '../../layers'
 import { Button } from '../../buttons'
@@ -248,29 +248,6 @@ storiesOf('side-sheet', module)
                 Show {position}
               </Button>
             ))}
-          </Box>
-        )}
-      </Manager>
-    </Box>
-  ))
-  .add('escape + overlay click disabled', () => (
-    <Box padding={40}>
-      {(() => {
-        document.body.style.margin = '0'
-        document.body.style.height = '100vh'
-      })()}
-      <Manager isShown>
-        {({ state, setState }) => (
-          <Box>
-            <SideSheet
-              isShown={state.isShown}
-              shouldCloseOnOverlayClick={false}
-              shouldCloseOnEscapePress={false}
-              onCloseComplete={() => setState({ isShown: false })}
-            />
-            <Button onClick={() => setState({ isShown: true })}>
-              Show Side Sheet
-            </Button>
           </Box>
         )}
       </Manager>

@@ -16,13 +16,9 @@ const KeyCodes = {
 
 export default class Menu extends React.PureComponent {
   static Item = MenuItem
-
   static Divider = MenuDivider
-
   static Group = MenuGroup
-
   static Option = MenuOption
-
   static OptionsGroup = MenuOptionsGroup
 
   static propTypes = {
@@ -34,12 +30,11 @@ export default class Menu extends React.PureComponent {
 
   componentDidMount() {
     // Get the menu item buttons
-    // eslint-disable-next-line unicorn/prefer-spread
     this.menuItems = Array.from(
       this.menuRef.querySelectorAll('[role="menuitemradio"], [role="menuitem"]')
     )
 
-    if (this.menuItems.length === 0) {
+    if (this.menuItems.length < 1) {
       throw new Error('The menu has no menu items')
     }
 

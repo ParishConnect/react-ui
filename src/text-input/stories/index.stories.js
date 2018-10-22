@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-import { TextInputField, TextInput } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { TextInputField, TextInput } from '../../text-input'
 import { Text, Label, Heading } from '../../typography'
 import { Pane, Card } from '../../layers'
 import { Button } from '../../buttons'
@@ -17,7 +17,6 @@ class Manager extends React.Component {
   }
 
   state = {}
-
   render() {
     return this.props.children({
       setState: (...args) => {

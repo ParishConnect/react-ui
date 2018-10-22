@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { Pane, Card } from '..'
-import { ThemeConsumer } from '../../theme'
+import { Pane, Card } from '../../layers'
+import { ThemeConsumer } from '../../theme/'
 
 const cardStyle = {
   float: 'left',
@@ -19,7 +19,7 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.elevations.neutral.map((style, index) => (
               <Pane key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Pane>
@@ -65,7 +65,7 @@ storiesOf('layers', module)
       {theme => (
         <div>
           <Pane overflow="auto">
-            {theme.elevations.map((style, index) => (
+            {theme.elevations.neutral.map((style, index) => (
               <Card key={style} {...cardStyle} elevation={index}>
                 Elevation {index}
               </Card>
@@ -81,6 +81,7 @@ storiesOf('layers', module)
           <Pane overflow="auto">
             <Card
               {...cardStyle}
+              appearance="gradient"
               elevation={1}
               hoverElevation={3}
               activeElevation={2}

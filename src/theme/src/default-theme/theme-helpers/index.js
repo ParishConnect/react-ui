@@ -1,7 +1,7 @@
 import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
-import { colors, elevations } from '../foundational-styles'
-import { fontFamilies, headings, paragraph, text } from '../typography'
+import { colors, elevations, palette } from '../foundational-styles/'
+import { fontFamilies, headings, paragraph, text } from '../typography/'
 
 /**
  * Controls include:
@@ -12,8 +12,8 @@ import { fontFamilies, headings, paragraph, text } from '../typography'
  * @return {number} border radius
  */
 const getBorderRadiusForControlHeight = height => {
-  if (height <= 40) return 3
-  return 4
+  if (height <= 40) return 5
+  return 8
 }
 
 /**
@@ -27,7 +27,9 @@ const getTextSizeForControlHeight = height => {
   if (height <= 32) return 300
   if (height <= 36) return 400
   if (height <= 40) return 400
-  return 500
+  if (height <= 48) return 500
+  if (height <= 56) return 700
+  return 800
 }
 
 /**
@@ -75,13 +77,16 @@ const getBackground = background => {
 /**
  * Get box-shadow (elevation).
  * @param {string} level — level of elevation.
+ * @param {string} color - color of elevation.
  * @return {string} elevation box-shadow.
  */
-const getElevation = level => {
+const getElevation = (level, color = 'neutral') => {
   /**
    * There is no fallback, undefined will be returned.
    */
-  return elevations[level]
+  return color in elevations
+    ? elevations[color][level]
+    : elevations.neutral[level]
 }
 
 /**
@@ -101,7 +106,7 @@ const getIconColor = color => {
  * @param {Intent} intent
  * @return {Object} properties
  */
-const getIconForIntent = intent => {
+const getIconForIntent = (intent, defaultColor) => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -111,7 +116,10 @@ const getIconForIntent = intent => {
       return { icon: 'warning-sign', color: 'warning' }
     case Intent.NONE:
     default:
-      return { icon: 'info-sign', color: 'info' }
+      return {
+        icon: 'info-sign',
+        color: (palette[defaultColor] && palette[defaultColor].base) || 'info'
+      }
   }
 }
 

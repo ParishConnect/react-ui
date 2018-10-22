@@ -16,10 +16,11 @@
 import {
   colors,
   elevations,
+  gradients,
   fills,
   palette,
   scales
-} from './foundational-styles'
+} from './foundational-styles/'
 
 /**
  * Typography.
@@ -27,7 +28,7 @@ import {
  * The following properties are NOT REQUIRED by Evergreen.
  * It's exposed for convenience and documentation.
  */
-import { headings, text, fontFamilies, paragraph } from './typography'
+import { headings, text, fontFamilies, paragraph } from './typography/'
 
 /**
  * Component Specific.
@@ -59,7 +60,7 @@ import {
   getAvatarProps,
   getBadgeProps,
   getAvatarInitialsFontSize
-} from './component-specific'
+} from './component-specific/'
 
 /**
  * Theme Helpers.
@@ -82,12 +83,15 @@ import {
   getParagraphStyle,
   getFontFamily,
   getTextColor
-} from './theme-helpers'
+} from './theme-helpers/'
 
 export default {
+  // Theme Color
+  themeColor: 'red',
   // Foundational Styles.
   colors,
   elevations,
+  gradients,
   fills,
   palette,
   scales,

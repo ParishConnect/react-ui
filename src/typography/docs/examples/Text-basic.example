@@ -1,0 +1,11 @@
+<div>
+  <div>
+    <Text size={300}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+  <div>
+    <Text size={400}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+  <div>
+    <Text size={500}>The quick brown fox jumps over the lazy dog</Text>
+  </div>
+</div>

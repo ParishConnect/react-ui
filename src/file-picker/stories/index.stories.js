@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
-import { FilePicker } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { FilePicker } from '../../file-picker'
 
 storiesOf('file-picker', module).add('FilePicker', () => (
   <Box padding={40}>

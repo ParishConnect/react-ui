@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
-import { InlineAlert, Alert } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { InlineAlert, Alert } from '../../alert'
 import { Heading } from '../../typography'
 
 storiesOf('alert', module)

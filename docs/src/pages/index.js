@@ -1,11 +1,12 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Link } from 'gatsby'
+import { Button } from '../../../src'
 import TopBar from '../components/TopBar'
 import Layout from '../components/Layout'
-import PageFooter from '../components/PageFooter'
-import Features from '../components/Features'
-import HomeHero from '../components/HomeHero'
-import HomeMedia from '../components/HomeMedia'
+
+const NativeLink = ({ ...props }) => {
+  return <a target="_blank" rel="noopener noreferrer" {...props} />
+}
 
 export default class Root extends React.Component {
   componentDidCatch(error, errorInfo) {
@@ -15,18 +16,46 @@ export default class Root extends React.Component {
   render() {
     return (
       <Layout>
-        <Helmet>
-          <title>Evergreen</title>
-        </Helmet>
-        <div>
+        <div className="MainLayout">
           <TopBar />
-          <main>
-            <HomeHero />
-            <Features />
-            <HomeMedia />
+          <main className="MainLayout-main">
+            <div className="MainLayout-content">
+              <section className="Home">
+                <div className="Home-inner">
+                  <h1>React Based UI Framework</h1>
+                  <p>
+                    It is built and maintained open&#8209;source&nbsp;by&nbsp;
+                    <NativeLink
+                      className="Link"
+                      href="https://hennessyevan.com/"
+                    >
+                      Evan Hennessy
+                    </NativeLink>.
+                  </p>
+                  <div>
+                    <Button
+                      is={Link}
+                      to="/components/"
+                      appearance="primary"
+                      height={40}
+                      marginRight={12}
+                    >
+                      Components
+                    </Button>
+                    <NativeLink
+                      href="https://github.com/hennessyevan/aluminum-ui"
+                      style={{
+                        width: 136
+                      }}
+                    >
+                      GitHub
+                    </NativeLink>
+                  </div>
+                </div>
+              </section>
+            </div>
           </main>
         </div>
-        <PageFooter />
       </Layout>
     )
   }
