@@ -1,7 +1,7 @@
 import { Intent } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
-import { colors, elevations, palette } from '../foundational-styles/'
-import { fontFamilies, headings, paragraph, text } from '../typography/'
+import { colors, elevations } from '../foundational-styles'
+import { fontFamilies, headings, paragraph, text } from '../typography'
 
 /**
  * Controls include:
@@ -12,8 +12,8 @@ import { fontFamilies, headings, paragraph, text } from '../typography/'
  * @return {number} border radius
  */
 const getBorderRadiusForControlHeight = height => {
-  if (height <= 40) return 5
-  return 8
+  if (height <= 40) return 3
+  return 4
 }
 
 /**
@@ -27,9 +27,7 @@ const getTextSizeForControlHeight = height => {
   if (height <= 32) return 300
   if (height <= 36) return 400
   if (height <= 40) return 400
-  if (height <= 48) return 500
-  if (height <= 56) return 700
-  return 800
+  return 500
 }
 
 /**
@@ -77,16 +75,13 @@ const getBackground = background => {
 /**
  * Get box-shadow (elevation).
  * @param {string} level — level of elevation.
- * @param {string} color - color of elevation.
  * @return {string} elevation box-shadow.
  */
-const getElevation = (level, color = 'neutral') => {
+const getElevation = level => {
   /**
    * There is no fallback, undefined will be returned.
    */
-  return color in elevations
-    ? elevations[color][level]
-    : elevations.neutral[level]
+  return elevations[level]
 }
 
 /**
@@ -106,7 +101,7 @@ const getIconColor = color => {
  * @param {Intent} intent
  * @return {Object} properties
  */
-const getIconForIntent = (intent, defaultColor) => {
+const getIconForIntent = intent => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -116,10 +111,7 @@ const getIconForIntent = (intent, defaultColor) => {
       return { icon: 'warning-sign', color: 'warning' }
     case Intent.NONE:
     default:
-      return {
-        icon: 'info-sign',
-        color: (palette[defaultColor] && palette[defaultColor].base) || 'info'
-      }
+      return { icon: 'info-sign', color: 'info' }
   }
 }
 

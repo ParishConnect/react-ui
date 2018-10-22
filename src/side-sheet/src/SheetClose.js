@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
-import { css, keyframes } from 'emotion'
+import Box from 'ui-box'
+import { css } from 'glamor'
 import { Icon } from '../../icon'
 import { Position } from '../../constants'
 
@@ -49,11 +49,11 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: `translateX(-100%)`,
     ...withAnimations(
-      keyframes('rotate360InAnimation', {
+      css.keyframes('rotate360InAnimation', {
         from: { transform: `translateX(100%) rotate(0deg)` },
         to: { transform: `translateX(-100%) rotate(-360deg)` }
       }),
-      keyframes('rotate360OutAnimation', {
+      css.keyframes('rotate360OutAnimation', {
         from: { transform: `translateX(-100%) rotate(0deg)` },
         to: { transform: `translateX(100%) rotate(360deg)` }
       })
@@ -65,11 +65,11 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: `translateX(100%)`,
     ...withAnimations(
-      keyframes('leftRotate360InAnimation', {
+      css.keyframes('leftRotate360InAnimation', {
         from: { transform: `translateX(-100%) rotate(0deg)` },
         to: { transform: `translateX(100%), rotate(360deg)` }
       }),
-      keyframes('leftRotate360OutAnimation', {
+      css.keyframes('leftRotate360OutAnimation', {
         from: { transform: `translateX(100%) rotate(0deg)` },
         to: { transform: `translateX(-100%), rotate(360deg)` }
       })
@@ -82,11 +82,11 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: `translateY(0)`,
     ...withAnimations(
-      keyframes('topRotate360InAnimation', {
+      css.keyframes('topRotate360InAnimation', {
         from: { transform: `translateY(-200%) rotate(0deg)` },
         to: { transform: `translateY(0%), rotate(360deg)` }
       }),
-      keyframes('topRotate360OutAnimation', {
+      css.keyframes('topRotate360OutAnimation', {
         from: { transform: `translateY(0%) rotate(0deg)` },
         to: { transform: `translateY(-200%), rotate(360deg)` }
       })
@@ -99,11 +99,11 @@ const sheetCloseStyles = {
     marginBottom: 12,
     transform: `translateY(0)`,
     ...withAnimations(
-      keyframes('bottomRotate360InAnimation', {
+      css.keyframes('bottomRotate360InAnimation', {
         from: { transform: `translateY(200%) rotate(0deg)` },
         to: { transform: `translateY(0%), rotate(360deg)` }
       }),
-      keyframes('bottomRotate360OutAnimation', {
+      css.keyframes('bottomRotate360OutAnimation', {
         from: { transform: `translateY(0%) rotate(0deg)` },
         to: { transform: `translateY(200%), rotate(360deg)` }
       })

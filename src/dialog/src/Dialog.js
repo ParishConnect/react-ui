@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { keyframes } from 'emotion'
+import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
@@ -14,7 +14,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 200
 
-const openAnimation = keyframes('openAnimation', {
+const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'scale(0.8)',
     opacity: 0
@@ -25,7 +25,7 @@ const openAnimation = keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = keyframes('closeAnimation', {
+const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
     opacity: 1
@@ -136,6 +136,16 @@ class Dialog extends React.Component {
     cancelLabel: PropTypes.string,
 
     /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnOverlayClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
      * Width of the Dialog.
      */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -179,6 +189,8 @@ class Dialog extends React.Component {
     isConfirmLoading: false,
     isConfirmDisabled: false,
     cancelLabel: 'Cancel',
+    shouldCloseOnOverlayClick: true,
+    shouldCloseOnEscapePress: true,
     onCancel: close => close(),
     onConfirm: close => close()
   }
@@ -188,7 +200,8 @@ class Dialog extends React.Component {
 
     if (typeof children === 'function') {
       return children({ close })
-    } else if (typeof children === 'string') {
+    }
+    if (typeof children === 'string') {
       return <Paragraph>{children}</Paragraph>
     }
     return children
@@ -213,6 +226,8 @@ class Dialog extends React.Component {
       isConfirmLoading,
       isConfirmDisabled,
       cancelLabel,
+      shouldCloseOnOverlayClick,
+      shouldCloseOnEscapePress,
       containerProps,
       minHeightContent
     } = this.props
@@ -230,6 +245,8 @@ class Dialog extends React.Component {
     return (
       <Overlay
         isShown={isShown}
+        shouldCloseOnClick={shouldCloseOnOverlayClick}
+        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
         containerProps={{
@@ -266,7 +283,11 @@ class Dialog extends React.Component {
                 <Heading is="h4" size={600} flex="1">
                   {title}
                 </Heading>
-                <IconButton appearance="minimal" icon="cross" onClick={close} />
+                <IconButton
+                  appearance="minimal"
+                  icon="cross"
+                  onClick={() => onCancel(close)}
+                />
               </Pane>
             )}
 

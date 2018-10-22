@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { splitBoxProps } from '@hennessyevan/aluminum-box'
+import { splitBoxProps } from 'ui-box'
 import { FormField } from '../../form-field'
 import TextInput from './TextInput'
 

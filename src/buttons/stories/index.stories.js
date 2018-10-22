@@ -1,13 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 import Component from '@reactions/component'
-import {
-  IconButton,
-  Button,
-  BackButton,
-  TextDropdownButton
-} from '../../buttons'
+import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 import { Heading } from '../../typography'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
@@ -21,7 +16,7 @@ buttonsStory.add('Common', () => (
         options: [
           { label: 'Height 24', value: 24 },
           { label: 'Height 32', value: 32 },
-          { label: 'Height 45', value: 45 }
+          { label: 'Height 40', value: 40 }
         ],
         value: 32
       }}
@@ -413,7 +408,6 @@ buttonsStory.add('Button isLoading', () => (
       {({ state, setState }) => (
         <Button
           marginRight={16}
-          appearance="primary"
           isLoading={state.isLoading}
           onClick={() => {
             setState({

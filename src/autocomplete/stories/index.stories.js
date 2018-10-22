@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 import starWarsNames from 'starwars-names'
-import { Autocomplete } from '../../autocomplete'
+import { Autocomplete } from '..'
 import { TextInput } from '../../text-input'
 import { Button } from '../../buttons'
 

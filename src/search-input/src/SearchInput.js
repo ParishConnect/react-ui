@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
+import Box, { splitBoxProps } from 'ui-box'
 import { Icon } from '../../icon'
 import { TextInput } from '../../text-input'
 import { withTheme } from '../../theme'
@@ -48,11 +48,10 @@ class SearchInput extends PureComponent {
           />
         </Box>
         <TextInput
-          borderRadius={height}
           height={height}
           paddingLeft={height}
           appearance={appearance}
-          disable={disabled}
+          disabled={disabled}
           width={width}
           {...remainingProps}
         />

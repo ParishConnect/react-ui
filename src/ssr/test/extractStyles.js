@@ -1,7 +1,7 @@
 /* eslint-disable import/first, import/order */
 import test from 'ava'
 import React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 import { render } from 'enzyme'
 import Button from '../../buttons/src/Button'
 import extractStyles from '../src/extractStyles'

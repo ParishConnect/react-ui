@@ -1,11 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, {
-  dimensions,
-  spacing,
-  position,
-  layout
-} from '@hennessyevan/aluminum-box'
+import Box, { dimensions, spacing, position, layout } from 'ui-box'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
@@ -13,7 +8,7 @@ import { IconButton } from '../../buttons'
 export default class Combobox extends PureComponent {
   static propTypes = {
     /**
-     * Implements some APIs from @hennessyevan/aluminum-box.
+     * Implements some APIs from ui-box.
      */
     ...dimensions.propTypes,
     ...spacing.propTypes,
