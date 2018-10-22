@@ -1,11 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import {
-  spacing,
-  dimensions,
-  position,
-  layout
-} from '@hennessyevan/aluminum-box'
+import { spacing, dimensions, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'

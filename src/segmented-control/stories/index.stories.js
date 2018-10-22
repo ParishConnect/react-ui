@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 import Component from '@reactions/component'
-import { SegmentedControl } from '../../segmented-control'
+import { SegmentedControl } from '..'
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (
   <Box padding={40}>
@@ -13,18 +13,17 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
     <Component
       initialState={{
         options: [
-          { label: 'Month', value: 'month' },
-          { label: 'Week', value: 'week' },
-          { label: 'Day', value: 'day' }
+          { label: 'Hourly', value: 'hourly' },
+          { label: 'Daily', value: 'daily' },
+          { label: 'Monthly', value: 'monthly' }
         ],
-        value: 'month'
+        value: 'hourly'
       }}
     >
       {({ state, setState }) => (
         <SegmentedControl
           name="time"
-          width={280}
-          height={36}
+          width={240}
           options={state.options}
           value={state.value}
           onChange={value => setState({ value })}

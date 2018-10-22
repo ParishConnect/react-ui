@@ -6,12 +6,11 @@ const baseStyle = {
   WebkitFontSmoothing: 'antialiased',
   boxSizing: 'border-box',
   textDecoration: 'none',
-  transition: '80ms ease-in-out',
+  transition: 'box-shadow 80ms ease-in-out',
   WebkitAppearance: 'none',
   border: 'none',
   outline: 'none',
-  cursor: 'pointer',
-  textTransform: 'uppercase'
+  cursor: 'pointer'
 }
 
 const disabledState = '[disabled="true"], [data-disabled="true"]'
@@ -50,13 +49,7 @@ const createSegmentedControlRadioAppearance = (items = {}) => {
     },
     [activeState]: createAppearance(items.active),
     '&[data-active="true"]': {
-      cursor: 'default',
-      padding: '0 -10px',
-      margin: '0 -10px',
-      zIndex: 5,
-      label: {
-        color: items.active.labelColor
-      }
+      cursor: 'default'
     }
   }
 }

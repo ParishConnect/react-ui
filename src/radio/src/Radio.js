@@ -1,11 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, {
-  spacing,
-  position,
-  layout,
-  dimensions
-} from '@hennessyevan/aluminum-box'
+import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -51,7 +46,11 @@ class Radio extends PureComponent {
     value: PropTypes.string,
 
     /**
-     * Function called when state changes.
+     * Function called when state changes
+     * Signature:
+     * ```
+     * function(event: object, checked: boolean) => void
+     * ```
      */
     onChange: PropTypes.func,
 
@@ -101,6 +100,10 @@ class Radio extends PureComponent {
     isInvalid: false
   }
 
+  handleChange = event => {
+    this.props.onChange(event, event.target.checked)
+  }
+
   render() {
     const {
       theme,
@@ -137,7 +140,7 @@ class Radio extends PureComponent {
           name={name}
           value={value}
           checked={checked}
-          onChange={e => onChange(e.target.value)}
+          onChange={this.handleChange}
           disabled={disabled}
           aria-invalid={isInvalid}
           required={isRequired}

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { keyframes } from 'emotion'
+import { css } from 'ui-box'
 import Transition from 'react-transition-group/Transition'
 import { Pane, Card } from '../../layers'
 import { Portal } from '../../portal'
@@ -15,7 +15,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const openAnimation = keyframes('openAnimation', {
+const openAnimation = css.keyframes('openAnimation', {
   from: {
     transform: 'translateY(100%)'
   },
@@ -24,7 +24,7 @@ const openAnimation = keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = keyframes('closeAnimation', {
+const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
     opacity: 1
@@ -177,7 +177,8 @@ export default class CornerDialog extends PureComponent {
     const { children } = this.props
     if (typeof children === 'function') {
       return children({ close: this.handleClose })
-    } else if (typeof children === 'string') {
+    }
+    if (typeof children === 'string') {
       return (
         <Paragraph size={400} color="muted">
           {children}

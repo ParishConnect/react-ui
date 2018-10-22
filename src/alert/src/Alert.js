@@ -1,17 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import {
-  spacing,
-  dimensions,
-  position,
-  layout
-} from '@hennessyevan/aluminum-box'
+import { spacing, dimensions, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
 import { Pane } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
-import { getTextColorForIntent } from '../../theme/src/default-theme/helpers'
 
 class Alert extends PureComponent {
   static propTypes = {
@@ -22,14 +16,6 @@ class Alert extends PureComponent {
     ...position.propTypes,
     ...layout.propTypes,
     ...dimensions.propTypes,
-
-    /**
-     * The action attached to the alert. Passed as a function (optional)
-     */
-    action: PropTypes.shape({
-      title: PropTypes.string,
-      action: PropTypes.func
-    }),
 
     /**
      * The content of the alert. When a string is passed it is wrapped in a `<Text size={400} />` component.
@@ -96,7 +82,6 @@ class Alert extends PureComponent {
     const {
       theme,
 
-      action,
       title,
       intent,
       hasTrim,
@@ -116,12 +101,6 @@ class Alert extends PureComponent {
       intent,
       hasTrim
     })
-
-    /**
-     * Check for action props
-     */
-    const hasAction =
-      typeof action !== 'undefined' && typeof action.title !== 'undefined'
 
     return (
       <Pane
@@ -180,17 +159,6 @@ class Alert extends PureComponent {
                 height={24}
                 onClick={onRemove}
               />
-            </Pane>
-          )}
-          {hasAction && (
-            <Pane flexShrink={0}>
-              <Heading
-                color={getTextColorForIntent(intent, theme.themeColor)}
-                size={100}
-                isUppercase
-              >
-                {action.title}
-              </Heading>
             </Pane>
           )}
         </Pane>

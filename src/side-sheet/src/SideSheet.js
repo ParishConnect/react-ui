@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { keyframes } from 'emotion'
+import { css } from 'ui-box'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { Position } from '../../constants'
@@ -78,11 +78,11 @@ const animationStyles = {
   [Position.LEFT]: {
     transform: `translateX(-100%)`,
     ...withAnimations(
-      keyframes('anchoredLeftSlideInAnimation', {
+      css.keyframes('anchoredLeftSlideInAnimation', {
         from: { transform: `translateX(-100%)` },
         to: { transform: `translateX(0)` }
       }),
-      keyframes('anchoredLeftSlideOutAnimation', {
+      css.keyframes('anchoredLeftSlideOutAnimation', {
         from: { transform: `translateX(0)` },
         to: { transform: `translateX(-100%)` }
       })
@@ -91,11 +91,11 @@ const animationStyles = {
   [Position.RIGHT]: {
     transform: `translateX(100%)`,
     ...withAnimations(
-      keyframes('anchoredRightSlideInAnimation', {
+      css.keyframes('anchoredRightSlideInAnimation', {
         from: { transform: `translateX(100%)` },
         to: { transform: `translateX(0)` }
       }),
-      keyframes('anchoredRightSlideOutAnimation', {
+      css.keyframes('anchoredRightSlideOutAnimation', {
         from: { transform: `translateX(0)` },
         to: { transform: `translateX(100%)` }
       })
@@ -104,11 +104,11 @@ const animationStyles = {
   [Position.TOP]: {
     transform: `translateY(-100%)`,
     ...withAnimations(
-      keyframes('anchoredTopSlideInAnimation', {
+      css.keyframes('anchoredTopSlideInAnimation', {
         from: { transform: `translateY(-100%)` },
         to: { transform: `translateY(0)` }
       }),
-      keyframes('anchoredTopSlideOutAnimation', {
+      css.keyframes('anchoredTopSlideOutAnimation', {
         from: { transform: `translateY(0)` },
         to: { transform: `translateY(-100%)` }
       })
@@ -117,11 +117,11 @@ const animationStyles = {
   [Position.BOTTOM]: {
     transform: `translateY(100%)`,
     ...withAnimations(
-      keyframes('anchoredBottomSlideInAnimation', {
+      css.keyframes('anchoredBottomSlideInAnimation', {
         from: { transform: `translateY(100%)` },
         to: { transform: `translateY(0)` }
       }),
-      keyframes('anchoredBottomSlideOutAnimation', {
+      css.keyframes('anchoredBottomSlideOutAnimation', {
         from: { transform: `translateY(0)` },
         to: { transform: `translateY(100%)` }
       })
@@ -152,6 +152,16 @@ class SideSheet extends React.Component {
     onOpenComplete: PropTypes.func,
 
     /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnOverlayClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
      * Width of the SideSheet.
      */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -176,6 +186,8 @@ class SideSheet extends React.Component {
     width: 620,
     onCloseComplete: () => {},
     onOpenComplete: () => {},
+    shouldCloseOnOverlayClick: true,
+    shouldCloseOnEscapePress: true,
     position: Position.RIGHT
   }
 
@@ -187,12 +199,16 @@ class SideSheet extends React.Component {
       containerProps,
       onOpenComplete,
       onCloseComplete,
+      shouldCloseOnOverlayClick,
+      shouldCloseOnEscapePress,
       position
     } = this.props
 
     return (
       <Overlay
         isShown={isShown}
+        shouldCloseOnClick={shouldCloseOnOverlayClick}
+        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
       >

@@ -41,10 +41,14 @@ class Link extends PureComponent {
     className: PropTypes.string
   }
 
+  static defaultProps = {
+    color: 'default'
+  }
+
   render() {
     const { theme, className, color, ...props } = this.props
 
-    const themedClassName = theme.getLinkClassName(color || theme.themeColor)
+    const themedClassName = theme.getLinkClassName(color)
 
     return (
       <Text

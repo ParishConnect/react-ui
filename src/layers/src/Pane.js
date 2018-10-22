@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 import { withTheme } from '../../theme'
 
 const StringAndBoolPropType = PropTypes.oneOfType([
@@ -14,13 +14,6 @@ class Pane extends PureComponent {
      * Composes the Box component as the base.
      */
     ...Box.propTypes,
-
-    /**
-     * Appearance
-     * Values: 'gradient', 'solid', 'white'
-     * --- Uses themeColor property
-     */
-    appearance: PropTypes.string,
 
     /**
      * Background property.
@@ -93,7 +86,7 @@ class Pane extends PureComponent {
       ':hover': {
         ...(css[':hover'] || {}),
         transform: 'translateY(-2px)',
-        boxShadow: theme.getElevation(hoverElevation, this.props.background)
+        boxShadow: theme.getElevation(hoverElevation)
       }
     }
   }
@@ -106,7 +99,7 @@ class Pane extends PureComponent {
       ':active': {
         ...(css[':active'] || {}),
         transform: 'translateY(-1px)',
-        boxShadow: theme.getElevation(activeElevation, this.props.background)
+        boxShadow: theme.getElevation(activeElevation)
       }
     }
   }
@@ -120,39 +113,27 @@ class Pane extends PureComponent {
       )
     ) {
       return `1px solid ${theme.colors.border[borderSideProperty]}`
-    } else if (borderSideProperty === true) {
+    }
+    if (borderSideProperty === true) {
       return `1px solid ${theme.colors.border.default}`
-    } else if (borderSideProperty === false) {
+    }
+    if (borderSideProperty === false) {
       return null
-    } else if (
-      Object.prototype.hasOwnProperty.call(theme.colors.border, border)
-    ) {
+    }
+    if (Object.prototype.hasOwnProperty.call(theme.colors.border, border)) {
       return `1px solid ${theme.colors.border[border]}`
-    } else if (border === true) {
+    }
+    if (border === true) {
       return `1px solid ${theme.colors.border.default}`
     }
 
     return borderSideProperty
   }
 
-  getBackgroundAppearance = (appearance, background, theme) => {
-    switch (appearance) {
-      case 'gradient':
-        return theme.colors.background[theme.themeColor]
-      case 'solid':
-        return theme.colors.background[`${theme.themeColor}Tint`]
-      case 'white':
-        return 'white'
-      default:
-        return background
-    }
-  }
-
   render() {
     const {
       theme,
 
-      appearance,
       background,
 
       elevation,
@@ -169,7 +150,7 @@ class Pane extends PureComponent {
       ...props
     } = this.props
 
-    const elevationStyle = theme.getElevation(elevation, background)
+    const elevationStyle = theme.getElevation(elevation)
     const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
     const activeElevationStyle = this.getActiveElevationStyle(
       activeElevation,
@@ -185,12 +166,6 @@ class Pane extends PureComponent {
       this.getBorderSideProperty({ borderSideProperty, border })
     )
 
-    const themedBackground = this.getBackgroundAppearance(
-      appearance,
-      background,
-      theme
-    )
-
     return (
       <Box
         borderTop={_borderTop}
@@ -198,9 +173,7 @@ class Pane extends PureComponent {
         borderBottom={_borderBottom}
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
-        background={
-          appearance ? themedBackground : theme.getBackground(background)
-        }
+        background={theme.getBackground(background)}
         css={{
           ...css,
           ...hoverElevationStyle,

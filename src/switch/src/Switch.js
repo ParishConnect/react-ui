@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
-import tinycolor from 'tinycolor2'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout } from '@hennessyevan/aluminum-box'
+import Box, { spacing, position, layout } from 'ui-box'
 import { withTheme } from '../../theme'
 
 const animationEasing = {
@@ -75,11 +74,6 @@ class Switch extends PureComponent {
     name: PropTypes.string,
 
     /**
-     * Label of the radio.
-     */
-    label: PropTypes.node,
-
-    /**
      * The value attribute of the radio.
      */
     value: PropTypes.string,
@@ -151,9 +145,9 @@ class Switch extends PureComponent {
     if (isControlled(this)) {
       this.props.onChange(value)
     } else {
-      this.setState({
-        checked: !this.state.checked
-      })
+      this.setState(({ checked }) => ({
+        checked: !checked
+      }))
       this.props.onChange(value)
     }
   }
@@ -175,10 +169,16 @@ class Switch extends PureComponent {
     } = this.props
 
     const checked = isControlled(this) ? checkedProps : this.state.checked
-    const themedClassName = theme.getSwitchClassName(theme.themeColor)
+    const themedClassName = theme.getSwitchClassName(appearance)
 
     return (
-      <Box is="label" display="block" width={height * 2} {...props}>
+      <Box
+        is="label"
+        display="block"
+        width={height * 2}
+        position="relative"
+        {...props}
+      >
         <Box
           is="input"
           className={themedClassName}
@@ -197,18 +197,7 @@ class Switch extends PureComponent {
             data-checked={checked}
             css={iconContainerStyle}
           >
-            {hasCheckIcon && (
-              <CheckIcon
-                fill={
-                  theme.palette[theme.themeColor]
-                    ? tinycolor(theme.palette[theme.themeColor]).isLight()
-                      ? theme.scales.neutral.N7
-                      : 'currentColor'
-                    : 'currentColor'
-                }
-                size={height / 2 - 3}
-              />
-            )}
+            {hasCheckIcon && <CheckIcon size={height / 2 - 3} />}
           </Box>
           <Box
             width={height * 2}

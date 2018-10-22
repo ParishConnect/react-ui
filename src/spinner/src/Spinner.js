@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
-import { keyframes } from 'emotion'
+import Box, { css } from 'ui-box'
 import { withTheme } from '../../theme'
 
-const loadingKeyframes = keyframes('loading', {
+const loadingKeyframes = css.keyframes('loading', {
   '0%': {
     transform: 'rotate(0)'
   },
@@ -13,7 +12,7 @@ const loadingKeyframes = keyframes('loading', {
   }
 })
 
-const loadingCircleKeyframes = keyframes('loading-circle', {
+const loadingCircleKeyframes = css.keyframes('loading-circle', {
   '0%': {
     strokeDashoffset: 600
   },
@@ -66,7 +65,7 @@ class Spinner extends PureComponent {
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
           <Box
             is="circle"
-            css={inner(theme.spinnerColor(theme.themeColor))}
+            css={inner(theme.spinnerColor)}
             cx="75"
             cy="75"
             r="60"

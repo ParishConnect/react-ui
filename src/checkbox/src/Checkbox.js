@@ -1,11 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, {
-  spacing,
-  position,
-  layout,
-  dimensions
-} from '@hennessyevan/aluminum-box'
+import Box, { spacing, position, layout, dimensions } from 'ui-box'
 import { Text } from '../../typography'
 import { withTheme } from '../../theme'
 
@@ -110,7 +105,7 @@ class Checkbox extends PureComponent {
     checked: false,
     indeterminate: false,
     onChange: () => {},
-    appearance: 'blue'
+    appearance: 'default'
   }
 
   setIndeterminate = el => {
@@ -135,9 +130,7 @@ class Checkbox extends PureComponent {
       ...props
     } = this.props
 
-    const themedClassName = theme.getCheckboxClassName(
-      theme.themeColor || 'blue'
-    )
+    const themedClassName = theme.getCheckboxClassName(appearance)
 
     return (
       <Box

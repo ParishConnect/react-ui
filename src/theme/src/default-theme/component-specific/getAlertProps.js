@@ -1,4 +1,4 @@
-import { css } from 'emotion'
+import { css } from 'glamor'
 import scales from '../foundational-styles/scales'
 import colors from '../foundational-styles/colors'
 

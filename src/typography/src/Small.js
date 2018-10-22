@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 
 /**
  * Small can only be used inside of Text or Paragraph.

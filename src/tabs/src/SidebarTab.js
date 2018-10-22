@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from 'ui-box'
 import Tab from './Tab'
 
 export default class SidebarTab extends PureComponent {
@@ -14,7 +14,7 @@ export default class SidebarTab extends PureComponent {
   static styles = {
     width: '100%',
     paddingX: 0,
-    paddingLeft: 10,
+    paddingLeft: 8,
     marginX: 0,
     marginBottom: 4,
     justifyContent: 'auto'
@@ -28,6 +28,7 @@ export default class SidebarTab extends PureComponent {
         height={height}
         {...SidebarTab.styles}
         {...props}
+        display="flex"
       >
         <Box is="span" flex="1">
           {children}

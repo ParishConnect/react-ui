@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
-import { Tab, SidebarTab, Tablist, TabNavigation } from '../../tabs'
+import Box from 'ui-box'
+import { Tab, SidebarTab, Tablist, TabNavigation } from '..'
 import { Heading, Paragraph } from '../../typography'
 
 const StorySection = props => <Box marginBottom={40} {...props} />
@@ -56,7 +56,8 @@ storiesOf('tabs', module)
               href="http://accessibility.athena-ict.com/aria/examples/tabpanel2.shtml"
             >
               WAI-ARIA
-            </a>.
+            </a>
+            .
           </StoryDescription>
         </StoryHeader>
         <TabManager>
@@ -133,7 +134,8 @@ storiesOf('tabs', module)
               href="http://accessibility.athena-ict.com/aria/examples/tabpanel2.shtml"
             >
               WAI-ARIA
-            </a>.
+            </a>
+            .
           </StoryDescription>
         </StoryHeader>
         <TabManager>
@@ -146,7 +148,6 @@ storiesOf('tabs', module)
                     id={tab}
                     onSelect={() => onSelect(index)}
                     isSelected={index === selectedIndex}
-                    appearance="blue"
                     aria-controls={`panel-${tab}`}
                   >
                     {tab}
