@@ -1,15 +1,15 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import starWarsNames from 'starwars-names'
-import { Strong, Paragraph } from '../../typography'
-import { Dialog } from '..'
+import DialogManager from '../docs/DialogManager'
+import { Paragraph } from '../../typography'
+import { Dialog } from '../../dialog'
 import { Button } from '../../buttons'
 import { Combobox } from '../../combobox'
 import { SideSheet } from '../../side-sheet'
 import { Popover } from '../../popover'
-import DialogManager from './DialogManager'
 
 // Generate a big list of items
 const comboboxItems = starWarsNames.all.sort((a, b) => {
@@ -177,30 +177,6 @@ storiesOf('dialog', module)
               <Box height={1200} width="100%" backgroundColor="#ddd" />
             </Dialog>
             <Button onClick={show}>Show Dialog with Internal Scrolling</Button>
-          </Box>
-        )}
-      </DialogManager>
-      <DialogManager>
-        {({ isShown, show, hide }) => (
-          <Box marginBottom={16}>
-            <Dialog
-              isShown={isShown}
-              shouldCloseOnOverlayClick={false}
-              shouldCloseOnEscapePress={false}
-              title="Dialog with Internal Scrolling"
-              onCloseComplete={hide}
-              onCancel={close => {
-                console.log('You canceled')
-                close()
-              }}
-            >
-              <Paragraph>
-                Resistance is futile, you shall not <Strong>esc</Strong>.
-              </Paragraph>
-            </Dialog>
-            <Button onClick={show}>
-              Show Dialog with overlay and escape key disabled
-            </Button>
           </Box>
         )}
       </DialogManager>

@@ -64,7 +64,7 @@ static defaultProps = {
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
+import Box from '@hennessyevan/aluminum-box'
 import { Popover } from '../src/'
 import { Pane } from 'evergreen-layers'
 import { Text } from 'evergreen-typography'

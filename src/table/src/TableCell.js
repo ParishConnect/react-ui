@@ -44,7 +44,9 @@ class TableCell extends PureComponent {
   }
 
   static defaultProps = {
-    appearance: 'default'
+    appearance: 'default',
+    onSelect: () => {},
+    onDeselect: () => {}
   }
 
   static styles = {
@@ -68,9 +70,9 @@ class TableCell extends PureComponent {
       ) {
         try {
           manageTableCellFocusInteraction(key, this.mainRef)
-        } catch (error) {
+        } catch (err) {
           toaster.danger('Keyboard interaction not possible')
-          console.error('Keyboard control not impossible', error)
+          console.error('Keyboard control not impossible', err)
         }
       } else if (key === 'Escape') {
         this.mainRef.blur()
@@ -102,6 +104,8 @@ class TableCell extends PureComponent {
       theme,
       children,
       appearance,
+      onSelect,
+      onDeselect,
       onClick,
       onKeyPress,
       onKeyDown,

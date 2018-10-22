@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
-import { CornerDialog } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { CornerDialog } from '../../corner-dialog'
 import { Button } from '../../buttons'
 import { Manager } from '../../manager'
 
@@ -56,7 +56,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             confirmLabel="View Agreement"
             onCloseComplete={() => setState({ isShown: false })}
           >
-            Segment now offers a Data Processing Agreement and EU Model
+            Segment now offers a Data Processing Agreement and EU&nbsp;Model
             Contract Clauses as a means of meeting the adequacy and security
             requirements of the GDPR.
           </CornerDialog>

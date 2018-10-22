@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from 'ui-box'
+import { keyframes } from 'emotion'
+import Box from '@hennessyevan/aluminum-box'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
@@ -17,7 +18,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = css.keyframes('fadeInAnimation', {
+const fadeInAnimation = keyframes('fadeInAnimation', {
   from: {
     opacity: 0
   },
@@ -26,7 +27,7 @@ const fadeInAnimation = css.keyframes('fadeInAnimation', {
   }
 })
 
-const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
+const fadeOutAnimation = keyframes('fadeOutAnimation', {
   from: {
     opacity: 1
   },
@@ -81,16 +82,6 @@ class Overlay extends React.Component {
     containerProps: PropTypes.object,
 
     /**
-     * Boolean indicating if clicking the overlay should close the overlay.
-     */
-    shouldCloseOnClick: PropTypes.bool,
-
-    /**
-     * Boolean indicating if pressing the esc key should close the overlay.
-     */
-    shouldCloseOnEscapePress: PropTypes.bool,
-
-    /**
      * Callback fired before the "exiting" status is applied.
      * type: `Function(node: HtmlElement) -> void`
      */
@@ -143,8 +134,6 @@ class Overlay extends React.Component {
 
   static defaultProps = {
     onHide: () => {},
-    shouldCloseOnClick: true,
-    shouldCloseOnEscapePress: true,
     onExit: () => {},
     onExiting: () => {},
     onExited: () => {},
@@ -239,7 +228,7 @@ class Overlay extends React.Component {
 
   onEsc = e => {
     // Esc key
-    if (e.keyCode === 27 && this.props.shouldCloseOnEscapePress) {
+    if (e.keyCode === 27) {
       this.close()
     }
   }
@@ -271,7 +260,7 @@ class Overlay extends React.Component {
   }
 
   handleBackdropClick = e => {
-    if (e.target !== e.currentTarget || !this.props.shouldCloseOnClick) {
+    if (e.target !== e.currentTarget) {
       return
     }
 

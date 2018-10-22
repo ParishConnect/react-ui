@@ -16,9 +16,7 @@ export default class Popover extends Component {
       Position.TOP_RIGHT,
       Position.BOTTOM,
       Position.BOTTOM_LEFT,
-      Position.BOTTOM_RIGHT,
-      Position.LEFT,
-      Position.RIGHT
+      Position.BOTTOM_RIGHT
     ]),
 
     /**

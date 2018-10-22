@@ -1,5 +1,5 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../../themer'
+import { Themer } from '../../../../themer/'
 import memoizeClassName from '../utils/memoizeClassName'
 import palette from '../foundational-styles/palette'
 
@@ -9,7 +9,7 @@ import palette from '../foundational-styles/palette'
  * @param {string} color
  * @return {Object} appearance of the link.
  */
-const getLinkAppearance = color => {
+const getLinkAppearance = (color = 'blue') => {
   switch (color) {
     case 'neutral':
       return Themer.createLinkAppearance({
@@ -53,9 +53,7 @@ const getLinkAppearance = color => {
             .toString()}`
         }
       })
-    case 'default':
     case 'blue':
-    default:
       return Themer.createLinkAppearance({
         base: {
           color: palette.blue.base
@@ -72,6 +70,28 @@ const getLinkAppearance = color => {
         },
         focus: {
           boxShadow: `0 0 0 2px ${tinycolor(palette.blue.base)
+            .setAlpha(0.4)
+            .toString()}`
+        }
+      })
+    case 'default':
+    default:
+      return Themer.createLinkAppearance({
+        base: {
+          color: palette[color].base
+        },
+        hover: {
+          color: tinycolor(palette[color].base)
+            .lighten(10)
+            .toString()
+        },
+        active: {
+          color: tinycolor(palette[color].base)
+            .darken(10)
+            .toString()
+        },
+        focus: {
+          boxShadow: `0 0 0 2px ${tinycolor(palette[color].base)
             .setAlpha(0.4)
             .toString()}`
         }

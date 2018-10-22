@@ -1,6 +1,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Box, { spacing, position, layout, dimensions } from 'ui-box'
+import Box, {
+  spacing,
+  position,
+  layout,
+  dimensions
+} from '@hennessyevan/aluminum-box'
+import { scales } from '../../theme/src/default-theme/foundational-styles'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
@@ -110,28 +116,37 @@ export default class SegmentedControl extends PureComponent {
     } = this.props
 
     // Allows it to behave like a controlled input
-    let { value } = this.state
+    let value = this.state.value
     if (this.isControlled()) {
       value = this.props.value
     }
 
     return (
-      <Box display="flex" marginRight={-1} height={height} {...props}>
-        {options.map((option, index) => (
-          <SegmentedControlRadio
-            key={option.value}
-            id={this.name + index}
-            name={name || this.name}
-            label={option.label}
-            value={String(option.value)}
-            height={height}
-            checked={value === option.value}
-            onChange={this.handleChange.bind(null, option.value)}
-            appearance="default"
-            isFirstItem={index === 0}
-            isLastItem={index === options.length - 1}
-          />
-        ))}
+      <Box
+        display="flex"
+        backgroundColor={scales.neutral.N5}
+        borderRadius={999}
+        marginRight={-1}
+        height={height}
+        {...props}
+      >
+        {options.map((option, index) => {
+          return (
+            <SegmentedControlRadio
+              key={option.value}
+              id={this.name + index}
+              name={name || this.name}
+              label={option.label}
+              value={String(option.value)}
+              height={height}
+              checked={value === option.value}
+              onChange={this.handleChange.bind(null, option.value)}
+              appearance="default"
+              isFirstItem={index === 0}
+              isLastItem={index === options.length - 1}
+            />
+          )
+        })}
       </Box>
     )
   }

@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "rules": {
     "react/forbid-foreign-prop-types": ["off"]
   }

@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from 'ui-box'
-import { Table } from '..'
+import Box from '@hennessyevan/aluminum-box'
+import { Table } from '../../table'
 import { Portal } from '../../portal'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
@@ -117,9 +117,7 @@ storiesOf('table', module)
       </Table.Row>
       <Table.Row height="auto" paddingY={12}>
         <Table.TextCell>
-          Auto height <br />
-          based on <br />
-          the content
+          Auto height <br />based on <br />the content
         </Table.TextCell>
       </Table.Row>
     </Box>

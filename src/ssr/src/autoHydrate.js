@@ -1,5 +1,5 @@
-import { hydrate as boxHydrate } from 'ui-box'
-import { rehydrate } from 'glamor'
+import { hydrate as boxHydrate } from '@hennessyevan/aluminum-box'
+import { hydrate as rehydrate } from 'emotion'
 
 /**
  * You shouldn't have to manually run this.
@@ -10,8 +10,8 @@ export function hydrate(hydration) {
     boxHydrate(hydration.uiBoxCache)
   }
 
-  if (hydration.glamorIds) {
-    rehydrate(hydration.glamorIds)
+  if (hydration.emotionIds) {
+    rehydrate(hydration.emotionIds)
   }
 }
 
@@ -23,10 +23,10 @@ export default function autoHydrate() {
       try {
         const hydrationObject = JSON.parse(hydration.innerHTML)
         hydrate(hydrationObject)
-      } catch (error) {
+      } catch (err) {
         console.error(
           'Evergreen automatic hydration object is invalid JSON',
-          error
+          err
         )
       }
     }
