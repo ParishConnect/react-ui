@@ -42,6 +42,11 @@ storiesOf('typography', module)
         <Link href="#">Default Link</Link>
       </Box>
       <Box marginBottom={24}>
+        <Link noUnderline href="#">
+          No Underline
+        </Link>
+      </Box>
+      <Box marginBottom={24}>
         <Link href="#" color="neutral">
           Neutral Link
         </Link>

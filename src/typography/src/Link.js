@@ -20,6 +20,11 @@ class Link extends PureComponent {
     href: PropTypes.string,
 
     /**
+     * Specifies whether underline should be present. Default: true
+     */
+    noUnderline: PropTypes.bool,
+
+    /**
      * Target atrribute, common use case is target="_blank."
      */
     target: PropTypes.string,
@@ -41,8 +46,12 @@ class Link extends PureComponent {
     className: PropTypes.string
   }
 
+  static defaultProps = {
+    noUnderline: false
+  }
+
   render() {
-    const { theme, className, color, ...props } = this.props
+    const { theme, className, color, noUnderline, ...props } = this.props
 
     const themedClassName = theme.getLinkClassName(color || theme.themeColor)
 
@@ -50,7 +59,7 @@ class Link extends PureComponent {
       <Text
         is="a"
         className={cx(className, themedClassName)}
-        textDecoration="underline"
+        textDecoration={noUnderline ? 'none' : 'underline'}
         color={null}
         {...props}
       />
