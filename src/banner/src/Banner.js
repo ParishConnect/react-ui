@@ -118,7 +118,7 @@ class Banner extends PureComponent {
             {children}
           </Text>
           <Small>
-            <Text size={200}>{subtitle}</Text>
+            <Text size={300}>{subtitle}</Text>
           </Small>
         </Box>
         {action && (
