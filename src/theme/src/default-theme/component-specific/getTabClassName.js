@@ -22,12 +22,7 @@ const defaultAppearance = appearance => {
         typeof appearance !== 'undefined'
           ? `0 1px 4px -1px ${tinycolor(palette[appearance].base).lighten(20)}`
           : `0 1px 4px -px ${scales.neutral.N4A}`,
-      color:
-        typeof appearance !== 'undefined'
-          ? tinycolor(palette[appearance].base).isDark()
-            ? 'white'
-            : scales.neutral.N9
-          : scales.neutral.N9
+      color: typeof appearance !== 'undefined' ? 'white' : scales.neutral.N9
     },
     current: {}
   })
