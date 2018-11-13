@@ -83,8 +83,8 @@ storiesOf('layers', module)
               {...cardStyle}
               appearance="gradient"
               elevation={1}
-              hoverElevation={3}
               activeElevation={2}
+              hoverElevation={3}
             >
               Interactive
             </Card>

@@ -99,7 +99,7 @@ class Pane extends PureComponent {
       ':hover': {
         ...(css[':hover'] || {}),
         transform: 'translateY(-2px)',
-        boxShadow: theme.getElevation(hoverElevation, this.props.background)
+        boxShadow: theme.getElevation(hoverElevation, this.getElevationColor())
       }
     }
   }
@@ -112,7 +112,7 @@ class Pane extends PureComponent {
       ':active': {
         ...(css[':active'] || {}),
         transform: 'translateY(-1px)',
-        boxShadow: theme.getElevation(activeElevation, this.props.background)
+        boxShadow: theme.getElevation(activeElevation, this.getElevationColor())
       }
     }
   }
@@ -146,7 +146,8 @@ class Pane extends PureComponent {
     return theme.palette[theme.themeColor].base
   }
 
-  getBackgroundAppearance = (appearance, background, theme) => {
+  getBackgroundAppearance = (appearance, background) => {
+    const { theme } = this.props
     switch (appearance) {
       case 'gradient':
         return theme.colors.background[theme.themeColor]
@@ -157,6 +158,14 @@ class Pane extends PureComponent {
       default:
         return background
     }
+  }
+
+  getElevationColor = () => {
+    const { theme, appearance, background } = this.props
+    if (['gradient', 'solid'].includes(appearance)) {
+      return theme.themeColor
+    }
+    return background
   }
 
   render() {
@@ -182,7 +191,10 @@ class Pane extends PureComponent {
       ...props
     } = this.props
 
-    const elevationStyle = theme.getElevation(elevation, background)
+    const elevationStyle = theme.getElevation(
+      elevation,
+      this.getElevationColor()
+    )
     const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
     const activeElevationStyle = this.getActiveElevationStyle(
       activeElevation,
@@ -200,8 +212,7 @@ class Pane extends PureComponent {
 
     const themedBackground = this.getBackgroundAppearance(
       appearance,
-      background,
-      theme
+      background
     )
 
     return (
