@@ -77,6 +77,12 @@ class Pane extends PureComponent {
     borderLeft: StringAndBoolPropType,
 
     /**
+     * Adds an identifier to the bottom of the layer
+     * Defaults to theme color
+     */
+    identifier: PropTypes.bool,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
@@ -135,6 +141,11 @@ class Pane extends PureComponent {
     return borderSideProperty
   }
 
+  getIdentifierLineAppearance = () => {
+    const { theme } = this.props
+    return theme.palette[theme.themeColor].base
+  }
+
   getBackgroundAppearance = (appearance, background, theme) => {
     switch (appearance) {
       case 'gradient':
@@ -164,6 +175,8 @@ class Pane extends PureComponent {
       borderRight,
       borderBottom,
       borderLeft,
+
+      identifier,
 
       css = {},
       ...props
@@ -195,7 +208,11 @@ class Pane extends PureComponent {
       <Box
         borderTop={_borderTop}
         borderRight={_borderRight}
-        borderBottom={_borderBottom}
+        borderBottom={
+          identifier
+            ? `5px solid ${this.getIdentifierLineAppearance()}`
+            : _borderBottom
+        }
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
         background={
