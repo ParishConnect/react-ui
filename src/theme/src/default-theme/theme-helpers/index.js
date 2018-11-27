@@ -4,6 +4,17 @@ import { colors, elevations, palette } from '../foundational-styles/'
 import { fontFamilies, headings, paragraph, text } from '../typography/'
 
 /**
+ *
+ * @param {string} color
+ * @return {boolean} themeColor?
+ */
+const isThemeColor = color => {
+  if (color in palette) {
+    return true
+  }
+}
+
+/**
  * Controls include:
  * - Button
  * - IconButton
@@ -196,5 +207,6 @@ export {
   getTextStyle,
   getParagraphStyle,
   getFontFamily,
-  getTextColor
+  getTextColor,
+  isThemeColor
 }
