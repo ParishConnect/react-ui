@@ -80,7 +80,7 @@ class Pane extends PureComponent {
      * Adds an identifier to the bottom of the layer
      * Defaults to theme color
      */
-    identifier: PropTypes.bool,
+    identifier: PropTypes.string,
 
     /**
      * Theme provided by ThemeProvider.
