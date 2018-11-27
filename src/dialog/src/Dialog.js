@@ -69,6 +69,11 @@ class Dialog extends React.Component {
     isShown: PropTypes.bool,
 
     /**
+     * Configurable inner padding; defaults to 16px
+     */
+    innerPadding: PropTypes.number,
+
+    /**
      * Title of the Dialog. Titles should use Title Case.
      */
     title: PropTypes.node,
@@ -167,6 +172,7 @@ class Dialog extends React.Component {
 
   static defaultProps = {
     isShown: false,
+    innerPadding: 16,
     hasHeader: true,
     hasFooter: true,
     hasCancel: true,
@@ -199,6 +205,7 @@ class Dialog extends React.Component {
       title,
       width,
       intent,
+      innerPadding,
       isShown,
       topOffset,
       sideOffset,
@@ -257,7 +264,7 @@ class Dialog extends React.Component {
           >
             {hasHeader && (
               <Pane
-                padding={16}
+                padding={innerPadding}
                 flexShrink={0}
                 borderBottom="muted"
                 display="flex"
