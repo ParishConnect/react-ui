@@ -29,6 +29,11 @@ storiesOf('layers', module)
                 Background: {background}
               </Pane>
             ))}
+            {Object.keys(theme.colors.background).map(background => (
+              <Pane key={background} {...cardStyle} identifier={background}>
+                Identifier: {background}
+              </Pane>
+            ))}
           </Pane>
           <Pane overflow="auto">
             <Pane
@@ -74,6 +79,11 @@ storiesOf('layers', module)
             {Object.keys(theme.colors.background).map(background => (
               <Card key={background} {...cardStyle} background={background}>
                 Background: {background}
+              </Card>
+            ))}
+            {Object.keys(theme.colors.background).map(background => (
+              <Card key={background} {...cardStyle} identifier={background}>
+                Identifier: {background}
               </Card>
             ))}
           </Pane>

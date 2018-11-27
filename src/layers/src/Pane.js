@@ -141,9 +141,23 @@ class Pane extends PureComponent {
     return borderSideProperty
   }
 
-  getIdentifierLineAppearance = () => {
+  getIdentifierStyle = (color, css) => {
     const { theme } = this.props
-    return theme.palette[theme.themeColor].base
+
+    if (theme.isThemeColor(color)) {
+      return {
+        '::after': {
+          ...(css['::after'] || {}),
+          content: `''`,
+          height: 7.5,
+          width: '100%',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          background: theme.colors.background[color]
+        }
+      }
+    }
   }
 
   getBackgroundAppearance = (appearance, background) => {
@@ -200,6 +214,7 @@ class Pane extends PureComponent {
       activeElevation,
       css
     )
+    const identifierStyle = this.getIdentifierStyle(identifier, css)
 
     const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
       borderTop,
@@ -217,22 +232,21 @@ class Pane extends PureComponent {
 
     return (
       <Box
+        position="relative"
         borderTop={_borderTop}
         borderRight={_borderRight}
-        borderBottom={
-          identifier
-            ? `5px solid ${this.getIdentifierLineAppearance()}`
-            : _borderBottom
-        }
+        borderBottom={_borderBottom}
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
         background={
           appearance ? themedBackground : theme.getBackground(background)
         }
+        overflow={identifier ? 'hidden' : ''}
         css={{
           ...css,
           ...hoverElevationStyle,
-          ...activeElevationStyle
+          ...activeElevationStyle,
+          ...identifierStyle
         }}
         {...props}
       />
