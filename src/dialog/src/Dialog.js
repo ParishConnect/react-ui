@@ -264,7 +264,7 @@ class Dialog extends React.Component {
           >
             {hasHeader && (
               <Pane
-                padding={innerPadding}
+                padding={16}
                 flexShrink={0}
                 borderBottom="muted"
                 display="flex"
@@ -281,7 +281,7 @@ class Dialog extends React.Component {
               data-state={state}
               display="flex"
               overflow="auto"
-              padding={16}
+              padding={innerPadding}
               flexDirection="column"
               minHeight={minHeightContent}
             >
