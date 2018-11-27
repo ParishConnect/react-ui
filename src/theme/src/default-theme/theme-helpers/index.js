@@ -12,6 +12,7 @@ const isThemeColor = color => {
   if (color in palette) {
     return true
   }
+  return false
 }
 
 /**
