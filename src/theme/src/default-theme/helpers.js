@@ -16,6 +16,8 @@ const linearGradient = (top, bottom, angle = -25) => {
  * @return {String} color
  */
 const getTextColorForIntent = (intent, defaultColor) => {
+  console.log(defaultColor)
+
   switch (intent) {
     case Intent.SUCCESS:
       return colors.text.success

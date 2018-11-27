@@ -1,6 +1,6 @@
 import { Themer } from '../../../../themer/'
 import memoizeClassName from '../utils/memoizeClassName'
-import { palette, scales, colors } from '../foundational-styles/'
+import { scales } from '../foundational-styles/'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
@@ -53,10 +53,8 @@ const getButtonAppearance = (appearance, intent, themeColor) => {
       })
     }
     case 'minimal': {
-      const intentTextColor = getTextColorForIntent(
-        intent,
-        palette[themeColor].base
-      )
+      const intentTextColor = getTextColorForIntent(intent, themeColor)
+
       return Themer.createButtonAppearance({
         disabled,
         base: {
@@ -78,7 +76,7 @@ const getButtonAppearance = (appearance, intent, themeColor) => {
     }
     case 'default':
     default: {
-      const intentTextColor = getTextColorForIntent(intent, colors.text.default)
+      const intentTextColor = getTextColorForIntent(intent, themeColor)
       return Themer.createButtonAppearance({
         disabled,
         base: {
