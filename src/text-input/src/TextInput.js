@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { Text } from '../../typography'
+import { Text, Heading } from '../../typography'
 import { withTheme } from '../../theme'
 
 class TextInput extends PureComponent {
@@ -86,6 +86,31 @@ class TextInput extends PureComponent {
     const themedClassName = theme.getTextInputClassName(appearance)
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
+
+    if (appearance === 'editor-title') {
+      return (
+        <Heading
+          is="div"
+          contenteditable="true"
+          className={cx(themedClassName, className)}
+          type="text"
+          size={800}
+          fontFamily="Georgia, serif"
+          width={width}
+          height={height || 'auto'}
+          required={required}
+          disabled={disabled}
+          placeholder={placeholder}
+          borderRadius={borderRadius}
+          spellCheck={spellCheck}
+          aria-invalid={isInvalid}
+          data-gramm_editor="false"
+          {...(disabled ? { color: 'muted' } : {})}
+          css={{ resize: 'none', ...css }}
+          {...props}
+        />
+      )
+    }
 
     return (
       <Text

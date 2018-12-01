@@ -41,6 +41,7 @@
     "classnames": "^2.2.5",
     "dom-helpers": "^3.2.1",
     "downshift": "^1.16.0",
+    "draft-js": "^0.10.5",
     "emotion": "^9.2.8",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
@@ -49,10 +50,13 @@
     "lodash.mapvalues": "^4.6.0",
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",
+    "react-autosize-textarea": "^5.0.0",
     "react-emotion": "^9.2.8",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
+    "slate": "^0.44.6",
+    "slate-react": "^0.21.12",
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
@@ -108,7 +112,9 @@
     "rules": {
       "import/prefer-default-export": "off",
       "no-negated-condition": "off",
+      "no-return-assign": ["off"],
       "indent": ["off"],
+      "react/jsx-handler-names": ["off"],
       "react/jsx-indent-props": ["off"],
       "react/jsx-indent": ["off"],
       "react/require-default-props": ["off"],

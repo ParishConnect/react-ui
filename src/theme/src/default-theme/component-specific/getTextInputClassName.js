@@ -53,6 +53,25 @@ InputAppearances.neutral = Themer.createInputAppearance({
   }
 })
 
+InputAppearances.editorTitle = Themer.createInputAppearance({
+  base: {
+    backgroundColor: 'transparent'
+  },
+  invalid: {
+    borderBottom: `solid 2px ${palette.red.base}`
+  },
+  placeholder: {
+    color: scales.neutral.N6A
+  },
+  focus: {
+    outline: 'none'
+  },
+  disabled: {
+    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
+    backgroundColor: scales.neutral.N2
+  }
+})
+
 /**
  * Get the appearance of a `TextInput`.
  * @param {string} appearance
@@ -62,6 +81,8 @@ const getTextInputAppearance = appearance => {
   switch (appearance) {
     case 'neutral':
       return InputAppearances.neutral
+    case 'editor-title':
+      return InputAppearances.editorTitle
     default:
       return InputAppearances.default
   }
