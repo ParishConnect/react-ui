@@ -41,6 +41,7 @@ class TitleBlock extends React.Component {
   }
 
   titleBlockStyles = {
+    fontFamily: `Georgia, 'Times New Roman', Times, serif`,
     resize: 'none',
     outline: 'none',
     overflow: 'hidden',
@@ -61,6 +62,7 @@ class TitleBlock extends React.Component {
 
   render() {
     const { placeholder } = this.props
+
     return (
       <Heading
         is={AutoResizeTextArea}
