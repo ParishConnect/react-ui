@@ -28,7 +28,8 @@ class TitleBlock extends React.Component {
     /**
      * Placeholder for title area. Default: Enter a title...
      */
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    onTitleChangeHandler: PropTypes.func
   }
 
   static defaultProps = {
@@ -58,6 +59,7 @@ class TitleBlock extends React.Component {
 
   onChange = e => {
     this.setState({ value: e.target.value })
+    this.props.onTitleChangeHandler(e.target.value)
   }
 
   render() {
@@ -147,6 +149,8 @@ class EditorComponent extends React.Component {
     hasTitle: PropTypes.bool,
     mark: PropTypes.object,
     offset: PropTypes.number,
+    onValueChange: PropTypes.func,
+    onTitleChange: PropTypes.func,
     placeholder: PropTypes.string,
     titlePlaceholder: PropTypes.string
   }
@@ -204,6 +208,7 @@ class EditorComponent extends React.Component {
           onChange={this.onChange}
           renderEditor={this.renderEditor}
           renderMark={this.renderMark}
+          {...this.props}
         />
       </div>
     )
@@ -214,7 +219,10 @@ class EditorComponent extends React.Component {
     return (
       <Box {...this.props.containerProps}>
         {this.props.hasTitle && (
-          <TitleBlock placeholder={this.props.titlePlaceholder} />
+          <TitleBlock
+            onTitleChangeHandler={value => this.props.onTitleChange({ value })}
+            placeholder={this.props.titlePlaceholder}
+          />
         )}
         {children}
         <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
@@ -243,6 +251,7 @@ class EditorComponent extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value })
+    this.props.onValueChange({ value })
   }
 }
 

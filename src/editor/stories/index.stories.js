@@ -11,6 +11,15 @@ storiesOf('editor', module)
   ))
   .add('Editor with Title', () => (
     <Card padding={50} margin={15} elevation={1} height="90vh">
-      <Editor hasTitle offset={5} />
+      <Editor
+        hasTitle
+        offset={5}
+        onTitleChange={({ value }) => {
+          console.log(value)
+        }}
+        onValueChange={({ value }) => {
+          console.log(JSON.stringify(value.toJSON()))
+        }}
+      />
     </Card>
   ))
