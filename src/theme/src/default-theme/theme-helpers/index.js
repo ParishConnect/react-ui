@@ -45,6 +45,22 @@ const getTextSizeForControlHeight = height => {
 }
 
 /**
+ * Get the text size for a block with a certain height. Used in larger UI Components like Banner and Pane
+ * @param {number} height
+ * @return {number} text size of the block height.
+ */
+const getTextSizeForBlockHeight = height => {
+  if (height <= 24) return 300
+  if (height <= 50) return 300
+  if (height <= 60) return 400
+  if (height <= 70) return 400
+  if (height <= 80) return 500
+  if (height <= 90) return 600
+  if (height <= 100) return 700
+  return 800
+}
+
+/**
  * Get the size for a icon in a Button with a certain height.
  * @param {number} height
  * @return {number} icon size
@@ -196,6 +212,7 @@ const getTextColor = color => {
 export {
   getBorderRadiusForControlHeight,
   getTextSizeForControlHeight,
+  getTextSizeForBlockHeight,
   getIconSizeForButton,
   getIconSizeForInput,
   getIconSizeForSelect,

@@ -167,11 +167,15 @@ class EditorComponent extends React.Component {
   }
 
   componentDidMount = () => {
-    this.updateMenu()
+    if (!this.props.readOnly) {
+      this.updateMenu()
+    }
   }
 
   componentDidUpdate = () => {
-    this.updateMenu()
+    if (!this.props.readOnly) {
+      this.updateMenu()
+    }
   }
 
   updateMenu = () => {
@@ -225,7 +229,9 @@ class EditorComponent extends React.Component {
           />
         )}
         {children}
-        <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+        {!this.props.readOnly && (
+          <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+        )}
       </Box>
     )
   }
