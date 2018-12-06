@@ -70,6 +70,7 @@ import {
 import {
   getBorderRadiusForControlHeight,
   getTextSizeForControlHeight,
+  getTextSizeForBlockHeight,
   getIconSizeForButton,
   getIconSizeForInput,
   getIconSizeForSelect,
@@ -126,6 +127,7 @@ export default {
   // Theme Helpers.
   getBorderRadiusForControlHeight,
   getTextSizeForControlHeight,
+  getTextSizeForBlockHeight,
   getIconSizeForButton,
   getIconSizeForInput,
   getIconSizeForSelect,
