@@ -152,7 +152,7 @@ class Pane extends PureComponent {
           height: 7.5,
           width: '100%',
           position: 'absolute',
-          bottom: 0,
+          bottom: -1,
           left: 0,
           background: theme.colors.background[color]
         }
