@@ -153,6 +153,7 @@ class EditorComponent extends React.Component {
     onValueChange: PropTypes.func,
     onTitleChange: PropTypes.func,
     placeholder: PropTypes.string,
+    readOnly: PropTypes.bool,
     titlePlaceholder: PropTypes.string
   }
 
@@ -250,7 +251,9 @@ class EditorComponent extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value })
-    this.props.onValueChange({ value })
+    if (!this.props.readOnly) {
+      this.props.onValueChange({ value })
+    }
   }
 }
 
