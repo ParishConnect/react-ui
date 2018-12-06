@@ -113,7 +113,7 @@ class Banner extends PureComponent {
         <Box display="flex" paddingX={25} flexGrow={1} flexDirection="column">
           <Text
             color={color || theme.palette[theme.themeColor].base}
-            size={theme.getTextSizeForControlHeight(height || 75)}
+            size={theme.getTextSizeForBlockHeight(height || 75)}
           >
             {children}
           </Text>
