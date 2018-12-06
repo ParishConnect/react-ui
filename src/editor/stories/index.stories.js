@@ -18,7 +18,7 @@ storiesOf('editor', module)
           console.log(value)
         }}
         onValueChange={({ value }) => {
-          console.log(JSON.stringify(value.toJSON()))
+          console.log(value)
         }}
       />
     </Card>

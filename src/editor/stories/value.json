@@ -1,0 +1,27 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              { "object": "leaf", "text": "This is something ", "marks": [] },
+              {
+                "object": "leaf",
+                "text": "bold",
+                "marks": [{ "object": "mark", "type": "bold", "data": {} }]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

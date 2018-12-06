@@ -12,7 +12,7 @@ import { withTheme } from '../../theme'
 import { Stack } from '../../stack/'
 import { StackingOrder } from '../../constants'
 
-const initialValue = Value.fromJSON({
+const _initialValue = Value.fromJSON({
   document: {
     nodes: [
       {
@@ -147,6 +147,7 @@ class EditorComponent extends React.Component {
     children: PropTypes.object || PropTypes.func,
     containerProps: PropTypes.object,
     hasTitle: PropTypes.bool,
+    initialValue: PropTypes.object,
     mark: PropTypes.object,
     offset: PropTypes.number,
     onValueChange: PropTypes.func,
@@ -161,7 +162,7 @@ class EditorComponent extends React.Component {
   }
 
   state = {
-    value: Value.fromJSON(initialValue)
+    value: Value.fromJSON(this.props.initialValue || _initialValue)
   }
 
   componentDidMount = () => {
@@ -201,16 +202,14 @@ class EditorComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <Editor
-          placeholder={this.props.placeholder}
-          value={this.state.value}
-          onChange={this.onChange}
-          renderEditor={this.renderEditor}
-          renderMark={this.renderMark}
-          {...this.props}
-        />
-      </div>
+      <Editor
+        placeholder={this.props.placeholder}
+        value={this.state.value}
+        onChange={this.onChange}
+        renderEditor={this.renderEditor}
+        renderMark={this.renderMark}
+        {...this.props}
+      />
     )
   }
 
