@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import AutoResizeTextArea from 'react-autosize-textarea'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
+import Html from 'slate-html-serializer'
 import Box from '@hennessyevan/aluminum-box'
 import { IconButton } from '../../buttons'
 import { Card } from '../../layers'
@@ -22,6 +23,34 @@ const _initialValue = Value.fromJSON({
     ]
   }
 })
+
+const RULES = [
+  {
+    serialize: (_, children) => {
+      console.log(_.object)
+
+      if (_.object === 'string' || _.object === 'mark') {
+        switch (_.type) {
+          case 'bold':
+            return <strong>{children}</strong>
+          case 'code':
+            return <code>{children}</code>
+          case 'italic':
+            return <em>{children}</em>
+          case 'strikethrough':
+            return <strike>{children}</strike>
+          case 'underline':
+            return <u>{children}</u>
+          default:
+            return <span>{children}</span>
+        }
+      }
+      if (_.object === 'block') {
+        return <p>{children}</p>
+      }
+    }
+  }
+]
 
 class TitleBlock extends React.Component {
   static propTypes = {
@@ -153,6 +182,7 @@ class EditorComponent extends React.Component {
     onValueChange: PropTypes.func,
     onTitleChange: PropTypes.func,
     placeholder: PropTypes.string,
+    provideHTML: PropTypes.bool,
     readOnly: PropTypes.bool,
     titlePlaceholder: PropTypes.string
   }
@@ -258,7 +288,14 @@ class EditorComponent extends React.Component {
   onChange = ({ value }) => {
     this.setState({ value })
     if (!this.props.readOnly) {
-      this.props.onValueChange({ value })
+      if (this.props.provideHTML) {
+        const html = new Html({ rules: RULES, defaultBlock: 'span' }).serialize(
+          value
+        )
+        this.props.onValueChange({ value, html })
+      } else {
+        this.props.onValueChange({ value })
+      }
     }
   }
 }
