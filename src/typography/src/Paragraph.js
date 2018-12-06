@@ -48,7 +48,7 @@ class Paragraph extends PureComponent {
     return (
       <Box
         is="p"
-        color={theme.getTextColor(color)}
+        color={theme.getTextColor(color, theme)}
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop || 0}
         marginBottom={0}

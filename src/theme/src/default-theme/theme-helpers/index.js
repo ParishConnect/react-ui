@@ -202,7 +202,13 @@ const getFontFamily = fontFamily => {
  * @param {string} fontFamily
  * @return {string} font family
  */
-const getTextColor = color => {
+const getTextColor = (color, theme) => {
+  /**
+   * Allow Color to be current theme color
+   */
+  if (color === 'theme') {
+    return theme.palette[theme.themeColor].base
+  }
   /**
    * Allow for passing in a custom text color not in the theme.
    */

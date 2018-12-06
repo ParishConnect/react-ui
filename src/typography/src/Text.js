@@ -47,7 +47,7 @@ class Text extends PureComponent {
     return (
       <Box
         is="span"
-        color={theme.getTextColor(color)}
+        color={theme.getTextColor(color, theme)}
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop}
         {...textStyle}

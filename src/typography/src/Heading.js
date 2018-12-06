@@ -17,6 +17,11 @@ class Heading extends PureComponent {
       .isRequired,
 
     /**
+     * The color of the heading. Use 'theme' to set as theme color
+     */
+    color: PropTypes.string,
+
+    /**
      * Pass `default` to use the default margin top for that size.
      */
     marginTop: PropTypes.oneOfType([
@@ -35,8 +40,16 @@ class Heading extends PureComponent {
     size: 500
   }
 
+  getColor(color) {
+    const { theme } = this.props
+    if (color === 'theme') {
+      return theme.palette[theme.themeColor].base
+    }
+    return color
+  }
+
   render() {
-    const { theme, marginTop, size, ...props } = this.props
+    const { theme, color, marginTop, size, ...props } = this.props
     const {
       marginTop: defaultMarginTop,
       ...headingStyle
@@ -53,6 +66,7 @@ class Heading extends PureComponent {
         marginTop={finalMarginTop || 0}
         marginBottom={0}
         {...headingStyle}
+        color={this.getColor(color)}
         {...props}
       />
     )
