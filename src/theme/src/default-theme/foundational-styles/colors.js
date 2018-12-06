@@ -60,6 +60,14 @@ export default {
     dark: scales.neutral.N10,
     selected: palette.blue.base,
 
+    // Theme
+    green: palette.green.base,
+    orange: palette.orange.base,
+    red: palette.red.base,
+    blue: palette.blue.base,
+    purple: palette.purple.base,
+    teal: palette.teal.base,
+
     // Intent.
     success: palette.green.dark,
     info: palette.blue.dark,
