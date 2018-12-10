@@ -5,7 +5,14 @@ import { Value } from 'slate'
 import Html from 'slate-html-serializer'
 import Box from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
-import { Heading } from '../../typography'
+import {
+  Heading,
+  Code,
+  Strong,
+  ListItem,
+  OrderedList,
+  UnorderedList
+} from '../../typography'
 import SideMenu from './SideMenu'
 import HoverMenu from './HoverMenu'
 import TitleBlock from './TitleBlock'
@@ -107,10 +114,7 @@ class EditorComponent extends Component {
       const range = native.getRangeAt(0)
       const rect = range.getBoundingClientRect()
 
-      sideMenu.style.top = `${rect.top +
-        rect.height / 2 +
-        window.pageYOffset -
-        sideMenu.offsetHeight}px`
+      sideMenu.style.top = `${rect.top + rect.height / 2}px`
       sideMenu.style.opacity = 1
     } catch (err) {
       sideMenu.style.opacity = 0
@@ -190,9 +194,13 @@ class EditorComponent extends Component {
 
     switch (mark.type) {
       case 'bold':
-        return <strong {...attributes}>{children}</strong>
+        return (
+          <Strong size={500} {...attributes}>
+            {children}
+          </Strong>
+        )
       case 'code':
-        return <code {...attributes}>{children}</code>
+        return <Code {...attributes}>{children}</Code>
       case 'italic':
         return <em {...attributes}>{children}</em>
       case 'strikethrough':
@@ -216,19 +224,7 @@ class EditorComponent extends Component {
           </Box>
         )
       case 'bulleted-list':
-        return (
-          <Box
-            is="ul"
-            margin={0}
-            marginLeft="1.1em"
-            padding={0}
-            listStylePosition="inside"
-            listStyle="disc"
-            {...attributes}
-          >
-            {children}
-          </Box>
-        )
+        return <UnorderedList {...attributes}>{children}</UnorderedList>
       case 'heading-one':
         return (
           <Heading size={800} is="h1" {...attributes}>
@@ -242,9 +238,9 @@ class EditorComponent extends Component {
           </Heading>
         )
       case 'list-item':
-        return <li {...attributes}>{children}</li>
+        return <ListItem {...attributes}>{children}</ListItem>
       case 'numbered-list':
-        return <ol {...attributes}>{children}</ol>
+        return <OrderedList {...attributes}>{children}</OrderedList>
       default:
         return next()
     }
