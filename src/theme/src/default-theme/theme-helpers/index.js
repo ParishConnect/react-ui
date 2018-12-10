@@ -16,6 +16,23 @@ const isThemeColor = color => {
 }
 
 /**
+ * @param {object} theme
+ * @param {string} lightness
+ * @return {string}
+ */
+function getThemeColor(theme, lightness) {
+  console.log(this.theme)
+
+  if (!theme) {
+    throw new Error('You must supply the theme to this helper method')
+  }
+  if (lightness) {
+    return palette[theme.themeColor][lightness]
+  }
+  return palette[theme.themeColor].base
+}
+
+/**
  * Controls include:
  * - Button
  * - IconButton
@@ -232,5 +249,6 @@ export {
   getParagraphStyle,
   getFontFamily,
   getTextColor,
-  isThemeColor
+  isThemeColor,
+  getThemeColor
 }

@@ -84,7 +84,8 @@ import {
   getParagraphStyle,
   getFontFamily,
   getTextColor,
-  isThemeColor
+  isThemeColor,
+  getThemeColor
 } from './theme-helpers/'
 
 export default {
@@ -142,6 +143,7 @@ export default {
   getFontFamily,
   getTextColor,
   isThemeColor,
+  getThemeColor,
 
   typography: {
     headings,

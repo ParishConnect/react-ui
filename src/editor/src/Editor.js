@@ -1,176 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AutoResizeTextArea from 'react-autosize-textarea'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
 import Box from '@hennessyevan/aluminum-box'
-import { IconButton } from '../../buttons'
-import { Card } from '../../layers'
-import { Heading } from '../../typography'
 import { withTheme } from '../../theme'
-import { Stack } from '../../stack/'
-import { StackingOrder } from '../../constants'
+import { Heading } from '../../typography'
+import SideMenu from './SideMenu'
+import HoverMenu from './HoverMenu'
+import TitleBlock from './TitleBlock'
+import {
+  RULES,
+  initialValue,
+  isBoldHotkey,
+  isItalicHotkey,
+  isUnderlinedHotkey,
+  getBlockquoteStyle
+} from './helpers'
 
-const _initialValue = Value.fromJSON({
-  document: {
-    nodes: [
-      {
-        object: 'block',
-        type: ''
-      }
-    ]
-  }
-})
-
-const RULES = [
-  {
-    serialize: (_, children) => {
-      console.log(_.object)
-
-      if (_.object === 'string' || _.object === 'mark') {
-        switch (_.type) {
-          case 'bold':
-            return <strong>{children}</strong>
-          case 'code':
-            return <code>{children}</code>
-          case 'italic':
-            return <em>{children}</em>
-          case 'strikethrough':
-            return <strike>{children}</strike>
-          case 'underline':
-            return <u>{children}</u>
-          default:
-            return <span>{children}</span>
-        }
-      }
-      if (_.object === 'block') {
-        return <p>{children}</p>
-      }
-    }
-  }
-]
-
-class TitleBlock extends React.Component {
-  static propTypes = {
-    /**
-     * Placeholder for title area. Default: Enter a title...
-     */
-    placeholder: PropTypes.string,
-    onTitleChangeHandler: PropTypes.func
-  }
-
-  static defaultProps = {
-    placeholder: 'Enter a title...'
-  }
-
-  state = {
-    value: '',
-    height: 36
-  }
-
-  titleBlockStyles = {
-    fontFamily: `Georgia, 'Times New Roman', Times, serif`,
-    resize: 'none',
-    outline: 'none',
-    overflow: 'hidden',
-    overflowWrap: 'breakword',
-    width: '100%',
-    border: 'none',
-    maxWidth: 500,
-    height: this.state.height,
-    marginBottom: 15,
-    '::before': {
-      content: this.state.value.length ? '' : '"Enter a title..."'
-    }
-  }
-
-  onChange = e => {
-    this.setState({ value: e.target.value })
-    this.props.onTitleChangeHandler(e.target.value)
-  }
-
-  render() {
-    const { placeholder } = this.props
-
-    return (
-      <Heading
-        is={AutoResizeTextArea}
-        size={800}
-        opacity={this.state.value ? 1 : 0.5}
-        onChange={this.onChange}
-        onKeyUp={this.setHeight}
-        placeholder={placeholder}
-        value={this.state.value}
-        autocomplete="off"
-        spellcheck="false"
-        maxlength="100"
-        aria-label={placeholder}
-        css={this.titleBlockStyles}
-      />
-    )
-  }
-}
-
-class HoverMenu extends React.Component {
-  static propTypes = {
-    innerRef: PropTypes.object,
-    editor: PropTypes.object
-  }
-  render() {
-    const { innerRef } = this.props
-    const root = window.document.getElementById('root')
-
-    return ReactDOM.createPortal(
-      <Stack value={StackingOrder.POSITIONER}>
-        {zIndex => (
-          <Card
-            appearance="white"
-            opacity={0}
-            elevation={1}
-            display="inline-flex"
-            padding={5}
-            top={-10000}
-            left={-10000}
-            position="absolute"
-            innerRef={innerRef}
-            zIndex={zIndex}
-          >
-            {this.renderMarkButton('bold', 'bold')}
-            {this.renderMarkButton('italic', 'italic')}
-            {this.renderMarkButton('underline', 'underline')}
-            {this.renderMarkButton('strikethrough', 'strikethrough')}
-            {this.renderMarkButton('code', 'code')}
-          </Card>
-        )}
-      </Stack>,
-      root
-    )
-  }
-
-  renderMarkButton(type, icon) {
-    const { editor } = this.props
-    const { value } = editor
-    const isActive = value.activeMarks.some(mark => mark.type === type)
-    return (
-      <IconButton
-        appearance="minimal"
-        active={isActive}
-        onMouseDown={event => this.onClickMark(event, type)}
-        icon={icon}
-      />
-    )
-  }
-
-  onClickMark(event, type) {
-    const { editor } = this.props
-    event.preventDefault()
-    editor.toggleMark(type)
-  }
-}
-
-class EditorComponent extends React.Component {
+class EditorComponent extends Component {
   static propTypes = {
     attributes: PropTypes.object,
     children: PropTypes.object || PropTypes.func,
@@ -178,12 +26,15 @@ class EditorComponent extends React.Component {
     hasTitle: PropTypes.bool,
     initialValue: PropTypes.object,
     mark: PropTypes.object,
+    node: PropTypes.object,
     offset: PropTypes.number,
     onValueChange: PropTypes.func,
     onTitleChange: PropTypes.func,
     placeholder: PropTypes.string,
     provideHTML: PropTypes.bool,
     readOnly: PropTypes.bool,
+    infoNode: PropTypes.node,
+    theme: PropTypes.object.isRequired,
     titlePlaceholder: PropTypes.string
   }
 
@@ -193,46 +44,94 @@ class EditorComponent extends React.Component {
   }
 
   state = {
-    value: Value.fromJSON(this.props.initialValue || _initialValue)
+    value: Value.fromJSON(this.props.initialValue || initialValue),
+    sideMenuOpen: false
   }
 
   componentDidMount = () => {
     if (!this.props.readOnly) {
-      this.updateMenu()
+      this.sideMenu.style.top = 'unset'
+      this.updateHoverMenu()
+      this.updateSideMenu()
     }
   }
 
   componentDidUpdate = () => {
     if (!this.props.readOnly) {
-      this.updateMenu()
+      this.updateHoverMenu()
+      this.updateSideMenu()
     }
   }
 
-  updateMenu = () => {
-    const menu = this.menu
-    if (!menu) return
+  updateHoverMenu = () => {
+    const hoverMenu = this.hoverMenu
+    if (!hoverMenu) return
 
     const { value } = this.state
     const { fragment, selection } = value
 
     if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
-      menu.removeAttribute('style')
+      hoverMenu.removeAttribute('style')
       return
     }
 
     const native = window.getSelection()
     const range = native.getRangeAt(0)
     const rect = range.getBoundingClientRect()
-    menu.style.opacity = 1
-    menu.style.top = `${rect.top +
+    hoverMenu.style.opacity = 1
+    hoverMenu.style.top = `${rect.top +
       window.pageYOffset -
-      menu.offsetHeight -
+      hoverMenu.offsetHeight -
       this.props.offset}px`
 
-    menu.style.left = `${rect.left +
+    hoverMenu.style.left = `${rect.left +
       window.pageXOffset -
-      menu.offsetWidth / 2 +
+      hoverMenu.offsetWidth / 2 +
       rect.width / 2}px`
+  }
+
+  updateSideMenu = () => {
+    const sideMenu = this.sideMenu
+    if (!sideMenu) return
+
+    const { value, sideMenuOpen } = this.state
+    const { selection } = value
+
+    if (selection.isBlurred && !sideMenuOpen) {
+      sideMenu.style.opacity = 0
+      return
+    }
+
+    const native = window.getSelection()
+    try {
+      const range = native.getRangeAt(0)
+      const rect = range.getBoundingClientRect()
+
+      sideMenu.style.top = `${rect.top +
+        rect.height / 2 +
+        window.pageYOffset -
+        sideMenu.offsetHeight}px`
+      sideMenu.style.opacity = 1
+    } catch (err) {
+      sideMenu.style.opacity = 0
+    }
+  }
+
+  onKeyDown = (event, editor, next) => {
+    let mark
+
+    if (isBoldHotkey(event)) {
+      mark = 'bold'
+    } else if (isItalicHotkey(event)) {
+      mark = 'italic'
+    } else if (isUnderlinedHotkey(event)) {
+      mark = 'underline'
+    } else {
+      return next()
+    }
+
+    event.preventDefault()
+    editor.toggleMark(mark)
   }
 
   render() {
@@ -241,7 +140,9 @@ class EditorComponent extends React.Component {
         placeholder={this.props.placeholder}
         value={this.state.value}
         onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
         renderEditor={this.renderEditor}
+        renderNode={this.renderNode}
         renderMark={this.renderMark}
         {...this.props}
       />
@@ -251,16 +152,34 @@ class EditorComponent extends React.Component {
   renderEditor = (props, editor, next) => {
     const children = next()
     return (
-      <Box {...this.props.containerProps}>
+      <Box padding={50} position="relative" {...this.props.containerProps}>
         {this.props.hasTitle && (
           <TitleBlock
             onTitleChangeHandler={value => this.props.onTitleChange({ value })}
             placeholder={this.props.titlePlaceholder}
           />
         )}
+        {!this.props.readOnly && (
+          <Box
+            position="absolute"
+            left={10}
+            opacity={0}
+            innerRef={sideMenu => (this.sideMenu = sideMenu)}
+          >
+            <SideMenu
+              onOpen={() => this.setState({ sideMenuOpen: true })}
+              onClose={() => this.setState({ sideMenuOpen: false })}
+              editor={editor}
+            />
+          </Box>
+        )}
+        {this.props.infoNode && <div>{this.props.infoNode}</div>}
         {children}
         {!this.props.readOnly && (
-          <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+          <HoverMenu
+            innerRef={hoverMenu => (this.hoverMenu = hoverMenu)}
+            editor={editor}
+          />
         )}
       </Box>
     )
@@ -285,15 +204,62 @@ class EditorComponent extends React.Component {
     }
   }
 
+  renderNode = (props, editor, next) => {
+    const { attributes, children, node } = props
+    const { theme } = this.props
+
+    switch (node.type) {
+      case 'block-quote':
+        return (
+          <Box is="blockquote" {...getBlockquoteStyle(theme)} {...attributes}>
+            {children}
+          </Box>
+        )
+      case 'bulleted-list':
+        return (
+          <Box
+            is="ul"
+            margin={0}
+            marginLeft="1.1em"
+            padding={0}
+            listStylePosition="inside"
+            listStyle="disc"
+            {...attributes}
+          >
+            {children}
+          </Box>
+        )
+      case 'heading-one':
+        return (
+          <Heading size={800} is="h1" {...attributes}>
+            {children}
+          </Heading>
+        )
+      case 'heading-two':
+        return (
+          <Heading size={600} is="h2" {...attributes}>
+            {children}
+          </Heading>
+        )
+      case 'list-item':
+        return <li {...attributes}>{children}</li>
+      case 'numbered-list':
+        return <ol {...attributes}>{children}</ol>
+      default:
+        return next()
+    }
+  }
+
   onChange = ({ value }) => {
     this.setState({ value })
+
     if (!this.props.readOnly) {
-      if (this.props.provideHTML) {
+      if (this.props.provideHTML && this.props.onValueChange) {
         const html = new Html({ rules: RULES, defaultBlock: 'span' }).serialize(
           value
         )
         this.props.onValueChange({ value, html })
-      } else {
+      } else if (this.props.onValueChange) {
         this.props.onValueChange({ value })
       }
     }

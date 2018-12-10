@@ -92,6 +92,11 @@ class IconButton extends PureComponent {
     height: 32
   }
 
+  getIconColor = () => {
+    const { appearance } = this.props
+    return appearance === 'primary' ? 'white' : 'default'
+  }
+
   render() {
     const {
       theme,
@@ -115,11 +120,7 @@ class IconButton extends PureComponent {
         justifyContent="center"
         {...props}
       >
-        <Icon
-          icon={icon}
-          size={size}
-          color={intent === 'none' ? 'default' : 'currentColor'}
-        />
+        <Icon icon={icon} size={size} color={this.getIconColor()} />
       </Button>
     )
   }

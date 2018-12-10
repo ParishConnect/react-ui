@@ -45,6 +45,7 @@
     "emotion": "^9.2.8",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
+    "is-hotkey": "^0.1.4",
     "lodash.debounce": "^4.0.8",
     "lodash.findkey": "^4.6.0",
     "lodash.mapvalues": "^4.6.0",
