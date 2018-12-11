@@ -15,10 +15,10 @@ const ANIMATION_DURATION = 240
 const openAnimation = keyframes('openAnimation', {
   from: {
     opacity: 0,
-    transform: 'translateY(-120%)'
+    transform: 'translateX(-100%)'
   },
   to: {
-    transform: 'translateY(0)'
+    transform: 'translateX(0)'
   }
 })
 
@@ -36,7 +36,7 @@ const closeAnimation = keyframes('closeAnimation', {
 const animationStyles = css({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'flex-end',
   height: 0,
   transition: `all ${ANIMATION_DURATION}ms ${animationEasing.deceleration}`,
   '&[data-state="entering"], &[data-state="entered"]': {

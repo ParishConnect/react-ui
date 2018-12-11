@@ -5,8 +5,6 @@ import { StackingOrder } from '../../constants/'
 import Toast from './Toast'
 
 const wrapperClass = css({
-  maxWidth: 560,
-  margin: '0 auto',
   top: 0,
   left: 0,
   right: 0,
