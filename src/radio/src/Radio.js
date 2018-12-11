@@ -118,7 +118,7 @@ class Radio extends PureComponent {
       appearance,
       ...props
     } = this.props
-    const themedClassName = theme.getRadioClassName(appearance)
+    const themedClassName = theme.getRadioClassName(theme.themeColor)
 
     return (
       <Box
