@@ -8,7 +8,7 @@ import { StackingOrder } from '../../constants'
 
 export default class HoverMenu extends Component {
   static propTypes = {
-    innerRef: PropTypes.object,
+    innerRef: PropTypes.func,
     editor: PropTypes.object
   }
   render() {

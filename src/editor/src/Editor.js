@@ -42,6 +42,7 @@ class EditorComponent extends Component {
     readOnly: PropTypes.bool,
     infoNode: PropTypes.node,
     theme: PropTypes.object.isRequired,
+    title: PropTypes.string,
     titlePlaceholder: PropTypes.string
   }
 
@@ -178,6 +179,7 @@ class EditorComponent extends Component {
         >
           {this.props.hasTitle && (
             <TitleBlock
+              value={this.props.title}
               onTitleChangeHandler={value =>
                 this.props.onTitleChange({ value })
               }

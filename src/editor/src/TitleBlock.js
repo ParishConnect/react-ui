@@ -9,7 +9,8 @@ export default class TitleBlock extends Component {
      * Placeholder for title area. Default: Enter a title...
      */
     placeholder: PropTypes.string,
-    onTitleChangeHandler: PropTypes.func
+    onTitleChangeHandler: PropTypes.func,
+    value: PropTypes.string
   }
 
   static defaultProps = {
@@ -17,7 +18,7 @@ export default class TitleBlock extends Component {
   }
 
   state = {
-    value: '',
+    value: this.props.value || '',
     height: 48
   }
 
