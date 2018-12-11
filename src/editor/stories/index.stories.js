@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { Card } from '../../layers'
+import { Dialog } from '../../dialog'
 import { Editor } from '../../editor'
 
 storiesOf('editor', module)
@@ -10,7 +11,19 @@ storiesOf('editor', module)
     </Card>
   ))
   .add('Editor with Title', () => (
-    <Card maxWidth={1000} margin={15} elevation={1} height="90vh">
-      <Editor hasTitle offset={5} provideHTML />
-    </Card>
+    <Dialog
+      isShown
+      hasHeader={false}
+      intent="success"
+      confirmLabel="Save"
+      minHeightContent="95%"
+      containerProps={{
+        width: 'calc(100% - 2rem)',
+        height: '90vh',
+        maxWidth: 1000,
+        padding: 25
+      }}
+    >
+      <Editor hasTitle offset={5} />
+    </Dialog>
   ))

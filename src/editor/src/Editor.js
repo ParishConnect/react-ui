@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
@@ -52,21 +52,20 @@ class EditorComponent extends Component {
 
   state = {
     value: Value.fromJSON(this.props.initialValue || initialValue),
-    sideMenuOpen: false
+    sideMenuIsOpen: false
   }
 
   componentDidMount = () => {
     if (!this.props.readOnly) {
-      this.sideMenu.style.top = 'unset'
-      this.updateHoverMenu()
       this.updateSideMenu()
+      this.updateHoverMenu()
     }
   }
 
   componentDidUpdate = () => {
     if (!this.props.readOnly) {
-      this.updateHoverMenu()
       this.updateSideMenu()
+      this.updateHoverMenu()
     }
   }
 
@@ -101,23 +100,37 @@ class EditorComponent extends Component {
     const sideMenu = this.sideMenu
     if (!sideMenu) return
 
-    const { value, sideMenuOpen } = this.state
+    const { value } = this.state
     const { selection } = value
 
-    if (selection.isBlurred && !sideMenuOpen) {
-      sideMenu.style.opacity = 0
+    if (!selection.isSet && !this.state.sideMenuIsOpen) {
+      sideMenu.removeAttribute('style')
       return
     }
 
-    const native = window.getSelection()
     try {
+      const native = window.getSelection()
       const range = native.getRangeAt(0)
       const rect = range.getBoundingClientRect()
-
-      sideMenu.style.top = `${rect.top + rect.height / 2}px`
       sideMenu.style.opacity = 1
-    } catch (err) {
-      sideMenu.style.opacity = 0
+      sideMenu.style.top = `${rect.top +
+        rect.height / 2 +
+        window.pageYOffset -
+        sideMenu.offsetHeight / 2}px`
+
+      sideMenu.style.left = `${this.container.getBoundingClientRect().x}px`
+    } catch (err) {}
+  }
+
+  hasBlock = type => {
+    const { value } = this.state
+    return value.blocks.some(node => node.type === type)
+  }
+
+  handleTab = editor => {
+    const isList = this.hasBlock('list-item')
+    if (isList) {
+      editor.wrapBlock('list-item')
     }
   }
 
@@ -135,7 +148,7 @@ class EditorComponent extends Component {
     }
 
     event.preventDefault()
-    editor.toggleMark(mark)
+    if (mark) editor.toggleMark(mark)
   }
 
   render() {
@@ -156,36 +169,40 @@ class EditorComponent extends Component {
   renderEditor = (props, editor, next) => {
     const children = next()
     return (
-      <Box padding={50} position="relative" {...this.props.containerProps}>
-        {this.props.hasTitle && (
-          <TitleBlock
-            onTitleChangeHandler={value => this.props.onTitleChange({ value })}
-            placeholder={this.props.titlePlaceholder}
-          />
-        )}
-        {!this.props.readOnly && (
-          <Box
-            position="absolute"
-            left={10}
-            opacity={0}
-            innerRef={sideMenu => (this.sideMenu = sideMenu)}
-          >
+      <Fragment>
+        <Box
+          innerRef={container => (this.container = container)}
+          padding={50}
+          position="relative"
+          {...this.props.containerProps}
+        >
+          {this.props.hasTitle && (
+            <TitleBlock
+              onTitleChangeHandler={value =>
+                this.props.onTitleChange({ value })
+              }
+              placeholder={this.props.titlePlaceholder}
+            />
+          )}
+          {this.props.infoNode && <div>{this.props.infoNode}</div>}
+          {!this.props.readOnly && (
             <SideMenu
-              onOpen={() => this.setState({ sideMenuOpen: true })}
-              onClose={() => this.setState({ sideMenuOpen: false })}
+              onOpen={() => this.setState({ sideMenuIsOpen: true })}
+              onClose={() => this.setState({ sideMenuIsOpen: false })}
+              innerRef={sideMenu => (this.sideMenu = sideMenu)}
+              value={this.state.value}
               editor={editor}
             />
-          </Box>
-        )}
-        {this.props.infoNode && <div>{this.props.infoNode}</div>}
-        {children}
-        {!this.props.readOnly && (
-          <HoverMenu
-            innerRef={hoverMenu => (this.hoverMenu = hoverMenu)}
-            editor={editor}
-          />
-        )}
-      </Box>
+          )}
+          {children}
+          {!this.props.readOnly && (
+            <HoverMenu
+              innerRef={hoverMenu => (this.hoverMenu = hoverMenu)}
+              editor={editor}
+            />
+          )}
+        </Box>
+      </Fragment>
     )
   }
 
@@ -224,7 +241,11 @@ class EditorComponent extends Component {
           </Box>
         )
       case 'bulleted-list':
-        return <UnorderedList {...attributes}>{children}</UnorderedList>
+        return (
+          <UnorderedList is="ul" {...attributes}>
+            {children}
+          </UnorderedList>
+        )
       case 'heading-one':
         return (
           <Heading size={800} is="h1" {...attributes}>
@@ -238,9 +259,17 @@ class EditorComponent extends Component {
           </Heading>
         )
       case 'list-item':
-        return <ListItem {...attributes}>{children}</ListItem>
+        return (
+          <ListItem is="li" {...attributes}>
+            {children}
+          </ListItem>
+        )
       case 'numbered-list':
-        return <OrderedList {...attributes}>{children}</OrderedList>
+        return (
+          <OrderedList is="ol" {...attributes}>
+            {children}
+          </OrderedList>
+        )
       default:
         return next()
     }

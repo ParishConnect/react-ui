@@ -55,8 +55,8 @@ export default class TitleBlock extends Component {
         onKeyUp={this.setHeight}
         placeholder={placeholder}
         value={this.state.value}
-        autocomplete="off"
-        spellcheck="false"
+        autoComplete="off"
+        spellCheck="false"
         maxlength="100"
         aria-label={placeholder}
         css={this.titleBlockStyles}

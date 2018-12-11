@@ -1,66 +1,146 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import Box from '@hennessyevan/aluminum-box'
 import { IconButton } from '../../buttons'
-import { Popover } from '../../popover'
 import { Tooltip } from '../../tooltip'
-import { Position } from '../../constants'
+import { Card } from '../../layers'
+import { Stack } from '../../stack/'
+import { StackingOrder } from '../../constants'
 
 const DEFAULT_NODE = 'paragraph'
 
 export default class SideMenu extends Component {
+  state = {
+    isShown: false
+  }
   static propTypes = {
+    /**
+     * When true, the Popover is manually shown.
+     */
+    isShown: PropTypes.bool,
+    innerRef: PropTypes.object.isRequired,
     /**
      * The receiving editor. Must be passed to the SideMenu Component
      */
-    editor: PropTypes.object,
+    editor: PropTypes.object.isRequired,
     /**
-     * Passed to the Editor component
+     * Optionally specify where to create the react Portal
+     */
+    root: PropTypes.string,
+    /**
+     * Function called when the Sidemenu opens.
      */
     onOpen: PropTypes.func,
-    onClose: PropTypes.func
+    /**
+     * Function called when the Sidemenu opens.
+     */
+    onClose: PropTypes.func,
+    value: PropTypes.object
   }
+
+  static defaultProps = {
+    onOpen: () => {},
+    onClose: () => {},
+    onOpenComplete: () => {},
+    onCloseComplete: () => {}
+  }
+
+  open = () => {
+    this.setState({ isShown: true })
+    this.props.onOpen()
+  }
+
+  close = () => {
+    this.setState({ isShown: false })
+    this.props.onClose()
+  }
+
+  toggle = () => {
+    if (this.state.isShown) {
+      this.close()
+    } else {
+      this.open()
+    }
+  }
+
   render() {
-    return (
-      <Popover
-        statelessProps={{
-          padding: 5,
-          minWidth: 0
-        }}
-        onOpen={this.props.onOpen}
-        onClose={this.props.onClose}
-        position={Position.BOTTOM_LEFT}
-        content={
-          <Box display="inline-flex">
-            {this.renderBlockButton('heading-one', 'header-one', 'Header 1')}
-            {this.renderBlockButton('heading-two', 'header-two', 'Header 2')}
-            {this.renderBlockButton('block-quote', 'citation', 'Quote')}
-            {this.renderBlockButton(
-              'numbered-list',
-              'numbered-list',
-              'Numbered List'
+    const { innerRef, isShown } = this.props
+    const { isShown: stateIsShown } = this.state
+    const root = window.document.getElementById(this.props.root || 'root')
+
+    const shown = isShown || stateIsShown
+
+    return ReactDOM.createPortal(
+      <Stack value={StackingOrder.TOASTER}>
+        {zIndex => (
+          <Box
+            top={-10000}
+            left={-10000}
+            opacity={0}
+            position="absolute"
+            zIndex={zIndex}
+            innerRef={innerRef}
+          >
+            <IconButton
+              onClick={this.toggle}
+              transform={shown ? 'rotate(45deg)' : ''}
+              transformOrigin="center"
+              transition="transform 125ms"
+              appearance="minimal"
+              borderRadius={50}
+              icon="plus"
+            />
+            {shown && (
+              <Card
+                appearance="white"
+                position="absolute"
+                transform="translateY(10px)"
+                elevation={3}
+                display="inline-flex"
+                paddingY={5}
+                paddingX={2.5}
+              >
+                {this.renderBlockButton(
+                  'heading-one',
+                  'header-one',
+                  'Header 1'
+                )}
+                {this.renderBlockButton(
+                  'heading-two',
+                  'header-two',
+                  'Header 2'
+                )}
+                {this.renderBlockButton('block-quote', 'citation', 'Quote')}
+                {this.renderBlockButton(
+                  'numbered-list',
+                  'numbered-list',
+                  'Numbered List'
+                )}
+                {this.renderBlockButton(
+                  'bulleted-list',
+                  'list',
+                  'Bulleted List'
+                )}
+              </Card>
             )}
-            {this.renderBlockButton('bulleted-list', 'list', 'Bulleted List')}
           </Box>
-        }
-      >
-        <IconButton appearance="minimal" borderRadius={50} icon="plus" />
-      </Popover>
+        )}
+      </Stack>,
+      root
     )
   }
 
   hasBlock = type => {
-    const { editor: { value } } = this.props
+    const { value } = this.props
     return value.blocks.some(node => node.type === type)
   }
 
   renderBlockButton = (type, icon, tooltip) => {
-    const { editor } = this.props
-
     let isActive = this.hasBlock(type)
 
     if (['numbered-list', 'bulleted-list'].includes(type)) {
-      const { value: { document, blocks } } = editor
+      const { value: { document, blocks } } = this.props
       if (blocks.size > 0) {
         const parent = document.getParent(blocks.first().key)
         isActive = this.hasBlock('list-item') && parent && parent.type === type
@@ -70,7 +150,7 @@ export default class SideMenu extends Component {
     return (
       <Tooltip content={tooltip}>
         <IconButton
-          appearance="minimal"
+          appearance={isActive ? 'primary' : 'minimal'}
           active={isActive}
           onMouseDown={event => this.onClickBlock(event, type)}
           icon={icon}
@@ -83,8 +163,7 @@ export default class SideMenu extends Component {
     event.preventDefault()
 
     const { editor } = this.props
-    const { value } = editor
-    const { document } = value
+    const { document } = editor.value
 
     // Handle everything but list buttons.
     if (type !== 'bulleted-list' && type !== 'numbered-list') {
@@ -102,7 +181,10 @@ export default class SideMenu extends Component {
     } else {
       // Handle the extra wrapping required for list buttons.
       const isList = this.hasBlock('list-item')
-      const isType = value.blocks.some(block => {
+
+      const isType = editor.value.blocks.some(block => {
+        console.log(block.key)
+
         return !document.getClosest(block.key, parent => parent.type === type)
       })
 
