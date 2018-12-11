@@ -180,6 +180,21 @@ storiesOf('dialog', module)
           </Box>
         )}
       </DialogManager>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              isShown={isShown}
+              title="Dialog with External Scrolling"
+              externalScrolling
+              onCloseComplete={hide}
+            >
+              <Box height={1200} width="100%" backgroundColor="#ddd" />
+            </Dialog>
+            <Button onClick={show}>Show Dialog with External Scrolling</Button>
+          </Box>
+        )}
+      </DialogManager>
     </Box>
   ))
   .add('Dialog with nested Combobox', () => (

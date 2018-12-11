@@ -58,7 +58,7 @@ export default class TitleBlock extends Component {
         value={this.state.value}
         autoComplete="off"
         spellCheck="false"
-        maxlength="100"
+        maxLength="100"
         aria-label={placeholder}
         css={this.titleBlockStyles}
       />

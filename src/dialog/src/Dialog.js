@@ -159,6 +159,11 @@ class Dialog extends React.Component {
     sideOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
+     * Whether the dialog should not scroll internally. Default: false
+     */
+    externalScrolling: PropTypes.bool,
+
+    /**
      * The min height of the body content.
      * Makes it less weird when only showing little content.
      */
@@ -191,7 +196,9 @@ class Dialog extends React.Component {
 
   renderChildren = close => {
     const { children } = this.props
-
+    if (children.props.editorInDialog) {
+      this.childIsEditor = true
+    }
     if (typeof children === 'function') {
       return children({ close })
     } else if (typeof children === 'string') {
@@ -209,6 +216,7 @@ class Dialog extends React.Component {
       isShown,
       topOffset,
       sideOffset,
+      externalScrolling,
       hasHeader,
       hasFooter,
       hasCancel,
@@ -232,7 +240,9 @@ class Dialog extends React.Component {
     const topOffsetWithUnit = Number.isInteger(topOffset)
       ? `${topOffset}px`
       : topOffset
-    const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
+    const maxHeight = externalScrolling
+      ? ''
+      : `calc(100% - ${topOffsetWithUnit} * 2)`
 
     return (
       <Overlay
@@ -240,9 +250,11 @@ class Dialog extends React.Component {
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
         containerProps={{
+          id: this.childIsEditor ? 'overlay' : '',
           display: 'flex',
           alignItems: 'flex-start',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          overflowY: externalScrolling ? 'scroll' : ''
         }}
       >
         {({ state, close }) => (

@@ -9,11 +9,16 @@ import { StackingOrder } from '../../constants'
 export default class HoverMenu extends Component {
   static propTypes = {
     innerRef: PropTypes.func,
-    editor: PropTypes.object
+    editor: PropTypes.object,
+    root: PropTypes.string
   }
   render() {
     const { innerRef } = this.props
-    const root = window.document.getElementById('root')
+    let root
+    if (window.document.getElementById('overlay')) {
+      root = window.document.getElementById(this.props.root || 'overlay')
+    }
+    root = window.document.getElementById(this.props.root || 'root')
 
     return ReactDOM.createPortal(
       <Stack value={StackingOrder.POSITIONER}>
@@ -51,7 +56,7 @@ export default class HoverMenu extends Component {
       <IconButton
         appearance={isActive ? 'primary' : 'minimal'}
         marginX={2.5}
-        active={isActive}
+        active={isActive ? true : undefined}
         onMouseDown={event => this.onClickMark(event, type)}
         icon={icon}
       />

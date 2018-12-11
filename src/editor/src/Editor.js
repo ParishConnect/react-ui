@@ -27,6 +27,7 @@ import {
 
 class EditorComponent extends Component {
   static propTypes = {
+    isEditor: PropTypes.bool.isRequired,
     attributes: PropTypes.object,
     children: PropTypes.object || PropTypes.func,
     containerProps: PropTypes.object,
@@ -47,6 +48,7 @@ class EditorComponent extends Component {
   }
 
   static defaultProps = {
+    isEditor: true,
     placeholder: 'Enter some text...',
     titlePlaceholder: 'Enter a title...'
   }
@@ -104,17 +106,26 @@ class EditorComponent extends Component {
     const { value } = this.state
     const { selection } = value
 
-    if (!selection.isSet && !this.state.sideMenuIsOpen) {
-      sideMenu.removeAttribute('style')
+    if (selection.isBlurred && !this.state.sideMenuIsOpen) {
+      setTimeout(() => {
+        if (!this.state.sideMenuIsOpen) {
+          sideMenu.removeAttribute('style')
+        }
+      }, 150)
       return
     }
 
+    let scrollOffset = 0
+    if (window.document.getElementById('overlay')) {
+      scrollOffset = window.document.getElementById('overlay').scrollTop
+    }
     try {
       const native = window.getSelection()
       const range = native.getRangeAt(0)
       const rect = range.getBoundingClientRect()
       sideMenu.style.opacity = 1
       sideMenu.style.top = `${rect.top +
+        scrollOffset +
         rect.height / 2 +
         window.pageYOffset -
         sideMenu.offsetHeight / 2}px`
@@ -189,7 +200,10 @@ class EditorComponent extends Component {
           {this.props.infoNode && <div>{this.props.infoNode}</div>}
           {!this.props.readOnly && (
             <SideMenu
-              onOpen={() => this.setState({ sideMenuIsOpen: true })}
+              onOpen={() => {
+                this.setState({ sideMenuIsOpen: true })
+                this.updateSideMenu()
+              }}
               onClose={() => this.setState({ sideMenuIsOpen: false })}
               innerRef={sideMenu => (this.sideMenu = sideMenu)}
               value={this.state.value}

@@ -19,7 +19,7 @@ export default class SideMenu extends Component {
      * When true, the Popover is manually shown.
      */
     isShown: PropTypes.bool,
-    innerRef: PropTypes.object.isRequired,
+    innerRef: PropTypes.func.isRequired,
     /**
      * The receiving editor. Must be passed to the SideMenu Component
      */
@@ -53,7 +53,9 @@ export default class SideMenu extends Component {
 
   close = () => {
     this.setState({ isShown: false })
-    this.props.onClose()
+    setTimeout(() => {
+      this.props.onClose()
+    }, 300)
   }
 
   toggle = () => {
@@ -67,7 +69,12 @@ export default class SideMenu extends Component {
   render() {
     const { innerRef, isShown } = this.props
     const { isShown: stateIsShown } = this.state
-    const root = window.document.getElementById(this.props.root || 'root')
+    let root
+    if (window.document.getElementById('overlay')) {
+      root = window.document.getElementById(this.props.root || 'overlay')
+    } else {
+      root = window.document.getElementById(this.props.root || 'root')
+    }
 
     const shown = isShown || stateIsShown
 

@@ -17,6 +17,7 @@ storiesOf('editor', module)
       intent="success"
       confirmLabel="Save"
       minHeightContent="95%"
+      externalScrolling
       containerProps={{
         width: 'calc(100% - 2rem)',
         height: '90vh',
@@ -24,6 +25,6 @@ storiesOf('editor', module)
         padding: 25
       }}
     >
-      <Editor hasTitle offset={5} />
+      <Editor hasTitle editorInDialog offset={5} />
     </Dialog>
   ))
