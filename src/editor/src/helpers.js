@@ -1,6 +1,7 @@
 import React from 'react'
 import { Value } from 'slate'
 import { isKeyHotkey } from 'is-hotkey'
+import { Code, Strong } from '../../typography'
 
 export const RULES = [
   {
@@ -8,9 +9,9 @@ export const RULES = [
       if (_.object === 'mark') {
         switch (_.type) {
           case 'bold':
-            return <strong>{children}</strong>
+            return <Strong is="strong">{children}</Strong>
           case 'code':
-            return <code>{children}</code>
+            return <Code is="code">{children}</Code>
           case 'italic':
             return <em>{children}</em>
           case 'strikethrough':
