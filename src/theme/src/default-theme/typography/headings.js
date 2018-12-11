@@ -16,7 +16,7 @@ import fontFamilies from './fontFamilies'
 export default {
   '900': {
     fontSize: '35px',
-    fontWeight: 700,
+    fontWeight: 500,
     lineHeight: '40px',
     letterSpacing: '-0.2px',
     marginTop: 52,
@@ -25,7 +25,7 @@ export default {
   },
   '800': {
     fontSize: '29px',
-    fontWeight: 600,
+    fontWeight: 500,
     lineHeight: '32px',
     letterSpacing: '-0.2px',
     marginTop: 40,
