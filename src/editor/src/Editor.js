@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
+import Plain from 'slate-plain-serializer'
 import Box from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
 import {
@@ -40,6 +41,7 @@ class EditorComponent extends Component {
     onTitleChange: PropTypes.func,
     placeholder: PropTypes.string,
     provideHTML: PropTypes.bool,
+    providePlain: PropTypes.bool,
     readOnly: PropTypes.bool,
     infoNode: PropTypes.node,
     theme: PropTypes.object.isRequired,
@@ -295,12 +297,21 @@ class EditorComponent extends Component {
     this.setState({ value })
 
     if (!this.props.readOnly) {
-      if (this.props.provideHTML && this.props.onValueChange) {
-        const html = new Html({ rules: RULES, defaultBlock: 'span' }).serialize(
-          value
-        )
-        this.props.onValueChange({ value, html })
-      } else if (this.props.onValueChange) {
+      if (this.props.onValueChange) {
+        if (this.props.provideHTML) {
+          const html = new Html({
+            rules: RULES,
+            defaultBlock: 'span'
+          }).serialize(value)
+          if (this.props.providePlain) {
+            const plain = Plain.serialize(value)
+            this.props.onValueChange({ value, html, plain })
+            return
+          }
+          this.props.onValueChange({ value, html })
+          return
+        }
+
         this.props.onValueChange({ value })
       }
     }

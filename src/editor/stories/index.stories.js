@@ -25,6 +25,13 @@ storiesOf('editor', module)
         padding: 25
       }}
     >
-      <Editor hasTitle editorInDialog offset={5} />
+      <Editor
+        hasTitle
+        editorInDialog
+        provideHTML
+        providePlain
+        onValueChange={({ html, plain }) => console.log({ html, plain })}
+        offset={5}
+      />
     </Dialog>
   ))
