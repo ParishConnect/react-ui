@@ -149,7 +149,7 @@ class Pane extends PureComponent {
         '::after': {
           ...(css['::after'] || {}),
           content: `''`,
-          height: 7.5,
+          height: 9.5,
           width: '100%',
           position: 'absolute',
           bottom: -1,
