@@ -1,6 +1,6 @@
 {
   "name": "@hennessyevan/aluminum-ui",
-  "version": "0.2.39",
+  "version": "0.2.40",
   "description": "React UI Kit by Evan Hennessy",
   "contributors": ["Evan Hennessy (https://hennessyevan.com/)"],
   "keywords": ["aluminum", "ui", "react"],
@@ -52,6 +52,7 @@
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",
     "react-autosize-textarea": "^5.0.0",
+    "react-dropzone": "^8.0.1",
     "react-emotion": "^9.2.8",
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
