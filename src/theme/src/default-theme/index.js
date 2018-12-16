@@ -90,7 +90,7 @@ import {
 
 export default {
   // Theme Color
-  themeColor: 'purple',
+  themeColor: 'blue',
   // Foundational Styles.
   colors,
   elevations,
