@@ -32,8 +32,6 @@ storiesOf('file-picker', module)
         borderTopRightRadius={5}
         maxWidth={1200}
         marginBottom={32}
-        onChange={obj => console.log(obj)}
-        onRepositionComplete={position => console.log(position)}
       />
     </Box>
   ))

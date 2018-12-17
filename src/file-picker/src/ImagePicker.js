@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone'
-import { Pane } from '../../layers'
+import Box from '@hennessyevan/aluminum-box'
+import { Pane, Card } from '../../layers'
 import { Icon } from '../../icon'
+import { Button } from '../../buttons'
 import { withTheme } from '../../theme'
+import { Heading } from '../../typography'
 
 export const CLASS_PREFIX = 'evergreen-image-picker'
 
@@ -41,8 +44,7 @@ class ImagePicker extends Component {
     this.state = {
       image: {},
       preview: '',
-      dragDistance: 0,
-      imageHeight: null
+      repositioning: false
     }
   }
 
@@ -57,7 +59,6 @@ class ImagePicker extends Component {
     if (dragDistance > 0) dragDistance = 0
     if (dragDistance < -correctedHeight) dragDistance = -correctedHeight
     this.container.style.backgroundPositionY = dragDistance + 'px'
-    this.setState({ dragDistance })
   }
 
   shouldComponentUpdate() {
@@ -77,12 +78,40 @@ class ImagePicker extends Component {
       ),
       10
     )
-    this.props.onRepositionComplete(this.currPositionY)
   }
 
   componentWillUnmount() {
     // Make sure to revoke the data uris to avoid memory leaks
     URL.revokeObjectURL(this.state.image.preview)
+  }
+
+  getRepositioningShadow = () => {
+    const { theme } = this.props
+    return {
+      '::before': {
+        content: "''",
+        width: '100%',
+        height: '100%',
+        display: 'block',
+        boxShadow: `inset 0 0 0 10px ${theme.scales.neutral.N6A}`
+      }
+    }
+  }
+
+  handleRepositioning = () => {
+    const { repositioning } = this.state
+    if (repositioning) {
+      this.setState({
+        repositioning: false
+      })
+      if (this.props.onRepositionComplete)
+        this.props.onRepositionComplete(this.currPositionY)
+    } else {
+      this.setState({
+        repositioning: true
+      })
+      this.mouseInside = true
+    }
   }
 
   render() {
@@ -100,7 +129,11 @@ class ImagePicker extends Component {
       theme,
       ...props
     } = this.props
-    const { preview, dragDistance, correctedHeight } = this.state
+    const { preview, correctedHeight, repositioning } = this.state
+
+    const repositioningShadow = repositioning
+      ? this.getRepositioningShadow()
+      : {}
 
     return (
       <Dropzone
@@ -110,16 +143,28 @@ class ImagePicker extends Component {
         disableClick={Boolean(preview)}
         innerRef={node => (this.dropzone = node)}
       >
-        {({ getInputProps, getRootProps, isDragActive, isDragReject }) => {
+        {({
+          getInputProps,
+          getRootProps,
+          isDragActive,
+          isDragReject,
+          open
+        }) => {
           return (
             <Pane
               innerRef={node => (this.container = node)}
-              cursor={preview ? 'ns-resize' : 'pointer'}
-              onMouseEnter={preview ? () => (this.mouseInside = true) : null}
-              onMouseLeave={preview ? () => (this.mouseInside = false) : null}
-              onMouseDown={preview ? this.handleMouseDown : null}
-              onMouseUp={preview ? this.handleMouseUp : null}
-              onMouseMove={this.handleMouseMove}
+              cursor={
+                preview ? (repositioning ? 'ns-resize' : 'default') : 'pointer'
+              }
+              onMouseEnter={
+                repositioning ? () => (this.mouseInside = true) : null
+              }
+              onMouseLeave={
+                repositioning ? () => (this.mouseInside = false) : null
+              }
+              onMouseDown={repositioning ? this.handleMouseDown : null}
+              onMouseUp={repositioning ? this.handleMouseUp : null}
+              onMouseMove={repositioning ? this.handleMouseMove : null}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -137,10 +182,49 @@ class ImagePicker extends Component {
               disabled={disabled}
               width={width}
               height={height}
+              css={{ ...repositioningShadow }}
               {...props}
               {...getRootProps()}
             >
               <input {...getInputProps()} />
+              {preview && (
+                <Box position="absolute" bottom={25} right={50}>
+                  <Button
+                    marginRight={15}
+                    appearance="default"
+                    onClick={() => open()}
+                    iconAfter="plus"
+                  >
+                    Change Image
+                  </Button>
+                  <Button
+                    onClick={this.handleRepositioning}
+                    appearance={repositioning ? 'primary' : 'default'}
+                    intent={repositioning ? 'success' : 'none'}
+                    iconAfter={repositioning ? 'tick' : 'arrows-vertical'}
+                  >
+                    {repositioning ? 'Save Position' : 'Reposition'}
+                  </Button>
+                </Box>
+              )}
+              {preview &&
+                repositioning && (
+                  <Card
+                    padding="1rem"
+                    background="white"
+                    elevation={2}
+                    position="absolute"
+                    top="50%"
+                    left="50%"
+                    transform="translate(-50%, -50%)"
+                    userSelect="none"
+                    pointerEvents="none"
+                  >
+                    <Heading size={200} color="theme">
+                      Drag&nbsp;to&nbsp;reposition
+                    </Heading>
+                  </Card>
+                )}
               {!preview && (
                 <Icon
                   className={`${CLASS_PREFIX}-button`}
@@ -157,20 +241,6 @@ class ImagePicker extends Component {
                   icon={isDragReject ? 'cross' : 'plus'}
                 />
               )}
-              <div
-                style={{
-                  color: 'white',
-                  position: 'absolute',
-                  bottom: 10,
-                  right: 0
-                }}
-              >
-                Drag Distance: {dragDistance}
-                <br />
-                Image Height: {this.state.imageHeight}
-                <br />
-                Corrected Height: {this.state.correctedHeight}
-              </div>
             </Pane>
           )
         }}
@@ -206,16 +276,17 @@ class ImagePicker extends Component {
 
         this.setState(
           {
-            preview: reader.result,
-            imageHeight: resolve.height
+            preview: reader.result
           },
           () => {
-            this.props.onChange({
-              image: resolve,
-              preview: reader.result,
-              correctedHeight: this.state.correctedHeight,
-              file
-            })
+            if (this.props.onChange) {
+              this.props.onChange({
+                image: resolve,
+                preview: reader.result,
+                correctedHeight: this.state.correctedHeight,
+                file
+              })
+            }
           }
         )
       })
