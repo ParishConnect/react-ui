@@ -196,6 +196,7 @@ class EditorComponent extends Component {
         >
           {this.props.hasTitle && (
             <TitleBlock
+              readOnly={this.props.readOnly}
               value={this.props.title}
               onTitleChangeHandler={value =>
                 this.props.onTitleChange({ value })

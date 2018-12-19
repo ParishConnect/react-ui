@@ -10,6 +10,7 @@ export default class TitleBlock extends Component {
      */
     placeholder: PropTypes.string,
     onTitleChangeHandler: PropTypes.func,
+    readOnly: PropTypes.bool,
     value: PropTypes.string
   }
 
@@ -45,11 +46,11 @@ export default class TitleBlock extends Component {
   }
 
   render() {
-    const { placeholder } = this.props
+    const { placeholder, readOnly } = this.props
 
     return (
       <Heading
-        is={AutoResizeTextArea}
+        is={readOnly ? 'h2' : AutoResizeTextArea}
         size={900}
         opacity={this.state.value ? 1 : 0.5}
         onChange={this.onChange}
@@ -61,7 +62,9 @@ export default class TitleBlock extends Component {
         maxLength="100"
         aria-label={placeholder}
         css={this.titleBlockStyles}
-      />
+      >
+        {readOnly && this.state.value}
+      </Heading>
     )
   }
 }
