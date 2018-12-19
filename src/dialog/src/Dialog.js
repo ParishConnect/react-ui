@@ -258,7 +258,7 @@ class Dialog extends React.Component {
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
         containerProps={{
-          id: this.childIsEditor ? 'overlay' : '',
+          id: 'overlay',
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'center',
