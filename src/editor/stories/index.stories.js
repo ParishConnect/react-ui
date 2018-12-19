@@ -29,7 +29,7 @@ storiesOf('editor', module)
       externalScrolling
       containerProps={{
         width: 'calc(100% - 2rem)',
-        height: '90vh',
+        minHeight: '90vh',
         maxWidth: 1000,
         padding: 25
       }}

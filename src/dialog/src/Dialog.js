@@ -300,7 +300,7 @@ class Dialog extends React.Component {
             <Pane
               data-state={state}
               display="flex"
-              overflow="auto"
+              overflow={externalScrolling ? 'visible' : 'auto'}
               padding={innerPadding}
               flexDirection="column"
               minHeight={minHeightContent}
