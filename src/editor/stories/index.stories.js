@@ -7,7 +7,16 @@ import { Editor } from '../../editor'
 storiesOf('editor', module)
   .add('Editor', () => (
     <Card maxWidth={1000} margin={15} elevation={1} height="90vh">
-      <Editor offset={5} />
+      <Editor
+        hasTitle
+        offset={5}
+        providePlain
+        provideHTML
+        titlePlaceholder="Enter a page title..."
+        onValueChange={({ value }) =>
+          console.log(JSON.stringify(value.toJSON()))
+        }
+      />
     </Card>
   ))
   .add('Editor with Title', () => (

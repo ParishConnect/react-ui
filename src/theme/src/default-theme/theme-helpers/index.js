@@ -21,8 +21,6 @@ const isThemeColor = color => {
  * @return {string}
  */
 function getThemeColor(theme, lightness) {
-  console.log(this.theme)
-
   if (!theme) {
     throw new Error('You must supply the theme to this helper method')
   }

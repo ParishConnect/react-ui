@@ -188,7 +188,7 @@ class ImagePicker extends Component {
             >
               <input {...getInputProps()} />
               {preview && (
-                <Box position="absolute" bottom={25} right={50}>
+                <Box position="absolute" bottom={25} right={25}>
                   <Button
                     marginRight={15}
                     appearance="default"

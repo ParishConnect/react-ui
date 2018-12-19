@@ -190,8 +190,6 @@ export default class SideMenu extends Component {
       const isList = this.hasBlock('list-item')
 
       const isType = editor.value.blocks.some(block => {
-        console.log(block.key)
-
         return !document.getClosest(block.key, parent => parent.type === type)
       })
 

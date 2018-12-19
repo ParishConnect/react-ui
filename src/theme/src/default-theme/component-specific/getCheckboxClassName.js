@@ -10,7 +10,6 @@ const primaryStyle = themeColor =>
   getPrimaryButtonStylesForIntent(null, themeColor)
 
 const defaultAppearance = themeColor => {
-  console.log({ themeColor: gradients[themeColor].end })
   return Themer.createCheckboxAppearance({
     base: {
       color: 'white',

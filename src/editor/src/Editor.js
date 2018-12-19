@@ -44,6 +44,7 @@ class EditorComponent extends Component {
     providePlain: PropTypes.bool,
     readOnly: PropTypes.bool,
     infoNode: PropTypes.node,
+    sideMenuPadding: PropTypes.number,
     theme: PropTypes.object.isRequired,
     title: PropTypes.string,
     titlePlaceholder: PropTypes.string
@@ -52,6 +53,7 @@ class EditorComponent extends Component {
   static defaultProps = {
     isEditor: true,
     placeholder: 'Enter some text...',
+    sideMenuPadding: 10,
     titlePlaceholder: 'Enter a title...'
   }
 
@@ -106,6 +108,7 @@ class EditorComponent extends Component {
     if (!sideMenu) return
 
     const { value } = this.state
+    const { sideMenuPadding } = this.props
     const { selection } = value
 
     if (selection.isBlurred && !this.state.sideMenuIsOpen) {
@@ -132,7 +135,8 @@ class EditorComponent extends Component {
         window.pageYOffset -
         sideMenu.offsetHeight / 2}px`
 
-      sideMenu.style.left = `${this.container.getBoundingClientRect().x}px`
+      sideMenu.style.left = `${this.container.getBoundingClientRect().x +
+        sideMenuPadding}px`
     } catch (err) {}
   }
 
@@ -296,24 +300,23 @@ class EditorComponent extends Component {
   onChange = ({ value }) => {
     this.setState({ value })
 
-    if (!this.props.readOnly) {
-      if (this.props.onValueChange) {
-        if (this.props.provideHTML) {
-          const html = new Html({
-            rules: RULES,
-            defaultBlock: 'span'
-          }).serialize(value)
-          if (this.props.providePlain) {
-            const plain = Plain.serialize(value)
-            this.props.onValueChange({ value, html, plain })
-            return
-          }
-          this.props.onValueChange({ value, html })
+    if (this.props.readOnly) return
+    if (this.props.onValueChange) {
+      if (this.props.provideHTML) {
+        const html = new Html({
+          rules: RULES,
+          defaultBlock: 'span'
+        }).serialize(value)
+        if (this.props.providePlain) {
+          const plain = Plain.serialize(value)
+          this.props.onValueChange({ value, html, plain })
           return
         }
-
-        this.props.onValueChange({ value })
+        this.props.onValueChange({ value, html })
+        return
       }
+
+      this.props.onValueChange({ value })
     }
   }
 }
