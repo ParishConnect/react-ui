@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ToastManager from './ToastManager'
 
-const ID = 'evergreen-toaster'
+const ID = 'parishconnect-toaster'
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined'
 

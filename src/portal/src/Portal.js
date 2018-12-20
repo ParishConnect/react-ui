@@ -14,7 +14,7 @@ export default class Portal extends Component {
 
     if (!portalContainer) {
       portalContainer = document.createElement('div')
-      portalContainer.setAttribute('evergreen-portal-container', '')
+      portalContainer.setAttribute('parishconnect-portal-container', '')
       document.body.appendChild(portalContainer)
     }
 
