@@ -6,6 +6,7 @@ import Html from 'slate-html-serializer'
 import Plain from 'slate-plain-serializer'
 import Box from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
+import { Pane } from '../../layers'
 import {
   Heading,
   Code,
@@ -188,7 +189,7 @@ class EditorComponent extends Component {
     const children = next()
     return (
       <Fragment>
-        <Box
+        <Pane
           innerRef={container => (this.container = container)}
           padding={50}
           position="relative"
@@ -224,7 +225,7 @@ class EditorComponent extends Component {
               editor={editor}
             />
           )}
-        </Box>
+        </Pane>
       </Fragment>
     )
   }
