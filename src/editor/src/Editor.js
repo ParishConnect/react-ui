@@ -40,7 +40,7 @@ class EditorComponent extends Component {
     offset: PropTypes.number,
     onValueChange: PropTypes.func,
     onTitleChange: PropTypes.func,
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     provideHTML: PropTypes.bool,
     providePlain: PropTypes.bool,
     readOnly: PropTypes.bool,
@@ -48,7 +48,7 @@ class EditorComponent extends Component {
     sideMenuPadding: PropTypes.number,
     theme: PropTypes.object.isRequired,
     title: PropTypes.string,
-    titlePlaceholder: PropTypes.string,
+    titlePlaceholder: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     sideMenu: PropTypes.bool
   }
 
