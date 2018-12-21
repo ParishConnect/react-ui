@@ -48,14 +48,16 @@ class EditorComponent extends Component {
     sideMenuPadding: PropTypes.number,
     theme: PropTypes.object.isRequired,
     title: PropTypes.string,
-    titlePlaceholder: PropTypes.string
+    titlePlaceholder: PropTypes.string,
+    sideMenu: PropTypes.bool
   }
 
   static defaultProps = {
     isEditor: true,
     placeholder: 'Enter some text...',
     sideMenuPadding: 10,
-    titlePlaceholder: 'Enter a title...'
+    titlePlaceholder: 'Enter a title...',
+    sideMenu: true
   }
 
   state = {
@@ -65,14 +67,14 @@ class EditorComponent extends Component {
 
   componentDidMount = () => {
     if (!this.props.readOnly) {
-      this.updateSideMenu()
+      if (this.props.sideMenu) this.updateSideMenu()
       this.updateHoverMenu()
     }
   }
 
   componentDidUpdate = () => {
     if (!this.props.readOnly) {
-      this.updateSideMenu()
+      if (this.props.sideMenu) this.updateSideMenu()
       this.updateHoverMenu()
     }
   }
@@ -200,24 +202,25 @@ class EditorComponent extends Component {
               readOnly={this.props.readOnly}
               value={this.props.title}
               onTitleChangeHandler={value =>
-                this.props.onTitleChange({ value })
+                this.props.onTitleChange && this.props.onTitleChange({ value })
               }
               placeholder={this.props.titlePlaceholder}
             />
           )}
           {this.props.infoNode && <div>{this.props.infoNode}</div>}
-          {!this.props.readOnly && (
-            <SideMenu
-              onOpen={() => {
-                this.setState({ sideMenuIsOpen: true })
-                this.updateSideMenu()
-              }}
-              onClose={() => this.setState({ sideMenuIsOpen: false })}
-              innerRef={sideMenu => (this.sideMenu = sideMenu)}
-              value={this.state.value}
-              editor={editor}
-            />
-          )}
+          {!this.props.readOnly &&
+            this.props.sideMenu && (
+              <SideMenu
+                onOpen={() => {
+                  this.setState({ sideMenuIsOpen: true })
+                  this.updateSideMenu()
+                }}
+                onClose={() => this.setState({ sideMenuIsOpen: false })}
+                innerRef={sideMenu => (this.sideMenu = sideMenu)}
+                value={this.state.value}
+                editor={editor}
+              />
+            )}
           {children}
           {!this.props.readOnly && (
             <HoverMenu
