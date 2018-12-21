@@ -199,7 +199,7 @@ class Dialog extends React.Component {
 
     if (children.length > 0) {
       children.map(child => {
-        if (child.props.editorInDialog) {
+        if (child.props && child.props.editorInDialog) {
           this.childIsEditor = true
         }
         return false
