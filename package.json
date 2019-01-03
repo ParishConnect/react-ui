@@ -1,7 +1,7 @@
 {
   "name": "@hennessyevan/aluminum-ui",
   "version": "0.2.51",
-  "description": "React UI Kit by Evan Hennessy",
+  "description": "React UI Kit fork of evergreen",
   "contributors": ["Evan Hennessy (https://hennessyevan.com/)"],
   "keywords": ["aluminum", "ui", "react"],
   "repository": "hennessyevan/aluminum-ui",
