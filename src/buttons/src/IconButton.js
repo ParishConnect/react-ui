@@ -93,7 +93,8 @@ class IconButton extends PureComponent {
   }
 
   getIconColor = () => {
-    const { appearance } = this.props
+    const { appearance, fillColor } = this.props
+    if (fillColor) return fillColor
     return appearance === 'primary' ? 'white' : 'default'
   }
 
