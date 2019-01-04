@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import { keyframes } from 'emotion'
 import Box from '@hennessyevan/aluminum-box'
+import noScroll from 'no-scroll'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
@@ -127,6 +128,16 @@ class Overlay extends React.Component {
     onEntered: PropTypes.func,
 
     /**
+     * The root element used to ensure scrolling doesn't happen when the overlay is up.
+     */
+    root: PropTypes.string,
+
+    /**
+     * Sets whether the overlay should stop scrolling from happening on the root element
+     */
+    disableScrolling: PropTypes.bool,
+
+    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
@@ -139,7 +150,9 @@ class Overlay extends React.Component {
     onExited: () => {},
     onEnter: () => {},
     onEntering: () => {},
-    onEntered: () => {}
+    onEntered: () => {},
+    root: '#root',
+    disableScrolling: true
   }
 
   constructor(props) {
@@ -238,8 +251,10 @@ class Overlay extends React.Component {
   }
 
   handleEntering = node => {
+    const { disableScrolling, onEntering } = this.props
+    if (disableScrolling) noScroll.on()
     document.body.addEventListener('keydown', this.onEsc, false)
-    this.props.onEntering(node)
+    onEntering(node)
   }
 
   handleEntered = node => {
@@ -249,9 +264,11 @@ class Overlay extends React.Component {
   }
 
   handleExiting = node => {
+    const { disableScrolling, onExiting } = this.props
+    if (disableScrolling) noScroll.off()
     document.body.removeEventListener('keydown', this.onEsc, false)
     this.bringFocusBackToTarget()
-    this.props.onExiting(node)
+    onExiting(node)
   }
 
   handleExited = node => {
@@ -312,7 +329,10 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles(theme.overlayBackgroundColor)}
+                  css={{
+                    ...animationStyles(theme.overlayBackgroundColor),
+                    '-webkit-overflow-scrolling': 'touch'
+                  }}
                   data-state={state}
                   {...containerProps}
                 >

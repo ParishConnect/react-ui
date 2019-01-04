@@ -317,3 +317,21 @@ storiesOf('dialog', module)
       )}
     </DialogManager>
   ))
+  .add('Overlay Scroll-test', () => (
+    <DialogManager>
+      {({ isShown, show, hide }) => (
+        <Box height="150vh" marginBottom={16}>
+          <Dialog
+            isShown={isShown}
+            title="Dialog with External Scrolling"
+            hasFooter={false}
+            externalScrolling
+            onCloseComplete={hide}
+          >
+            <Box height={1200} width="100%" backgroundColor="#ddd" />
+          </Dialog>
+          <Button onClick={show}>Show Dialog with External Scrolling</Button>
+        </Box>
+      )}
+    </DialogManager>
+  ))

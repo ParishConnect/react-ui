@@ -49,6 +49,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.findkey": "^4.6.0",
     "lodash.mapvalues": "^4.6.0",
+    "no-scroll": "^2.1.1",
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",
     "react-autosize-textarea": "^5.0.0",
