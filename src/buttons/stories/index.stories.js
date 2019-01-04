@@ -275,6 +275,36 @@ buttonsStory.add('Button types', () => (
               Danger
             </Button>
           </Box>
+          <Heading marginTop="default">Overlay Appearance</Heading>
+          <Box
+            background="url(https://picsum.photos/1200/300)"
+            paddingY={32}
+            marginTop={12}
+            display="inline-block"
+          >
+            <Button height={state.value} appearance="overlay" marginRight={16}>
+              Default
+            </Button>
+            <Button
+              height={state.value}
+              appearance="overlay"
+              marginRight={16}
+              intent="success"
+            >
+              Success
+            </Button>
+            <Button
+              height={state.value}
+              appearance="overlay"
+              marginRight={16}
+              intent="warning"
+            >
+              Warning
+            </Button>
+            <Button height={state.value} appearance="overlay" intent="danger">
+              Danger
+            </Button>
+          </Box>
         </React.Fragment>
       )}
     </Component>
@@ -284,6 +314,34 @@ buttonsStory.add('Button types', () => (
 buttonsStory.add('TextDropdownButton', () => (
   <Box padding={40}>
     <TextDropdownButton>Table Header</TextDropdownButton>
+  </Box>
+))
+
+buttonsStory.add('Round Button', () => (
+  <Box padding={40}>
+    <Heading marginTop="default">Round Types</Heading>
+    <Heading size={100}>Refrain from using with text</Heading>
+    <Box marginTop={12} display="flex">
+      <IconButton icon="plus" round marginRight={16}>
+        Default
+      </IconButton>
+      <IconButton icon="tick" round marginRight={16} intent="success">
+        Success
+      </IconButton>
+      <IconButton icon="lock" round marginRight={16} intent="warning">
+        Warning
+      </IconButton>
+      <IconButton icon="trash" round marginRight={16} intent="danger">
+        Danger
+      </IconButton>
+      <IconButton icon="cross" round appearance="overlay">
+        Overlay
+      </IconButton>
+    </Box>
+    <Heading marginTop="default">Round Text</Heading>
+    <Box marginTop={12}>
+      <Button round>Pill Button</Button>
+    </Box>
   </Box>
 ))
 

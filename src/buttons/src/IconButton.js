@@ -60,7 +60,8 @@ class IconButton extends PureComponent {
     /**
      * The appearance of the button.
      */
-    appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
+    appearance: PropTypes.oneOf(['default', 'minimal', 'primary', 'overlay'])
+      .isRequired,
 
     /**
      * Forcefully set the active state of a button.
@@ -93,14 +94,22 @@ class IconButton extends PureComponent {
   }
 
   getIconColor = () => {
-    const { appearance, fillColor } = this.props
+    const { appearance, fillColor, theme } = this.props
     if (fillColor) return fillColor
-    return appearance === 'primary' ? 'white' : 'default'
+    switch (appearance) {
+      case 'overlay':
+        return theme.getIconColor('white')
+      case 'primary':
+        return 'white'
+      default:
+        return 'default'
+    }
   }
 
   render() {
     const {
       theme,
+      appearance,
       iconAim,
       icon,
       iconSize,
@@ -112,6 +121,7 @@ class IconButton extends PureComponent {
 
     return (
       <Button
+        appearance={appearance}
         intent={intent}
         height={height}
         width={height}
@@ -121,7 +131,12 @@ class IconButton extends PureComponent {
         justifyContent="center"
         {...props}
       >
-        <Icon icon={icon} size={size} color={this.getIconColor()} />
+        <Icon
+          icon={icon}
+          size={size}
+          style={{ fill: this.getIconColor() }}
+          color={this.getIconColor()}
+        />
       </Button>
     )
   }

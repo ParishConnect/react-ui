@@ -91,7 +91,10 @@ export default {
     success: palette.green.base,
     info: palette.blue.base,
     danger: palette.red.base,
-    warning: palette.orange.base
+    warning: palette.orange.base,
+
+    // White.
+    white: 'white'
   },
 
   /**

@@ -74,6 +74,27 @@ const getButtonAppearance = (appearance, intent, themeColor) => {
         focusAndActive: {}
       })
     }
+    case 'overlay': {
+      return Themer.createButtonAppearance({
+        disabled,
+        base: {
+          color: 'white',
+          fill: 'white',
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          backdropFilter: 'blur(20px)'
+        },
+        hover: {
+          backgroundColor: 'rgba(0,0,0,0.8)'
+        },
+        focus: {
+          boxShadow: `0 0 0 1.5px rgba(255,255,255,0.5)`
+        },
+        active: {
+          backgroundColor: 'black'
+        },
+        focusAndActive: {}
+      })
+    }
     case 'default':
     default: {
       const intentTextColor = getTextColorForIntent(intent, themeColor)

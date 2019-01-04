@@ -42,13 +42,19 @@ class Button extends PureComponent {
     /**
      * The appearance of the button.
      */
-    appearance: PropTypes.oneOf(['default', 'minimal', 'primary']).isRequired,
+    appearance: PropTypes.oneOf(['default', 'minimal', 'primary', 'overlay'])
+      .isRequired,
 
     /**
      * When true, show a loading spinner before the children.
      * This also disables the button.
      */
     isLoading: PropTypes.bool,
+
+    /**
+     * Creates a round button used in overlay
+     */
+    round: PropTypes.bool,
 
     /**
      * Forcefully set the active state of a button.
@@ -114,6 +120,7 @@ class Button extends PureComponent {
       disabled,
       appearance,
       isLoading,
+      round,
 
       // Paddings
       paddingRight,
@@ -135,7 +142,9 @@ class Button extends PureComponent {
     )
     const textSize = theme.getTextSizeForControlHeight(height)
 
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
+    const borderRadius = round
+      ? height
+      : theme.getBorderRadiusForControlHeight(height)
     const iconSize = theme.getIconSizeForButton(height)
 
     const pr =

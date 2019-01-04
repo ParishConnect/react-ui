@@ -4,6 +4,7 @@ const whitelist = [
   'background',
   'backgroundColor',
   'backgroundImage',
+  'backdropFilter',
 
   'borderBottom',
   'borderRadius',
