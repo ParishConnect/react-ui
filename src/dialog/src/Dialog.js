@@ -197,16 +197,19 @@ class Dialog extends React.Component {
   renderChildren = close => {
     const { children } = this.props
 
-    if (children.length > 0) {
-      children.map(child => {
-        if (child.props && child.props.editorInDialog) {
-          this.childIsEditor = true
-        }
-        return false
-      })
-    } else {
-      this.childIsEditor = children.props.editorInDialog
+    if (Array.isArray(children) || typeof children === 'object') {
+      if (children.length > 0) {
+        children.map(child => {
+          if (child.props && child.props.editorInDialog) {
+            this.childIsEditor = true
+          }
+          return false
+        })
+      } else {
+        this.childIsEditor = children.props.editorInDialog
+      }
     }
+
     if (typeof children === 'function') {
       return children({ close })
     } else if (typeof children === 'string') {
