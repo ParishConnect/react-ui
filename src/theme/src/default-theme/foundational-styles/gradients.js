@@ -13,10 +13,10 @@ const gradients = {
   },
   green: {
     start: `${tinycolor(palette.green.base)
-      .lighten(5)
+      .lighten(8)
       .saturate(-10)
       .spin(-15)}`,
-    end: palette.green.dark
+    end: tinycolor(palette.green.dark).darken(5)
   },
   orange: {
     start: `${tinycolor(palette.orange.base)
@@ -34,17 +34,17 @@ const gradients = {
   },
   blue: {
     start: `${tinycolor(palette.blue.base)
-      .lighten(10)
-      .saturate(20)
+      .lighten(5)
+      .saturate(30)
       .spin(-18)}`,
-    end: `${tinycolor(palette.blue.base).lighten(10)}`
+    end: `${tinycolor(palette.blue.base).lighten(2)}`
   },
   purple: {
     start: `${tinycolor(palette.red.base)
-      .lighten(-2)
-      .saturate(10)
+      .lighten(-5)
+      .saturate(-5)
       .spin(-25)}`,
-    end: palette.purple.dark
+    end: tinycolor(palette.purple.dark).lighten(5)
   },
   teal: {
     start: `${tinycolor(palette.teal.base)

@@ -81,11 +81,18 @@ storiesOf('layers', module)
                 Background: {background}
               </Card>
             ))}
-            {Object.keys(theme.colors.background).map(background => (
-              <Card key={background} {...cardStyle} identifier={background}>
-                Identifier: {background}
-              </Card>
-            ))}
+            {Object.keys(theme.colors.background)
+              .filter(background => !background.match(/Tint|tint|overlay/))
+              .map(background => (
+                <Card
+                  key={background}
+                  {...cardStyle}
+                  border="muted"
+                  identifier={background}
+                >
+                  Identifier: {background}
+                </Card>
+              ))}
           </Pane>
 
           <Pane overflow="auto">

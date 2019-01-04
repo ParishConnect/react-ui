@@ -80,7 +80,13 @@ class Pane extends PureComponent {
      * Adds an identifier to the bottom of the layer
      * Defaults to theme color
      */
-    identifier: PropTypes.string,
+    identifier: StringAndBoolPropType,
+
+    /**
+     * Sets the position of the identifier.
+     * Values:
+     */
+    identifierPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
      * Theme provided by ThemeProvider.
@@ -142,20 +148,67 @@ class Pane extends PureComponent {
   }
 
   getIdentifierStyle = (color, css) => {
-    const { theme } = this.props
+    const { theme, identifierPosition = 'bottom' } = this.props
 
     if (theme.isThemeColor(color)) {
-      return {
-        '::after': {
-          ...(css['::after'] || {}),
-          content: `''`,
-          height: 9.5,
-          width: '100%',
-          position: 'absolute',
-          bottom: -1,
-          left: 0,
-          background: theme.colors.background[color]
-        }
+      switch (identifierPosition) {
+        case 'top':
+          return {
+            '::after': {
+              ...(css['::after'] || {}),
+              content: `''`,
+              height: 9.5,
+              width: '100%',
+              position: 'absolute',
+              top: -1,
+              left: 0,
+              background: theme.colors.background[color]
+            }
+          }
+        case 'right':
+          return {
+            '::after': {
+              ...(css['::after'] || {}),
+              content: `''`,
+              height: '100%',
+              width: 9.5,
+              position: 'absolute',
+              top: 0,
+              right: -1,
+              background: theme.colors.background[color]
+            }
+          }
+        case 'bottom':
+          return {
+            '::after': {
+              ...(css['::after'] || {}),
+              content: `''`,
+              height: 9.5,
+              width: '100%',
+              position: 'absolute',
+              bottom: -1,
+              left: 0,
+              background: theme.colors.background[color]
+            }
+          }
+        case 'left':
+          return {
+            '::after': {
+              ...(css['::after'] || {}),
+              content: `''`,
+              height: '100%',
+              width: 9.5,
+              position: 'absolute',
+              top: 0,
+              left: -1,
+              background: theme.colors.background[color]
+            }
+          }
+        default:
+          console.warn(
+            'Expected identifier value of one of [top, right, bottom, left] but got undefined'
+          )
+          break
       }
     }
   }
