@@ -23,6 +23,7 @@ export default class PopoverStateless extends PureComponent {
         role="dialog"
         elevation={3}
         overflow="hidden"
+        position="fixed"
         minWidth={200}
         backgroundColor="white"
         {...props}
