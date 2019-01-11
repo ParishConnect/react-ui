@@ -10,9 +10,6 @@ import gradients from './gradients'
 export default {
   /**
    * Available on Pane as `<Pane background="tint1" />`
-   * @property {string} background.tint1 - Lightest tinted background color. Required property.
-   * @property {string} background.tint2 - Slightly darker tinted background color. Required property.
-   * @property {string} background.overlay - color used for the overlay
    */
   background: {
     tint1: scales.neutral.N1,
@@ -30,18 +27,19 @@ export default {
 
     // Gradients
     neutral: linearGradient(gradients.neutral.start, gradients.neutral.end),
-    green: linearGradient(gradients.green.start, gradients.green.end),
+    green: linearGradient(gradients.green.start, String(gradients.green.end)),
     orange: linearGradient(gradients.orange.start, gradients.orange.end),
     red: linearGradient(gradients.red.start, gradients.red.end),
     blue: linearGradient(gradients.blue.start, gradients.blue.end),
-    purple: linearGradient(gradients.purple.start, gradients.purple.end),
+    purple: linearGradient(
+      gradients.purple.start,
+      String(gradients.purple.end)
+    ),
     teal: linearGradient(gradients.teal.start, gradients.teal.end)
   },
 
   /**
    * Available on Pane as `<Pane borderBottom borderRight="muted" />`
-   * @property {string} text.default - Required property.
-   * @property {string} text.muted - Slightly lighter color than default. Required property.
    */
   border: {
     default: scales.neutral.N4, // Was BorderColors.muted in v3 and under.
@@ -50,9 +48,6 @@ export default {
 
   /**
    * Text colors available on Text as `<Text color="muted" />`.
-   * @property {string} text.muted - Required property.
-   * @property {string} text.default - Required property. Default for text.
-   * @property {string} text.dark - Required property. Default for headings.
    */
   text: {
     muted: scales.neutral.N8,
@@ -77,9 +72,6 @@ export default {
 
   /**
    * Icon colors available on Icon.
-   * @property {string} icon.default - Required property.
-   * @property {string} icon.muted - Required property.
-   * @property {string} icon.selected - Required property.
    */
   icon: {
     default: scales.neutral.N8,
@@ -99,10 +91,6 @@ export default {
 
   /**
    * Used for Alerts and other (future) componentes that express intent.
-   * @property {string} intent.none - Required property.
-   * @property {string} intent.success - Required property.
-   * @property {string} intent.danger - Required property.
-   * @property {string} intent.warning - Required property.
    */
   intent: {
     none: palette.blue.base,

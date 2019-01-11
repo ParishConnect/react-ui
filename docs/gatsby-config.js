@@ -2,9 +2,9 @@ const Path = require('path')
 
 module.exports = {
   plugins: [
-    `gatsby-plugin-favicon`,
+    'gatsby-plugin-favicon',
     {
-      resolve: `gatsby-mdx`,
+      resolve: 'gatsby-mdx',
       options: {
         defaultLayouts: {
           default: require.resolve('./src/components/Page.js')
@@ -12,9 +12,9 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        path: Path.resolve(__dirname, `../src/`),
+        path: Path.resolve(__dirname, '../src/'),
         name: 'evergreen'
       }
     },

@@ -12,7 +12,7 @@ export default class LogoIcon extends React.PureComponent {
       >
         <title>ParishKit</title>
         <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-          <circle fill="#38A065" fillRule="nonzero" cx={16} cy={16} r={16} />
+          <circle fill="#38A065" fillRule="nonzero" cx={16} cy={16} r={16}/>
           <rect
             fill="#FFF"
             fillRule="nonzero"
@@ -22,7 +22,7 @@ export default class LogoIcon extends React.PureComponent {
             height={4}
           />
           <g transform="translate(9.000000, 7.000000)">
-            <polygon points="7 0 14 14 0 14" fill="#FFF" />
+            <polygon points="7 0 14 14 0 14" fill="#FFF"/>
             <polygon
               stroke="#FFF"
               strokeWidth="1.5"

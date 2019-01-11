@@ -1,11 +1,11 @@
 import React from 'react'
-import { withPrefix } from 'gatsby'
-import { Button } from '../../../src'
+import {withPrefix} from 'gatsby'
+import {Button} from '../../../src'
 import spotIllustration from '../images/sketch-hero.png'
 import sketchIcon from '../images/sketch-icon.png'
 
-const NativeLink = ({ ...props }) => {
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+const NativeLink = ({...props}) => {
+  return <a target="_blank" rel="noopener noreferrer" {...props}/>
 }
 
 export default class DesignersHero extends React.PureComponent {
@@ -43,20 +43,20 @@ export default class DesignersHero extends React.PureComponent {
                 Download Sketch UI Kit
               </Button>
             </div>
-            <div style={{ marginTop: 24, marginBottom: -32 }}>
+            <div style={{marginTop: 24, marginBottom: -32}}>
               <a
                 rel="license"
                 href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
               >
                 <img
                   alt="Creative Commons License"
-                  style={{ borderWidth: 0 }}
+                  style={{borderWidth: 0}}
                   height="15"
                   src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"
                 />
               </a>
-              <p style={{ fontSize: 11 }}>
-                <br />
+              <p style={{fontSize: 11}}>
+                <br/>
                 This work is licensed under a{' '}
                 <NativeLink
                   className="Link"
@@ -70,11 +70,11 @@ export default class DesignersHero extends React.PureComponent {
               </p>
             </div>
           </div>
-          <div className="Hero-right" style={{ marginBottom: -80 }}>
+          <div className="Hero-right" style={{marginBottom: -80}}>
             <img
               src={spotIllustration}
               alt="ParishKit spot illustration"
-              style={{ width: 540 }}
+              style={{width: 540}}
             />
           </div>
         </div>

@@ -7,8 +7,8 @@ import SyntaxHighlighter from '../../components/SyntaxHighlighter'
 import Layout from '../../components/Layout'
 import PageFooter from '../../components/PageFooter'
 
-const NativeLink = ({ ...props }) => {
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+const NativeLink = ({...props}) => {
+  return <a target="_blank" rel="noopener noreferrer" {...props}/>
 }
 
 export default () => {
@@ -18,20 +18,20 @@ export default () => {
         <title>Introduction · ParishKit</title>
       </Helmet>
       <div className="MainLayout">
-        <TopBar />
+        <TopBar/>
         <main className="MainLayout-main">
           <div className="MainLayout-content">
             <section className="MainLayout-contentRight">
               <div
                 className="Container-nextToSidebar"
-                style={{ marginBottom: 160 }}
+                style={{marginBottom: 160}}
               >
                 <div className="Content">
                   <h1>Introduction</h1>
                   <p className="p">
                     ParishKit is a pragmatic UI kit for building evolving
                     products on the web.
-                    <br /> It is built and maintained open-source by{' '}
+                    <br/> It is built and maintained open-source by{' '}
                     <NativeLink href="https://parishconnect.ca/">
                       ParishConnect
                     </NativeLink>
@@ -43,7 +43,7 @@ export default () => {
                       ParishKit is built on the belief that you can never
                       predict all future requirements, only prepare for it.
                     </strong>
-                    {` `}
+                    {' '}
                     Instead of creating fixed configurations that work today,
                     ParishKit promotes building systems that anticipate new and
                     changing design requirements.
@@ -54,7 +54,7 @@ export default () => {
                       out of the box with smart defaults and offer full control
                       when needed.
                     </strong>
-                    {` `}
+                    {' '}
                     For example, ParishKit implements most components on top of
                     a{' '}
                     <NativeLink href="https://github.com/hennessyevan/aluminum-box">
@@ -109,10 +109,10 @@ ReactDOM.render(
               </div>
             </section>
           </div>
-          <GetStartedSidebar />
+          <GetStartedSidebar/>
         </main>
       </div>
-      <PageFooter />
+      <PageFooter/>
     </Layout>
   )
 }

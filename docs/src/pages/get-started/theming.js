@@ -5,8 +5,8 @@ import GetStartedSidebar from '../../components/GetStartedSidebar'
 import Layout from '../../components/Layout'
 import PageFooter from '../../components/PageFooter'
 
-const NativeLink = ({ ...props }) => {
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+const NativeLink = ({...props}) => {
+  return <a target="_blank" rel="noopener noreferrer" {...props}/>
 }
 
 export default () => {
@@ -16,13 +16,13 @@ export default () => {
         <title>Theming · ParishKit</title>
       </Helmet>
       <div className="MainLayout">
-        <TopBar />
+        <TopBar/>
         <main className="MainLayout-main">
           <div className="MainLayout-content">
             <section className="MainLayout-contentRight">
               <div
                 className="Container-nextToSidebar"
-                style={{ marginBottom: 160 }}
+                style={{marginBottom: 160}}
               >
                 <div className="Content">
                   <h1>Theming</h1>
@@ -40,10 +40,10 @@ export default () => {
               </div>
             </section>
           </div>
-          <GetStartedSidebar />
+          <GetStartedSidebar/>
         </main>
       </div>
-      <PageFooter />
+      <PageFooter/>
     </Layout>
   )
 }

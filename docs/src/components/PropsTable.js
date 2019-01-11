@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import {StaticQuery, graphql} from 'gatsby'
 import PropTypeWrapper from './prop-types-table/PropTypeWrapper'
 import PropTypeDescription from './prop-types-table/PropTypeDescription'
 import PropTypeHeading from './prop-types-table/PropTypeHeading'
@@ -37,11 +37,13 @@ export default class PropsTable extends PureComponent {
    * We find the docs for just the component we are looking for.
    */
   getDocsForComponent = data => {
-    const result = data.allComponentMetadata.edges.find(({ node }) => {
+    const result = data.allComponentMetadata.edges.find(({node}) => {
       return node.displayName === this.props.of
     })
 
-    if (result) return result.node
+    if (result) {
+return result.node
+}
     return null
   }
 
@@ -84,8 +86,8 @@ export default class PropsTable extends PureComponent {
         `}
         render={data => {
           const componentDocs = this.getDocsForComponent(data)
-          if (!componentDocs)
-            return (
+          if (!componentDocs) {
+return (
               <div>
                 <p>
                   The properties table for this component can’t be rendered at
@@ -93,6 +95,7 @@ export default class PropsTable extends PureComponent {
                 </p>
               </div>
             )
+}
           return (
             <>
               <div className="Content">

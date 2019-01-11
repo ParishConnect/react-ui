@@ -2,7 +2,7 @@ import tinycolor from 'tinycolor2'
 import palette from './palette'
 import scales from './scales'
 
-/* Gradients are used for layers, button and indicators */
+// Gradients are used for layers, button and indicators
 
 const gradients = {
   neutral: {

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import {Link} from 'gatsby'
 import GitHubIcon from './GitHubIcon'
 import LogoWordmark from './LogoWordmark'
 
@@ -12,11 +12,11 @@ export default class TopBar extends PureComponent {
   static defaultProps = {}
 
   render() {
-    const { children, ...props } = this.props
+    const {children, ...props} = this.props
     return (
       <div className="TopBar" {...props}>
         <Link to="/" className="focus-ring-link">
-          <LogoWordmark width={115} />
+          <LogoWordmark width={115}/>
         </Link>
 
         <nav className="TopBar-nav">
@@ -50,7 +50,7 @@ export default class TopBar extends PureComponent {
             rel="noopener noreferrer"
           >
             <span className="icon-holder">
-              <GitHubIcon />
+              <GitHubIcon/>
             </span>
             <span className="hide-on-mobile">GitHub</span>
           </a>

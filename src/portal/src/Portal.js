@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import {Component} from 'react'
 import canUseDom from 'dom-helpers/util/inDOM'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
@@ -10,7 +10,9 @@ export default class Portal extends Component {
     super()
 
     // This fixes SSR
-    if (!canUseDom) return
+    if (!canUseDom) {
+return
+}
 
     if (!portalContainer) {
       portalContainer = document.createElement('div')
@@ -28,7 +30,9 @@ export default class Portal extends Component {
 
   render() {
     // This fixes SSR
-    if (!canUseDom) return null
+    if (!canUseDom) {
+return null
+}
     return ReactDOM.createPortal(this.props.children, this.el)
   }
 }

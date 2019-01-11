@@ -1,7 +1,8 @@
 import tinycolor from 'tinycolor2'
 import { scales, palette } from '../foundational-styles/'
+import { ThemeColor } from '../../../../constants/src/Theme'
 
-const spinnerColor = themeColor => {
+const spinnerColor = (themeColor: ThemeColor): string => {
   if (palette[themeColor]) {
     return tinycolor(palette[themeColor].base).isDark()
       ? scales.neutral.N1

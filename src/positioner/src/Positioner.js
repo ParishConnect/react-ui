@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import { Portal } from '../../portal'
-import { Stack } from '../../stack'
-import { StackingOrder, Position } from '../../constants'
+import {Portal} from '../../portal'
+import {Stack} from '../../stack'
+import {StackingOrder, Position} from '../../constants'
 import getPosition from './getPosition'
 
 const animationEasing = {
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const initialState = () => ({
@@ -16,7 +16,7 @@ const initialState = () => ({
   transformOrigin: null
 })
 
-const getCSS = ({ initialScale, animationDuration }) => ({
+const getCSS = ({initialScale, animationDuration}) => ({
   position: 'fixed',
   opacity: 0,
   transitionTimingFunction: animationEasing.spring,
@@ -26,7 +26,7 @@ const getCSS = ({ initialScale, animationDuration }) => ({
   '&[data-state="entering"], &[data-state="entered"]': {
     opacity: 1,
     visibility: 'visible',
-    transform: `scale(1)`
+    transform: 'scale(1)'
   },
   '&[data-state="exiting"]': {
     opacity: 0,
@@ -139,7 +139,9 @@ export default class Positioner extends PureComponent {
   }
 
   update = (prevHeight = 0, prevWidth = 0) => {
-    if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
+    if (!this.props.isShown || !this.targetRef || !this.positionerRef) {
+return
+}
 
     const targetRect = this.targetRef.getBoundingClientRect()
     const hasEntered =
@@ -168,7 +170,7 @@ export default class Positioner extends PureComponent {
       width = Math.max(this.positionerRef.offsetWidth, prevWidth)
     }
 
-    const { rect, transformOrigin } = getPosition({
+    const {rect, transformOrigin} = getPosition({
       position: this.props.position,
       targetRect,
       targetOffset: this.props.targetOffset,
@@ -220,14 +222,14 @@ export default class Positioner extends PureComponent {
       animationDuration
     } = this.props
 
-    const { left, top, transformOrigin } = this.state
+    const {left, top, transformOrigin} = this.state
 
     return (
       <Stack value={StackingOrder.POSITIONER}>
         {zIndex => {
           return (
             <React.Fragment>
-              {target({ getRef: this.getTargetRef, isShown })}
+              {target({getRef: this.getTargetRef, isShown})}
 
               <Transition
                 appear

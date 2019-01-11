@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Pane, Heading } from '@hennessyevan/aluminum-ui'
+import {Pane, Heading} from '@hennessyevan/aluminum-ui'
 import Swatch from './Swatch'
 
 const ColorGroup = props => {

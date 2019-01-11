@@ -9,7 +9,7 @@ let previousPaddingRight
  */
 export default function preventBodyScroll(preventScroll) {
   /** Get the width before toggling the style so we can calculate the scrollbar width for a smooth, jankless style change */
-  const { width } = document.body.getBoundingClientRect()
+  const {width} = document.body.getBoundingClientRect()
 
   /** Apply or remove overflow style */
   if (preventScroll) {

@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { keyframes } from 'emotion'
-import { Pane } from '../../layers'
-import { Paragraph, Heading } from '../../typography'
-import { Overlay } from '../../overlay'
-import { Button, IconButton } from '../../buttons'
-import { withTheme } from '../../theme'
+import {keyframes} from 'glamor'
+import {Pane} from '../../layers'
+import {Paragraph, Heading} from '../../typography'
+import {Overlay} from '../../overlay'
+import {Button, IconButton} from '../../buttons'
+import {withTheme} from '../../theme'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
 }
 
 const ANIMATION_DURATION = 200
@@ -212,10 +212,10 @@ class Dialog extends React.Component {
   }
 
   renderChildren = close => {
-    const { children } = this.props
+    const {children} = this.props
 
     if (typeof children === 'function') {
-      return children({ close })
+      return children({close})
     }
     if (typeof children === 'string') {
       return <Paragraph>{children}</Paragraph>
@@ -251,17 +251,17 @@ class Dialog extends React.Component {
       preventBodyScrolling
     } = this.props
 
-    const sideOffsetWithUnit = Number.isInteger(sideOffset)
-      ? `${sideOffset}px`
-      : sideOffset
+    const sideOffsetWithUnit = Number.isInteger(sideOffset) ?
+      `${sideOffset}px` :
+      sideOffset
     const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
 
-    const topOffsetWithUnit = Number.isInteger(topOffset)
-      ? `${topOffset}px`
-      : topOffset
-    const maxHeight = externalScrolling
-      ? ''
-      : `calc(100% - ${topOffsetWithUnit} * 2)`
+    const topOffsetWithUnit = Number.isInteger(topOffset) ?
+      `${topOffset}px` :
+      topOffset
+    const maxHeight = externalScrolling ?
+      '' :
+      `calc(100% - ${topOffsetWithUnit} * 2)`
 
     return (
       <Overlay
@@ -278,7 +278,7 @@ class Dialog extends React.Component {
         }}
         preventBodyScrolling={preventBodyScrolling}
       >
-        {({ state, close }) => (
+        {({state, close}) => (
           <Pane
             role="dialog"
             backgroundColor="white"

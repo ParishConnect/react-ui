@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@hennessyevan/aluminum-box'
-import { css, keyframes } from 'emotion'
+import { css, keyframes } from 'glamor'
 import { Icon } from '../../icon'
 import { Position } from '../../constants'
 

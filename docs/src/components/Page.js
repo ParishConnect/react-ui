@@ -1,10 +1,10 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import { Location, navigate } from '@reach/router'
+import {Link} from 'gatsby'
+import {Location, navigate} from '@reach/router'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Button, IconButton, Tooltip } from '@hennessyevan/aluminum-ui'
+import {Button, IconButton, Tooltip} from '@hennessyevan/aluminum-ui'
 import IA from '../IA'
 import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
@@ -64,20 +64,22 @@ class Page extends React.Component {
 
   render() {
     const metaInfo = this.getMetaInfo()
-    if (!metaInfo) return null
+    if (!metaInfo) {
+return null
+}
     const relatedItems = this.getRelatedItems(metaInfo)
     return (
       <React.Fragment>
         <Helmet>
           <title>{metaInfo.name} · ParishKit</title>
-          <meta property="og:title" content={`${metaInfo.name} · ParishKit`} />
+          <meta property="og:title" content={`${metaInfo.name} · ParishKit`}/>
           <meta
             property="twitter:title"
             content={`${metaInfo.name} · ParishKit`}
           />
         </Helmet>
         <div>
-          <TopBar />
+          <TopBar/>
           <main>
             <article className="MDXPage">
               <header className="MDXPage-header">
@@ -115,7 +117,7 @@ class Page extends React.Component {
               </header>
               <div
                 className="Container Container--narrow"
-                style={{ marginBottom: 120 }}
+                style={{marginBottom: 120}}
               >
                 <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
               </div>
@@ -124,7 +126,7 @@ class Page extends React.Component {
             {relatedItems.length > 0 && (
               <div
                 className="Overview-group Container Container--narrow"
-                style={{ marginBottom: 120 }}
+                style={{marginBottom: 120}}
               >
                 <h3 className="Overview-groupTitle">Related</h3>
                 <div className="Overview-groupItems">
@@ -145,7 +147,7 @@ class Page extends React.Component {
 
             <div
               className="Container Container--narrow"
-              style={{ marginBottom: 120 }}
+              style={{marginBottom: 120}}
             >
               <Button
                 is={Link}
@@ -159,7 +161,7 @@ class Page extends React.Component {
             </div>
           </main>
         </div>
-        <PageFooter />
+        <PageFooter/>
       </React.Fragment>
     )
   }
@@ -170,8 +172,8 @@ export default class PageContainer extends React.Component {
     return (
       <Layout>
         <Location>
-          {({ location }) => {
-            return <Page location={location} {...this.props} />
+          {({location}) => {
+            return <Page location={location} {...this.props}/>
           }}
         </Location>
       </Layout>

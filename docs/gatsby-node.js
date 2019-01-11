@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({actions}) => {
   actions.setWebpackConfig({
     module: {
       rules: [

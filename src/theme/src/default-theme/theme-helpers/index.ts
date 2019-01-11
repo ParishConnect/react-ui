@@ -1,26 +1,17 @@
-import { Intent } from '../../../../constants'
+import { Intent, IntentType } from '../../../../constants'
 import themedProperty from '../utils/themedProperty'
 import { colors, elevations, palette } from '../foundational-styles/'
 import { fontFamilies, headings, paragraph, text } from '../typography/'
+import { ThemeType } from '../../../../constants/src/Theme'
 
-/**
- *
- * @param {string} color
- * @return {boolean} themeColor?
- */
-const isThemeColor = color => {
+const isThemeColor = (color: string): boolean => {
   if (color in palette) {
     return true
   }
   return false
 }
 
-/**
- * @param {object} theme
- * @param {string} lightness
- * @return {string}
- */
-function getThemeColor(theme, lightness) {
+function getThemeColor(theme: ThemeType, lightness?: string): string {
   if (!theme) {
     throw new Error('You must supply the theme to this helper method')
   }
@@ -35,56 +26,86 @@ function getThemeColor(theme, lightness) {
  * - Button
  * - IconButton
  * - TextInput
- * @param {number} height
- * @return {number} border radius
  */
-const getBorderRadiusForControlHeight = height => {
-  if (height <= 40) return 5
+const getBorderRadiusForControlHeight = (height?: number): number => {
+  if (height <= 40) {
+    return 5
+  }
   return 8
 }
 
 /**
  * Get the text size for a control with a certain height.
- * @param {number} height
- * @return {number} text size of the control height.
  */
-const getTextSizeForControlHeight = height => {
-  if (height <= 24) return 300
-  if (height <= 28) return 300
-  if (height <= 32) return 300
-  if (height <= 36) return 400
-  if (height <= 40) return 400
-  if (height <= 48) return 500
-  if (height <= 56) return 700
+const getTextSizeForControlHeight = (height?: number): number => {
+  if (height <= 24) {
+    return 300
+  }
+  if (height <= 28) {
+    return 300
+  }
+  if (height <= 32) {
+    return 300
+  }
+  if (height <= 36) {
+    return 400
+  }
+  if (height <= 40) {
+    return 400
+  }
+  if (height <= 48) {
+    return 500
+  }
+  if (height <= 56) {
+    return 700
+  }
   return 800
 }
 
 /**
  * Get the text size for a block with a certain height. Used in larger UI Components like Banner and Pane
- * @param {number} height
- * @return {number} text size of the block height.
  */
-const getTextSizeForBlockHeight = height => {
-  if (height <= 24) return 300
-  if (height <= 50) return 300
-  if (height <= 60) return 400
-  if (height <= 70) return 400
-  if (height <= 80) return 500
-  if (height <= 90) return 600
-  if (height <= 100) return 700
+const getTextSizeForBlockHeight = (height?: number): number => {
+  if (height <= 24) {
+    return 300
+  }
+  if (height <= 50) {
+    return 300
+  }
+  if (height <= 60) {
+    return 400
+  }
+  if (height <= 70) {
+    return 400
+  }
+  if (height <= 80) {
+    return 500
+  }
+  if (height <= 90) {
+    return 600
+  }
+  if (height <= 100) {
+    return 700
+  }
   return 800
 }
 
 /**
  * Get the size for a icon in a Button with a certain height.
- * @param {number} height
- * @return {number} icon size
  */
-const getIconSizeForButton = height => {
-  if (height <= 28) return 12
-  if (height <= 32) return 12
-  if (height <= 40) return 16
-  if (height <= 48) return 18
+const getIconSizeForButton = (height?: number): number => {
+  if (height <= 28) {
+    return 12
+  }
+  if (height <= 32) {
+    return 12
+  }
+  if (height <= 40) {
+    return 16
+  }
+  if (height <= 48) {
+    return 18
+  }
   return 20
 }
 
@@ -94,23 +115,27 @@ const getIconSizeForSelect = getIconSizeForButton
 
 /**
  * Get the size for a icon in a IconButton with a certain height.
- * @param {number} height
- * @return {number} icon size
  */
-const getIconSizeForIconButton = height => {
-  if (height <= 28) return 12
-  if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
-  if (height <= 40) return 16
-  if (height <= 48) return 18
+const getIconSizeForIconButton = (height?: number): number => {
+  if (height <= 28) {
+    return 12
+  }
+  if (height <= 32) {
+    return 14
+  } // Slightly bigger than getIconSizeForButton
+  if (height <= 40) {
+    return 16
+  }
+  if (height <= 48) {
+    return 18
+  }
   return 20
 }
 
 /**
  * Get background property.
- * @param {string} background
- * @return {string} background property.
  */
-const getBackground = background => {
+const getBackground = (background: string): string => {
   /**
    * Return one of theme presets or the original value.
    */
@@ -119,11 +144,8 @@ const getBackground = background => {
 
 /**
  * Get box-shadow (elevation).
- * @param {string} level — level of elevation.
- * @param {string} color - color of elevation.
- * @return {string} elevation box-shadow.
  */
-const getElevation = (level, color = 'neutral') => {
+const getElevation = (level: string, color = 'neutral'): string => {
   /**
    * There is no fallback, undefined will be returned.
    */
@@ -134,10 +156,8 @@ const getElevation = (level, color = 'neutral') => {
 
 /**
  * Get the color for an icon.
- * @param {string} color
- * @return {string} color of the icon
  */
-const getIconColor = color => {
+const getIconColor = (color: string): string => {
   /**
    * Check if there is a preset in the theme for the icon color.
    */
@@ -146,10 +166,11 @@ const getIconColor = color => {
 
 /**
  * Get the properties for an icon based on the intent.
- * @param {Intent} intent
- * @return {Object} properties
  */
-const getIconForIntent = (intent, defaultColor) => {
+const getIconForIntent = (
+  intent: IntentType,
+  defaultColor?: string
+): { icon: string; color: string } => {
   switch (intent) {
     case Intent.SUCCESS:
       return { icon: 'tick-circle', color: 'success' }
@@ -168,10 +189,8 @@ const getIconForIntent = (intent, defaultColor) => {
 
 /**
  * Heading styles.
- * @param {number} size - 100–900. 500 is default.
- * @return {Object} heading style.
  */
-const getHeadingStyle = size => {
+const getHeadingStyle = (size: number): object => {
   return themedProperty(headings, String(size))
 }
 
@@ -183,29 +202,23 @@ const getHeadingStyle = size => {
  * - Code
  * - ListItem
  * - Label
- * @param {number} size - 300–500. 400 is default.
- * @return {Object} text style.
  */
-const getTextStyle = size => {
+const getTextStyle = (size: number): object => {
   return themedProperty(text, String(size))
 }
 
 /**
  * Text styles for paragraphs (multi line text).
  * This is used in the Paragraph.
- * @param {number} size - 300–500. 400 is default.
- * @return {Object} text style.
  */
-const getParagraphStyle = size => {
+const getParagraphStyle = (size: number): object => {
   return themedProperty(paragraph, String(size))
 }
 
 /**
  * Get the font family. This is used to override the font family.
- * @param {string} fontFamily
- * @return {string} font family
  */
-const getFontFamily = fontFamily => {
+const getFontFamily = (fontFamily: string): string => {
   /**
    * Allow for passing in a custom fontFamily not in the theme.
    */
@@ -214,10 +227,8 @@ const getFontFamily = fontFamily => {
 
 /**
  * Get the text color. This is used to override the color.
- * @param {string} fontFamily
- * @return {string} font family
  */
-const getTextColor = (color, theme) => {
+const getTextColor = (color: string, theme: ThemeType) => {
   /**
    * Allow Color to be current theme color
    */

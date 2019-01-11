@@ -1,14 +1,14 @@
-import { storiesOf } from '@storybook/react'
+import {storiesOf} from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '@hennessyevan/aluminum-box'
-import { TextInputField, TextInput } from '..'
-import { Text, Label, Heading } from '../../typography'
-import { Pane, Card } from '../../layers'
-import { Button } from '../../buttons'
+import {TextInputField, TextInput} from '..'
+import {Text, Label, Heading} from '../../typography'
+import {Pane, Card} from '../../layers'
+import {Button} from '../../buttons'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props}/>
 )
 
 class Manager extends React.Component {
@@ -75,25 +75,25 @@ storiesOf('text-input', module)
             <Label htmlFor={24} size={300} display="block" marginBottom={4}>
               Height 24
             </Label>
-            <TextInput appearance={appearance} height={24} name={24} id={24} />
+            <TextInput appearance={appearance} height={24} name={24} id={24}/>
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor={28} size={300} display="block" marginBottom={4}>
               Height 28
             </Label>
-            <TextInput appearance={appearance} height={28} name={28} id={28} />
+            <TextInput appearance={appearance} height={28} name={28} id={28}/>
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor={36} size={400} display="block" marginBottom={4}>
               Height 36
             </Label>
-            <TextInput appearance={appearance} height={36} name={36} id={36} />
+            <TextInput appearance={appearance} height={36} name={36} id={36}/>
           </Box>
           <Box marginBottom={24}>
             <Label htmlFor={40} size={500} display="block" marginBottom={4}>
               Height 40
             </Label>
-            <TextInput appearance={appearance} height={40} name={40} id={40} />
+            <TextInput appearance={appearance} height={40} name={40} id={40}/>
           </Box>
         </Box>
       ))}
@@ -124,14 +124,14 @@ storiesOf('text-input', module)
         validationMessage="This field is required"
       />
       <Manager>
-        {({ state, setState }) => {
+        {({state, setState}) => {
           return (
             <TextInputField
               label="A controlled text input field"
               required
               description="This is a description."
               value={state.value}
-              onChange={e => setState({ value: e.target.value })}
+              onChange={e => setState({value: e.target.value})}
             />
           )
         }}

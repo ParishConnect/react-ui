@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import VirtualList from 'react-tiny-virtual-list'
-import { Pane } from '../../layers'
-import { TableHead, SearchTableHeaderCell } from '../../table'
+import {Pane} from '../../layers'
+import {TableHead, SearchTableHeaderCell} from '../../table'
 import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
@@ -19,7 +19,7 @@ const fuzzyFilter = (options, input) => fuzzaldrin.filter(options, input)
  * This is the default item renderer of options
  * you can pass custom renderers as long as they work the same as the Option
  */
-const itemRenderer = props => <Option {...props} />
+const itemRenderer = props => <Option {...props}/>
 
 export default class OptionsList extends PureComponent {
   static propTypes = {
@@ -76,8 +76,10 @@ export default class OptionsList extends PureComponent {
   }
 
   componentDidMount() {
-    const { hasFilter } = this.props
-    if (!hasFilter) return
+    const {hasFilter} = this.props
+    if (!hasFilter) {
+return
+}
     /**
      * Hacky solution for broken autoFocus
      * https://github.com/segmentio/evergreen/issues/90
@@ -103,18 +105,18 @@ export default class OptionsList extends PureComponent {
   }
 
   isSelected = item => {
-    const { selected } = this.state
+    const {selected} = this.state
 
     return Boolean(selected.find(selectedItem => selectedItem === item.value))
   }
 
   search = options => {
-    const { optionsFilter } = this.props
-    const { searchValue } = this.state
+    const {optionsFilter} = this.props
+    const {searchValue} = this.state
 
-    return searchValue.trim() === ''
-      ? options // Return if no search query
-      : optionsFilter(
+    return searchValue.trim() === '' ?
+      options : // Return if no search query
+      optionsFilter(
           options.map(item => item.labelInList || item.label),
           searchValue
         ).map(name =>
@@ -123,7 +125,7 @@ export default class OptionsList extends PureComponent {
   }
 
   getCurrentIndex = () => {
-    const { selected } = this.props
+    const {selected} = this.props
     const options = this.getFilteredOptions()
 
     return options.findIndex(
@@ -132,7 +134,7 @@ export default class OptionsList extends PureComponent {
   }
 
   getFilteredOptions() {
-    const { options } = this.props
+    const {options} = this.props
 
     return this.search(options)
   }
@@ -152,7 +154,7 @@ export default class OptionsList extends PureComponent {
   }
 
   handleArrowUp = () => {
-    const { onSelect } = this.props
+    const {onSelect} = this.props
     const options = this.getFilteredOptions()
 
     let nextIndex = this.getCurrentIndex() - 1
@@ -165,7 +167,7 @@ export default class OptionsList extends PureComponent {
   }
 
   handleArrowDown = () => {
-    const { onSelect } = this.props
+    const {onSelect} = this.props
     const options = this.getFilteredOptions()
 
     let nextIndex = this.getCurrentIndex() + 1
@@ -253,12 +255,12 @@ export default class OptionsList extends PureComponent {
             itemCount={options.length}
             overscanCount={20}
             scrollToAlignment="auto"
-            {...(scrollToIndex
-              ? {
+            {...(scrollToIndex ?
+              {
                   scrollToIndex
-                }
-              : {})}
-            renderItem={({ index, style }) => {
+                } :
+              {})}
+            renderItem={({index, style}) => {
               const item = options[index]
               const isSelected = this.isSelected(item)
               return renderItem({

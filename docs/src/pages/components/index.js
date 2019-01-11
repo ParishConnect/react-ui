@@ -13,12 +13,12 @@ export default () => {
         <title>Components · ParishKit</title>
       </Helmet>
       <div>
-        <TopBar />
+        <TopBar/>
         <main tabIndex={-1}>
-          <Overview ia={IA} />
+          <Overview ia={IA}/>
         </main>
       </div>
-      <PageFooter />
+      <PageFooter/>
     </Layout>
   )
 }

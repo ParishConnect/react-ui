@@ -7,22 +7,22 @@ import '../css/index.css' // eslint-disable-line import/no-unassigned-import
 const description =
   'ParishKit is a React UI Framework for building ambitious products on the web. Brought to you by Segment.'
 
-const TemplateWrapper = ({ children }) => {
+const TemplateWrapper = ({children}) => {
   return (
     <React.Fragment>
       <Helmet>
         {/* Fallback properties */}
         <title>ParishKit</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content="ParishKit" />
-        <meta property="og:url" content={absolutePath()} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={absolutePath('/og-image.png')} />
+        <meta name="description" content={description}/>
+        <meta property="og:title" content="ParishKit"/>
+        <meta property="og:url" content={absolutePath()}/>
+        <meta property="og:description" content={description}/>
+        <meta property="og:image" content={absolutePath('/og-image.png')}/>
 
-        <meta property="twitter:card" content="summary" />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:site" content="@segment" />
-        <meta name="twitter:creator" content="@Jeroen_Ransijn" />
+        <meta property="twitter:card" content="summary"/>
+        <meta property="twitter:description" content={description}/>
+        <meta property="twitter:site" content="@segment"/>
+        <meta name="twitter:creator" content="@Jeroen_Ransijn"/>
         <meta
           property="twitter:image"
           content={absolutePath('/twitter-og.png')}

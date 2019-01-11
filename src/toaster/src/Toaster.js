@@ -11,7 +11,9 @@ const isBrowser =
  */
 export default class Toaster {
   constructor() {
-    if (!isBrowser) return
+    if (!isBrowser) {
+return
+}
 
     const container = document.createElement('div')
     container.setAttribute('data-parishkit-toaster-container', '')
@@ -48,18 +50,18 @@ export default class Toaster {
   }
 
   notify = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, intent: 'none' })
+    return this.notifyHandler(title, {...settings, intent: 'none'})
   }
 
   success = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, intent: 'success' })
+    return this.notifyHandler(title, {...settings, intent: 'success'})
   }
 
   warning = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, intent: 'warning' })
+    return this.notifyHandler(title, {...settings, intent: 'warning'})
   }
 
   danger = (title, settings = {}) => {
-    return this.notifyHandler(title, { ...settings, intent: 'danger' })
+    return this.notifyHandler(title, {...settings, intent: 'danger'})
   }
 }

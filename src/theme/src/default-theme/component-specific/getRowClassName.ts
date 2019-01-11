@@ -3,8 +3,9 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
+import { IntentType } from '../../../../constants'
 
-const Appearances = {}
+const Appearances = { default: {}, danger: {}, warning: {}, success: {} }
 
 Appearances.default = Themer.createRowAppearance({
   base: {},
@@ -104,11 +105,8 @@ Appearances.success = Themer.createRowAppearance({
 
 /**
  * Get the appearance of a `Row`.
- * @param {string} appearance — only one default appearance.
- * @param {string} intent - none, info, success, warning, danger.
- * @return {string} the appearance object.
  */
-const getRowAppearance = (appearance, intent) => {
+const getRowAppearance = (intent: IntentType) => {
   switch (intent) {
     case 'danger':
       return Appearances.danger
@@ -124,7 +122,5 @@ const getRowAppearance = (appearance, intent) => {
 
 /**
  * Get the className of a `Row`.
- * @param {string} appearance
- * @return {string} the appearance class name.
  */
 export default memoizeClassName(getRowAppearance)

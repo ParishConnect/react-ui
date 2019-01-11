@@ -9,10 +9,6 @@ import fontFamilies from './fontFamilies'
  * - ListItem
  * - Label
  * - Link
- * @property {Object} 600 - Required property.
- * @property {Object} 500 - Required property.
- * @property {Object} 400 - Required property. Default.
- * @property {Object} 300 - Required property.
  */
 export default {
   /**

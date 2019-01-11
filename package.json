@@ -12,9 +12,8 @@
   "scripts": {
     "start": "yarn dev",
     "test": "yarn run tslint && xo && nyc ava",
-    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "tslint": "tslint -c tslint.json 'src/**/src/*.ts'",
     "prepublishOnly": "rm -rf lib && yarn run build",
-    "precommit": "lint-staged",
     "dev": "start-storybook -p 6006 -c .storybook",
     "coverage": "nyc report --reporter=html",
     "create-package": "./tools/create-package.js",
@@ -22,10 +21,6 @@
     "create-docs-template": "./tools/create-docs-template.js",
     "build": "tsc --declaration",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
-    "build-commonjs":
-      "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore stories,test,docs --source-maps inline",
-    "build-esm":
-      "BABEL_ENV=esm babel src --out-dir esm --ignore stories,test,docs --source-maps inline",
     "clean": "git clean -Xdf",
     "release": "np --no-publish",
     "chromatic":
@@ -69,23 +64,24 @@
     "react-dom": "^16.3.0"
   },
   "devDependencies": {
-    "@reactions/component": "^2.0.2",
-    "@storybook/addon-actions": "^3.2.17",
-    "@storybook/addon-links": "^3.2.17",
-    "@storybook/addon-options": "^3.2.17",
-    "@storybook/addons": "^3.2.17",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@reactions/component": "^2.0.2",
+    "@storybook/addon-actions": "^3.2.17",
+    "@storybook/addon-links": "^3.2.17",
+    "@storybook/addon-options": "^3.2.17",
+    "@storybook/addons": "^3.2.17",
     "@storybook/react": "^4.1.4",
     "@storybook/storybook-deployer": "^2.2.0",
     "@types/prop-types": "^15.5.8",
     "@types/react": "^16.7.18",
     "@types/react-test-renderer": "^16.0.3",
     "@types/sinon": "^7.0.3",
+    "@types/tinycolor2": "^1.4.1",
     "ava": "^1.0.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^9.0.0",
@@ -94,8 +90,8 @@
     "babel-register": "^6.26.0",
     "concurrently": "^4.0.0",
     "enzyme": "^3.4.1",
-    "eslint-config-prettier": "^2.9.0",
     "enzyme-adapter-react-16": "^1.2.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.17.0",
     "eslint-plugin-react": "^7.10.0",
     "execa": "^0.8.0",
@@ -116,6 +112,7 @@
     "starwars-names": "^1.6.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
     "tslint-react": "^3.6.0",
     "tslint-xo": "^0.11.0",
     "typescript": "^3.2.2",
@@ -124,24 +121,23 @@
   },
   "xo": {
     "parser": "babel-eslint",
-    "extends": ["xo-react"],
-    "envs": ["browser", "node"],
+    "extends": "xo-react",
+    "envs": ["node", "browser"],
     "ignores": ["**/*.ts", "**/*.tsx"],
+    "prettier": true,
     "space": true,
     "semicolon": false,
     "rules": {
-      "import/prefer-default-export": "off",
-      "no-negated-condition": "off",
-      "no-return-assign": ["off"],
-      "indent": ["off"],
-      "react/jsx-handler-names": ["off"],
-      "react/jsx-indent-props": ["off"],
-      "react/jsx-indent": ["off"],
-      "react/require-default-props": ["off"],
-      "react/default-props-match-prop-types": ["off"],
-      "react/forbid-component-props": ["off"],
-      "react/jsx-no-bind": ["off"],
-      "unicorn/filename-case": ["off"]
+      "object-curly-spacing": "off",
+      "react/jsx-sort-props": [
+        "error",
+        {
+          "callbacksLast": false,
+          "shorthandFirst": false,
+          "noSortAlphabetically": true,
+          "reservedFirst": true
+        }
+      ]
     },
     "settings": {
       "react": {
@@ -154,8 +150,7 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": ["xo --fix", "prettier --write", "git add"],
-    "*.{json,md}": ["prettier --write", "git add"]
+    "*.js": ["xo --fix", "git add"]
   },
   "ava": {
     "files": ["**/test/**/*.tsx?"],

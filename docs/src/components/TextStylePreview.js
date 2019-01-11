@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Pane } from '@hennessyevan/aluminum-ui'
+import {Pane} from '@hennessyevan/aluminum-ui'
 
 export default class TextStylePreview extends React.Component {
   static propTypes = {
@@ -31,21 +31,21 @@ export default class TextStylePreview extends React.Component {
           {this.props.renderComponent()}
         </Pane>
         <Pane flexShrink={0} flexGrow={1} flex={1} className="Content">
-          <p className="paragraph" style={{ marginTop: 0, marginBottom: 0 }}>
+          <p className="paragraph" style={{marginTop: 0, marginBottom: 0}}>
             Font family: <strong>{this.getFontFamilyVariable()}</strong>
-            <br />
+            <br/>
             Font size: <strong>{this.props.fontSize}</strong>
-            <br />
+            <br/>
             Font weight: <strong>{this.props.fontWeight}</strong>
-            <br />
+            <br/>
             Line height: <strong>{this.props.lineHeight}</strong>
-            <br />
+            <br/>
             Letter spacing: <strong>{this.props.letterSpacing}</strong>
-            <br />
+            <br/>
             {this.props.color && (
               <React.Fragment>
                 color: <strong>{this.props.color}</strong>
-                <br />
+                <br/>
               </React.Fragment>
             )}
             {this.props.marginTop && (
@@ -55,7 +55,7 @@ export default class TextStylePreview extends React.Component {
                   {this.props.marginTop}
                   px
                 </strong>
-                <br />
+                <br/>
               </React.Fragment>
             )}
           </p>

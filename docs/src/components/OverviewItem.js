@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import {Link} from 'gatsby'
 
 export default class OverviewItem extends React.PureComponent {
   static propTypes = {
@@ -10,10 +10,10 @@ export default class OverviewItem extends React.PureComponent {
   }
 
   render() {
-    const { children, image, id } = this.props
+    const {children, image, id} = this.props
     return (
       <Link to={`/components/${id}`} className="OverviewItem">
-        <img className="OverviewItem-image" src={image} alt={children} />
+        <img className="OverviewItem-image" src={image} alt={children}/>
         <span className="OverviewItem-label">{children}</span>
       </Link>
     )

@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import { IconButton } from '../../buttons'
-import { Pane } from '../../layers'
-import { Heading } from '../../typography'
+import {IconButton} from '../../buttons'
+import {Pane} from '../../layers'
+import {Heading} from '../../typography'
 import OptionsList from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 

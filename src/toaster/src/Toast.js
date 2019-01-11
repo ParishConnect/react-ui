@@ -1,13 +1,13 @@
 import React from 'react'
-import { css } from 'glamor'
+import {css} from 'glamor'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
@@ -150,9 +150,11 @@ export default class Toast extends React.PureComponent {
   }
 
   onRef = ref => {
-    if (ref === null) return
+    if (ref === null) {
+return
+}
 
-    const { height } = ref.getBoundingClientRect()
+    const {height} = ref.getBoundingClientRect()
 
     this.setState({
       height
@@ -180,7 +182,7 @@ export default class Toast extends React.PureComponent {
               marginBottom: this.state.isShown ? 0 : -this.state.height
             }}
           >
-            <div ref={this.onRef} style={{ padding: 8 }}>
+            <div ref={this.onRef} style={{padding: 8}}>
               <Alert
                 flexShrink={0}
                 appearance="card"

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@hennessyevan/aluminum-box'
-import { keyframes } from 'emotion'
+import { keyframes } from 'glamor'
 import { withTheme } from '../../theme'
 
 const loadingKeyframes = keyframes('loading', {

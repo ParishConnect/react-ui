@@ -2,7 +2,7 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 
-const Appearances = {}
+const Appearances = { default: {} }
 
 Appearances.default = Themer.createTableCellAppearance({
   focus: {
@@ -14,8 +14,6 @@ Appearances.default = Themer.createTableCellAppearance({
 
 /**
  * Get the appearance of a `TableCell`.
- * @param {string} appearance
- * @return {string} the appearance object.
  */
 const getAppearance = () => {
   return Appearances.default
@@ -23,7 +21,5 @@ const getAppearance = () => {
 
 /**
  * Get the className of a `Table.EditableCell`.
- * @param {string} appearance
- * @return {string} the appearance class name.
  */
 export default memoizeClassName(getAppearance)

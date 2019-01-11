@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import Box from '@hennessyevan/aluminum-box'
 import tinyColor from 'tinycolor2'
 import PropTypes from 'prop-types'
@@ -6,7 +6,7 @@ import Pane from '../../layers/src/Pane'
 import Text from '../../typography/src/Text'
 import Small from '../../typography/src/Small'
 import Icon from '../../icon/src/Icon'
-import { withTheme } from '../../theme'
+import {withTheme} from '../../theme'
 
 class Banner extends PureComponent {
   static propTypes = {
@@ -53,7 +53,7 @@ class Banner extends PureComponent {
           color={color || theme.palette[theme.themeColor].base}
           paddingX={25}
         >
-          <Icon icon={action.icon} />
+          <Icon icon={action.icon}/>
         </Box>
       )
     }
@@ -71,12 +71,12 @@ class Banner extends PureComponent {
   }
 
   getHoverBackgroundStyle = (hoverTint, css) => {
-    const { theme } = this.props
+    const {theme} = this.props
 
     return {
       transitionDuration: '150ms',
       transitionProperty: 'background',
-      transitionTimingFunction: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
+      transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
       ':hover': {
         ...(css[':hover'] || {}),
         background: theme.getBackground(hoverTint)
@@ -134,9 +134,9 @@ class Banner extends PureComponent {
             alignItems="center"
             justifyContent="flex-end"
             height="100%"
-            css={{ ...css, ...hoverBackground }}
+            css={{...css, ...hoverBackground}}
           >
-            <Box borderLeft="1px solid #efefef" height="65%" />
+            <Box borderLeft="1px solid #efefef" height="65%"/>
             {this.getActionDescriptor(action, color, theme)}
           </Pane>
         )}

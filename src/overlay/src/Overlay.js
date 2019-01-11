@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import Box, { css } from '@hennessyevan/aluminum-box'
-import { Portal } from '../../portal'
-import { Stack } from '../../stack'
-import { StackingOrder } from '../../constants'
-import { withTheme } from '../../theme'
+import Box, {css} from '@hennessyevan/aluminum-box'
+import {Portal} from '../../portal'
+import {Stack} from '../../stack'
+import {StackingOrder} from '../../constants'
+import {withTheme} from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'
 import preventBodyScroll from '../../lib/prevent-body-scroll'
 
 const animationEasing = {
-  standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  sharp: `cubic-bezier(0.4, 0.0, 0.6, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  standard: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
@@ -264,7 +264,7 @@ class Overlay extends React.Component {
   close = () => {
     const shouldClose = safeInvoke(this.props.onBeforeClose)
     if (shouldClose !== false) {
-      this.setState({ exiting: true })
+      this.setState({exiting: true})
     }
   }
 
@@ -302,7 +302,7 @@ class Overlay extends React.Component {
   }
 
   handleExited = node => {
-    this.setState({ exiting: false, exited: true })
+    this.setState({exiting: false, exited: true})
     this.props.onExited(node)
   }
 
@@ -327,9 +327,11 @@ class Overlay extends React.Component {
       children
     } = this.props
 
-    const { exiting, exited } = this.state
+    const {exiting, exited} = this.state
 
-    if (exited) return null
+    if (exited) {
+return null
+}
 
     return (
       <Stack value={StackingOrder.OVERLAY}>
@@ -361,12 +363,12 @@ class Overlay extends React.Component {
                   data-state={state}
                   {...containerProps}
                 >
-                  {typeof children === 'function'
-                    ? children({
+                  {typeof children === 'function' ?
+                    children({
                         state,
                         close: this.close
-                      })
-                    : children}
+                      }) :
+                    children}
                 </Box>
               )}
             </Transition>

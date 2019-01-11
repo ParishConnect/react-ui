@@ -5,11 +5,12 @@ import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 import gradients from '../foundational-styles/gradients'
 import { getPrimaryButtonStylesForIntent } from '../helpers'
+import { ThemeColor } from '../../../../constants/src/Theme'
 
-const primaryStyle = themeColor =>
+const primaryStyle = (themeColor: ThemeColor) =>
   getPrimaryButtonStylesForIntent(null, themeColor)
 
-const defaultAppearance = themeColor => {
+const defaultAppearance = (themeColor: ThemeColor) => {
   return Themer.createCheckboxAppearance({
     base: {
       color: 'white',
@@ -54,7 +55,7 @@ const defaultAppearance = themeColor => {
         gradients[themeColor].start
       }, ${gradients[themeColor].end})`,
       boxShadow: `0 0 1px ${tinycolor(palette[themeColor].base).darken() ||
-        scales.blue.N5A}`
+        scales.blue.B5A}`
     },
     checkedHover: {
       color: 'white',
@@ -62,7 +63,7 @@ const defaultAppearance = themeColor => {
         gradients[themeColor].start
       ).darken()}, ${tinycolor(gradients[themeColor].end).darken()})`,
       boxShadow: `0 0 1px ${tinycolor(palette[themeColor].base).darken(15) ||
-        scales.blue.N5A}`
+        scales.blue.B5A}`
     },
     checkedDisabled: {
       color: palette[themeColor].dark,
@@ -77,8 +78,8 @@ const defaultAppearance = themeColor => {
     checkedActive: {
       color: 'white',
       backgroundImage: primaryStyle(themeColor).linearGradient.active,
-      boxShadow: `inset 0 0 0 1px ${scales.blue.N4A}, inset 0 -1px 1px 0 ${
-        scales.blue.N2A
+      boxShadow: `inset 0 0 0 1px ${scales.blue.B4A}, inset 0 -1px 1px 0 ${
+        scales.blue.B2A
       }`
     }
   })
@@ -86,10 +87,8 @@ const defaultAppearance = themeColor => {
 
 /**
  * There is only a single appearance in the default theme.
- * @param {String} themeColor.
- * @return {Object} the appearance of the checkbox.
  */
-const getCheckboxAppearance = themeColor => {
+const getCheckboxAppearance = (themeColor: ThemeColor) => {
   return defaultAppearance(themeColor)
 }
 

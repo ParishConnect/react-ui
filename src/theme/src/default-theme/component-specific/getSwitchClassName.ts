@@ -2,7 +2,7 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import { scales, palette } from '../foundational-styles'
 
-const defaultAppearance = appearance =>
+const defaultAppearance = (appearance: string): string =>
   Themer.createSwitchAppearance({
     base: {
       transition: 'all 120ms ease-in-out',
@@ -47,16 +47,11 @@ const defaultAppearance = appearance =>
 
 /**
  * Get the className of a `Switch`.
- * @param {string} appearance
- * @return {Object} the appearance object.
  */
-const getSwitchAppearance = appearance => {
-  return defaultAppearance(appearance)
-}
+const getSwitchAppearance = (appearance: string): string =>
+  defaultAppearance(appearance)
 
 /**
  * Get the className of a `Switch`.
- * @param {string} appearance
- * @return {string} the appearance class name.
  */
 export default memoizeClassName(getSwitchAppearance)

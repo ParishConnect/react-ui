@@ -4,7 +4,7 @@ import { defaultControlStyles } from '../shared'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const SelectAppearances = {}
+const SelectAppearances = { default: {} }
 
 SelectAppearances.default = Themer.createSelectAppearance({
   base: defaultControlStyles.base,
@@ -21,16 +21,10 @@ SelectAppearances.default = Themer.createSelectAppearance({
 
 /**
  * Get the appearance of a `Select`.
- * @param {string} appearance
- * @return {string} the appearance object.
  */
-const getSelectAppearance = () => {
-  return SelectAppearances.default
-}
+const getSelectAppearance = () => SelectAppearances.default
 
 /**
  * Get the className of a `Select`.
- * @param {string} appearance
- * @return {string} the appearance class name.
  */
 export default memoizeClassName(getSelectAppearance)

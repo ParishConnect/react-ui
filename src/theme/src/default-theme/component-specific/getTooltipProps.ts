@@ -1,7 +1,7 @@
 import tinycolor from 'tinycolor2'
 import palette from '../foundational-styles/palette'
 
-const getTooltipProps = appearance => {
+const getTooltipProps = (appearance: 'card' | 'default'): object => {
   switch (appearance) {
     case 'card':
       return {

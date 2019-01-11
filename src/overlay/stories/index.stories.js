@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react'
-import React, { PureComponent } from 'react'
+import {storiesOf} from '@storybook/react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import Box from '@hennessyevan/aluminum-box'
-import { Overlay } from '..'
-import { Button } from '../../buttons'
+import {Overlay} from '..'
+import {Button} from '../../buttons'
 
 class OverlayManager extends PureComponent {
   static propTypes = {
@@ -37,7 +37,7 @@ storiesOf('overlay', module)
         document.body.style.height = '100vh'
       })()}
       <OverlayManager>
-        {({ hide, show, isShown }) => (
+        {({hide, show, isShown}) => (
           <Box>
             <Overlay isShown={isShown} onExited={hide}>
               Overlay children
@@ -56,7 +56,7 @@ storiesOf('overlay', module)
         document.body.style.background = 'gray'
       })()}
       <OverlayManager>
-        {({ hide, show, isShown }) => (
+        {({hide, show, isShown}) => (
           <Box>
             <Overlay isShown={isShown} onExited={hide} preventBodyScrolling>
               Overlay children

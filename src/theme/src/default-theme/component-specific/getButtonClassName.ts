@@ -6,6 +6,8 @@ import {
   getPrimaryButtonStylesForIntent
 } from '../helpers'
 import { defaultControlStyles } from '../shared'
+import { IntentType } from '../../../../constants'
+import { ThemeColor } from '../../../../constants/src/Theme'
 
 /**
  * Disabled styles are all the same for all buttons.
@@ -14,11 +16,12 @@ const disabled = defaultControlStyles.disabled
 
 /**
  * Get button appearance.
- * @param {string} appearance - default, primary, minimal.
- * @param {string} intent - none, success, warning, danger.
- * @return {Object} the appearance of the button.
  */
-const getButtonAppearance = (appearance, intent, themeColor) => {
+const getButtonAppearance = (
+  appearance: 'primary' | 'minimal' | 'overlay' | 'default',
+  intent: IntentType,
+  themeColor: ThemeColor
+): object => {
   switch (appearance) {
     case 'primary': {
       const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
@@ -115,8 +118,5 @@ const getButtonAppearance = (appearance, intent, themeColor) => {
 
 /**
  * Get the className of a `Button`|`IconButton`.
- * @param {string} appearance - default, primary, minimal.
- * @param {Intent} intent - none, success, warning, danger.
- * @return {string} the appearance class name.
  */
 export default memoizeClassName(getButtonAppearance)

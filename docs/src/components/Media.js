@@ -68,15 +68,15 @@ export default class Media extends React.PureComponent {
     return (
       <section className="Media bg-tint2 clearfix">
         <div className="Media-inner Container">
-          <header style={{ textAlign: 'center', marginTop: 64 }}>
-            <MediaIcon />
-            <h2 className="h2" style={{ marginTop: 32 }}>
+          <header style={{textAlign: 'center', marginTop: 64}}>
+            <MediaIcon/>
+            <h2 className="h2" style={{marginTop: 32}}>
               {this.props.title}
             </h2>
           </header>
           <div className="Media-grid">
             {this.props.items.map(item => (
-              <MediaItem key={item.title} {...item} />
+              <MediaItem key={item.title} {...item}/>
             ))}
           </div>
         </div>

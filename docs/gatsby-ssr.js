@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 const React = require('react')
-const { extractStyles } = require('../esm')
+const { extractStyles } = require('../lib')
 
 exports.onRenderBody = ({ setHeadComponents }) => {
   // Get the css and hydration script from ParishKit.

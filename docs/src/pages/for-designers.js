@@ -17,12 +17,12 @@ export default class Root extends React.Component {
           <title>Designers &middot; ParishKit</title>
         </Helmet>
         <div>
-          <TopBar />
+          <TopBar/>
           <main>
-            <DesignersHero />
+            <DesignersHero/>
           </main>
         </div>
-        <PageFooter />
+        <PageFooter/>
       </Layout>
     )
   }

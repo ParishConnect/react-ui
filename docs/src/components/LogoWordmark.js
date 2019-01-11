@@ -9,7 +9,7 @@ export default class LogoIcon extends React.PureComponent {
         viewBox="0 0 1300.27 332.77"
       >
         <title>ParishKitLogo</title>
-        <circle cx="145.5" cy="165.8" r="127.5" fill="#14b5d0" />
+        <circle cx="145.5" cy="165.8" r="127.5" fill="#14b5d0"/>
         <path
           d="M130.19,154.28a3.47,3.47,0,0,0-4.78,0L69.49,210.2a16.79,16.79,0,0,0-5,12,17.35,17.35,0,0,0,16.92,16.92,16.79,16.79,0,0,0,12-5l55.92-55.92a3.38,3.38,0,0,0,0-4.78Z"
           fill="#fff"

@@ -1,18 +1,6 @@
 import colors from '../foundational-styles/colors'
 import fontFamilies from './fontFamilies'
 
-/**
- * Heading styles.
- * @property {Object} headings.900
- * @property {Object} headings.800
- * @property {Object} headings.700
- * @property {Object} headings.600
- * @property {Object} headings.500 - Default.
- * @property {Object} headings.400
- * @property {Object} headings.300
- * @property {Object} headings.200
- * @property {Object} headings.100
- */
 export default {
   '900': {
     fontSize: '35px',

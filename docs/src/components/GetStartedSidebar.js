@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import Sidebar from './Sidebar'
 
 export default class GetStartedSidebar extends PureComponent {
@@ -27,6 +27,6 @@ export default class GetStartedSidebar extends PureComponent {
   }
 
   render() {
-    return <Sidebar {...this.props} />
+    return <Sidebar {...this.props}/>
   }
 }

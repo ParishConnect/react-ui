@@ -1,7 +1,7 @@
 import React from 'react'
-import { filter } from 'fuzzaldrin-plus'
+import {filter} from 'fuzzaldrin-plus'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Pane, SearchInput, IconNames, Text, Icon } from '@hennessyevan/aluminum-ui'
+import {Pane, SearchInput, IconNames, Text, Icon} from '@hennessyevan/aluminum-ui'
 
 const iconKeys = Object.keys(IconNames)
 
@@ -17,7 +17,9 @@ export default class IconSearch extends React.PureComponent {
   }
 
   search = () => {
-    if (this.state.searchQuery.trim().length === 0) return iconKeys
+    if (this.state.searchQuery.trim().length === 0) {
+return iconKeys
+}
     return iconKeys.filter(key => {
       return filter([key], this.state.searchQuery).length > 0
     })
@@ -48,7 +50,7 @@ export default class IconSearch extends React.PureComponent {
                 flexDirection="column"
                 textAlign="center"
               >
-                <Icon icon={IconNames[iconKey]} color="default" />
+                <Icon icon={IconNames[iconKey]} color="default"/>
                 <Text is="p" size={300} marginTop={9}>
                   {IconNames[iconKey]}
                 </Text>

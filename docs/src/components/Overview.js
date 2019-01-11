@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { filter } from 'fuzzaldrin-plus'
-import { SearchInput } from '../../../src'
+import {filter} from 'fuzzaldrin-plus'
+import {SearchInput} from '../../../src'
 import OverviewItem from './OverviewItem'
 
 export default class Overview extends React.PureComponent {
@@ -18,7 +18,9 @@ export default class Overview extends React.PureComponent {
 
   search = () => {
     const searchQuery = this.state.searchQuery.trim()
-    if (searchQuery.length < 2) return this.props.ia
+    if (searchQuery.length < 2) {
+return this.props.ia
+}
 
     const ia = JSON.parse(JSON.stringify(this.props.ia))
 
@@ -88,7 +90,9 @@ export default class Overview extends React.PureComponent {
             </header>
             <div>
               {ia.components.items.map(group => {
-                if (group.items.length === 0) return null
+                if (group.items.length === 0) {
+return null
+}
                 return (
                   <div key={group.title} className="Overview-group">
                     <h3 className="Overview-groupTitle">{group.title}</h3>

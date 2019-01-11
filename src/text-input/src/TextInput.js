@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import {Text} from '../../typography'
+import {withTheme} from '../../theme'
 
 class TextInput extends PureComponent {
   static propTypes = {
@@ -103,7 +103,7 @@ class TextInput extends PureComponent {
         borderRadius={borderRadius}
         spellCheck={spellCheck}
         aria-invalid={isInvalid}
-        {...(disabled ? { color: 'muted' } : {})}
+        {...(disabled ? {color: 'muted'} : {})}
         css={css}
         {...props}
       />

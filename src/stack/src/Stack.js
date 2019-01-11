@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import { StackingOrder } from '../../constants'
+import {StackingOrder} from '../../constants'
 import StackingContext from './StackingContext'
 
 export default class Stack extends PureComponent {
@@ -22,7 +22,7 @@ export default class Stack extends PureComponent {
   }
 
   render() {
-    const { children, value } = this.props
+    const {children, value} = this.props
     return (
       <StackingContext.Consumer>
         {previousValue => {

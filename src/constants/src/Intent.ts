@@ -4,3 +4,5 @@ export default {
   WARNING: 'warning',
   DANGER: 'danger'
 }
+
+export type IntentType = 'none' | 'success' | 'warning' | 'danger'

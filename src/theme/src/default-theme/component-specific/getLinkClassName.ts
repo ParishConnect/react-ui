@@ -6,10 +6,8 @@ import palette from '../foundational-styles/palette'
 /**
  * The link appearance unlike the Button is based on the color property.
  * Currently the Link does not support the Intent or the appearance interface.
- * @param {string} color
- * @return {Object} appearance of the link.
  */
-const getLinkAppearance = (color = 'blue') => {
+const getLinkAppearance = (color = 'blue'): object => {
   switch (color) {
     case 'neutral':
       return Themer.createLinkAppearance({
@@ -101,7 +99,5 @@ const getLinkAppearance = (color = 'blue') => {
 
 /**
  * Get the className of a `Link` component.
- * @param {string} color
- * @return {string} the appearance class name.
  */
 export default memoizeClassName(getLinkAppearance)

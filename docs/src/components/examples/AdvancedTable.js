@@ -1,5 +1,5 @@
 import React from 'react'
-import { filter } from 'fuzzaldrin-plus'
+import {filter} from 'fuzzaldrin-plus'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Table,
@@ -37,17 +37,23 @@ export default class AdvancedTable extends React.Component {
   }
 
   sort = profiles => {
-    const { ordering, orderedColumn } = this.state
+    const {ordering, orderedColumn} = this.state
     // Return if there's no ordering.
-    if (ordering === Order.NONE) return profiles
+    if (ordering === Order.NONE) {
+return profiles
+}
 
     // Get the property to sort each profile on.
     // By default use the `name` property.
     let propKey = 'name'
     // The second column is dynamic.
-    if (orderedColumn === 2) propKey = this.state.column2Show
+    if (orderedColumn === 2) {
+propKey = this.state.column2Show
+}
     // The third column is fixed to the `ltv` property.
-    if (orderedColumn === 3) propKey = 'ltv'
+    if (orderedColumn === 3) {
+propKey = 'ltv'
+}
 
     return profiles.sort((a, b) => {
       let aValue = a[propKey]
@@ -76,7 +82,9 @@ export default class AdvancedTable extends React.Component {
     const searchQuery = this.state.searchQuery.trim()
 
     // If the searchQuery is empty, return the profiles as is.
-    if (searchQuery.length === 0) return profiles
+    if (searchQuery.length === 0) {
+return profiles
+}
 
     return profiles.filter(profile => {
       // Use the filter from fuzzaldrin-plus to filter by name.
@@ -97,7 +105,7 @@ export default class AdvancedTable extends React.Component {
   }
 
   handleFilterChange = value => {
-    this.setState({ searchQuery: value })
+    this.setState({searchQuery: value})
   }
 
   renderValueTableHeaderCell = () => {
@@ -105,13 +113,13 @@ export default class AdvancedTable extends React.Component {
       <Table.HeaderCell>
         <Popover
           position={Position.BOTTOM_LEFT}
-          content={({ close }) => (
+          content={({close}) => (
             <Menu>
               <Menu.OptionsGroup
                 title="Order"
                 options={[
-                  { label: 'Ascending', value: Order.ASC },
-                  { label: 'Descending', value: Order.DESC }
+                  {label: 'Ascending', value: Order.ASC},
+                  {label: 'Descending', value: Order.DESC}
                 ]}
                 selected={
                   this.state.orderedColumn === 2 ? this.state.ordering : null
@@ -126,17 +134,17 @@ export default class AdvancedTable extends React.Component {
                 }}
               />
 
-              <Menu.Divider />
+              <Menu.Divider/>
 
               <Menu.OptionsGroup
                 title="Show"
                 options={[
-                  { label: 'Email', value: 'email' },
-                  { label: 'Phone', value: 'phone' },
-                  { label: 'Address', value: 'address' },
-                  { label: 'Country', value: 'country' },
-                  { label: 'Company', value: 'company' },
-                  { label: 'Id', value: 'id' }
+                  {label: 'Email', value: 'email'},
+                  {label: 'Phone', value: 'phone'},
+                  {label: 'Address', value: 'address'},
+                  {label: 'Country', value: 'country'},
+                  {label: 'Company', value: 'company'},
+                  {label: 'Id', value: 'id'}
                 ]}
                 selected={this.state.column2Show}
                 onChange={value => {
@@ -152,9 +160,9 @@ export default class AdvancedTable extends React.Component {
         >
           <TextDropdownButton
             icon={
-              this.state.orderedColumn === 2
-                ? this.getIconForOrder(this.state.ordering)
-                : 'caret-down'
+              this.state.orderedColumn === 2 ?
+                this.getIconForOrder(this.state.ordering) :
+                'caret-down'
             }
           >
             {capitalize(this.state.column2Show)}
@@ -169,13 +177,13 @@ export default class AdvancedTable extends React.Component {
       <Table.TextHeaderCell>
         <Popover
           position={Position.BOTTOM_LEFT}
-          content={({ close }) => (
+          content={({close}) => (
             <Menu>
               <Menu.OptionsGroup
                 title="Order"
                 options={[
-                  { label: 'Ascending', value: Order.ASC },
-                  { label: 'Descending', value: Order.DESC }
+                  {label: 'Ascending', value: Order.ASC},
+                  {label: 'Descending', value: Order.DESC}
                 ]}
                 selected={
                   this.state.orderedColumn === 3 ? this.state.ordering : null
@@ -194,9 +202,9 @@ export default class AdvancedTable extends React.Component {
         >
           <TextDropdownButton
             icon={
-              this.state.orderedColumn === 3
-                ? this.getIconForOrder(this.state.ordering)
-                : 'caret-down'
+              this.state.orderedColumn === 3 ?
+                this.getIconForOrder(this.state.ordering) :
+                'caret-down'
             }
           >
             LTV
@@ -214,7 +222,7 @@ export default class AdvancedTable extends React.Component {
           <Menu.Item>Move...</Menu.Item>
           <Menu.Item secondaryText="⌘R">Rename...</Menu.Item>
         </Menu.Group>
-        <Menu.Divider />
+        <Menu.Divider/>
         <Menu.Group>
           <Menu.Item intent="danger">Delete...</Menu.Item>
         </Menu.Group>
@@ -222,11 +230,11 @@ export default class AdvancedTable extends React.Component {
     )
   }
 
-  renderRow = ({ profile }) => {
+  renderRow = ({profile}) => {
     return (
       <Table.Row key={profile.id}>
         <Table.Cell display="flex" alignItems="center">
-          <Avatar name={profile.name} />
+          <Avatar name={profile.name}/>
           <Text marginLeft={8} size={300} fontWeight={500}>
             {profile.name}
           </Text>
@@ -238,7 +246,7 @@ export default class AdvancedTable extends React.Component {
             content={this.renderRowMenu}
             position={Position.BOTTOM_RIGHT}
           >
-            <IconButton icon="more" height={24} appearance="minimal" />
+            <IconButton icon="more" height={24} appearance="minimal"/>
           </Popover>
         </Table.Cell>
       </Table.Row>
@@ -256,10 +264,10 @@ export default class AdvancedTable extends React.Component {
           />
           {this.renderValueTableHeaderCell()}
           {this.renderLTVTableHeaderCell()}
-          <Table.HeaderCell width={48} flex="none" />
+          <Table.HeaderCell width={48} flex="none"/>
         </Table.Head>
         <Table.VirtualBody height={640}>
-          {items.map(item => this.renderRow({ profile: item }))}
+          {items.map(item => this.renderRow({profile: item}))}
         </Table.VirtualBody>
       </Table>
     )

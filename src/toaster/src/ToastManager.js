@@ -1,7 +1,7 @@
 import React from 'react'
-import { css } from 'glamor'
+import {css} from 'glamor'
 import PropTypes from 'prop-types'
-import { StackingOrder } from '../../constants'
+import {StackingOrder} from '../../constants'
 import Toast from './Toast'
 
 const wrapperClass = css({
@@ -125,7 +125,7 @@ export default class ToastManager extends React.PureComponent {
   render() {
     return (
       <span className={wrapperClass}>
-        {this.state.toasts.map(({ id, description, ...props }) => {
+        {this.state.toasts.map(({id, description, ...props}) => {
           return (
             <Toast key={id} onRemove={() => this.removeToast(id)} {...props}>
               {description}

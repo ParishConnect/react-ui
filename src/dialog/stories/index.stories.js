@@ -1,15 +1,15 @@
-import { storiesOf } from '@storybook/react'
+import {storiesOf} from '@storybook/react'
 import React from 'react'
 import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import starWarsNames from 'starwars-names'
-import { Strong, Paragraph } from '../../typography'
-import { Dialog } from '..'
-import { Button } from '../../buttons'
-import { Combobox } from '../../combobox'
-import { SideSheet } from '../../side-sheet'
-import { Pane } from '../../layers'
-import { Popover } from '../../popover'
+import {Strong, Paragraph} from '../../typography'
+import {Dialog} from '..'
+import {Button} from '../../buttons'
+import {Combobox} from '../../combobox'
+import {SideSheet} from '../../side-sheet'
+import {Pane} from '../../layers'
+import {Popover} from '../../popover'
 import DialogManager from './DialogManager'
 
 // Generate a big list of items
@@ -34,7 +34,7 @@ storiesOf('dialog', module)
         document.body.style.height = '100vh'
       })()}
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -50,7 +50,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -67,7 +67,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, isLoading, confirmLoading, show, hide }) => (
+        {({isShown, isLoading, confirmLoading, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -87,7 +87,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -103,7 +103,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -120,7 +120,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -128,7 +128,7 @@ storiesOf('dialog', module)
               onCloseComplete={hide}
               hasFooter={false}
             >
-              {({ close }) => (
+              {({close}) => (
                 <Box>
                   <Paragraph>
                     Manage Your Own Buttons and Interactions.
@@ -144,7 +144,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -152,7 +152,7 @@ storiesOf('dialog', module)
               hasFooter={false}
               onCloseComplete={hide}
             >
-              {({ close }) => (
+              {({close}) => (
                 <Box>
                   <Paragraph>
                     Manage your own header, buttons and interactions.
@@ -168,21 +168,21 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
               title="Dialog with Internal Scrolling"
               onCloseComplete={hide}
             >
-              <Box height={1200} width="100%" backgroundColor="#ddd" />
+              <Box height={1200} width="100%" backgroundColor="#ddd"/>
             </Dialog>
             <Button onClick={show}>Show Dialog with Internal Scrolling</Button>
           </Box>
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -209,14 +209,14 @@ storiesOf('dialog', module)
   ))
   .add('Dialog with nested Combobox', () => (
     <DialogManager>
-      {({ isShown, show, hide }) => (
+      {({isShown, show, hide}) => (
         <Box marginBottom={16}>
           <Dialog
             isShown={isShown}
             title="Dialog with Combobox"
             onCloseComplete={hide}
           >
-            <Combobox openOnFocus items={comboboxItems} />
+            <Combobox openOnFocus items={comboboxItems}/>
           </Dialog>
           <Button onClick={show}>Show Dialog with Combobox</Button>
         </Box>
@@ -226,14 +226,14 @@ storiesOf('dialog', module)
   .add('Dialog with customized content container', () => (
     <React.Fragment>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
               onCloseComplete={hide}
               hasHeader={false}
               hasFooter={false}
-              contentContainerProps={{ padding: 0 }}
+              contentContainerProps={{padding: 0}}
             >
               <Pane
                 height={160}
@@ -259,7 +259,7 @@ storiesOf('dialog', module)
         )}
       </DialogManager>
       <DialogManager>
-        {({ isShown, show, hide }) => (
+        {({isShown, show, hide}) => (
           <Box marginBottom={16}>
             <Dialog
               isShown={isShown}
@@ -272,14 +272,14 @@ storiesOf('dialog', module)
                 flexWrap: 'wrap'
               }}
             >
-              <Pane width="25%" height={160} backgroundColor="#F9F9FB" />
-              <Pane width="25%" height={160} backgroundColor="#E4E7EB" />
-              <Pane width="25%" height={160} backgroundColor="#425A70" />
-              <Pane width="25%" height={160} backgroundColor="#234361" />
-              <Pane width="25%" height={160} backgroundColor="#F7F9FD" />
-              <Pane width="25%" height={160} backgroundColor="#DDEBF7" />
-              <Pane width="25%" height={160} backgroundColor="#1070CA" />
-              <Pane width="25%" height={160} backgroundColor="#084B8A" />
+              <Pane width="25%" height={160} backgroundColor="#F9F9FB"/>
+              <Pane width="25%" height={160} backgroundColor="#E4E7EB"/>
+              <Pane width="25%" height={160} backgroundColor="#425A70"/>
+              <Pane width="25%" height={160} backgroundColor="#234361"/>
+              <Pane width="25%" height={160} backgroundColor="#F7F9FD"/>
+              <Pane width="25%" height={160} backgroundColor="#DDEBF7"/>
+              <Pane width="25%" height={160} backgroundColor="#1070CA"/>
+              <Pane width="25%" height={160} backgroundColor="#084B8A"/>
             </Dialog>
             <Button onClick={show}>
               Dialog with overridden default flexbox configs
@@ -291,7 +291,7 @@ storiesOf('dialog', module)
   ))
   .add('Dialog with endless stacking', () => (
     <DialogManager>
-      {({ isShown, show, hide }) => (
+      {({isShown, show, hide}) => (
         <Box marginBottom={16}>
           <Dialog
             isShown={isShown}
@@ -303,27 +303,27 @@ storiesOf('dialog', module)
                 isShown: false
               }}
             >
-              {({ state, setState }) => (
+              {({state, setState}) => (
                 <React.Fragment>
-                  <Button onClick={() => setState({ isShown: true })}>
+                  <Button onClick={() => setState({isShown: true})}>
                     Show Inner Side Sheet
                   </Button>
                   <SideSheet
                     isShown={state.isShown}
-                    onCloseComplete={() => setState({ isShown: false })}
+                    onCloseComplete={() => setState({isShown: false})}
                   >
                     <Component
                       initialState={{
                         isShown: false
                       }}
                     >
-                      {({ state: innerState, setState: innerSetState }) => {
+                      {({state: innerState, setState: innerSetState}) => {
                         return (
                           <React.Fragment>
                             <Popover
                               isShown={innerState.isShown}
                               onCloseComplete={() =>
-                                innerSetState({ isShown: false })
+                                innerSetState({isShown: false})
                               }
                               content={
                                 <Box
@@ -333,13 +333,13 @@ storiesOf('dialog', module)
                                   justifyContent="center"
                                   padding={12}
                                 >
-                                  <Combobox openOnFocus items={comboboxItems} />
+                                  <Combobox openOnFocus items={comboboxItems}/>
                                 </Box>
                               }
                             >
                               <Button
                                 margin={16}
-                                onClick={() => innerSetState({ isShown: true })}
+                                onClick={() => innerSetState({isShown: true})}
                               >
                                 Show Inner Popover
                               </Button>
@@ -353,12 +353,12 @@ storiesOf('dialog', module)
                         isShown: false
                       }}
                     >
-                      {({ state: innerState, setState: innerSetState }) => {
+                      {({state: innerState, setState: innerSetState}) => {
                         return (
                           <React.Fragment>
                             <Button
                               margin={16}
-                              onClick={() => innerSetState({ isShown: true })}
+                              onClick={() => innerSetState({isShown: true})}
                             >
                               Show Inner Dialog
                             </Button>
@@ -370,12 +370,12 @@ storiesOf('dialog', module)
                             <Dialog
                               isShown={innerState.isShown}
                               onCloseComplete={() =>
-                                innerSetState({ isShown: false })
+                                innerSetState({isShown: false})
                               }
                               title="Stackity Hackity"
                             >
-                              <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" />
-                              <Combobox openOnFocus items={comboboxItems} />
+                              <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif"/>
+                              <Combobox openOnFocus items={comboboxItems}/>
                             </Dialog>
                           </React.Fragment>
                         )

@@ -9,9 +9,9 @@ export default class HTML extends React.Component {
     return (
       <html {...this.props.htmlAttributes}>
         <head>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta name="viewport" content="width=1024" />
+          <meta charSet="utf-8"/>
+          <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
+          <meta name="viewport" content="width=1024"/>
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
@@ -19,7 +19,7 @@ export default class HTML extends React.Component {
           <div
             key="body"
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: this.props.body }}
+            dangerouslySetInnerHTML={{__html: this.props.body}}
             id="___gatsby"
           />
           {this.props.postBodyComponents}

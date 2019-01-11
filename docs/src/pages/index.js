@@ -18,13 +18,13 @@ export default class Root extends React.Component {
           <title>Parish Kit</title>
         </Helmet>
         <div>
-          <TopBar />
+          <TopBar/>
           <main>
-            <HomeHero />
-            <Features />
+            <HomeHero/>
+            <Features/>
           </main>
         </div>
-        <PageFooter />
+        <PageFooter/>
       </Layout>
     )
   }

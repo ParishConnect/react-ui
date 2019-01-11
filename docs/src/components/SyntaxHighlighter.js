@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import PropTypes from 'prop-types'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import Highlight, {defaultProps} from 'prism-react-renderer'
 
 export default class SyntaxHighlighter2 extends React.PureComponent {
   static propTypes = {
@@ -18,12 +18,12 @@ export default class SyntaxHighlighter2 extends React.PureComponent {
         language="jsx"
         theme={undefined}
       >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        {({className, style, tokens, getLineProps, getTokenProps}) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
+              <div {...getLineProps({line, key: i})}>
                 {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
+                  <span {...getTokenProps({token, key})}/>
                 ))}
               </div>
             ))}

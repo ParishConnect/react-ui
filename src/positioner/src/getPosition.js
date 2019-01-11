@@ -1,4 +1,4 @@
-import { Position } from '../../constants'
+import {Position} from '../../constants'
 
 /**
  * Function to create a Rect.
@@ -10,7 +10,7 @@ import { Position } from '../../constants'
  * @param {Number} position.top
  * @return {Object} Rect { width, height, left, top, right, bottom }
  */
-const makeRect = ({ width, height }, { left, top }) => {
+const makeRect = ({width, height}, {left, top}) => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
   return {
@@ -128,7 +128,7 @@ const getFitsOnLeft = (rect, viewportOffset) => {
  * @param {Number} targetCenter - center of the target.
  * @return {String} transform origin
  */
-const getTransformOrigin = ({ rect, position, dimensions, targetCenter }) => {
+const getTransformOrigin = ({rect, position, dimensions, targetCenter}) => {
   const centerY = Math.round(targetCenter - rect.top)
 
   if (position === Position.LEFT) {
@@ -169,7 +169,7 @@ export default function getFittedPosition({
   viewport,
   viewportOffset = 8
 }) {
-  const { rect, position: finalPosition } = getPosition({
+  const {rect, position: finalPosition} = getPosition({
     position,
     dimensions,
     targetRect,
@@ -204,9 +204,9 @@ export default function getFittedPosition({
     rect.right -= delta
   }
 
-  const targetCenter = isAlignedHorizontal(position)
-    ? targetRect.top + targetRect.height / 2
-    : targetRect.left + targetRect.width / 2
+  const targetCenter = isAlignedHorizontal(position) ?
+    targetRect.top + targetRect.height / 2 :
+    targetRect.left + targetRect.width / 2
 
   const transformOrigin = getTransformOrigin({
     rect,
@@ -408,7 +408,7 @@ function getPosition({
  * @param {Object} targetRect — the rect of the target.
  * @return {Object} - { x: Number, y: Number }
  */
-function getRect({ position, targetOffset, dimensions, targetRect }) {
+function getRect({position, targetOffset, dimensions, targetRect}) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
   const alignedBottomY = targetRect.bottom + targetOffset

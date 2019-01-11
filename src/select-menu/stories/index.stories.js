@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react'
+import {storiesOf} from '@storybook/react'
 import Component from '@reactions/component'
 import React from 'react'
 import Box from '@hennessyevan/aluminum-box'
-import { SelectMenu } from '..'
-import { Button } from '../../buttons'
-import { Text } from '../../typography'
-import { Pane } from '../../layers'
+import {SelectMenu} from '..'
+import {Button} from '../../buttons'
+import {Text} from '../../typography'
+import {Pane} from '../../layers'
 import options from './starwars-options'
 import Manager from './Manager'
 
@@ -16,27 +16,27 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
       document.body.style.height = '100vh'
     })()}
     <Manager>
-      {({ setState, state }) => (
+      {({setState, state}) => (
         <SelectMenu
           title="Select name"
           options={options}
           selected={state.selected}
-          onSelect={item => setState({ selected: item.value })}
+          onSelect={item => setState({selected: item.value})}
         >
           <Button>{state.selected || 'Select name...'}</Button>
         </SelectMenu>
       )}
     </Manager>
     <Manager>
-      {({ setState, state }) => (
+      {({setState, state}) => (
         <Pane display="inline-block">
           <Text display="block">Filter Text: {state.filterText}</Text>
           <SelectMenu
             title="Select name"
             options={options}
             selected={state.selected}
-            onFilterChange={filterText => setState({ filterText })}
-            onSelect={item => setState({ selected: item.value })}
+            onFilterChange={filterText => setState({filterText})}
+            onSelect={item => setState({selected: item.value})}
           >
             <Button>Select w/ onFilterChange</Button>
           </SelectMenu>
@@ -49,7 +49,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
         selected: []
       }}
     >
-      {({ state, setState }) => (
+      {({state, setState}) => (
         <SelectMenu
           isMultiSelect
           title="Select multiple names"
@@ -86,7 +86,7 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
             } else if (selectedItemsLength > 1) {
               selectedNames = selectedItemsLength.toString() + ' selected...'
             }
-            setState({ selected: selectedItems, selectedNames })
+            setState({selected: selectedItems, selectedNames})
           }}
         >
           <Button>{state.selectedNames || 'Select multiple...'}</Button>

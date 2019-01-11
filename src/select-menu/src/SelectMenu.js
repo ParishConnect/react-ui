@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import arrify from 'arrify'
-import { Popover } from '../../popover'
-import { Position } from '../../constants'
+import {Popover} from '../../popover'
+import {Position} from '../../constants'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import SelectedPropType from './SelectedPropType'
@@ -103,12 +103,12 @@ export default class SelectMenu extends PureComponent {
   getDetailView = (close, detailView) => {
     if (typeof detailView === 'function') {
       return {
-        detailView: detailView({ close })
+        detailView: detailView({close})
       }
     }
 
     if (detailView) {
-      return { detailView }
+      return {detailView}
     }
 
     return {}
@@ -117,12 +117,12 @@ export default class SelectMenu extends PureComponent {
   getEmptyView = (close, emptyView) => {
     if (typeof emptyView === 'function') {
       return {
-        emptyView: emptyView({ close })
+        emptyView: emptyView({close})
       }
     }
 
     if (emptyView) {
-      return { emptyView }
+      return {emptyView}
     }
 
     return {}
@@ -149,7 +149,7 @@ export default class SelectMenu extends PureComponent {
         minWidth={width}
         position={position}
         minHeight={height}
-        content={({ close }) => (
+        content={({close}) => (
           <SelectMenuContent
             width={width}
             height={height}
