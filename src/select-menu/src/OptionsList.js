@@ -39,6 +39,7 @@ export default class OptionsList extends PureComponent {
     selected: PropTypes.arrayOf(PropTypes.string),
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
+    onFilterChange: PropTypes.func,
     hasFilter: PropTypes.bool,
     optionSize: PropTypes.number,
     renderItem: PropTypes.func,
@@ -57,6 +58,7 @@ export default class OptionsList extends PureComponent {
     optionSize: 33,
     onSelect: () => {},
     onDeselect: () => {},
+    onFilterChange: () => {},
     selected: [],
     renderItem: itemRenderer,
     optionsFilter: fuzzyFilter,
@@ -91,10 +93,11 @@ export default class OptionsList extends PureComponent {
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selected !== this.state.selected) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.selected !== this.props.selected) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
-        selected: nextProps.selected
+        selected: this.props.selected
       })
     }
   }
@@ -186,6 +189,7 @@ export default class OptionsList extends PureComponent {
     this.setState({
       searchValue
     })
+    this.props.onFilterChange(searchValue)
   }
 
   handleSelect = item => {
@@ -265,7 +269,8 @@ export default class OptionsList extends PureComponent {
                 onSelect: () => this.handleSelect(item),
                 onDeselect: () => this.handleDeselect(item),
                 isSelectable: !isSelected || isMultiSelect,
-                isSelected
+                isSelected,
+                disabled: item.disabled
               })
             }}
           />

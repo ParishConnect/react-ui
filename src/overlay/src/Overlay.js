@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
-import { keyframes } from 'emotion'
-import Box from '@hennessyevan/aluminum-box'
-import noScroll from 'no-scroll'
+import Box, { css } from '@hennessyevan/aluminum-box'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
 import { withTheme } from '../../theme'
+import safeInvoke from '../../lib/safe-invoke'
+import preventBodyScroll from '../../lib/prevent-body-scroll'
 
 const animationEasing = {
   standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
@@ -19,7 +19,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = keyframes('fadeInAnimation', {
+const fadeInAnimation = css.keyframes('fadeInAnimation', {
   from: {
     opacity: 0
   },
@@ -28,7 +28,7 @@ const fadeInAnimation = keyframes('fadeInAnimation', {
   }
 })
 
-const fadeOutAnimation = keyframes('fadeOutAnimation', {
+const fadeOutAnimation = css.keyframes('fadeOutAnimation', {
   from: {
     opacity: 1
   },
@@ -83,6 +83,28 @@ class Overlay extends React.Component {
     containerProps: PropTypes.object,
 
     /**
+     * Whether or not to prevent body scrolling outside the context of the overlay
+     */
+    preventBodyScrolling: PropTypes.bool,
+
+    /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
+     * Function called when overlay is about to close.
+     * Return `false` to prevent the sheet from closing.
+     * type: `Function -> Boolean`
+     */
+    onBeforeClose: PropTypes.func,
+
+    /**
      * Callback fired before the "exiting" status is applied.
      * type: `Function(node: HtmlElement) -> void`
      */
@@ -128,16 +150,6 @@ class Overlay extends React.Component {
     onEntered: PropTypes.func,
 
     /**
-     * The root element used to ensure scrolling doesn't happen when the overlay is up.
-     */
-    root: PropTypes.string,
-
-    /**
-     * Sets whether the overlay should stop scrolling from happening on the root element
-     */
-    disableScrolling: PropTypes.bool,
-
-    /**
      * Theme provided by ThemeProvider.
      */
     theme: PropTypes.object.isRequired
@@ -145,14 +157,15 @@ class Overlay extends React.Component {
 
   static defaultProps = {
     onHide: () => {},
+    shouldCloseOnClick: true,
+    shouldCloseOnEscapePress: true,
+    preventBodyScrolling: false,
     onExit: () => {},
     onExiting: () => {},
     onExited: () => {},
     onEnter: () => {},
     onEntering: () => {},
-    onEntered: () => {},
-    root: '#root',
-    disableScrolling: true
+    onEntered: () => {}
   }
 
   constructor(props) {
@@ -164,8 +177,9 @@ class Overlay extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isShown && !this.props.isShown) {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isShown && this.props.isShown) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         exited: false
       })
@@ -173,6 +187,7 @@ class Overlay extends React.Component {
   }
 
   componentWillUnmount() {
+    this.handleBodyScroll(false)
     document.body.removeEventListener('keydown', this.onEsc, false)
   }
 
@@ -241,20 +256,32 @@ class Overlay extends React.Component {
 
   onEsc = e => {
     // Esc key
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 && this.props.shouldCloseOnEscapePress) {
       this.close()
     }
   }
 
   close = () => {
-    this.setState({ exiting: true })
+    const shouldClose = safeInvoke(this.props.onBeforeClose)
+    if (shouldClose !== false) {
+      this.setState({ exiting: true })
+    }
+  }
+
+  handleBodyScroll = preventScroll => {
+    if (this.props.preventBodyScrolling) {
+      preventBodyScroll(preventScroll)
+    }
+  }
+
+  handleEnter = () => {
+    this.handleBodyScroll(true)
+    safeInvoke(this.props.onEnter)
   }
 
   handleEntering = node => {
-    const { disableScrolling, onEntering } = this.props
-    if (disableScrolling) noScroll.on()
     document.body.addEventListener('keydown', this.onEsc, false)
-    onEntering(node)
+    this.props.onEntering(node)
   }
 
   handleEntered = node => {
@@ -263,12 +290,15 @@ class Overlay extends React.Component {
     this.props.onEntered(node)
   }
 
+  handleExit = () => {
+    this.handleBodyScroll(false)
+    safeInvoke(this.props.onExit)
+  }
+
   handleExiting = node => {
-    const { disableScrolling, onExiting } = this.props
-    if (disableScrolling) noScroll.off()
     document.body.removeEventListener('keydown', this.onEsc, false)
     this.bringFocusBackToTarget()
-    onExiting(node)
+    this.props.onExiting(node)
   }
 
   handleExited = node => {
@@ -277,7 +307,7 @@ class Overlay extends React.Component {
   }
 
   handleBackdropClick = e => {
-    if (e.target !== e.currentTarget) {
+    if (e.target !== e.currentTarget || !this.props.shouldCloseOnClick) {
       return
     }
 
@@ -294,9 +324,7 @@ class Overlay extends React.Component {
 
       containerProps = {},
       isShown,
-      children,
-      onExit,
-      onEnter
+      children
     } = this.props
 
     const { exiting, exited } = this.state
@@ -312,10 +340,10 @@ class Overlay extends React.Component {
               unmountOnExit
               timeout={ANIMATION_DURATION}
               in={isShown && !exiting}
-              onExit={onExit}
+              onExit={this.handleExit}
               onExiting={this.handleExiting}
               onExited={this.handleExited}
-              onEnter={onEnter}
+              onEnter={this.handleEnter}
               onEntering={this.handleEntering}
               onEntered={this.handleEntered}
             >
@@ -329,10 +357,7 @@ class Overlay extends React.Component {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={{
-                    ...animationStyles(theme.overlayBackgroundColor),
-                    '-webkit-overflow-scrolling': 'touch'
-                  }}
+                  css={animationStyles(theme.overlayBackgroundColor)}
                   data-state={state}
                   {...containerProps}
                 >

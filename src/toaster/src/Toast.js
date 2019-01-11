@@ -1,5 +1,5 @@
 import React from 'react'
-import { css, keyframes } from 'emotion'
+import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
@@ -12,17 +12,17 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const openAnimation = keyframes('openAnimation', {
+const openAnimation = css.keyframes('openAnimation', {
   from: {
     opacity: 0,
-    transform: 'translateX(-100%)'
+    transform: 'translateY(-120%)'
   },
   to: {
-    transform: 'translateX(0)'
+    transform: 'translateY(0)'
   }
 })
 
-const closeAnimation = keyframes('closeAnimation', {
+const closeAnimation = css.keyframes('closeAnimation', {
   from: {
     transform: 'scale(1)',
     opacity: 1
@@ -36,7 +36,7 @@ const closeAnimation = keyframes('closeAnimation', {
 const animationStyles = css({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-end',
+  alignItems: 'center',
   height: 0,
   transition: `all ${ANIMATION_DURATION}ms ${animationEasing.deceleration}`,
   '&[data-state="entering"], &[data-state="entered"]': {
@@ -102,10 +102,11 @@ export default class Toast extends React.PureComponent {
     height: 0
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (Object.hasOwnProperty.call(nextProps, 'isShown')) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.isShown !== this.props.isShown) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
-        isShown: nextProps.isShown
+        isShown: this.props.isShown
       })
     }
   }
@@ -151,7 +152,7 @@ export default class Toast extends React.PureComponent {
   onRef = ref => {
     if (ref === null) return
 
-    const height = ref.getBoundingClientRect().height
+    const { height } = ref.getBoundingClientRect()
 
     this.setState({
       height

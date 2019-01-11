@@ -14,14 +14,11 @@ export default class Portal extends Component {
 
     if (!portalContainer) {
       portalContainer = document.createElement('div')
-      portalContainer.setAttribute('parishconnect-portal-container', '')
+      portalContainer.setAttribute('evergreen-portal-container', '')
       document.body.appendChild(portalContainer)
     }
 
     this.el = document.createElement('div')
-  }
-
-  componentDidMount() {
     portalContainer.appendChild(this.el)
   }
 

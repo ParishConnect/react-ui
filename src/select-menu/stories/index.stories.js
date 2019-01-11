@@ -2,10 +2,12 @@ import { storiesOf } from '@storybook/react'
 import Component from '@reactions/component'
 import React from 'react'
 import Box from '@hennessyevan/aluminum-box'
-import options from '../docs/starwars-options'
-import Manager from '../docs/Manager'
-import { SelectMenu } from '../../select-menu'
+import { SelectMenu } from '..'
 import { Button } from '../../buttons'
+import { Text } from '../../typography'
+import { Pane } from '../../layers'
+import options from './starwars-options'
+import Manager from './Manager'
 
 storiesOf('select-menu', module).add('SelectMenu', () => (
   <Box padding={40}>
@@ -23,6 +25,22 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
         >
           <Button>{state.selected || 'Select name...'}</Button>
         </SelectMenu>
+      )}
+    </Manager>
+    <Manager>
+      {({ setState, state }) => (
+        <Pane display="inline-block">
+          <Text display="block">Filter Text: {state.filterText}</Text>
+          <SelectMenu
+            title="Select name"
+            options={options}
+            selected={state.selected}
+            onFilterChange={filterText => setState({ filterText })}
+            onSelect={item => setState({ selected: item.value })}
+          >
+            <Button>Select w/ onFilterChange</Button>
+          </SelectMenu>
+        </Pane>
       )}
     </Manager>
     <Component
@@ -75,5 +93,20 @@ storiesOf('select-menu', module).add('SelectMenu', () => (
         </SelectMenu>
       )}
     </Component>
+    <SelectMenu
+      title="Empty state"
+      emptyView={
+        <Box
+          height="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text size={300}>No options found</Text>
+        </Box>
+      }
+    >
+      <Button>Empty state</Button>
+    </SelectMenu>
   </Box>
 ))

@@ -13,7 +13,7 @@ class Banner extends PureComponent {
     ...Pane.propTypes,
 
     /**
-     * The action attached to the banner. Passed as a function (optional)
+     * The action attached to the banner and its title. Passed as a function (optional)
      */
     action: PropTypes.shape({
       title: PropTypes.string,
@@ -43,7 +43,7 @@ class Banner extends PureComponent {
 
   static defaultProps = {
     height: 75,
-    width: 325
+    minWidth: 325
   }
 
   getActionDescriptor = (action, color, theme) => {
@@ -103,7 +103,8 @@ class Banner extends PureComponent {
     return (
       <Pane
         elevation={1}
-        display="flex"
+        display="inline-flex"
+        maxWidth={500}
         flexDirection="row"
         justifyContent="flex-start"
         alignItems="center"
@@ -112,12 +113,15 @@ class Banner extends PureComponent {
       >
         <Box display="flex" paddingX={25} flexGrow={1} flexDirection="column">
           <Text
+            maxWidth={350}
+            textOverflow="ellipsis"
+            overflowX="hidden"
             color={color || theme.palette[theme.themeColor].base}
             size={theme.getTextSizeForBlockHeight(height || 75)}
           >
             {children}
           </Text>
-          <Small>
+          <Small maxWidth={350} textOverflow="ellipsis" overflowX="hidden">
             <Text size={300}>{subtitle}</Text>
           </Small>
         </Box>

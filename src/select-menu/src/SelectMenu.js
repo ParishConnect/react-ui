@@ -61,6 +61,11 @@ export default class SelectMenu extends PureComponent {
     hasFilter: PropTypes.bool,
 
     /**
+     * Function that is called as the onChange() event for the filter.
+     */
+    onFilterChange: PropTypes.func,
+
+    /**
      * The position of the Select Menu.
      */
     position: PropTypes.oneOf([
@@ -77,7 +82,13 @@ export default class SelectMenu extends PureComponent {
      * rendered on the right side of the Select Menu to give additional
      * information when an option is selected.
      */
-    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
+    detailView: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+
+    /**
+     * Can be a function that returns a node, or a node itself, that is
+     * rendered instead of the options list when there are no options.
+     */
+    emptyView: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
   }
 
   static defaultProps = {
@@ -103,6 +114,20 @@ export default class SelectMenu extends PureComponent {
     return {}
   }
 
+  getEmptyView = (close, emptyView) => {
+    if (typeof emptyView === 'function') {
+      return {
+        emptyView: emptyView({ close })
+      }
+    }
+
+    if (emptyView) {
+      return { emptyView }
+    }
+
+    return {}
+  }
+
   render() {
     const {
       title,
@@ -114,6 +139,7 @@ export default class SelectMenu extends PureComponent {
       hasTitle,
       hasFilter,
       detailView,
+      emptyView,
       isMultiSelect,
       ...props
     } = this.props
@@ -139,10 +165,12 @@ export default class SelectMenu extends PureComponent {
               onDeselect: item => {
                 this.props.onDeselect(item)
               },
+              onFilterChange: this.props.onFilterChange,
               selected: arrify(selected)
             }}
             close={close}
             {...this.getDetailView(close, detailView)}
+            {...this.getEmptyView(close, emptyView)}
           />
         )}
         {...props}

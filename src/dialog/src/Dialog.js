@@ -69,11 +69,6 @@ class Dialog extends React.Component {
     isShown: PropTypes.bool,
 
     /**
-     * Configurable inner padding; defaults to 16px
-     */
-    innerPadding: PropTypes.number,
-
-    /**
      * Title of the Dialog. Titles should use Title Case.
      */
     title: PropTypes.node,
@@ -141,6 +136,16 @@ class Dialog extends React.Component {
     cancelLabel: PropTypes.string,
 
     /**
+     * Boolean indicating if clicking the overlay should close the overlay.
+     */
+    shouldCloseOnOverlayClick: PropTypes.bool,
+
+    /**
+     * Boolean indicating if pressing the esc key should close the overlay.
+     */
+    shouldCloseOnEscapePress: PropTypes.bool,
+
+    /**
      * Width of the Dialog.
      */
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -172,12 +177,21 @@ class Dialog extends React.Component {
     /**
      * Props that are passed to the dialog container.
      */
-    containerProps: PropTypes.object
+    containerProps: PropTypes.object,
+
+    /**
+     * Props that are passed to the content container.
+     */
+    contentContainerProps: PropTypes.object,
+
+    /**
+     * Whether or not to prevent scrolling in the outer body
+     */
+    preventBodyScrolling: PropTypes.bool
   }
 
   static defaultProps = {
     isShown: false,
-    innerPadding: 16,
     hasHeader: true,
     hasFooter: true,
     hasCancel: true,
@@ -190,29 +204,20 @@ class Dialog extends React.Component {
     isConfirmLoading: false,
     isConfirmDisabled: false,
     cancelLabel: 'Cancel',
+    shouldCloseOnOverlayClick: true,
+    shouldCloseOnEscapePress: true,
     onCancel: close => close(),
-    onConfirm: close => close()
+    onConfirm: close => close(),
+    preventBodyScrolling: false
   }
 
   renderChildren = close => {
     const { children } = this.props
 
-    if (Array.isArray(children) || typeof children === 'object') {
-      if (children.length > 0) {
-        children.map(child => {
-          if (child.props && child.props.editorInDialog) {
-            this.childIsEditor = true
-          }
-          return false
-        })
-      } else {
-        this.childIsEditor = children.props.editorInDialog
-      }
-    }
-
     if (typeof children === 'function') {
       return children({ close })
-    } else if (typeof children === 'string') {
+    }
+    if (typeof children === 'string') {
       return <Paragraph>{children}</Paragraph>
     }
     return children
@@ -223,7 +228,6 @@ class Dialog extends React.Component {
       title,
       width,
       intent,
-      innerPadding,
       isShown,
       topOffset,
       sideOffset,
@@ -239,8 +243,12 @@ class Dialog extends React.Component {
       isConfirmLoading,
       isConfirmDisabled,
       cancelLabel,
+      shouldCloseOnOverlayClick,
+      shouldCloseOnEscapePress,
       containerProps,
-      minHeightContent
+      contentContainerProps,
+      minHeightContent,
+      preventBodyScrolling
     } = this.props
 
     const sideOffsetWithUnit = Number.isInteger(sideOffset)
@@ -258,15 +266,17 @@ class Dialog extends React.Component {
     return (
       <Overlay
         isShown={isShown}
+        shouldCloseOnClick={shouldCloseOnOverlayClick}
+        shouldCloseOnEscapePress={shouldCloseOnEscapePress}
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
         containerProps={{
-          id: 'overlay',
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'center',
           overflowY: externalScrolling ? 'scroll' : ''
         }}
+        preventBodyScrolling={preventBodyScrolling}
       >
         {({ state, close }) => (
           <Pane
@@ -296,7 +306,11 @@ class Dialog extends React.Component {
                 <Heading is="h4" size={600} flex="1">
                   {title}
                 </Heading>
-                <IconButton appearance="minimal" icon="cross" onClick={close} />
+                <IconButton
+                  appearance="minimal"
+                  icon="cross"
+                  onClick={() => onCancel(close)}
+                />
               </Pane>
             )}
 
@@ -304,9 +318,10 @@ class Dialog extends React.Component {
               data-state={state}
               display="flex"
               overflow={externalScrolling ? 'visible' : 'auto'}
-              padding={innerPadding}
+              padding={16}
               flexDirection="column"
               minHeight={minHeightContent}
+              {...contentContainerProps}
             >
               <Pane>{this.renderChildren(close)}</Pane>
             </Pane>
@@ -316,13 +331,16 @@ class Dialog extends React.Component {
                 <Pane padding={16} float="right">
                   {/* Cancel should be first to make sure focus gets on it first. */}
                   {hasCancel && (
-                    <Button tabIndex={0} onClick={() => onCancel(close)}>
+                    <Button
+                      tabIndex={externalScrolling ? null : 0}
+                      onClick={() => onCancel(close)}
+                    >
                       {cancelLabel}
                     </Button>
                   )}
 
                   <Button
-                    tabIndex={0}
+                    tabIndex={externalScrolling ? null : 0}
                     marginLeft={8}
                     appearance="primary"
                     isLoading={isConfirmLoading}
