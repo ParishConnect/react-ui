@@ -1,5 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 import defaultTheme from './default-theme/'
+import { ThemeType } from '../../constants'
 
 /**
  * Use React 16.3+ createContext API.
@@ -7,6 +8,6 @@ import defaultTheme from './default-theme/'
 const {
   Provider: ThemeProvider,
   Consumer: ThemeConsumer
-} = React.createContext(defaultTheme)
+} = React.createContext<ThemeType | any>(defaultTheme)
 
 export { ThemeProvider, ThemeConsumer }

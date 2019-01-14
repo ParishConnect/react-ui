@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
 import {
   spacing,
   dimensions,
@@ -7,11 +7,19 @@ import {
   layout
 } from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
-import { Pane } from '../../layers'
+import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
+import { ThemeType, IntentType } from '../../constants/'
 
-class InlineAlert extends PureComponent {
+type InlineAlertProps = PaneProps & {
+  theme: ThemeType
+  intent?: IntentType
+  hasIcon?: boolean
+  size?: number
+}
+
+class InlineAlert extends React.PureComponent<InlineAlertProps> {
   static propTypes = {
     /**
      * Composes some Box APIs.
@@ -62,7 +70,7 @@ class InlineAlert extends PureComponent {
   }
 
   render() {
-    const { theme, children, intent, hasIcon, size, ...props } = this.props
+    const { children, intent, hasIcon, size, ...props } = this.props
 
     return (
       <Pane alignItems="center" display="flex" {...props}>
@@ -79,4 +87,4 @@ class InlineAlert extends PureComponent {
   }
 }
 
-export default withTheme(InlineAlert)
+export default withTheme(InlineAlert as any)

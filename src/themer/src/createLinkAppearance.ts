@@ -5,15 +5,18 @@ const hoverState = '&:hover'
 const activeState = '&:active'
 const focusState = '&:focus'
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createLinkAppearance = (items = {}) => {
+export interface LinkAppearance {
+  base: object
+  hover: object
+  active: object
+  focus: object
+}
+
+const createLinkAppearance = (items: LinkAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createLinkAppearance() is missing a ${prop} item `,
         items

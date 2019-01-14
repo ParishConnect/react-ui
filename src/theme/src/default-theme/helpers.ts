@@ -61,7 +61,7 @@ interface PrimaryButtonStylesForIntent {
 }
 
 const getPrimaryButtonStylesForIntent = (
-  intent: IntentType,
+  intent: IntentType | null,
   themeColor: string
 ): PrimaryButtonStylesForIntent => {
   switch (intent) {

@@ -4,15 +4,15 @@ import missingStateWarning from './missingStateWarning'
 const focusState =
   '&[data-isselectable="true"]:focus, &[aria-expanded="true"][aria-haspopup="true"]'
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createTableCellAppearance = (items = {}) => {
+export interface TableCellAppearance {
+  focus: object
+}
+
+const createTableCellAppearance = (items: TableCellAppearance): object => {
   missingStateWarning({
     items,
     props: ['focus'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createTableCellAppearance() is missing a ${prop} item `,
         items

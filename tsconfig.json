@@ -4,7 +4,7 @@
     "module": "commonjs",
     "target": "es6",
     "lib": ["es6", "es2016", "es2017", "dom"],
-    "allowJs": true,
+    "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDirs": ["src", "tools"],
@@ -16,6 +16,6 @@
     "checkJs": false,
     "sourceMap": true
   },
-  "files": ["src/index.tsx", "tools/story.tsx"],
+  "include": ["src"],
   "exclude": ["node_modules", "lib"]
 }

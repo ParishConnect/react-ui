@@ -20,15 +20,24 @@ const activeState =
   '&:not([disabled="true"]):not([data-disabled="true"]):active, &:not([disabled="true"]):not([data-disabled="true"])[data-popover-opened="true"], &:not([disabled="true"]):not([data-disabled="true"])[data-active="true"]'
 const focusState = '& input:focus + label'
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createSegmentedControlRadioAppearance = (items = {}) => {
+export interface SegementedControlRadioAppearance {
+  base: object
+  hover: object
+  disabled: object
+  active: {
+    label: string
+    [key: string]: string
+  }
+  focus: object
+}
+
+const createSegmentedControlRadioAppearance = (
+  items: SegementedControlRadioAppearance
+): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'disabled', 'active', 'focus'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createSegmentedControlRadioAppearance() is missing a ${prop} item `,
         items

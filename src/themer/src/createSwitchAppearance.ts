@@ -22,11 +22,19 @@ const hiddenCheckboxStyle = {
   opacity: '0'
 }
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createSwitchAppearance = (items = {}) => {
+export interface SwitchAppearance {
+  base: object
+  disabled: object
+  hover: object
+  active: object
+  focus: object
+  checked: object
+  checkedActive: object
+  checkedHover?: object
+  checkedDisabled: object
+}
+
+const createSwitchAppearance = (items: SwitchAppearance): object => {
   missingStateWarning({
     items,
     props: [
@@ -39,7 +47,7 @@ const createSwitchAppearance = (items = {}) => {
       'checkedActive',
       'checkedDisabled'
     ],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createSwitchAppearance() is missing a ${prop} item `,
         items

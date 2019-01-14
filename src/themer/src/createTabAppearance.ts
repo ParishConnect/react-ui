@@ -12,15 +12,19 @@ const baseStyle = {
   outline: 'none'
 }
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createTabAppearance = (items = {}) => {
+export interface TabAppearance {
+  base: object
+  hover: object
+  active: object
+  focus: object
+  current: object
+}
+
+const createTabAppearance = (items: TabAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createTabAppearance() is missing a ${prop} item `,
         items

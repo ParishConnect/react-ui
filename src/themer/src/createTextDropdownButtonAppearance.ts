@@ -19,15 +19,21 @@ const focusState = '&:not([disabled]):not([data-disabled]):focus'
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
-/**
- * @param {object} items - object with a set of items.
- * @return {object} the final appearance.
- */
-const createButtonAppearance = (items = {}) => {
+export interface TextDropdownButtonAppearance {
+  base: object
+  hover: object
+  focus: object
+  active: object
+  disabled: object
+}
+
+const createButtonAppearance = (
+  items: TextDropdownButtonAppearance
+): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'focus', 'active', 'disabled'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createTextDropdownButtonAppearance() is missing a ${prop} state in items: `,
         items

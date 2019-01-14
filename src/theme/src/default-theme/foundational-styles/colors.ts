@@ -7,6 +7,7 @@ import gradients from './gradients'
  * This object are functional colors being used the default theme.
  * A required property is required by the default theme NOT by Evergreen itself.
  */
+
 export default {
   /**
    * Available on Pane as `<Pane background="tint1" />`

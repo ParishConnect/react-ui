@@ -12,16 +12,18 @@ const baseStyle = {
   },
   outline: 'none'
 }
-
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createRowAppearance = (items = {}) => {
+export interface RowAppearance {
+  base: object
+  hover: object
+  active: object
+  focus: object
+  current: object
+}
+const createRowAppearance = (items: RowAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createRowAppearance() is missing a ${prop} item `,
         items

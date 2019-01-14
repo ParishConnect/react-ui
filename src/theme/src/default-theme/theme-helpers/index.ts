@@ -28,6 +28,9 @@ function getThemeColor(theme: ThemeType, lightness?: string): string {
  * - TextInput
  */
 const getBorderRadiusForControlHeight = (height?: number): number => {
+  if (!height) {
+    return 8
+  }
   if (height <= 40) {
     return 5
   }
@@ -38,6 +41,9 @@ const getBorderRadiusForControlHeight = (height?: number): number => {
  * Get the text size for a control with a certain height.
  */
 const getTextSizeForControlHeight = (height?: number): number => {
+  if (!height) {
+    return 800
+  }
   if (height <= 24) {
     return 300
   }
@@ -66,6 +72,9 @@ const getTextSizeForControlHeight = (height?: number): number => {
  * Get the text size for a block with a certain height. Used in larger UI Components like Banner and Pane
  */
 const getTextSizeForBlockHeight = (height?: number): number => {
+  if (!height) {
+    return 800
+  }
   if (height <= 24) {
     return 300
   }
@@ -94,6 +103,9 @@ const getTextSizeForBlockHeight = (height?: number): number => {
  * Get the size for a icon in a Button with a certain height.
  */
 const getIconSizeForButton = (height?: number): number => {
+  if (!height) {
+    return 20
+  }
   if (height <= 28) {
     return 12
   }
@@ -117,6 +129,9 @@ const getIconSizeForSelect = getIconSizeForButton
  * Get the size for a icon in a IconButton with a certain height.
  */
 const getIconSizeForIconButton = (height?: number): number => {
+  if (!height) {
+    return 20
+  }
   if (height <= 28) {
     return 12
   }
@@ -180,9 +195,12 @@ const getIconForIntent = (
       return { icon: 'warning-sign', color: 'warning' }
     case Intent.NONE:
     default:
+      const color = !defaultColor
+        ? 'info'
+        : palette[defaultColor] && palette[defaultColor].base
       return {
         icon: 'info-sign',
-        color: (palette[defaultColor] && palette[defaultColor].base) || 'info'
+        color
       }
   }
 }

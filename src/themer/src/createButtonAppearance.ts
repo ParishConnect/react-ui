@@ -23,15 +23,20 @@ const focusAndActiveState =
 const activeState =
   '&:not([disabled]):not([data-disabled]):active, &:not([disabled]):not([data-disabled])[aria-expanded="true"], &:not([disabled]):not([data-disabled])[data-active]'
 
-/**
- * @param {object} items - object with a set of items.
- * @return {object} the final appearance.
- */
-const createButtonAppearance = (items = {}) => {
+export interface ButtonAppearance {
+  base: object
+  disabled: object
+  hover: object
+  active: object
+  focus: object
+  focusAndActive: object
+}
+
+const createButtonAppearance = (items: ButtonAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'focus', 'active', 'focusAndActive', 'disabled'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createButtonAppearance() is missing a ${prop} state in items: `,
         items

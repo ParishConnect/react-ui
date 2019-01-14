@@ -1,12 +1,12 @@
 import fills from '../foundational-styles/fills'
 
-interface AvatarProps {
+export interface AvatarProps {
   isSolid: boolean
   color: string
   hashValue: number
 }
 
-interface AvatarObject {
+export interface AvatarObject {
   color: string
   backgroundColor: string
 }

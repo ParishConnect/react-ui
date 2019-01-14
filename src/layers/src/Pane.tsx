@@ -1,20 +1,87 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
+import Box, { BoxType } from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
+import { BackgroundColor, Elevation, ThemeType } from '../../constants'
+import { WithThemeProps } from '../../theme/src/withTheme'
 
 const StringAndBoolPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.bool
 ])
 
-class Pane extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes the Box component as the base.
-     */
-    ...Box.propTypes,
+type StringAndBooleanType = string | boolean | undefined
 
+export declare type PaneProps = BoxType &
+  WithThemeProps & {
+    /**
+     * Values: 'gradient', 'solid', 'white'
+     * --- Uses themeColor property
+     */
+    appearance?: 'gradient' | 'solid' | 'white'
+    /**
+     * Background property.
+     * `tint1`, `tint2` etc. from `theme.colors.background` are available.
+     */
+    background?: BackgroundColor
+    /**
+     * Elevation of the Pane.
+     * Values: 0, 1, 2, 3, 4.
+     */
+    elevation?: Elevation
+    /**
+     * Elevation of the Pane on hover. Might get deprecated.
+     * Values: 0, 1, 2, 3, 4.
+     */
+    hoverElevation?: Elevation
+    /**
+     * Elevation of the Pane on click. Might get deprecated.
+     * Values: 0, 1, 2, 3, 4.
+     */
+    activeElevation?: Elevation
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, muted, default.
+     */
+    border?: StringAndBooleanType
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
+    borderTop?: StringAndBooleanType
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
+    borderRight?: StringAndBooleanType
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
+    borderBottom?: StringAndBooleanType
+    /**
+     * Can be a explicit border value or a boolean.
+     * Values: true, extraMuted, muted, default.
+     */
+    borderLeft?: StringAndBooleanType
+    /**
+     * Adds an identifier to the bottom of the layer
+     * Defaults to theme color
+     */
+    identifier?: string
+    /**
+     * Sets the position of the identifier.
+     */
+    identifierPosition: 'top' | 'right' | 'bottom' | 'left'
+    /**
+     * Theme provided by ThemeProvider.
+     */
+    theme: ThemeType
+    css: object
+  }
+
+class Pane extends React.PureComponent<PaneProps> {
+  static propTypes = {
     /**
      * Appearance
      * Values: 'gradient', 'solid', 'white'
@@ -94,9 +161,11 @@ class Pane extends PureComponent {
     theme: PropTypes.object.isRequired
   }
 
-  getHoverElevationStyle = (hoverElevation, css) => {
+  getHoverElevationStyle = (hoverElevation: number, css: object): object => {
     const { theme } = this.props
-    if (!Number.isInteger(hoverElevation)) return {}
+    if (!hoverElevation) {
+      return {}
+    }
 
     return {
       transitionDuration: '150ms',
@@ -110,9 +179,11 @@ class Pane extends PureComponent {
     }
   }
 
-  getActiveElevationStyle = (activeElevation, css) => {
+  getActiveElevationStyle = (activeElevation: number, css: object): object => {
     const { theme } = this.props
-    if (!Number.isInteger(activeElevation)) return {}
+    if (!Number.isInteger(activeElevation)) {
+      return {}
+    }
 
     return {
       ':active': {
@@ -123,31 +194,46 @@ class Pane extends PureComponent {
     }
   }
 
-  getBorderSideProperty = ({ borderSideProperty, border }) => {
+  getBorderSideProperty = ({
+    borderSideProperty,
+    border
+  }: {
+    borderSideProperty: StringAndBooleanType
+    border: StringAndBooleanType
+  }) => {
     const { theme } = this.props
     if (
+      borderSideProperty &&
       Object.prototype.hasOwnProperty.call(
         theme.colors.border,
         borderSideProperty
-      )
+      ) &&
+      typeof borderSideProperty !== 'boolean'
     ) {
       return `1px solid ${theme.colors.border[borderSideProperty]}`
-    } else if (borderSideProperty === true) {
+    }
+
+    if (borderSideProperty === true) {
       return `1px solid ${theme.colors.border.default}`
-    } else if (borderSideProperty === false) {
-      return null
-    } else if (
-      Object.prototype.hasOwnProperty.call(theme.colors.border, border)
+    }
+    if (borderSideProperty === false) {
+      return
+    }
+    if (
+      border &&
+      Object.prototype.hasOwnProperty.call(theme.colors.border, border) &&
+      typeof border !== 'boolean'
     ) {
       return `1px solid ${theme.colors.border[border]}`
-    } else if (border === true) {
+    }
+    if (typeof border === 'boolean' && border === true) {
       return `1px solid ${theme.colors.border.default}`
     }
 
     return borderSideProperty
   }
 
-  getIdentifierStyle = (color, css) => {
+  getIdentifierStyle = (color: string, css: object): object => {
     const { theme, identifierPosition = 'bottom' } = this.props
 
     if (theme.isThemeColor(color)) {
@@ -208,12 +294,13 @@ class Pane extends PureComponent {
           console.warn(
             'Expected identifier value of one of [top, right, bottom, left] but got undefined'
           )
-          break
+          return {}
       }
     }
+    return {}
   }
 
-  getBackgroundAppearance = (appearance, background) => {
+  getBackgroundAppearance = (appearance: string, background: string) => {
     const { theme } = this.props
     switch (appearance) {
       case 'gradient':
@@ -229,6 +316,9 @@ class Pane extends PureComponent {
 
   getElevationColor = () => {
     const { theme, appearance, background } = this.props
+    if (!appearance) {
+      return background
+    }
     if (['gradient', 'solid'].includes(appearance)) {
       return theme.themeColor
     }
@@ -262,13 +352,17 @@ class Pane extends PureComponent {
       elevation,
       this.getElevationColor()
     )
-    const hoverElevationStyle = this.getHoverElevationStyle(hoverElevation, css)
-    const activeElevationStyle = this.getActiveElevationStyle(
-      activeElevation,
-      css
-    )
-    const identifierStyle = this.getIdentifierStyle(identifier, css)
+    const hoverElevationStyle = hoverElevation
+      ? this.getHoverElevationStyle(hoverElevation, css)
+      : {}
+    const activeElevationStyle = activeElevation
+      ? this.getActiveElevationStyle(activeElevation, css)
+      : {}
+    const identifierStyle = identifier
+      ? this.getIdentifierStyle(identifier, css)
+      : {}
 
+    // tslint:disable-next-line variable-name
     const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
       borderTop,
       borderRight,
@@ -279,8 +373,8 @@ class Pane extends PureComponent {
     )
 
     const themedBackground = this.getBackgroundAppearance(
-      appearance,
-      background
+      appearance || '',
+      background || ''
     )
 
     return (
@@ -307,4 +401,4 @@ class Pane extends PureComponent {
   }
 }
 
-export default withTheme(Pane)
+export default withTheme(Pane as any)

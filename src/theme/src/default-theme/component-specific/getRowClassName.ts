@@ -1,4 +1,4 @@
-import tinycolor from 'tinycolor2'
+import * as tinycolor from 'tinycolor2'
 import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'

@@ -18,7 +18,7 @@ const getTrimStyle = (intent: string) => ({
 /**
  * Get the themed props for the Alert component.
  */
-interface AlertProps {
+export interface AlertProps {
   appearance: 'card' | 'default'
   intent: IntentType
   hasTrim: boolean

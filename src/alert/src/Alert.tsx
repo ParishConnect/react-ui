@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
 import {
   spacing,
   dimensions,
@@ -7,13 +7,27 @@ import {
   layout
 } from '@hennessyevan/aluminum-box'
 import { withTheme } from '../../theme'
-import { Pane } from '../../layers'
+import { Pane, PaneProps } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
 import { getTextColorForIntent } from '../../theme/src/default-theme/helpers'
+import { ThemeType } from '../../constants/src/Theme'
+import { IntentType } from '../../constants'
 
-class Alert extends PureComponent {
+export type AlertProps = PaneProps & {
+  theme: ThemeType
+  action: { title: string; action: Function }
+  title: React.ReactNode
+  intent: IntentType
+  hasTrim: boolean
+  hasIcon: boolean
+  appearance: 'default' | 'card'
+  isRemoveable: boolean
+  onRemove: Function
+}
+
+class Alert extends React.PureComponent<AlertProps> {
   static propTypes = {
     /**
      * Composes some Box APIs.
@@ -199,4 +213,4 @@ class Alert extends PureComponent {
   }
 }
 
-export default withTheme(Alert)
+export default withTheme(Alert as any)

@@ -41,11 +41,19 @@ const checkedStyles = {
   }
 }
 
-/**
- * @param {object} items - object with a set of items.
- * @return {object} the final appearance.
- */
-const createCheckboxAppearance = (items = {}) => {
+export interface CheckboxAppearance {
+  base: object
+  disabled: object
+  hover: object
+  active: object
+  focus: object
+  checked: object
+  checkedDisabled: object
+  checkedActive: object
+  checkedHover: object
+}
+
+const createCheckboxAppearance = (items: CheckboxAppearance): object => {
   missingStateWarning({
     items,
     props: [
@@ -59,7 +67,7 @@ const createCheckboxAppearance = (items = {}) => {
       'checkedHover',
       'checkedActive'
     ],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createCheckboxAppearance() is missing a ${prop} state in items: `,
         items

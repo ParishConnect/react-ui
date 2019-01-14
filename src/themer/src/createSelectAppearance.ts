@@ -23,15 +23,20 @@ const hoverState = '&:not([disabled]):hover'
 const focusState = '&:not([disabled]):focus'
 const activeState = '&:not([disabled]):active'
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createSelectAppearance = (items = {}) => {
+export interface SelectAppearance {
+  base: object
+  disabled: object
+  invalid: object
+  hover: object
+  active: object
+  focus: object
+}
+
+const createSelectAppearance = (items: SelectAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'disabled', 'invalid', 'hover', 'active', 'focus'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createSelectAppearance() is missing a ${prop} item `,
         items

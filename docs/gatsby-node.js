@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
 
-exports.onCreateWebpackConfig = ({actions}) => {
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     module: {
       rules: [
@@ -23,7 +23,7 @@ exports.onCreateWebpackConfig = ({actions}) => {
       // Force Gatsby to look for dependencies within the local node_modules from docs.
       modules: [path.join(__dirname, 'node_modules')],
       alias: {
-        '@hennessyevan/aluminum-ui': path.resolve(__dirname, '../src/index.js'),
+        '@hennessyevan/aluminum-ui': path.resolve(__dirname, '../src/index.ts'),
         components: path.resolve(__dirname, './src/components')
       }
     }

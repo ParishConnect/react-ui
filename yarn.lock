@@ -1011,9 +1011,9 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@hennessyevan/aluminum-box@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@hennessyevan/aluminum-box/-/aluminum-box-2.0.0.tgz#8a4d6e8898a20b919d14e1b4e7027635a41aba0c"
+"@hennessyevan/aluminum-box@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@hennessyevan/aluminum-box/-/aluminum-box-2.0.1.tgz#bbce98be441b109788b844e33c19acea3e09f31f"
   dependencies:
     glamor "^2.20.0"
     inline-style-prefixer "^5.0.1"
@@ -10970,6 +10970,10 @@ util@0.10.3, util@^0.10.3:
 utila@^0.4.0, utila@~0.4:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/utila/-/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
+
+utility-types@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.2.1.tgz#2b0e3086cf347f9d8f8a6dee11a14ee61f70a193"
 
 utils-merge@1.0.1:
   version "1.0.1"

@@ -12,15 +12,19 @@ const placeholder = '&::placeholder'
 const focusState = '&:focus'
 const disabledState = '&:disabled'
 
-/**
- * @param {object} items - object with a set of states.
- * @return {object} the final appearance.
- */
-const createInputAppearance = (items = {}) => {
+export interface InputAppearance {
+  base: object
+  invalid: object
+  placeholder: object
+  focus: object
+  disabled: object
+}
+
+const createInputAppearance = (items: InputAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],
-    cb: prop => {
+    cb: (prop: string) => {
       console.error(
         `Themer.createCheckboxAppearance() is missing a ${prop} item `,
         items

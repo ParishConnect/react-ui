@@ -21,11 +21,7 @@ const whitelist = [
   'cursor'
 ]
 
-/**
- * @param {object?} obj - input object that will be filtered against the whitelist.
- * @return {object} the result will always be a object
- */
-function createAppearance(obj = {}) {
+function createAppearance(obj = {}): object {
   const result = {}
 
   Object.keys(obj).forEach(key => {
