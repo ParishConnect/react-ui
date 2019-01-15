@@ -3,7 +3,7 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import { scales, colors, palette } from '../foundational-styles/'
 
-const defaultAppearance = (appearance: string): string => {
+const defaultAppearance = (appearance: string): object => {
   return Themer.createTabAppearance({
     base: {
       borderRadius: 5
@@ -31,7 +31,7 @@ const defaultAppearance = (appearance: string): string => {
 /**
  * Get the appearance of a `Tab`.
  */
-const getTabAppearance = (appearance: string): string =>
+const getTabAppearance = (appearance: string): object =>
   defaultAppearance(appearance)
 
 /**

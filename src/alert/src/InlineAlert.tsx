@@ -12,14 +12,14 @@ import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { ThemeType, IntentType } from '../../constants/'
 
-type InlineAlertProps = PaneProps & {
-  theme: ThemeType
-  intent?: IntentType
+export interface InlineAlertProps {
+  intent: IntentType
   hasIcon?: boolean
   size?: number
+  theme: ThemeType
 }
 
-class InlineAlert extends React.PureComponent<InlineAlertProps> {
+class InlineAlert extends React.PureComponent<PaneProps & InlineAlertProps> {
   static propTypes = {
     /**
      * Composes some Box APIs.
@@ -87,4 +87,4 @@ class InlineAlert extends React.PureComponent<InlineAlertProps> {
   }
 }
 
-export default withTheme(InlineAlert as any)
+export default withTheme(InlineAlert)

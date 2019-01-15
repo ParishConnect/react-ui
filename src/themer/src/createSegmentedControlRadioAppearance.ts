@@ -25,8 +25,8 @@ export interface SegementedControlRadioAppearance {
   hover: object
   disabled: object
   active: {
-    label: string
-    [key: string]: string
+    labelColor?: object
+    [key: string]: any
   }
   focus: object
 }

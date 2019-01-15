@@ -1,168 +1,78 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import Box, { BoxType } from '@hennessyevan/aluminum-box'
-import { withTheme } from '../../theme'
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { BackgroundColor, Elevation, ThemeType } from '../../constants'
-import { WithThemeProps } from '../../theme/src/withTheme'
-
-const StringAndBoolPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.bool
-])
+import ThemeContext from '../../theme/src/ThemeContext'
 
 type StringAndBooleanType = string | boolean | undefined
 
-export declare type PaneProps = BoxType &
-  WithThemeProps & {
-    /**
-     * Values: 'gradient', 'solid', 'white'
-     * --- Uses themeColor property
-     */
-    appearance?: 'gradient' | 'solid' | 'white'
-    /**
-     * Background property.
-     * `tint1`, `tint2` etc. from `theme.colors.background` are available.
-     */
-    background?: BackgroundColor
-    /**
-     * Elevation of the Pane.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    elevation?: Elevation
-    /**
-     * Elevation of the Pane on hover. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    hoverElevation?: Elevation
-    /**
-     * Elevation of the Pane on click. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    activeElevation?: Elevation
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, muted, default.
-     */
-    border?: StringAndBooleanType
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderTop?: StringAndBooleanType
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderRight?: StringAndBooleanType
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderBottom?: StringAndBooleanType
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderLeft?: StringAndBooleanType
-    /**
-     * Adds an identifier to the bottom of the layer
-     * Defaults to theme color
-     */
-    identifier?: string
-    /**
-     * Sets the position of the identifier.
-     */
-    identifierPosition: 'top' | 'right' | 'bottom' | 'left'
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: ThemeType
-    css: object
-  }
+export declare type PaneProps = BoxProps & {
+  /**
+   * Values: 'gradient', 'solid', 'white'
+   * --- Uses themeColor property
+   */
+  appearance?: 'gradient' | 'solid' | 'white'
+  /**
+   * Background property.
+   * `tint1`, `tint2` etc. from `theme.colors.background` are available.
+   */
+  background?: BackgroundColor
+  /**
+   * Elevation of the Pane.
+   * Values: 0, 1, 2, 3, 4.
+   */
+  elevation?: Elevation
+  /**
+   * Elevation of the Pane on hover. Might get deprecated.
+   * Values: 0, 1, 2, 3, 4.
+   */
+  hoverElevation?: Elevation
+  /**
+   * Elevation of the Pane on click. Might get deprecated.
+   * Values: 0, 1, 2, 3, 4.
+   */
+  activeElevation?: Elevation
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, muted, default.
+   */
+  border?: StringAndBooleanType
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderTop?: StringAndBooleanType
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderRight?: StringAndBooleanType
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderBottom?: StringAndBooleanType
+  /**
+   * Can be a explicit border value or a boolean.
+   * Values: true, extraMuted, muted, default.
+   */
+  borderLeft?: StringAndBooleanType
+  /**
+   * Adds an identifier to the bottom of the layer
+   * Defaults to theme color
+   */
+  identifier?: string
+  /**
+   * Sets the position of the identifier.
+   */
+  identifierPosition?: 'top' | 'right' | 'bottom' | 'left'
+  css?: object
+}
 
 class Pane extends React.PureComponent<PaneProps> {
-  static propTypes = {
-    /**
-     * Appearance
-     * Values: 'gradient', 'solid', 'white'
-     * --- Uses themeColor property
-     */
-    appearance: PropTypes.string,
-
-    /**
-     * Background property.
-     * `tint1`, `tint2` etc. from `theme.colors.background` are available.
-     */
-    background: PropTypes.string,
-
-    /**
-     * Elevation of the Pane.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    elevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
-
-    /**
-     * Elevation of the Pane on hover. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    hoverElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
-
-    /**
-     * Elevation of the Pane on click. Might get deprecated.
-     * Values: 0, 1, 2, 3, 4.
-     */
-    activeElevation: PropTypes.oneOf([0, 1, 2, 3, 4]),
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, muted, default.
-     */
-    border: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderTop: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderRight: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderBottom: StringAndBoolPropType,
-
-    /**
-     * Can be a explicit border value or a boolean.
-     * Values: true, extraMuted, muted, default.
-     */
-    borderLeft: StringAndBoolPropType,
-
-    /**
-     * Adds an identifier to the bottom of the layer
-     * Defaults to theme color
-     */
-    identifier: StringAndBoolPropType,
-
-    /**
-     * Sets the position of the identifier.
-     * Values:
-     */
-    identifierPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
+  public static contextType = ThemeContext
 
   getHoverElevationStyle = (hoverElevation: number, css: object): object => {
-    const { theme } = this.props
+    const { theme } = this.context
     if (!hoverElevation) {
       return {}
     }
@@ -180,7 +90,7 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 
   getActiveElevationStyle = (activeElevation: number, css: object): object => {
-    const { theme } = this.props
+    const { theme } = this.context
     if (!Number.isInteger(activeElevation)) {
       return {}
     }
@@ -201,7 +111,7 @@ class Pane extends React.PureComponent<PaneProps> {
     borderSideProperty: StringAndBooleanType
     border: StringAndBooleanType
   }) => {
-    const { theme } = this.props
+    const { theme } = this.context
     if (
       borderSideProperty &&
       Object.prototype.hasOwnProperty.call(
@@ -234,7 +144,8 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 
   getIdentifierStyle = (color: string, css: object): object => {
-    const { theme, identifierPosition = 'bottom' } = this.props
+    const { identifierPosition = 'bottom' } = this.props
+    const { theme } = this.context
 
     if (theme.isThemeColor(color)) {
       switch (identifierPosition) {
@@ -301,7 +212,7 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 
   getBackgroundAppearance = (appearance: string, background: string) => {
-    const { theme } = this.props
+    const { theme } = this.context
     switch (appearance) {
       case 'gradient':
         return theme.colors.background[theme.themeColor]
@@ -315,7 +226,8 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 
   getElevationColor = () => {
-    const { theme, appearance, background } = this.props
+    const { appearance, background } = this.props
+    const { theme } = this.context
     if (!appearance) {
       return background
     }
@@ -327,8 +239,6 @@ class Pane extends React.PureComponent<PaneProps> {
 
   render() {
     const {
-      theme,
-
       appearance,
       background,
 
@@ -347,6 +257,7 @@ class Pane extends React.PureComponent<PaneProps> {
       css = {},
       ...props
     } = this.props
+    const { theme } = this.context
 
     const elevationStyle = theme.getElevation(
       elevation,
@@ -401,4 +312,4 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 }
 
-export default withTheme(Pane as any)
+export default Pane

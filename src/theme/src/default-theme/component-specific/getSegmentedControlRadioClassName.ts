@@ -3,7 +3,7 @@ import memoizeClassName from '../utils/memoizeClassName'
 import { defaultControlStyles } from '../shared'
 import { elevations, scales, palette } from '../foundational-styles'
 
-const defaultAppearance = (appearance: string): string => {
+const defaultAppearance = (appearance: string): object => {
   return Themer.createSegmentedControlRadioAppearance({
     base: {
       backgroundColor: scales.neutral.N5,
@@ -15,7 +15,7 @@ const defaultAppearance = (appearance: string): string => {
       color: scales.neutral.N8
     },
     active: {
-      borderRadius: 9999,
+      borderRadius: '9999px',
       backgroundColor: scales.neutral.N1,
       boxShadow: elevations.neutral[2],
       labelColor: palette[appearance]
@@ -29,7 +29,7 @@ const defaultAppearance = (appearance: string): string => {
 /**
  * Get the appearanece of a `SegmentedControlRadio`.
  */
-const getSegmentedControlRadioAppearance = (appearance: string): string => {
+const getSegmentedControlRadioAppearance = (appearance: string): object => {
   return defaultAppearance(appearance)
 }
 
