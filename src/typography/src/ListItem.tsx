@@ -3,21 +3,23 @@ import { Icon } from '../../icon'
 import Text from './Text'
 import { PaneProps } from '../../layers'
 
-export declare interface ListItemProps {
+export declare interface ListItemProps extends PaneProps {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
    */
   icon?: string
+  size?: 300 | 400 | 500 | 600
   /**
    * The color of the icon.
    */
   iconColor?: string
 }
 
-export default class ListItem extends React.PureComponent<
-  PaneProps & ListItemProps
-> {
+export default class ListItem extends React.PureComponent<ListItemProps> {
+  public static defaultProps = {
+    size: 400
+  }
   render() {
     const { children, size, icon, iconColor, ...props } = this.props
 

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import debounce from 'lodash.debounce'
+import { debounce } from 'lodash'
 import { Positioner } from '../../positioner'
 import { Position } from '../../constants'
 import TooltipStateless from './TooltipStateless'

@@ -1,18 +1,14 @@
 import React, { PureComponent } from 'react'
 import cx from 'classnames'
-import { withTheme } from '../../theme'
 import Text, { TextProps } from './Text'
-import { ThemeType } from '../../constants'
+import { ThemeContext } from '../../theme'
+import { Omit } from 'utility-types'
 
-export type CodeProps = TextProps & {
+export interface CodeProps extends Omit<TextProps, 'appearance'> {
   /**
    * The appearance of the code.
    */
   appearance: 'default' | 'minimal'
-  /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: ThemeType
   /**
    * Class name passed to the button.
    * Only use if you know what you are doing.
@@ -21,8 +17,13 @@ export type CodeProps = TextProps & {
 }
 
 class Code extends PureComponent<CodeProps> {
+  public static contextType = ThemeContext
+  public static defaultProps = {
+    appearance: 'default'
+  }
   render() {
-    const { theme, className, appearance = 'default', ...props } = this.props
+    const { className, appearance, ...props } = this.props
+    const theme = this.context
 
     const {
       className: themedClassName = '',
@@ -41,4 +42,4 @@ class Code extends PureComponent<CodeProps> {
   }
 }
 
-export default withTheme(Code)
+export default Code

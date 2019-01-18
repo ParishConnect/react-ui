@@ -1,18 +1,18 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import { withTheme } from '../../theme'
+import { Omit } from 'utility-types'
 import { Pane, PaneProps } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
 import { Icon } from '../../icon'
 import { getTextColorForIntent } from '../../theme/src/default-theme/helpers'
 import { IntentType } from '../../constants'
+import { ThemeContext } from '../../theme'
 
-export type AlertProps = PaneProps & {
+export interface AlertProps extends Omit<PaneProps, 'apperance'> {
   /**
    * The action attached to the alert. Passed as a function (optional)
    */
-  action: { title: string; action: Function }
+  action?: { title: string; action: Function }
   /**
    * The title of the alert.
    */
@@ -20,31 +20,32 @@ export type AlertProps = PaneProps & {
   /**
    * The intent of the alert.
    */
-  intent: IntentType
+  intent?: IntentType
   /**
    * When true, show a border on the left matching the type.
    */
-  hasTrim: boolean
+  hasTrim?: boolean
   /**
    * When true, show a icon on the left matching the type,
    */
-  hasIcon: boolean
+  hasIcon?: boolean
   /**
    * The appearance of the alert.
    */
-  appearance: 'default' | 'card'
+  appearance?: 'default' | 'card'
   /**
    * When true, show a remove icon button.
    */
-  isRemoveable: boolean
+  isRemoveable?: boolean
   /**
    * Function called when the remove button is clicked.
    */
-  onRemove: Function
+  onRemove?: Function
 }
 
 class Alert extends React.PureComponent<AlertProps> {
-  static defaultProps = {
+  public static contextType = ThemeContext
+  public static defaultProps = {
     intent: 'none',
     hasTrim: true,
     hasIcon: true,
@@ -53,15 +54,13 @@ class Alert extends React.PureComponent<AlertProps> {
   }
 
   getIconForIntent = (intent: string) => {
-    const { theme } = this.props
+    const theme = this.context
 
     return <Icon size={14} {...theme.getIconForIntent(intent)} />
   }
 
   render() {
     const {
-      theme,
-
       action,
       title,
       intent,
@@ -73,6 +72,7 @@ class Alert extends React.PureComponent<AlertProps> {
       onRemove,
       ...props
     } = this.props
+    const theme = this.context
 
     /**
      * Note that Alert return a className and additional properties.
@@ -165,4 +165,4 @@ class Alert extends React.PureComponent<AlertProps> {
   }
 }
 
-export default withTheme(Alert as any)
+export default Alert

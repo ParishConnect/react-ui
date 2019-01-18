@@ -1,30 +1,31 @@
 import * as React from 'react'
+import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { withTheme } from '../../theme'
+import { ThemeContext } from '../../theme'
 
-export type TextProps = BoxProps & {
+export interface TextProps extends Omit<BoxProps, 'apperance'> {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500, 600.
    */
-  size: 300 | 400 | 500 | 600 | 700 | 800
+  size?: 300 | 400 | 500 | 600 | 700 | 800
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
-  fontFamily: 'ui' | 'display' | 'mono' | string
+  fontFamily?: 'ui' | 'display' | 'mono' | string
 }
 
 class Text extends React.PureComponent<TextProps> {
+  public static contextType = ThemeContext
+  public static defaultProps = {
+    size: 400,
+    color: 'default',
+    fontFamily: 'ui'
+  }
   render() {
-    const {
-      theme,
-      size = 400,
-      color = 'default',
-      fontFamily = 'ui',
-      marginTop,
-      ...props
-    } = this.props
+    const { size, color, fontFamily, marginTop, ...props } = this.props
+    const theme = this.context
 
     const { marginTop: defaultMarginTop, ...textStyle } = theme.getTextStyle(
       size
@@ -46,4 +47,4 @@ class Text extends React.PureComponent<TextProps> {
   }
 }
 
-export default withTheme(Text)
+export default Text

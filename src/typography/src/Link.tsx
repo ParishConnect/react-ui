@@ -1,8 +1,6 @@
 import * as React from 'react'
 import cx from 'classnames'
-import { withTheme } from '../../theme'
 import Text, { TextProps } from './Text'
-import { ThemeType } from '../../constants'
 
 export declare interface LinkProps {
   /**
@@ -27,10 +25,6 @@ export declare interface LinkProps {
    */
   color?: string
   /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: ThemeType
-  /**
    * Class name passed to the link.
    * Only use if you know what you are doing.
    */
@@ -43,7 +37,8 @@ class Link extends React.PureComponent<TextProps & LinkProps> {
   }
 
   render() {
-    const { theme, className, color, noUnderline, ...props } = this.props
+    const { className, color, noUnderline, ...props } = this.props
+    const theme = this.context
 
     const themedClassName = theme.getLinkClassName(color || theme.themeColor)
 
@@ -52,11 +47,11 @@ class Link extends React.PureComponent<TextProps & LinkProps> {
         is="a"
         className={cx(className, themedClassName)}
         textDecoration={noUnderline ? 'none' : 'underline'}
-        color={null}
+        color={undefined}
         {...props}
       />
     )
   }
 }
 
-export default withTheme(Link)
+export default Link

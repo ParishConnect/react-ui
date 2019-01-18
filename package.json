@@ -2,12 +2,20 @@
   "name": "@hennessyevan/aluminum-ui",
   "version": "0.2.56",
   "description": "React UI Kit fork of evergreen",
-  "contributors": ["Evan Hennessy (https://hennessyevan.com/)"],
-  "keywords": ["aluminum", "ui", "react"],
+  "contributors": [
+    "Evan Hennessy (https://hennessyevan.com/)"
+  ],
+  "keywords": [
+    "aluminum",
+    "ui",
+    "react"
+  ],
   "repository": "hennessyevan/aluminum-ui",
   "license": "MIT",
   "main": "lib/src/index.js",
-  "files": ["lib/src"],
+  "files": [
+    "lib/src"
+  ],
   "sideEffects": false,
   "scripts": {
     "start": "yarn dev",
@@ -23,8 +31,7 @@
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "clean": "git clean -Xdf",
     "release": "np --no-publish",
-    "chromatic":
-      "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
+    "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
     "node": ">=8"
@@ -33,17 +40,14 @@
     "@blueprintjs/icons": "^2.2.1",
     "@hennessyevan/aluminum-box": "^2.0.1",
     "arrify": "^1.0.1",
-    "classnames": "^2.2.5",
-    "dom-helpers": "^3.2.1",
+    "classnames": "^2.2.6",
     "downshift": "^1.16.0",
-    "draft-js": "^0.10.5",
     "emotion": "^9.2.8",
+    "exenv": "^1.2.2",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "is-hotkey": "^0.1.4",
-    "lodash.debounce": "^4.0.8",
-    "lodash.findkey": "^4.6.0",
-    "lodash.mapvalues": "^4.6.0",
+    "lodash": "^4.17.11",
     "no-scroll": "^2.1.1",
     "object-values": "^1.0.0",
     "prop-types": "^15.0.0",
@@ -53,10 +57,6 @@
     "react-scrollbar-size": "^2.0.2",
     "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
-    "slate": "^0.44.6",
-    "slate-html-serializer": "^0.7.32",
-    "slate-plain-serializer": "^0.6.33",
-    "slate-react": "^0.21.12",
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
@@ -77,9 +77,16 @@
     "@storybook/addons": "^3.2.17",
     "@storybook/react": "^4.1.4",
     "@storybook/storybook-deployer": "^2.2.0",
+    "@types/arrify": "^1.0.4",
+    "@types/classnames": "^2.2.7",
+    "@types/exenv": "^1.2.0",
+    "@types/fuzzaldrin-plus": "^0.6.0",
+    "@types/lodash": "^4.14.119",
     "@types/prop-types": "^15.5.8",
     "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
     "@types/react-test-renderer": "^16.0.3",
+    "@types/react-transition-group": "^2.0.15",
     "@types/sinon": "^7.0.3",
     "@types/tinycolor2": "^1.4.1",
     "ava": "^1.0.1",
@@ -87,6 +94,7 @@
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-emotion": "^9.2.8",
+    "babel-plugin-lodash": "^3.3.4",
     "babel-register": "^6.26.0",
     "concurrently": "^4.0.0",
     "enzyme": "^3.4.1",
@@ -100,12 +108,13 @@
     "fs-extra": "^4.0.3",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
+    "lodash-webpack-plugin": "^0.11.5",
     "nyc": "^13.0.1",
     "prettier": "^1.9.1",
-    "react": "^16.4.2",
+    "react": "^16.7.0",
     "react-chromatic": "^0.7.10",
     "react-docgen-typescript-loader": "^3.0.0",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.7.0",
     "react-test-renderer": "^16.4.2",
     "sinon": "^6.1.5",
     "size-limit": "^0.20.0",
@@ -123,8 +132,14 @@
   "xo": {
     "parser": "babel-eslint",
     "extends": "xo-react",
-    "envs": ["node", "browser"],
-    "ignores": ["*.ts", "*.tsx"],
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "ignores": [
+      "*.ts",
+      "*.tsx"
+    ],
     "prettier": true,
     "space": true,
     "semicolon": false,
@@ -151,11 +166,19 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": ["xo --fix", "git add"]
+    "*.js": [
+      "xo --fix",
+      "git add"
+    ]
   },
   "ava": {
-    "files": ["**/test/**/*.tsx?"],
-    "require": ["ts-node/register", "./tools/test-setup"],
+    "files": [
+      "**/test/**/*.tsx?"
+    ],
+    "require": [
+      "ts-node/register",
+      "./tools/test-setup"
+    ],
     "babel": "inherit"
   },
   "size-limit": [

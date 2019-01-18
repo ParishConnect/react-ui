@@ -1,61 +1,28 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import {
-  spacing,
-  dimensions,
-  position,
-  layout
-} from '@hennessyevan/aluminum-box'
-import { withTheme } from '../../theme'
 import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
-import { ThemeType, IntentType } from '../../constants/'
+import { IntentType } from '../../constants/'
+import { ThemeContext } from '../../theme'
 
-export interface InlineAlertProps {
-  intent: IntentType
+export interface InlineAlertProps extends PaneProps {
+  /**
+   * The intent of the alert. This should always be set explicitly.
+   */
+  intent?: IntentType
+  /**
+   * When true, show a icon on the left matching the type.
+   * There is no point not showing this.
+   */
   hasIcon?: boolean
-  size?: number
-  theme: ThemeType
+  /**
+   * The size of the Text.
+   */
+  size?: 300 | 400 | 500 | 600 | 700 | 800
 }
 
-class InlineAlert extends React.PureComponent<PaneProps & InlineAlertProps> {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The content of the alert.
-     */
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-    /**
-     * The intent of the alert. This should always be set explicitly.
-     */
-    intent: PropTypes.oneOf(['none', 'success', 'warning', 'danger'])
-      .isRequired,
-
-    /**
-     * When true, show a icon on the left matching the type.
-     * There is no point not showing this.
-     */
-    hasIcon: PropTypes.bool,
-
-    /**
-     * The size of the Text.
-     */
-    size: PropTypes.number,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
+class InlineAlert extends React.PureComponent<InlineAlertProps> {
+  static contextType = ThemeContext
 
   static defaultProps = {
     intent: 'none',
@@ -63,8 +30,8 @@ class InlineAlert extends React.PureComponent<PaneProps & InlineAlertProps> {
     size: 400
   }
 
-  getIconForIntent = intent => {
-    const { theme } = this.props
+  getIconForIntent = (intent: IntentType = 'none') => {
+    const theme = this.context
 
     return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
   }
@@ -87,4 +54,4 @@ class InlineAlert extends React.PureComponent<PaneProps & InlineAlertProps> {
   }
 }
 
-export default withTheme(InlineAlert)
+export default InlineAlert

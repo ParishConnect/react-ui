@@ -1,11 +1,12 @@
 import * as React from 'react'
+import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { BackgroundColor, Elevation, ThemeType } from '../../constants'
-import ThemeContext from '../../theme/src/ThemeContext'
+import { BackgroundColor, Elevation } from '../../constants'
+import { ThemeContext } from '../../theme'
 
 type StringAndBooleanType = string | boolean | undefined
 
-export declare type PaneProps = BoxProps & {
+export interface PaneProps extends Omit<BoxProps, 'appearance'> {
   /**
    * Values: 'gradient', 'solid', 'white'
    * --- Uses themeColor property
@@ -72,7 +73,7 @@ class Pane extends React.PureComponent<PaneProps> {
   public static contextType = ThemeContext
 
   getHoverElevationStyle = (hoverElevation: number, css: object): object => {
-    const { theme } = this.context
+    const theme = this.context
     if (!hoverElevation) {
       return {}
     }
@@ -90,7 +91,7 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 
   getActiveElevationStyle = (activeElevation: number, css: object): object => {
-    const { theme } = this.context
+    const theme = this.context
     if (!Number.isInteger(activeElevation)) {
       return {}
     }
@@ -111,7 +112,7 @@ class Pane extends React.PureComponent<PaneProps> {
     borderSideProperty: StringAndBooleanType
     border: StringAndBooleanType
   }) => {
-    const { theme } = this.context
+    const theme = this.context
     if (
       borderSideProperty &&
       Object.prototype.hasOwnProperty.call(
@@ -145,7 +146,7 @@ class Pane extends React.PureComponent<PaneProps> {
 
   getIdentifierStyle = (color: string, css: object): object => {
     const { identifierPosition = 'bottom' } = this.props
-    const { theme } = this.context
+    const theme = this.context
 
     if (theme.isThemeColor(color)) {
       switch (identifierPosition) {
@@ -212,7 +213,7 @@ class Pane extends React.PureComponent<PaneProps> {
   }
 
   getBackgroundAppearance = (appearance: string, background: string) => {
-    const { theme } = this.context
+    const theme = this.context
     switch (appearance) {
       case 'gradient':
         return theme.colors.background[theme.themeColor]
@@ -227,7 +228,7 @@ class Pane extends React.PureComponent<PaneProps> {
 
   getElevationColor = () => {
     const { appearance, background } = this.props
-    const { theme } = this.context
+    const theme = this.context
     if (!appearance) {
       return background
     }
@@ -257,7 +258,7 @@ class Pane extends React.PureComponent<PaneProps> {
       css = {},
       ...props
     } = this.props
-    const { theme } = this.context
+    const theme = this.context
 
     const elevationStyle = theme.getElevation(
       elevation,

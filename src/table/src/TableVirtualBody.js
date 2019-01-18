@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import VirtualList from 'react-tiny-virtual-list'
-import debounce from 'lodash.debounce'
+import { debounce } from 'lodash'
 import { Pane } from '../../layers'
 
 export default class TableVirtualBody extends PureComponent {

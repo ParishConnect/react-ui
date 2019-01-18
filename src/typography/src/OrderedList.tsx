@@ -1,14 +1,12 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 
-export declare interface OrderedListProps {
+export declare interface OrderedListProps extends BoxProps {
   size: 300 | 400 | 500 | 600
 }
 
-export default class OrderedList extends React.PureComponent<
-  BoxProps & OrderedListProps
-> {
-  static defaultProps = {
+export default class OrderedList extends React.PureComponent<OrderedListProps> {
+  public static defaultProps = {
     size: 400
   }
 

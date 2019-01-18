@@ -1,9 +1,8 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { withTheme } from '../../theme'
-import { ThemeType } from '../../constants'
+import { ThemeContext } from '../../theme'
 
-export declare interface HeadingProps {
+export declare interface HeadingProps extends BoxProps {
   /**
    * The size of the heading.
    */
@@ -16,19 +15,16 @@ export declare interface HeadingProps {
    * Pass `default` to use the default margin top for that size.
    */
   marginTop?: boolean | number | string
-  /**
-   * Theme provided by ThemeProvider.
-   */
-  theme: ThemeType
 }
 
-class Heading extends React.PureComponent<BoxProps & HeadingProps> {
-  static defaultProps = {
+class Heading extends React.PureComponent<HeadingProps> {
+  static contextType = ThemeContext
+  public static defaultProps = {
     size: 500
   }
 
   getColor(color: string | undefined) {
-    const { theme } = this.props
+    const theme = this.context
     if (color === 'theme') {
       return theme.palette[theme.themeColor].base
     }
@@ -36,7 +32,9 @@ class Heading extends React.PureComponent<BoxProps & HeadingProps> {
   }
 
   render() {
-    const { theme, color, marginTop, size, ...props } = this.props
+    const { color, marginTop, size, ...props } = this.props
+    const theme = this.context
+
     const {
       marginTop: defaultMarginTop,
       ...headingStyle
@@ -60,4 +58,4 @@ class Heading extends React.PureComponent<BoxProps & HeadingProps> {
   }
 }
 
-export default withTheme(Heading)
+export default Heading

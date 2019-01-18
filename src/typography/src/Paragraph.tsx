@@ -1,32 +1,30 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { withTheme } from '../../theme'
-import { ThemeType } from '../../constants'
+import { ThemeContext } from '../../theme'
 
-export declare type ParagraphProps = BoxProps & {
+export interface ParagraphProps extends BoxProps {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500.
    */
-  size: 300 | 400 | 500
+  size?: 300 | 400 | 500
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
-  fontFamily: 'ui' | 'display' | 'mono' | string
-  theme: ThemeType
+  fontFamily?: 'ui' | 'display' | 'mono' | string
 }
 
 class Paragraph extends React.PureComponent<ParagraphProps> {
+  public static contextType = ThemeContext
+  public static defaultProps = {
+    size: 400,
+    color: 'default',
+    fontFamily: 'ui'
+  }
   render() {
-    const {
-      theme,
-      size = 400,
-      color = 'default',
-      fontFamily = 'ui',
-      marginTop,
-      ...props
-    } = this.props
+    const { size, color, fontFamily, marginTop, ...props } = this.props
+    const theme = this.context
 
     const {
       marginTop: defaultMarginTop,
@@ -50,4 +48,4 @@ class Paragraph extends React.PureComponent<ParagraphProps> {
   }
 }
 
-export default withTheme(Paragraph)
+export default Paragraph
