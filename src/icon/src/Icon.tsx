@@ -34,7 +34,7 @@ export interface IconProps extends BoxProps {
    * Blueprint contains 16px and 20px SVG icon images,
    * and chooses the appropriate resolution based on this prop.
    */
-  size: number
+  size?: number
   /**
    * Description string.
    * Browsers usually render this as a tooltip on hover, whereas screen
@@ -45,7 +45,7 @@ export interface IconProps extends BoxProps {
   /**
    * CSS style properties.
    */
-  style?: object
+  style?: React.CSSProperties
 }
 
 class Icon extends React.PureComponent<IconProps> {
@@ -93,7 +93,7 @@ class Icon extends React.PureComponent<IconProps> {
 
     // Choose which pixel grid is most appropriate for given icon size
     const pixelGridSize =
-      size >= Icon.SIZE_LARGE ? Icon.SIZE_LARGE : Icon.SIZE_STANDARD
+      size && size >= Icon.SIZE_LARGE ? Icon.SIZE_LARGE : Icon.SIZE_STANDARD
     const paths = this.renderSvgPaths(pixelGridSize, icon)
     if (paths === null) {
       return null

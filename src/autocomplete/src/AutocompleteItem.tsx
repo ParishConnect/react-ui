@@ -2,7 +2,7 @@ import * as React from 'react'
 import Option, { OptionProps } from '../../select-menu/src/Option'
 
 export interface AutocompleteItemProps extends OptionProps {
-  style?: object
+  style?: React.CSSProperties
   isSelected?: boolean
   isHighlighted?: boolean
 }

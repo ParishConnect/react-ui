@@ -1,23 +1,10 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import { Strong } from '../../typography'
-import { withTheme } from '../../theme'
+import { ThemeContext } from '../../theme'
+import { TextProps } from '../../typography/src/Text'
 
-class Badge extends PureComponent {
-  static propTypes = {
-    ...Strong.propTypes,
-
-    /**
-     * The color used for the badge.
-     * When the value is `automatic`, use the hash function to determine the color.
-     */
-    color: PropTypes.string.isRequired,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
+class Badge extends React.PureComponent<TextProps> {
+  public static contextType = ThemeContext
 
   static defaultProps = { color: 'neutral', isSolid: false }
 
@@ -36,7 +23,8 @@ class Badge extends PureComponent {
   }
 
   render() {
-    const { theme, color: propsColor, isSolid, ...props } = this.props
+    const { color: propsColor, isSolid, ...props } = this.props
+    const theme = this.context
 
     const { color, backgroundColor } = theme.getBadgeProps({
       isSolid,
@@ -55,4 +43,4 @@ class Badge extends PureComponent {
   }
 }
 
-export default withTheme(Badge)
+export default Badge

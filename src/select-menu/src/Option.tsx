@@ -6,14 +6,14 @@ import { TableRowProps } from '../../table/src/TableRow'
 
 export interface OptionProps extends TableRowProps {
   label?: string | React.ReactNode
-  style?: any
+  style?: React.CSSProperties
   height?: number
   isHighlighted?: boolean
   isSelected?: boolean
   isSelectable?: boolean
   disabled?: boolean
-  onSelect?(): void
-  onDeselect?(): void
+  onSelect(): void
+  onDeselect(): void
 }
 
 export default class Option extends React.PureComponent<OptionProps> {

@@ -142,10 +142,12 @@ export default class SelectMenu extends React.PureComponent<SelectMenuProps> {
             isMultiSelect={isMultiSelect}
             listProps={{
               onSelect: item => {
-                this.props.onSelect(item)
+                const { onSelect = noop } = this.props
+                onSelect(item)
               },
               onDeselect: item => {
-                this.props.onDeselect(item)
+                const { onDeselect = noop } = this.props
+                onDeselect(item)
               },
               onFilterChange: this.props.onFilterChange,
               selected: arrify(selected)

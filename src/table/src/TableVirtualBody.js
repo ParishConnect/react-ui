@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import VirtualList from 'react-tiny-virtual-list'
+import VirtualList from '@hennessyevan/react-tiny-virtual-list'
 import { debounce } from 'lodash'
 import { Pane } from '../../layers'
 

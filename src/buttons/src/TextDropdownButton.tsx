@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import { Text } from '../../typography'
 import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IconButtonProps } from './IconButton'
 
-class TextDropdownButton extends PureComponent<IconButtonProps> {
+class TextDropdownButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext
   static defaultProps = {
     isActive: false,

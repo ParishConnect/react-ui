@@ -53,7 +53,7 @@ class Alert extends React.PureComponent<AlertProps> {
     appearance: 'default'
   }
 
-  getIconForIntent = (intent: string) => {
+  getIconForIntent = (intent: IntentType): React.ReactChild => {
     const theme = this.context
 
     return <Icon size={14} {...theme.getIconForIntent(intent)} />
@@ -63,12 +63,12 @@ class Alert extends React.PureComponent<AlertProps> {
     const {
       action,
       title,
-      intent,
-      hasTrim,
-      hasIcon,
+      intent = 'none',
+      hasTrim = true,
+      hasIcon = true,
       children,
-      appearance,
-      isRemoveable,
+      appearance = 'default',
+      isRemoveable = false,
       onRemove,
       ...props
     } = this.props
@@ -155,7 +155,7 @@ class Alert extends React.PureComponent<AlertProps> {
                 size={100}
                 isUppercase
               >
-                {action.title}
+                {action && action.title!}
               </Heading>
             </Pane>
           )}

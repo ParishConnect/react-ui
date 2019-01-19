@@ -1,11 +1,12 @@
 import * as React from 'react'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import VirtualList from 'react-tiny-virtual-list'
-import { ALIGNMENT } from 'react-tiny-virtual-list/types/constants'
+import VirtualList, {
+  ScrollAlignment
+} from '@hennessyevan/react-tiny-virtual-list'
 import { noop } from 'lodash'
 import { Pane } from '../../layers'
 import { TableHead, SearchTableHeaderCell } from '../../table'
-import OptionShapeType from './OptionShapeType'
+import OptionShapePropType from './OptionShapePropType'
 import Option from './Option'
 
 /**
@@ -14,7 +15,8 @@ import Option from './Option'
  * @param options <Array[String]> - ['label', 'label2', ...]
  * @param input <String>
  */
-const fuzzyFilter = (options, input) => fuzzaldrin.filter(options, input)
+const fuzzyFilter = (options: {}[], input: string) =>
+  fuzzaldrin.filter(options, input)
 
 /**
  * This is the default item renderer of options
@@ -23,7 +25,7 @@ const fuzzyFilter = (options, input) => fuzzaldrin.filter(options, input)
 const itemRenderer = (props: any) => <Option {...props} />
 
 export interface OptionsListProps {
-  options?: OptionShapeType[]
+  options?: OptionShapePropType[]
   height?: number
   width?: number
   /**
@@ -43,7 +45,7 @@ export interface OptionsListProps {
   onSelect?(item: any): any
   onDeselect?(item: any): any
   onFilterChange?(item: any): any
-  close(): void
+  close?(): any
 }
 
 interface OptionsListState {
@@ -75,8 +77,8 @@ export default class OptionsList extends React.PureComponent<
 
   searchRef: HTMLElement
   state: OptionsListState = {
-    searchValue: this.props.defaultSearchValue,
-    selected: this.props.selected
+    searchValue: this.props.defaultSearchValue || '',
+    selected: this.props.selected || []
   }
 
   componentDidMount() {
@@ -87,10 +89,12 @@ export default class OptionsList extends React.PureComponent<
     /**
      * Hacky solution for broken autoFocus
      * https://github.com/segmentio/evergreen/issues/90
+     *
+     * requestAnimationFrame(() => {
+     *   this.searchRef.querySelector('input').focus()
+     * })
+     *
      */
-    requestAnimationFrame(() => {
-      this.searchRef.querySelector('input').focus()
-    })
 
     window.addEventListener('keydown', this.handleKeyDown)
   }
@@ -102,7 +106,7 @@ export default class OptionsList extends React.PureComponent<
   componentDidUpdate(prevProps: OptionsListProps) {
     if (prevProps.selected !== this.props.selected) {
       this.setState({
-        selected: this.props.selected
+        selected: this.props.selected || []
       })
     }
   }
@@ -113,8 +117,8 @@ export default class OptionsList extends React.PureComponent<
     return Boolean(selected.find(selectedItem => selectedItem === item.value))
   }
 
-  search = (options: OptionShapeType[]) => {
-    const { optionsFilter } = this.props
+  search = (options: OptionShapePropType[]) => {
+    const { optionsFilter = fuzzyFilter } = this.props
     const { searchValue } = this.state
 
     return searchValue.trim() === ''
@@ -128,21 +132,23 @@ export default class OptionsList extends React.PureComponent<
   }
 
   getCurrentIndex = () => {
-    const { selected } = this.props
+    const { selected = [] } = this.props
     const options = this.getFilteredOptions()
 
-    return options.findIndex(
-      option => option.value === selected[selected.length - 1]
-    )
+    return options.findIndex(option => {
+      // tslint:disable-next-line:triple-equals
+      if (option == null || option.value == null) return false
+      return option.value === selected[selected.length - 1]
+    })
   }
 
   getFilteredOptions() {
-    const { options } = this.props
+    const { options = [] } = this.props
 
     return this.search(options)
   }
 
-  handleKeyDown = e => {
+  handleKeyDown = (e: KeyboardEvent) => {
     if (e.keyCode === 38) {
       this.handleArrowUp()
     }
@@ -157,7 +163,7 @@ export default class OptionsList extends React.PureComponent<
   }
 
   handleArrowUp = () => {
-    const { onSelect } = this.props
+    const { onSelect = noop } = this.props
     const options = this.getFilteredOptions()
 
     let nextIndex = this.getCurrentIndex() - 1
@@ -170,7 +176,7 @@ export default class OptionsList extends React.PureComponent<
   }
 
   handleArrowDown = () => {
-    const { onSelect } = this.props
+    const { onSelect = noop } = this.props
     const options = this.getFilteredOptions()
 
     let nextIndex = this.getCurrentIndex() + 1
@@ -186,7 +192,8 @@ export default class OptionsList extends React.PureComponent<
     const isSelected = this.getCurrentIndex() !== -1
 
     if (isSelected) {
-      this.props.close()
+      const { close = noop } = this.props
+      close()
     }
   }
 
@@ -194,34 +201,37 @@ export default class OptionsList extends React.PureComponent<
     this.setState({
       searchValue
     })
-    this.props.onFilterChange(searchValue)
+    const { onFilterChange = noop } = this.props
+    onFilterChange(searchValue)
   }
 
-  handleSelect = item => {
-    this.props.onSelect(item)
+  handleSelect = (item: any) => {
+    const { onSelect = noop } = this.props
+    onSelect(item)
   }
 
-  handleDeselect = item => {
-    this.props.onDeselect(item)
+  handleDeselect = (item: any) => {
+    const { onDeselect = noop } = this.props
+    onDeselect(item)
   }
 
-  assignSearchRef = ref => {
+  assignSearchRef = (ref: any) => {
     this.searchRef = ref
   }
 
   render() {
     const {
-      options: originalOptions,
+      options: originalOptions = [],
       width,
       height,
       hasFilter,
-      optionSize,
-      renderItem,
+      optionSize = 33,
+      renderItem = itemRenderer,
       isMultiSelect,
       ...props
     } = this.props
     const options = this.search(originalOptions)
-    const listHeight = height - (hasFilter ? 32 : 0)
+    const listHeight = height! - (hasFilter ? 32 : 0)
     const currentIndex = this.getCurrentIndex()
     const scrollToIndex = currentIndex === -1 ? 0 : currentIndex
 
@@ -250,7 +260,7 @@ export default class OptionsList extends React.PureComponent<
             itemSize={optionSize}
             itemCount={options.length}
             overscanCount={20}
-            scrollToAlignment={ALIGNMENT.AUTO}
+            scrollToAlignment={ScrollAlignment.AUTO}
             {...(scrollToIndex
               ? {
                   scrollToIndex
@@ -259,7 +269,7 @@ export default class OptionsList extends React.PureComponent<
             // tslint:disable:jsx-no-lambda
             // tslint:disable:react-this-binding-issue
             renderItem={({ index, style }) => {
-              const item = options[index]
+              const item = options[index] || { value: '', label: '' }
               const isSelected = this.isSelected(item)
               return renderItem({
                 key: item.value,

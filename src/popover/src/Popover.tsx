@@ -46,19 +46,19 @@ export interface PopoverProps extends PaneProps {
   /**
    * Function called when the Popover opens.
    */
-  onOpen?(): any
+  onOpen?(): () => {}
   /**
    * Function fired when Popover closes.
    */
-  onClose?(): any
+  onClose?(): () => {}
   /**
    * Function that will be called when the enter transition is complete.
    */
-  onOpenComplete?(): any
+  onOpenComplete?(): () => {}
   /**
    * Function that will be called when the exit transition is complete.
    */
-  onCloseComplete?(): any
+  onCloseComplete?(): () => {}
 }
 
 interface PopoverState {
@@ -173,7 +173,7 @@ export default class Popover extends React.Component<
     this.close()
   }
 
-  onEsc = e => {
+  onEsc = (e: KeyboardEvent) => {
     // Esc key
     if (e.keyCode === 27) {
       this.close()
@@ -197,7 +197,8 @@ export default class Popover extends React.Component<
     document.body.addEventListener('click', this.onBodyClick, false)
     document.body.addEventListener('keydown', this.onEsc, false)
 
-    this.props.onOpen()
+    const { onOpen = noop } = this.props
+    onOpen()
   }
 
   close = () => {
@@ -211,16 +212,19 @@ export default class Popover extends React.Component<
 
     this.bringFocusBackToTarget()
 
-    this.props.onClose()
+    const { onClose = noop } = this.props
+    onClose()
   }
 
   handleOpenComplete = () => {
     if (this.props.bringFocusInside) this.bringFocusInside()
-    this.props.onOpenComplete()
+    const { onOpenComplete = noop } = this.props
+    onOpenComplete()
   }
 
   handleCloseComplete = () => {
-    this.props.onCloseComplete()
+    const { onCloseComplete = noop } = this.props
+    onCloseComplete()
   }
 
   handleKeyDown = (e: KeyboardEvent) => {

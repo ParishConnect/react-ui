@@ -48,7 +48,8 @@ class Spinner extends React.PureComponent<SpinnerProps> {
   }
 
   render() {
-    const { theme, size, ...props } = this.props
+    const { size, ...props } = this.props
+    const theme = this.context
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">

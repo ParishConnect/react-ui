@@ -1,10 +1,11 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
+import * as React from 'react'
+import { Omit } from 'utility-types'
+import { noop } from 'lodash'
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { css } from 'glamor'
 import cx from 'classnames'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { ThemeContext } from '../../theme'
 
 const labelClass = css({
   display: 'flex',
@@ -41,79 +42,78 @@ const offscreenCss = css({
   clip: 'rect(0 0 0 0)'
 })
 
-class SegmentedControlRadio extends PureComponent {
-  static propTypes = {
-    /**
-     * The name attribute of the radio input.
-     */
-    name: PropTypes.string.isRequired,
+export interface SegmentedControlRadioProps
+  extends Omit<BoxProps, 'appearance'> {
+  /**
+   * The name attribute of the radio input.
+   */
+  name: string
 
-    /**
-     * The label used for the radio.
-     */
-    label: PropTypes.node.isRequired,
+  /**
+   * The label used for the radio.
+   */
+  label: React.ReactChild
 
-    /**
-     * The value attribute of the radio input.
-     */
-    value: PropTypes.string.isRequired,
+  /**
+   * The value attribute of the radio input.
+   */
+  value: string
 
-    /**
-     * The height of the control.
-     */
-    height: PropTypes.number.isRequired,
+  /**
+   * The height of the control.
+   */
+  height: number
 
-    /**
-     * When true, the radio input is checked.
-     */
-    checked: PropTypes.bool.isRequired,
+  /**
+   * When true, the radio input is checked.
+   */
+  checked: boolean
 
-    /**
-     * Function called when the state changes.
-     */
-    onChange: PropTypes.func.isRequired,
+  /**
+   * The appearance of the control. Currently only `default` is possible.
+   */
+  appearance: string
 
-    /**
-     * The appearance of the control. Currently only `default` is possible.
-     */
-    appearance: PropTypes.string.isRequired,
+  /**
+   * When true, this item is the first item.
+   */
+  isFirstItem?: boolean
 
-    /**
-     * When true, this item is the first item.
-     */
-    isFirstItem: PropTypes.bool,
+  /**
+   * When true, this item is the last item.
+   */
+  isLastItem?: boolean
 
-    /**
-     * When true, this item is the last item.
-     */
-    isLastItem: PropTypes.bool,
+  /**
+   * The unique id of the radio option.
+   */
+  id?: string
 
-    /**
-     * The unique id of the radio option.
-     */
-    id: PropTypes.string,
+  /**
+   * Function called when the state changes.
+   */
+  onChange?(value?: string | number | boolean): any
+}
 
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
+class SegmentedControlRadio extends React.PureComponent<
+  SegmentedControlRadioProps
+> {
+  public static contextType = ThemeContext
 
   render() {
     const {
-      theme,
-
       id,
       name,
       label,
       value,
       height,
       checked,
-      onChange,
+      onChange = noop,
       appearance,
       isFirstItem,
       isLastItem
     } = this.props
+    const theme = this.context
 
     const themedClassName = theme.getSegmentedControlRadioClassName(
       theme.themeColor || appearance
@@ -145,7 +145,9 @@ class SegmentedControlRadio extends PureComponent {
           name={name}
           value={value}
           checked={checked}
-          onChange={e => onChange(e.target.value)}
+          // tslint:disable:jsx-no-lambda
+          // tslint:disable-next-line:react-this-binding-issue
+          onChange={e => onChange(e.target.value!)}
         />
         <Text
           is="label"
@@ -162,4 +164,4 @@ class SegmentedControlRadio extends PureComponent {
   }
 }
 
-export default withTheme(SegmentedControlRadio)
+export default SegmentedControlRadio

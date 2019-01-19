@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { noop } from 'lodash'
 import { IconButton } from '../../buttons'
 import { Pane, PaneProps } from '../../layers'
 import { Heading } from '../../typography'
@@ -6,7 +7,7 @@ import OptionsList, { OptionsListProps } from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
 
 export interface SelectMenuContentProps extends PaneProps {
-  title: string
+  title: string | undefined
   width?: number
   height?: number
   options?: OptionShapePropType[]
@@ -25,7 +26,7 @@ export interface SelectMenuContentProps extends PaneProps {
    * Node that is displayed instead of options list when there are no options.
    */
   emptyView?: React.ReactNode
-  close?(): void
+  close?: any
 }
 
 export default class SelectMenuContent extends React.PureComponent<
@@ -40,11 +41,11 @@ export default class SelectMenuContent extends React.PureComponent<
   render() {
     const {
       width,
-      height,
-      options,
-      hasTitle,
-      hasFilter,
-      close,
+      height = 248,
+      options = [],
+      hasTitle = true,
+      hasFilter = true,
+      close = noop,
       title,
       listProps,
       detailView,
@@ -64,7 +65,7 @@ export default class SelectMenuContent extends React.PureComponent<
           height={height}
           display="flex"
           flexDirection="column"
-          borderRight={hasDetailView ? 'muted' : null}
+          borderRight={hasDetailView ? 'muted' : undefined}
         >
           {hasTitle && (
             <Pane

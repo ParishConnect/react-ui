@@ -12,9 +12,10 @@
   ],
   "repository": "hennessyevan/aluminum-ui",
   "license": "MIT",
-  "main": "lib/src/index.js",
+  "main": "dist/plugin.js",
+  "typings": "dist/index.d.ts",
   "files": [
-    "lib/src"
+    "dist"
   ],
   "sideEffects": false,
   "scripts": {
@@ -22,7 +23,7 @@
     "test": "yarn run tslint && xo && nyc ava",
     "tslint": "tslint -c tslint.json 'src/**/src/*.ts'",
     "prepublishOnly": "rm -rf lib && yarn run build",
-    "dev": "start-storybook -p 6006 -c .storybook",
+    "dev": "start-storybook -p 6006",
     "coverage": "nyc report --reporter=html",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
@@ -39,6 +40,7 @@
   "dependencies": {
     "@blueprintjs/icons": "^2.2.1",
     "@hennessyevan/aluminum-box": "^2.0.1",
+    "@hennessyevan/react-tiny-virtual-list": "^2.2.1",
     "arrify": "^1.0.1",
     "classnames": "^2.2.6",
     "downshift": "^1.16.0",
@@ -55,7 +57,6 @@
     "react-dropzone": "^8.0.1",
     "react-emotion": "^9.2.8",
     "react-scrollbar-size": "^2.0.2",
-    "react-tiny-virtual-list": "^2.1.4",
     "react-transition-group": "^2.2.1",
     "tinycolor2": "^1.4.1"
   },
@@ -69,6 +70,7 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@babel/register": "^7.0.0",
     "@reactions/component": "^2.0.2",
     "@storybook/addon-actions": "^3.2.17",
@@ -127,6 +129,7 @@
     "typescript": "^3.2.2",
     "url-loader": "^0.6.2",
     "utility-types": "^3.2.1",
+    "webpack": "^4.28.4",
     "xo": "^0.23.0"
   },
   "xo": {

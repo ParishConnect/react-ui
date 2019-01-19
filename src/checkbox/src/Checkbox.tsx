@@ -1,15 +1,10 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box, {
-  spacing,
-  position,
-  layout,
-  dimensions
-} from '@hennessyevan/aluminum-box'
+import * as React from 'react'
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import { noop } from 'lodash'
 import { Text } from '../../typography'
-import { withTheme } from '../../theme'
+import { ThemeContext } from '../../theme'
 
-const CheckIcon = ({ fill = 'currentColor', ...props }) => (
+const CheckIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...props}>
     <path
       fill={fill}
@@ -19,11 +14,7 @@ const CheckIcon = ({ fill = 'currentColor', ...props }) => (
   </svg>
 )
 
-CheckIcon.propTypes = {
-  fill: PropTypes.string
-}
-
-const MinusIcon = ({ fill = 'currentColor', ...props }) => (
+const MinusIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
   <svg width={16} height={16} viewBox="0 0 16 16" {...props}>
     <path
       fill={fill}
@@ -33,99 +24,66 @@ const MinusIcon = ({ fill = 'currentColor', ...props }) => (
   </svg>
 )
 
-MinusIcon.propTypes = {
-  fill: PropTypes.string
+export interface CheckboxProps extends BoxProps {
+  /**
+   * The id attribute of the checkbox.
+   */
+  id?: string
+  /**
+   * The id attribute of the radio.
+   */
+  name?: string
+  /**
+   * Label of the checkbox.
+   */
+  label?: string
+  /**
+   * The value attribute of the radio.
+   */
+  value?: string
+  /**
+   * The checked attribute of the radio.
+   */
+  checked?: boolean
+  /**
+   * State in addition to "checked" and "unchecked".
+   * When true, the radio displays a "minus" icon.
+   */
+  indeterminate?: boolean
+
+  /**
+   * When true, the radio is disabled.
+   */
+  disabled?: boolean
+  /**
+   * When true, the aria-invalid attribute is true.
+   * Used for accessibility.
+   */
+  isInvalid?: boolean
+  /**
+   * Function called when state changes.
+   */
+  onChange?(): void
 }
 
-class Checkbox extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
-
-    /**
-     * The id attribute of the checkbox.
-     */
-    id: PropTypes.string,
-
-    /**
-     * The id attribute of the radio.
-     */
-    name: PropTypes.string,
-
-    /**
-     * Label of the checkbox.
-     */
-    label: PropTypes.node,
-
-    /**
-     * The value attribute of the radio.
-     */
-    value: PropTypes.string,
-
-    /**
-     * The checked attribute of the radio.
-     */
-    checked: PropTypes.bool,
-
-    /**
-     * State in addition to "checked" and "unchecked".
-     * When true, the radio displays a "minus" icon.
-     */
-    indeterminate: PropTypes.bool,
-
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * When true, the radio is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * When true, the aria-invalid attribute is true.
-     * Used for accessibility.
-     */
-    isInvalid: PropTypes.bool,
-
-    /**
-     * The appearance of the checkbox.
-     * The default theme only comes with a default style.
-     */
-    appearance: PropTypes.string,
-
-    /**
-     * Theme provided by ThemeProvider.
-     */
-    theme: PropTypes.object.isRequired
-  }
-
+class Checkbox extends React.PureComponent<CheckboxProps> {
+  public static contextType = ThemeContext
   static defaultProps = {
     checked: false,
     indeterminate: false,
-    onChange: () => {},
-    appearance: 'blue'
+    onChange: noop()
   }
 
-  setIndeterminate = el => {
+  setIndeterminate = (el: any) => {
     if (!el) return
     el.indeterminate = this.props.indeterminate
   }
 
   render() {
     const {
-      theme,
-
       id,
       name,
       label,
-      appearance,
       disabled,
       isInvalid,
       checked,
@@ -134,6 +92,7 @@ class Checkbox extends PureComponent {
       indeterminate,
       ...props
     } = this.props
+    const theme = this.context
 
     const themedClassName = theme.getCheckboxClassName(
       theme.themeColor || 'blue'
@@ -186,4 +145,4 @@ class Checkbox extends PureComponent {
   }
 }
 
-export default withTheme(Checkbox)
+export default Checkbox

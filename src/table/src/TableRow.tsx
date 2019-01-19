@@ -39,18 +39,18 @@ export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
    */
   className?: string
   tabIndex?: number
-  style?: object
+  style?: React.CSSProperties
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onSelect?(): void
+  onSelect(): void
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onDeselect?(): void
-  onClick?(e: any): void
-  onKeyPress?(e: any): void
-  innerRef?(ref: any): any
+  onDeselect(): void
+  onClick(e: Event): void
+  onKeyPress(e: any): void
+  innerRef(ref: any): any
   /**
    * Function that passes errors to custom handlers
    */

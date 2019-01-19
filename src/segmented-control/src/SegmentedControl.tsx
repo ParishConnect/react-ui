@@ -1,88 +1,67 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Box, {
-  spacing,
-  position,
-  layout,
-  dimensions
-} from '@hennessyevan/aluminum-box'
+import * as React from 'react'
+import { noop } from 'lodash'
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { scales } from '../../theme/src/default-theme/foundational-styles'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
 let radioCount = 1 // Used for generating unique input names
 
-export default class SegmentedControl extends PureComponent {
-  static propTypes = {
-    /**
-     * Composes some Box APIs.
-     */
-    ...spacing.propTypes,
-    ...position.propTypes,
-    ...layout.propTypes,
-    ...dimensions.propTypes,
+interface ControlOptions {
+  label: React.ReactChild
+  value?: number | string
+}
 
-    /**
-     * The options for the radios of the Segmented Control.
-     */
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.node.isRequired,
-        value: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.string,
-          PropTypes.bool
-        ]).isRequired
-      })
-    ).isRequired,
+export interface SegmentedControlProps extends BoxProps {
+  /**
+   * The options for the radios of the Segmented Control.
+   */
+  options: ControlOptions[]
+  /**
+   * The current value of the Segmented Control when controlled.
+   */
+  value?: number | string | boolean
+  /**
+   * The default value of the Segmented Control when uncontrolled.
+   */
+  defaultValue?: number | string | boolean
+  /**
+   * The name of the radio group.
+   */
+  name?: string
+  /**
+   * The height of the Segmented Control.
+   */
+  height?: number
+  /**
+   * Function called when the value changes.
+   */
+  onChange?(value: number | string | boolean): any
+}
 
-    /**
-     * The current value of the Segmented Control when controlled.
-     */
-    value: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-      PropTypes.bool
-    ]),
+interface SegmentedControlState {
+  value?: number | string | boolean
+}
 
-    /**
-     * The default value of the Segmented Control when uncontrolled.
-     */
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-      PropTypes.bool
-    ]),
-
-    /**
-     * Function called when the value changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * The name of the radio group.
-     */
-    name: PropTypes.string,
-
-    /**
-     * The height of the Segmented Control.
-     */
-    height: PropTypes.number
-  }
-
+export default class SegmentedControl extends React.PureComponent<
+  SegmentedControlProps,
+  SegmentedControlState
+> {
   static defaultProps = {
     height: 32
   }
 
-  constructor(props, context) {
-    super(props, context)
+  name: string
+
+  state: SegmentedControlState = {
+    value: this.props.defaultValue
+  }
+
+  constructor(props: SegmentedControlProps) {
+    super(props)
 
     let value = props.defaultValue
     if (typeof value === 'undefined' || value === null) {
       value = props.options[0].value
-    }
-
-    this.state = {
-      value
     }
 
     this.name = `SegmentedControl-${radioCount}`
@@ -93,25 +72,25 @@ export default class SegmentedControl extends PureComponent {
     return typeof this.props.value !== 'undefined' && this.props.value !== null
   }
 
-  handleChange = value => {
+  handleChange = (value: number | string | boolean) => {
     // Save a render cycle when it's a controlled input
     if (!this.isControlled()) {
       this.setState({ value })
     }
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(value)
+      const { onChange = noop } = this.props
+      onChange(value)
     }
   }
 
   render() {
     const {
+      // tslint:disable-next-line:no-unused
       value: filterOutValue, // Filter out.
       name,
-      height,
+      height = 32,
       options,
-      onChange,
-      defaultValue,
       ...props
     } = this.props
 

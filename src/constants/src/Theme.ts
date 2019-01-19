@@ -7,7 +7,7 @@ export type ThemeColor =
   | 'green'
   | 'teal'
 
-export type BackgroundColor =
+export type BackgroundTint =
   | 'tint1'
   | 'tint2'
   | 'overlay'
@@ -18,6 +18,9 @@ export type BackgroundColor =
   | 'blueTint'
   | 'purpleTint'
   | 'tealTint'
+
+export type BackgroundColor =
+  | BackgroundTint
   | 'neutral'
   | 'green'
   | 'orange'
@@ -34,7 +37,7 @@ export interface BorderColor {
 export type Elevation = 0 | 1 | 2 | 3 | 4 | undefined
 
 export interface Colors {
-  background: BackgroundColor
+  background: BackgroundColor | string
   border: BorderColor
   text: object
   icon: object

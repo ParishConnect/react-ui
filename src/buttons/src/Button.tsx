@@ -8,7 +8,7 @@ import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
 
-export interface ButtonProps extends Omit<TextProps, 'apperance'> {
+export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
    * The intent of the button.
    */
@@ -58,7 +58,7 @@ export interface ButtonProps extends Omit<TextProps, 'apperance'> {
 class Button extends React.PureComponent<ButtonProps> {
   public static contextType = ThemeContext
 
-  static defaultProps = {
+  public static defaultProps = {
     appearance: 'default',
     height: 32,
     intent: 'none',
@@ -71,20 +71,20 @@ class Button extends React.PureComponent<ButtonProps> {
     const {
       className,
 
-      intent,
-      height,
-      isActive,
+      intent = 'none',
+      height = 32,
+      isActive = false,
       children,
       disabled,
-      appearance,
+      appearance = 'default',
       isLoading,
       round,
 
       // Paddings
       paddingRight,
       paddingLeft,
-      paddingTop,
-      paddingBottom,
+      paddingTop = 0,
+      paddingBottom = 0,
 
       // Icons
       iconBefore: iconBeforeKey,
@@ -107,8 +107,13 @@ class Button extends React.PureComponent<ButtonProps> {
     const iconSize = theme.getIconSizeForButton(height)
 
     const pr =
-      paddingRight !== undefined ? paddingRight : Math.round(height / 2)
-    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2)
+      paddingRight && paddingRight !== undefined
+        ? paddingRight
+        : Math.round(height / 2)
+    const pl =
+      paddingLeft && paddingLeft !== undefined
+        ? paddingLeft
+        : Math.round(height / 2)
 
     let iconBefore: React.ReactNode
     if (iconBeforeKey) {

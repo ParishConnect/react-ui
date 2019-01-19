@@ -1,63 +1,55 @@
-import React, {PureComponent} from 'react'
+import * as React from 'react'
+import tinycolor from 'tinycolor2'
 import Box from '@hennessyevan/aluminum-box'
-import tinyColor from 'tinycolor2'
-import PropTypes from 'prop-types'
-import Pane from '../../layers/src/Pane'
+import Pane, { PaneProps } from '../../layers/src/Pane'
 import Text from '../../typography/src/Text'
 import Small from '../../typography/src/Small'
 import Icon from '../../icon/src/Icon'
-import {withTheme} from '../../theme'
+import { ThemeContext } from '../../theme'
+import { BackgroundTint } from '../../constants'
 
-class Banner extends PureComponent {
-  static propTypes = {
-    ...Pane.propTypes,
+interface ActionType {
+  title?: string
+  icon?: string
+  onClick?(): void
+}
 
-    /**
-     * The action attached to the banner and its title. Passed as a function (optional)
-     */
-    action: PropTypes.shape({
-      title: PropTypes.string,
-      action: PropTypes.func
-    }),
+export interface BannerProps extends PaneProps {
+  /**
+   * The action attached to the banner and its title. Passed as a function (optional)
+   */
+  action?: ActionType
+  /**
+   * Subtitle appears underneath the title and is optional
+   */
+  subtitle?: string
+  /**
+   * One of the tints from background colors
+   */
+  hoverTint?: BackgroundTint
+}
 
-    /**
-     * The title of the banner. When a string is passed it is wrapped in a `<Text size={400} />` component.
-     */
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-    /**
-     * Subtitle appears underneath the title and is optional
-     */
-    subtitle: PropTypes.string,
-
-    /**
-     * One of the tints from background colors
-     */
-    hoverTint: PropTypes.string,
-
-    /**
-     * Add optional icon support for action
-     */
-    icon: PropTypes.string
-  }
+class Banner extends React.PureComponent<BannerProps> {
+  public static contextType = ThemeContext
 
   static defaultProps = {
     height: 75,
     minWidth: 325
   }
 
-  getActionDescriptor = (action, color, theme) => {
+  getActionDescriptor = (action: ActionType, color: string) => {
+    const theme = this.context
     if (action.icon) {
       return (
         <Box
           color={color || theme.palette[theme.themeColor].base}
           paddingX={25}
         >
-          <Icon icon={action.icon}/>
+          <Icon icon={action.icon} />
         </Box>
       )
     }
-    if (typeof action.title === 'string' || action.title instanceof String) {
+    if (typeof action.title === 'string') {
       return (
         <Text
           paddingX={25}
@@ -68,10 +60,11 @@ class Banner extends PureComponent {
         </Text>
       )
     }
+    return ''
   }
 
-  getHoverBackgroundStyle = (hoverTint, css) => {
-    const {theme} = this.props
+  getHoverBackgroundStyle = (hoverTint: BackgroundTint, css = {}) => {
+    const theme = this.context
 
     return {
       transitionDuration: '150ms',
@@ -83,14 +76,13 @@ class Banner extends PureComponent {
       },
       ':active': {
         ...(css[':active'] || {}),
-        background: `${tinyColor(theme.getBackground(hoverTint)).darken(3)}`
+        background: `${tinycolor(theme.getBackground(hoverTint)).darken(3)}`
       }
     }
   }
 
   render() {
     const {
-      theme,
       height = 65,
       color,
       children,
@@ -99,7 +91,10 @@ class Banner extends PureComponent {
       hoverTint = 'tint1',
       css = {}
     } = this.props
+    const theme = this.context
+
     const hoverBackground = this.getHoverBackgroundStyle(hoverTint, css)
+
     return (
       <Pane
         elevation={1}
@@ -127,17 +122,17 @@ class Banner extends PureComponent {
         </Box>
         {action && (
           <Pane
-            onClick={() => action.onClick()}
+            onClick={action.onClick}
             cursor="pointer"
             width="auto"
             display="flex"
             alignItems="center"
             justifyContent="flex-end"
             height="100%"
-            css={{...css, ...hoverBackground}}
+            css={{ ...css, ...hoverBackground }}
           >
-            <Box borderLeft="1px solid #efefef" height="65%"/>
-            {this.getActionDescriptor(action, color, theme)}
+            <Box borderLeft="1px solid #efefef" height="65%" />
+            {this.getActionDescriptor(action, color)}
           </Pane>
         )}
       </Pane>
@@ -145,4 +140,4 @@ class Banner extends PureComponent {
   }
 }
 
-export default withTheme(Banner)
+export default Banner

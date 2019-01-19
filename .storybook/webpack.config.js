@@ -3,6 +3,9 @@ module.exports = (_baseConfig, _env, config) => {
     test: /\.(ts|tsx)$/,
     use: [
       {
+        loader: require.resolve('babel-loader')
+      },
+      {
         loader: require.resolve('awesome-typescript-loader'),
         options: {
           plugins: ['lodash']
@@ -13,6 +16,6 @@ module.exports = (_baseConfig, _env, config) => {
       }
     ]
   })
-  config.resolve.extensions.push('.ts', '.tsx')
+  config.resolve.extensions.push('.ts', '.tsx', '.json')
   return config
 }

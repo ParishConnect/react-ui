@@ -16,9 +16,9 @@ const animationEasing = {
 }
 
 const initialState = () => ({
-  top: null,
-  left: null,
-  transformOrigin: null
+  top: undefined,
+  left: undefined,
+  transformOrigin: undefined
 })
 
 const getCSS = ({
@@ -75,11 +75,11 @@ export interface PositionerProps {
   /**
    * Function that will be called when the enter transition is complete.
    */
-  onOpenComplete?(): void
+  onOpenComplete(): void
   /**
    * Function that will be called when the exit transition is complete.
    */
-  onCloseComplete?(): void
+  onCloseComplete(): void
   /**
    * Function that should return a node for the target.
    * ({ getRef: () -> Ref, isShown: Bool }) -> React Node
@@ -88,12 +88,12 @@ export interface PositionerProps {
   /**
    * Function that returns the ref of the element being positioned.
    */
-  innerRef?(ref: HTMLElement): HTMLElement
+  innerRef(ref: HTMLElement): HTMLElement
 }
 
 interface PositionerState {
-  top: number | null
-  left: number | null
+  top: number | undefined
+  left: number | undefined
   transformOrigin: any
 }
 
@@ -101,7 +101,7 @@ export default class Positioner extends React.PureComponent<
   PositionerProps,
   PositionerState
 > {
-  static defaultProps = {
+  public static defaultProps = {
     position: Position.BOTTOM,
     bodyOffset: 6,
     targetOffset: 6,
@@ -219,8 +219,8 @@ export default class Positioner extends React.PureComponent<
       target,
       isShown,
       children,
-      initialScale,
-      animationDuration
+      initialScale = 0.9,
+      animationDuration = 300
     } = this.props
 
     const { left, top, transformOrigin } = this.state

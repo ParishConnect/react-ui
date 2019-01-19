@@ -1,9 +1,10 @@
 import * as React from 'react'
+import { Overwrite } from 'utility-types'
 import { Icon } from '../../icon'
 import { ThemeContext } from '../../theme'
 import Button, { ButtonProps } from './Button'
 
-export interface IconButtonProps extends ButtonProps {
+interface UniqueIconButtonProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    * This prop is required because it determines the content of the component, but it can
@@ -41,6 +42,8 @@ export interface IconButtonProps extends ButtonProps {
    */
   classname?: boolean
 }
+
+export type IconButtonProps = Overwrite<ButtonProps, UniqueIconButtonProps>
 
 class IconButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext

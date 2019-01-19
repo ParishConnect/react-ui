@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom'
 import { canUseDOM } from 'exenv'
 
 let portalContainer: any
@@ -7,7 +7,7 @@ let portalContainer: any
 export default class Portal extends React.Component<{}> {
   el: HTMLElement
   constructor() {
-    super(null)
+    super({})
 
     // This fixes SSR
     if (!canUseDOM) {

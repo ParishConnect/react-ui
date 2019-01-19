@@ -28,7 +28,7 @@ export interface AvatarProps extends BoxProps {
   /**
    * The name used for the initials and title attribute.
    */
-  name?: string
+  name: string
   /**
    * The value used for the hash function.
    * The name is used as the hashValue by default.
@@ -83,7 +83,12 @@ class Avatar extends React.PureComponent<AvatarProps, AvatarState> {
   }
 
   getColorProps = () => {
-    const { isSolid, color, hashValue: propsHashValue, name } = this.props
+    const {
+      isSolid = false,
+      color = 'automatic',
+      hashValue: propsHashValue,
+      name
+    } = this.props
     const theme = this.context
 
     if (color === 'automatic') {

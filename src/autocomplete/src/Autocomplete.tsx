@@ -1,8 +1,9 @@
 import * as React from 'react'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift, { DownshiftInterface } from 'downshift'
-import VirtualList from 'react-tiny-virtual-list'
-import { ALIGNMENT } from 'react-tiny-virtual-list/types/constants'
+import VirtualList, {
+  ScrollAlignment
+} from '@hennessyevan/react-tiny-virtual-list'
 import { Popover } from '../../popover'
 import { Position, PositionType } from '../../constants'
 import { Heading } from '../../typography'
@@ -10,7 +11,8 @@ import { Pane, PaneProps } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 import { Assign } from 'utility-types'
 
-const fuzzyFilter = (items: [], input) => fuzzaldrin.filter(items, input)
+const fuzzyFilter = (items: {}[], input: string) =>
+  fuzzaldrin.filter(items, input)
 
 const autocompleteItemRenderer = (props: any) => <AutocompleteItem {...props} />
 
@@ -69,7 +71,7 @@ export interface AutocompleteProps
    * It should return a subset of the initial items.
    * By default the "fuzzaldrin-plus" package is used.
    */
-  itemsFilter?(items: any[], input: any): never[]
+  itemsFilter?(items: [], input: any): never[]
 }
 
 export interface AutocompleteState {
@@ -113,13 +115,13 @@ export default class Autocomplete extends React.PureComponent<
   }) => {
     const {
       title,
-      itemSize,
-      itemsFilter,
+      itemSize = 32,
+      itemsFilter = fuzzyFilter,
       items: originalItems,
-      itemToString,
-      renderItem,
-      popoverMaxHeight,
-      isFilterDisabled
+      itemToString = (i: any) => (i ? String(i) : ''),
+      renderItem = autocompleteItemRenderer,
+      popoverMaxHeight = 240,
+      isFilterDisabled = false
     } = this.props
 
     const items =
@@ -144,7 +146,7 @@ export default class Autocomplete extends React.PureComponent<
             itemCount={items.length}
             scrollToIndex={highlightedIndex || 0}
             overscanCount={3}
-            scrollToAlignment={ALIGNMENT.AUTO}
+            scrollToAlignment={ScrollAlignment.AUTO}
             // tslint:disable:jsx-no-lambda
             // tslint:disable:react-this-binding-issue
             renderItem={({ index, style }) => {
@@ -175,7 +177,7 @@ export default class Autocomplete extends React.PureComponent<
     const {
       children,
       position,
-      popoverMinWidth,
+      popoverMinWidth = 240,
       defaultSelectedItem,
       ...props
     } = this.props
