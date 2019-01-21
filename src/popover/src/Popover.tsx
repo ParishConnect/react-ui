@@ -307,18 +307,16 @@ export default class Popover extends React.Component<
     } = this.props
     const { isShown: stateIsShown } = this.state
 
-    const shown = isShown || stateIsShown
+    const shown: any = isShown || stateIsShown
 
     return (
       <Positioner
-        // tslint:disable:react-this-binding-issue
-        // tslint:disable:jsx-no-lambda
         // tslint:disable-next-line:no-shadowed-variable
         target={({ getRef, isShown, targetWidth }) => {
           return this.renderTarget({ getRef, isShown, targetWidth })
         }}
         isShown={shown}
-        position={position}
+        position={position as PositionType}
         animationDuration={animationDuration}
         onOpenComplete={this.handleOpenComplete}
         onCloseComplete={onCloseComplete}

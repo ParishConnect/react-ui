@@ -43,11 +43,11 @@ export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onSelect(): void
+  onSelect: any
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onDeselect(): void
+  onDeselect: any
   onClick(e: Event): void
   onKeyPress(e: any): void
   innerRef(ref: any): any

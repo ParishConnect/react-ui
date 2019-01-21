@@ -1,14 +1,9 @@
-import { Position, PositionEnum, PositionType } from '../../constants'
-
-type AllPosition = PositionEnum | PositionType | string
+import { Position } from '../../constants'
 
 /**
  * Function to create a Rect.
  */
-const makeRect = (
-  { width, height }: { width: number; height: number },
-  { left, top }: { left: number; top: number }
-): object => {
+const makeRect = ({ width, height }, { left, top }) => {
   const ceiledLeft = Math.ceil(left)
   const ceiledTop = Math.ceil(top)
   return {
@@ -23,9 +18,8 @@ const makeRect = (
 
 /**
  * Function to flip a position upside down.
- * @return flipped position
  */
-const flipHorizontal = (position: AllPosition): string => {
+const flipHorizontal = (position: any) => {
   switch (position) {
     case Position.TOP_LEFT:
       return Position.BOTTOM_LEFT
@@ -46,7 +40,7 @@ const flipHorizontal = (position: AllPosition): string => {
 /**
  * Function that returns if position is aligned on top.
  */
-const isAlignedOnTop = (position: AllPosition): boolean => {
+const isAlignedOnTop = (position: any) => {
   switch (position) {
     case Position.TOP_LEFT:
     case Position.TOP:
@@ -60,7 +54,7 @@ const isAlignedOnTop = (position: AllPosition): boolean => {
 /**
  * Function that returns if position is aligned left or right.
  */
-const isAlignedHorizontal = (position: AllPosition): boolean => {
+const isAlignedHorizontal = (position: any) => {
   switch (position) {
     case Position.LEFT:
     case Position.RIGHT:
@@ -74,62 +68,66 @@ const isAlignedHorizontal = (position: AllPosition): boolean => {
  * Function that returns if a rect fits on bottom.
  */
 const getFitsOnBottom = (
-  rect: ClientRect | Partial<ClientRect>,
-  viewport: any,
+  rect: { bottom: number },
+  viewport: { height: number },
   viewportOffset: number
-): boolean => {
-  return rect.bottom! < viewport.height - viewportOffset
+) => {
+  return rect.bottom < viewport.height - viewportOffset
 }
 
 /**
  * Function that returns if a rect fits on top.
  */
-const getFitsOnTop = (
-  rect: ClientRect | Partial<ClientRect>,
-  viewportOffset: number
-): boolean => {
-  return rect.top! > viewportOffset
+const getFitsOnTop = (rect: { top: number }, viewportOffset: number) => {
+  return rect.top > viewportOffset
 }
 
 /**
  * Function that returns if a rect fits on right.
  */
 const getFitsOnRight = (
-  rect: ClientRect | Partial<ClientRect>,
-  viewport: any,
+  rect: {
+    width?: any
+    height?: any
+    left?: number
+    top?: number
+    right: any
+    bottom?: any
+  },
+  viewport: { width: number },
   viewportOffset: number
-): boolean => {
-  return rect.right! < viewport.width - viewportOffset
+) => {
+  return rect.right < viewport.width - viewportOffset
 }
 
 /**
  * Function that returns if a rect fits on left.
  */
 const getFitsOnLeft = (
-  rect: ClientRect | Partial<ClientRect>,
+  rect: {
+    width?: any
+    height?: any
+    left: any
+    top?: number
+    right?: any
+    bottom?: any
+  },
   viewportOffset: number
-): boolean => {
-  return rect.left! > viewportOffset
+) => {
+  return rect.left > viewportOffset
 }
 
 /**
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
  * Function that returns the CSS `tranform-origin` property.
  */
-interface TransformOrigin {
-  rect: ClientRect | Partial<ClientRect>
-  position: AllPosition | string
-  dimensions: { width: number | string; height: number | string }
-  targetCenter: number
-}
-
 const getTransformOrigin = ({
   rect,
   position,
   dimensions,
   targetCenter
-}: TransformOrigin): any => {
-  const centerY = Math.round(targetCenter - rect.top!)
+}: any) => {
+  const centerY = Math.round(targetCenter - rect.top)
 
   if (position === Position.LEFT) {
     // Syntax: x-offset | y-offset
@@ -141,7 +139,7 @@ const getTransformOrigin = ({
     return `0px ${centerY}px`
   }
 
-  const centerX = Math.round(targetCenter - rect.left!)
+  const centerX = Math.round(targetCenter - rect.left)
 
   if (isAlignedOnTop(position)) {
     // Syntax: x-offset | y-offset
@@ -151,14 +149,6 @@ const getTransformOrigin = ({
   return `${centerX}px 0px `
 }
 
-interface FittedPosition {
-  position: AllPosition | string
-  dimensions: any
-  targetRect: ClientRect | Partial<ClientRect>
-  targetOffset: number
-  viewport: any
-  viewportOffset: number
-}
 /**
  * Function that takes in numbers and position and gives the final coords.
  */
@@ -169,11 +159,7 @@ export default function getFittedPosition({
   targetOffset,
   viewport,
   viewportOffset = 8
-}: FittedPosition): {
-  rect: ClientRect | Partial<ClientRect>
-  position: any
-  transformOrigin: TransformOrigin
-} {
+}: any) {
   const { rect, position: finalPosition } = getPosition({
     position,
     dimensions,
@@ -184,34 +170,38 @@ export default function getFittedPosition({
   })
 
   // Push rect to the right if overflowing on the left side of the viewport.
-  if (rect.left! < viewportOffset) {
-    rect.right! += Math.ceil(Math.abs(rect.left! - viewportOffset))
-    rect.left! = Math.ceil(viewportOffset)
+  if (rect.left && rect.left < viewportOffset) {
+    rect.right += Math.ceil(Math.abs(rect.left - viewportOffset))
+    rect.left = Math.ceil(viewportOffset)
   }
 
   // Push rect to the left if overflowing on the right side of the viewport.
-  if (rect.right! > viewport.width - viewportOffset) {
-    const delta = Math.ceil(rect.right! - (viewport.width - viewportOffset))
-    rect.left! -= delta
-    rect.right! -= delta
+  if (rect.right && rect.right > viewport.width - viewportOffset) {
+    const delta = Math.ceil(rect.right - (viewport.width - viewportOffset))
+    if (rect.left) {
+      rect.left -= delta
+    }
+    if (rect.right) {
+      rect.right -= delta
+    }
   }
 
   // Push rect down if overflowing on the top side of the viewport.
-  if (rect.top! < viewportOffset) {
-    rect.top! += Math.ceil(Math.abs(rect.top! - viewportOffset))
-    rect.bottom! = Math.ceil(viewportOffset)
+  if (rect.top < viewportOffset) {
+    rect.top += Math.ceil(Math.abs(rect.top - viewportOffset))
+    rect.bottom = Math.ceil(viewportOffset)
   }
 
   // Push rect up if overflowing on the bottom side of the viewport.
-  if (rect.bottom! > viewport.height - viewportOffset) {
-    const delta = Math.ceil(rect.bottom! - (viewport.height - viewportOffset))
-    rect.top! -= delta
-    rect.right! -= delta
+  if (rect.bottom > viewport.height - viewportOffset) {
+    const delta = Math.ceil(rect.bottom - (viewport.height - viewportOffset))
+    rect.top -= delta
+    rect.right -= delta
   }
 
   const targetCenter = isAlignedHorizontal(position)
-    ? targetRect.top! + targetRect.height! / 2
-    : targetRect.left! + targetRect.width! / 2
+    ? targetRect.top + targetRect.height / 2
+    : targetRect.left + targetRect.width / 2
 
   const transformOrigin = getTransformOrigin({
     rect,
@@ -237,10 +227,7 @@ function getPosition({
   targetOffset,
   viewport,
   viewportOffset = 8
-}: FittedPosition): {
-  rect: ClientRect | Partial<ClientRect>
-  position: string
-} {
+}: any) {
   const isHorizontal = isAlignedHorizontal(position)
 
   // Handle left and right positions
@@ -294,9 +281,9 @@ function getPosition({
 
     // Default to using the position with the most space
     const spaceRight = Math.abs(
-      viewport.width - viewportOffset - rightRect.right!
+      viewport.width - viewportOffset - rightRect.right
     )
-    const spaceLeft = Math.abs(leftRect.left! - viewportOffset)
+    const spaceLeft = Math.abs(leftRect.left - viewportOffset)
 
     if (spaceRight < spaceLeft) {
       return {
@@ -312,8 +299,22 @@ function getPosition({
   }
 
   const positionIsAlignedOnTop = isAlignedOnTop(position)
-  let topRect: ClientRect | Partial<ClientRect>
-  let bottomRect: ClientRect | Partial<ClientRect>
+  let topRect: {
+    width?: any
+    height?: any
+    left?: number
+    top: any
+    right?: any
+    bottom?: any
+  }
+  let bottomRect: {
+    width?: any
+    height?: any
+    left?: number
+    top?: number
+    right?: any
+    bottom: any
+  }
 
   if (positionIsAlignedOnTop) {
     topRect = getRect({
@@ -383,10 +384,10 @@ function getPosition({
 
   // Default to most spacious if there is no fit.
   const spaceBottom = Math.abs(
-    viewport.height - viewportOffset - bottomRect.bottom!
+    viewport.height - viewportOffset - bottomRect.bottom
   )
 
-  const spaceTop = Math.abs(topRect.top! - viewportOffset)
+  const spaceTop = Math.abs(topRect.top - viewportOffset)
 
   if (spaceBottom < spaceTop) {
     return {
@@ -404,36 +405,23 @@ function getPosition({
 /**
  * Function that takes in numbers and position and gives the final coords.
  */
-interface Rect {
-  position: string
-  targetOffset: number
-  dimensions: { width: number; height: number }
-  targetRect: ClientRect | Partial<ClientRect>
-}
-
-function getRect({
-  position,
-  targetOffset,
-  dimensions,
-  targetRect
-}: Rect): ClientRect | Partial<ClientRect> {
-  const leftRect =
-    targetRect.left! + targetRect.width! / 2 - dimensions.width / 2
-  const alignedTopY = targetRect.top! - dimensions.height - targetOffset
-  const alignedBottomY = targetRect.bottom! + targetOffset
-  const alignedRightX = targetRect.right! - dimensions.width
+function getRect({ position, targetOffset, dimensions, targetRect }) {
+  const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
+  const alignedTopY = targetRect.top - dimensions.height - targetOffset
+  const alignedBottomY = targetRect.bottom + targetOffset
+  const alignedRightX = targetRect.right - dimensions.width
   const alignedLeftRightY =
-    targetRect.top! + targetRect.height! / 2 - dimensions.height / 2
+    targetRect.top + targetRect.height / 2 - dimensions.height / 2
 
   switch (position) {
     case Position.LEFT:
       return makeRect(dimensions, {
-        left: targetRect.left! - dimensions.width - targetOffset,
+        left: targetRect.left - dimensions.width - targetOffset,
         top: alignedLeftRightY
       })
     case Position.RIGHT:
       return makeRect(dimensions, {
-        left: targetRect.right! + targetOffset,
+        left: targetRect.right + targetOffset,
         top: alignedLeftRightY
       })
     case Position.TOP:
@@ -443,7 +431,7 @@ function getRect({
       })
     case Position.TOP_LEFT:
       return makeRect(dimensions, {
-        left: targetRect.left!,
+        left: targetRect.left,
         top: alignedTopY
       })
     case Position.TOP_RIGHT:
@@ -459,7 +447,7 @@ function getRect({
       })
     case Position.BOTTOM_LEFT:
       return makeRect(dimensions, {
-        left: targetRect.left!,
+        left: targetRect.left,
         top: alignedBottomY
       })
     case Position.BOTTOM_RIGHT:

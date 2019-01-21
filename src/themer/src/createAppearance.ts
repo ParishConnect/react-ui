@@ -14,6 +14,7 @@ const whitelist = [
   'opacity',
 
   'color',
+  'fill',
   'textShadow',
 
   'outline',
@@ -21,7 +22,7 @@ const whitelist = [
   'cursor'
 ]
 
-function createAppearance(obj = {}): object {
+function createAppearance(obj = {}) {
   const result = {}
 
   Object.keys(obj).forEach(key => {

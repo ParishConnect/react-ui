@@ -61,11 +61,11 @@ export interface AutocompleteProps
    * In case the array of items is not an array of strings,
    * this function is used on each item to return the string that will be shown on the filter
    */
-  itemToString(item: any): string
+  itemToString?(item: any): any
   /**
    * Function that returns a component to render the item
    */
-  renderItem?(item: any): React.ReactChild
+  renderItem?(item: any): React.ReactChild | any
   /**
    * A function that is used to filter the items.
    * It should return a subset of the initial items.
@@ -112,7 +112,7 @@ export default class Autocomplete extends React.PureComponent<
     selectItemAtIndex,
     selectedItem,
     getItemProps
-  }) => {
+  }: any) => {
     const {
       title,
       itemSize = 32,
@@ -147,8 +147,6 @@ export default class Autocomplete extends React.PureComponent<
             scrollToIndex={highlightedIndex || 0}
             overscanCount={3}
             scrollToAlignment={ScrollAlignment.AUTO}
-            // tslint:disable:jsx-no-lambda
-            // tslint:disable:react-this-binding-issue
             renderItem={({ index, style }) => {
               const item = items[index]
               const itemString = itemToString(item)

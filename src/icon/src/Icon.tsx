@@ -75,9 +75,9 @@ class Icon extends React.PureComponent<IconProps> {
 
   render() {
     const {
-      color,
+      color = 'currentColor',
       icon,
-      size,
+      size = 16,
       title = this.props.icon,
       ...svgProps
     } = this.props
@@ -101,9 +101,7 @@ class Icon extends React.PureComponent<IconProps> {
 
     const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`
 
-    if (color !== null) {
-      style = { ...style, fill: theme.getIconColor(color) }
-    }
+    style = { ...style, fill: theme.getIconColor(color) }
 
     return (
       <Box

@@ -69,7 +69,14 @@ class IconButton extends React.PureComponent<IconButtonProps> {
   }
 
   render() {
-    const { appearance, icon, iconSize, height, intent, ...props } = this.props
+    const {
+      appearance = 'default',
+      icon,
+      iconSize,
+      height = 32,
+      intent = 'none',
+      ...props
+    } = this.props
     const theme = this.context
     const size = iconSize || theme.getIconSizeForIconButton(height)
 

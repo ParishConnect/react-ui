@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import { Pane, Card } from '../src/layers'
-import { ThemeConsumer } from '../src/theme'
+import { defaultTheme as theme } from '../src/theme'
 import { BackgroundColor } from '../src/constants'
 
 const cardStyle = {
@@ -16,106 +16,98 @@ const cardStyle = {
 
 storiesOf('layers', module)
   .add('Pane', () => (
-    <ThemeConsumer>
-      {theme => (
-        <div>
-          <Pane overflow="auto">
-            {theme.elevations.neutral.map((style, index) => (
-              <Pane key={style} {...cardStyle} elevation={index}>
-                Elevation {index}
-              </Pane>
-            ))}
-            {Object.keys(theme.colors.background).map(background => (
-              <Pane
-                key={background}
-                {...cardStyle}
-                background={background as BackgroundColor}
-              >
-                Background: {background}
-              </Pane>
-            ))}
-            {Object.keys(theme.colors.background).map(background => (
-              <Pane key={background} {...cardStyle} identifier={background}>
-                Identifier: {background}
-              </Pane>
-            ))}
+    <div>
+      <Pane overflow="auto">
+        {theme.elevations.neutral.map((style, index) => (
+          <Pane key={style} {...cardStyle} elevation={index}>
+            Elevation {index}
           </Pane>
-          <Pane overflow="auto">
-            <Pane
-              {...cardStyle}
-              elevation={1}
-              hoverElevation={3}
-              activeElevation={2}
-            >
-              Interactive
-            </Pane>
+        ))}
+        {Object.keys(theme.colors.background).map(background => (
+          <Pane
+            key={background}
+            {...cardStyle}
+            background={background as BackgroundColor}
+          >
+            Background: {background}
           </Pane>
-          {Object.keys(theme.colors.border).map(borderColor => (
-            <Pane key={borderColor} overflow="auto">
-              <Pane {...cardStyle} borderTop={borderColor}>
-                borderTop: {borderColor}
-              </Pane>
-              <Pane {...cardStyle} borderRight={borderColor}>
-                borderRight: {borderColor}
-              </Pane>
-              <Pane {...cardStyle} borderBottom={borderColor}>
-                borderBottom: {borderColor}
-              </Pane>
-              <Pane {...cardStyle} borderLeft={borderColor}>
-                borderLeft: {borderColor}
-              </Pane>
-            </Pane>
-          ))}
-        </div>
-      )}
-    </ThemeConsumer>
+        ))}
+        {Object.keys(theme.colors.background).map(background => (
+          <Pane key={background} {...cardStyle} identifier={background}>
+            Identifier: {background}
+          </Pane>
+        ))}
+      </Pane>
+      <Pane overflow="auto">
+        <Pane
+          {...cardStyle}
+          elevation={1}
+          hoverElevation={3}
+          activeElevation={2}
+        >
+          Interactive
+        </Pane>
+      </Pane>
+      {Object.keys(theme.colors.border).map(borderColor => (
+        <Pane key={borderColor} overflow="auto">
+          <Pane {...cardStyle} borderTop={borderColor}>
+            borderTop: {borderColor}
+          </Pane>
+          <Pane {...cardStyle} borderRight={borderColor}>
+            borderRight: {borderColor}
+          </Pane>
+          <Pane {...cardStyle} borderBottom={borderColor}>
+            borderBottom: {borderColor}
+          </Pane>
+          <Pane {...cardStyle} borderLeft={borderColor}>
+            borderLeft: {borderColor}
+          </Pane>
+        </Pane>
+      ))}
+    </div>
   ))
   .add('Card', () => (
-    <ThemeConsumer>
-      {theme => (
-        <div>
-          <Pane overflow="auto">
-            {theme.elevations.neutral.map((style, index) => (
-              <Card key={style} {...cardStyle} elevation={index}>
-                Elevation {index}
-              </Card>
-            ))}
+    <div>
+      <Pane overflow="auto">
+        {theme.elevations.neutral.map((style, index) => (
+          <Card key={style} {...cardStyle} elevation={index}>
+            Elevation {index}
+          </Card>
+        ))}
 
-            {Object.keys(theme.colors.background).map(background => (
-              <Card
-                key={background}
-                {...cardStyle}
-                background={background as BackgroundColor}
-              >
-                Background: {background}
-              </Card>
-            ))}
-            {Object.keys(theme.colors.background)
-              .filter(background => !background.match(/Tint|tint|overlay/))
-              .map(background => (
-                <Card
-                  key={background}
-                  {...cardStyle}
-                  border="muted"
-                  identifier={background}
-                >
-                  Identifier: {background}
-                </Card>
-              ))}
-          </Pane>
-
-          <Pane overflow="auto">
+        {Object.keys(theme.colors.background).map(background => (
+          <Card
+            key={background}
+            {...cardStyle}
+            background={background as BackgroundColor}
+          >
+            Background: {background}
+          </Card>
+        ))}
+        {Object.keys(theme.colors.background)
+          .filter(background => !background.match(/Tint|tint|overlay/))
+          .map(background => (
             <Card
+              key={background}
               {...cardStyle}
-              appearance="gradient"
-              elevation={1}
-              activeElevation={2}
-              hoverElevation={3}
+              border="muted"
+              identifier={background}
             >
-              Interactive
+              Identifier: {background}
             </Card>
-          </Pane>
-        </div>
-      )}
-    </ThemeConsumer>
+          ))}
+      </Pane>
+
+      <Pane overflow="auto">
+        <Card
+          {...cardStyle}
+          appearance="gradient"
+          elevation={1}
+          activeElevation={2}
+          hoverElevation={3}
+        >
+          Interactive
+        </Card>
+      </Pane>
+    </div>
   ))

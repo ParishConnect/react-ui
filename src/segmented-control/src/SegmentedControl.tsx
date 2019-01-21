@@ -35,7 +35,7 @@ export interface SegmentedControlProps extends BoxProps {
   /**
    * Function called when the value changes.
    */
-  onChange?(value: number | string | boolean): any
+  onChange?: any
 }
 
 interface SegmentedControlState {

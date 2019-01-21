@@ -4,10 +4,10 @@ import { canUseDOM } from 'exenv'
 
 let portalContainer: any
 
-export default class Portal extends React.Component<{}> {
+export default class Portal extends React.Component {
   el: HTMLElement
-  constructor() {
-    super({})
+  constructor(props: any) {
+    super(props)
 
     // This fixes SSR
     if (!canUseDOM) {

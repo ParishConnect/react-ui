@@ -6,8 +6,6 @@ import {
   getPrimaryButtonStylesForIntent
 } from '../helpers'
 import { defaultControlStyles } from '../shared'
-import { IntentType } from '../../../../constants'
-import { ThemeColor } from '../../../../constants/src/Theme'
 
 /**
  * Disabled styles are all the same for all buttons.
@@ -18,9 +16,9 @@ const disabled = defaultControlStyles.disabled
  * Get button appearance.
  */
 const getButtonAppearance = (
-  appearance: 'primary' | 'minimal' | 'overlay' | 'default',
-  intent: IntentType,
-  themeColor: ThemeColor
+  appearance: any,
+  intent: any,
+  themeColor: any
 ): object => {
   switch (appearance) {
     case 'primary': {

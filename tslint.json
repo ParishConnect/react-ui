@@ -8,6 +8,8 @@
     "no-typeof-undefined": false,
     "prefer-method-signature": false,
     "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "react-this-binding-issue": false,
     "quotemark": [true, "single", "jsx-double"],
     "curly": false,
     // This rule is here for now because of https://github.com/palantir/tslint-react/issues/120

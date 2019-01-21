@@ -33,7 +33,7 @@ export interface SegementedControlRadioAppearance {
 
 const createSegmentedControlRadioAppearance = (
   items: SegementedControlRadioAppearance
-): object => {
+) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'disabled', 'active', 'focus'],

@@ -63,7 +63,7 @@ export interface CheckboxProps extends BoxProps {
   /**
    * Function called when state changes.
    */
-  onChange?(): void
+  onChange?: any
 }
 
 class Checkbox extends React.PureComponent<CheckboxProps> {

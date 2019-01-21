@@ -32,7 +32,7 @@ export interface AlertProps extends Omit<PaneProps, 'apperance'> {
   /**
    * The appearance of the alert.
    */
-  appearance?: 'default' | 'card'
+  appearance?: 'default' | 'card' | string
   /**
    * When true, show a remove icon button.
    */

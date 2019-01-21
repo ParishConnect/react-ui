@@ -11,7 +11,7 @@ const isThemeColor = (color: string): boolean => {
   return false
 }
 
-function getThemeColor(theme: ThemeType, lightness?: string): string {
+function getThemeColor(theme: ThemeType, lightness?: any): string {
   if (!theme) {
     throw new Error('You must supply the theme to this helper method')
   }
@@ -28,10 +28,7 @@ function getThemeColor(theme: ThemeType, lightness?: string): string {
  * - TextInput
  */
 const getBorderRadiusForControlHeight = (height?: number): number => {
-  if (!height) {
-    return 8
-  }
-  if (height <= 40) {
+  if (height && height <= 40) {
     return 5
   }
   return 8
@@ -41,30 +38,16 @@ const getBorderRadiusForControlHeight = (height?: number): number => {
  * Get the text size for a control with a certain height.
  */
 const getTextSizeForControlHeight = (height?: number): number => {
-  if (!height) {
-    return 800
+  if (height) {
+    if (height <= 24) return 300
+    if (height <= 28) return 300
+    if (height <= 32) return 300
+    if (height <= 36) return 400
+    if (height <= 40) return 400
+    if (height <= 48) return 500
+    if (height <= 56) return 700
   }
-  if (height <= 24) {
-    return 300
-  }
-  if (height <= 28) {
-    return 300
-  }
-  if (height <= 32) {
-    return 300
-  }
-  if (height <= 36) {
-    return 400
-  }
-  if (height <= 40) {
-    return 400
-  }
-  if (height <= 48) {
-    return 500
-  }
-  if (height <= 56) {
-    return 700
-  }
+
   return 800
 }
 
@@ -72,29 +55,14 @@ const getTextSizeForControlHeight = (height?: number): number => {
  * Get the text size for a block with a certain height. Used in larger UI Components like Banner and Pane
  */
 const getTextSizeForBlockHeight = (height?: number): number => {
-  if (!height) {
-    return 800
-  }
-  if (height <= 24) {
-    return 300
-  }
-  if (height <= 50) {
-    return 300
-  }
-  if (height <= 60) {
-    return 400
-  }
-  if (height <= 70) {
-    return 400
-  }
-  if (height <= 80) {
-    return 500
-  }
-  if (height <= 90) {
-    return 600
-  }
-  if (height <= 100) {
-    return 700
+  if (height) {
+    if (height <= 24) return 300
+    if (height <= 50) return 300
+    if (height <= 60) return 400
+    if (height <= 70) return 400
+    if (height <= 80) return 500
+    if (height <= 90) return 600
+    if (height <= 100) return 700
   }
   return 800
 }
@@ -103,20 +71,11 @@ const getTextSizeForBlockHeight = (height?: number): number => {
  * Get the size for a icon in a Button with a certain height.
  */
 const getIconSizeForButton = (height?: number): number => {
-  if (!height) {
-    return 20
-  }
-  if (height <= 28) {
-    return 12
-  }
-  if (height <= 32) {
-    return 12
-  }
-  if (height <= 40) {
-    return 16
-  }
-  if (height <= 48) {
-    return 18
+  if (height) {
+    if (height <= 28) return 12
+    if (height <= 32) return 12
+    if (height <= 40) return 16
+    if (height <= 48) return 18
   }
   return 20
 }
@@ -129,20 +88,11 @@ const getIconSizeForSelect = getIconSizeForButton
  * Get the size for a icon in a IconButton with a certain height.
  */
 const getIconSizeForIconButton = (height?: number): number => {
-  if (!height) {
-    return 20
-  }
-  if (height <= 28) {
-    return 12
-  }
-  if (height <= 32) {
-    return 14
-  } // Slightly bigger than getIconSizeForButton
-  if (height <= 40) {
-    return 16
-  }
-  if (height <= 48) {
-    return 18
+  if (height) {
+    if (height <= 28) return 12
+    if (height <= 32) return 14 // Slightly bigger than getIconSizeForButton
+    if (height <= 40) return 16
+    if (height <= 48) return 18
   }
   return 20
 }

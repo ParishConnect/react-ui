@@ -34,7 +34,7 @@ export interface BorderColor {
   muted: 'muted'
 }
 
-export type Elevation = 0 | 1 | 2 | 3 | 4 | undefined
+export type Elevation = 0 | 1 | 2 | 3 | 4 | number | undefined
 
 export interface Colors {
   background: BackgroundColor | string
