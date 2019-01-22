@@ -31,7 +31,7 @@ export interface SegementedControlRadioAppearance {
   focus: object
 }
 
-const createSegmentedControlRadioAppearance = (
+const createSegmentedControlRadioAppearance: any = (
   items: SegementedControlRadioAppearance
 ) => {
   missingStateWarning({

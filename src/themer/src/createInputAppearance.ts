@@ -20,7 +20,7 @@ export interface InputAppearance {
   disabled: object
 }
 
-const createInputAppearance = (items: InputAppearance): object => {
+const createInputAppearance: any = (items: InputAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'invalid', 'placeholder', 'focus', 'disabled'],

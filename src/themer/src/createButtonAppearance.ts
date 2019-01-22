@@ -32,7 +32,7 @@ export interface ButtonAppearance {
   focusAndActive: object
 }
 
-const createButtonAppearance = (items: ButtonAppearance) => {
+const createButtonAppearance: any = (items: ButtonAppearance) => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'focus', 'active', 'focusAndActive', 'disabled'],

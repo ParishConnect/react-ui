@@ -191,7 +191,7 @@ class SideSheet extends React.Component<SideSheetProps> {
         onExited={onCloseComplete}
         onEntered={onOpenComplete}
       >
-        {({ state, close }) => (
+        {({ state, close }: any) => (
           <Pane
             width={width}
             {...paneProps[position]}

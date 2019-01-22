@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { extractStyles as boxExtractStyles } from '@hennessyevan/aluminum-box'
 import { renderStatic } from 'glamor/server'
 
@@ -16,12 +16,14 @@ export default function extractStyles() {
   const scriptProps = {
     type: 'application/json',
     id: 'evergreen-hydrate',
+    // tslint:disable-next-line:react-no-dangerous-html
     dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }
   }
 
   return {
+    // tslint:disable-next-line:prefer-template
     css: styles + '\n' + css,
     cache: evergreenCache,
-    hydrationScript: <script {...scriptProps} />
+    hydrationScript: React.createElement('script', [scriptProps])
   }
 }

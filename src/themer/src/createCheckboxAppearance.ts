@@ -53,7 +53,7 @@ export interface CheckboxAppearance {
   checkedHover: object
 }
 
-const createCheckboxAppearance = (items: CheckboxAppearance): object => {
+const createCheckboxAppearance: any = (items: CheckboxAppearance): object => {
   missingStateWarning({
     items,
     props: [

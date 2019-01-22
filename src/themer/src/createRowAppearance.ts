@@ -19,7 +19,7 @@ export interface RowAppearance {
   focus: object
   current: object
 }
-const createRowAppearance = (items: RowAppearance): object => {
+const createRowAppearance: any = (items: RowAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus', 'current'],

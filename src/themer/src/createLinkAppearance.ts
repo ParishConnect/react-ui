@@ -12,7 +12,7 @@ export interface LinkAppearance {
   focus: object
 }
 
-const createLinkAppearance = (items: LinkAppearance): object => {
+const createLinkAppearance: any = (items: LinkAppearance): object => {
   missingStateWarning({
     items,
     props: ['base', 'hover', 'active', 'focus'],
