@@ -2,13 +2,14 @@ import * as React from 'react'
 import { Icon } from '../../icon'
 import Text from './Text'
 import { PaneProps } from '../../layers'
+import { IconName } from '@blueprintjs/icons'
 
 export declare interface ListItemProps extends PaneProps {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
    */
-  icon?: string
+  icon?: IconName
   size?: 300 | 400 | 500 | 600
   /**
    * The color of the icon.

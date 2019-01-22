@@ -12,7 +12,7 @@ export interface TextInputFieldProps
   /**
    * The label used above the input element.
    */
-  label: React.ReactChild
+  label: React.ReactNode
   /**
    * Passed on the label as a htmlFor prop.
    */
@@ -24,16 +24,16 @@ export interface TextInputFieldProps
   /**
    * A optional description of the field under the label, above the input element.
    */
-  description?: React.ReactChild
+  description?: React.ReactNode
   /**
    * A optional hint under the input element.
    */
-  hint?: React.ReactChild
+  hint?: React.ReactNode
   /**
    * If a validation message is passed it is shown under the input element
    * and above the hint.
    */
-  validationMessage?: React.ReactChild
+  validationMessage?: React.ReactNode
   /**
    * The height of the input element.
    */

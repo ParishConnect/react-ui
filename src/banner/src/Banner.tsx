@@ -7,10 +7,11 @@ import Small from '../../typography/src/Small'
 import Icon from '../../icon/src/Icon'
 import { ThemeContext } from '../../theme'
 import { BackgroundTint } from '../../constants'
+import { IconName } from '@blueprintjs/icons'
 
 interface ActionType {
   title?: string
-  icon?: string
+  icon?: IconName
   onClick?(): void
 }
 

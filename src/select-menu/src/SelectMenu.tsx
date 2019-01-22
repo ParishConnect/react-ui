@@ -59,15 +59,15 @@ export interface SelectMenuProps {
   /**
    * Function that is called when an option is selected.
    */
-  onSelect?(item: any): void
+  onSelect?: any
   /**
    * Function that is called when an option is deselected.
    */
-  onDeselect?(item: any): void
+  onDeselect?: any
   /**
    * Function that is called as the onChange() event for the filter.
    */
-  onFilterChange?(): void
+  onFilterChange?: any
 }
 
 export default class SelectMenu extends React.PureComponent<SelectMenuProps> {

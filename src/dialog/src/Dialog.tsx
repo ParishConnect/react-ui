@@ -63,7 +63,7 @@ export interface DialogProps {
   /**
    * Title of the Dialog. Titles should use Title Case.
    */
-  title?: React.ReactChild
+  title?: React.ReactNode
 
   /**
    * When true, the header with the title and close icon button is shown.

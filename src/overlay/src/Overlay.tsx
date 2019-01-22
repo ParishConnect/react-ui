@@ -70,7 +70,7 @@ export interface OverlayProps {
   /**
    * Show the component; triggers the enter or exit states.
    */
-  isShown: boolean
+  isShown?: boolean
 
   /**
    * Props to be passed through on the inner Box.

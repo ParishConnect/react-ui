@@ -52,7 +52,7 @@ export interface SegmentedControlRadioProps
   /**
    * The label used for the radio.
    */
-  label: React.ReactChild
+  label: React.ReactNode
 
   /**
    * The value attribute of the radio input.

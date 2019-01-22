@@ -1,8 +1,9 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import { ListTextSize } from './Shared'
 
 export declare interface OrderedListProps extends BoxProps {
-  size: 300 | 400 | 500 | 600
+  size?: ListTextSize
 }
 
 export default class OrderedList extends React.PureComponent<OrderedListProps> {
@@ -11,7 +12,7 @@ export default class OrderedList extends React.PureComponent<OrderedListProps> {
   }
 
   render() {
-    const { children, size, ...props } = this.props
+    const { children, size = 400, ...props } = this.props
 
     const finalChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) {

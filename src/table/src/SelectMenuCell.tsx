@@ -23,7 +23,7 @@ export interface SelectMenuCellProps extends TableCellProps {
   /**
    * Optional placeholder when children is falsy.
    */
-  placeholder?: React.ReactChild
+  placeholder?: React.ReactNode
 
   /**
    * The size used for the TextTableCell and Textarea.

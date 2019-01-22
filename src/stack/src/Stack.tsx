@@ -4,7 +4,7 @@ import StackingContext from './StackingContext'
 
 export interface StackProps {
   value: number
-  children: React.ReactChild | any
+  children: React.ReactNode | any
 }
 
 export default class Stack extends React.PureComponent<StackProps> {

@@ -53,7 +53,7 @@ class Alert extends React.PureComponent<AlertProps> {
     appearance: 'default'
   }
 
-  getIconForIntent = (intent: IntentType): React.ReactChild => {
+  getIconForIntent = (intent: IntentType): React.ReactNode => {
     const theme = this.context
 
     return <Icon size={14} {...theme.getIconForIntent(intent)} />

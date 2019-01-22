@@ -4,6 +4,7 @@ import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IconButtonProps } from './IconButton'
+import { IconName } from '@blueprintjs/icons'
 
 class TextDropdownButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext
@@ -14,7 +15,7 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
 
   render() {
     const {
-      height,
+      height = 32,
       isActive,
       children,
       disabled,
@@ -56,7 +57,12 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
           />
         )}
         {children}
-        <Icon color="default" icon={icon} size={12} marginLeft={2} />
+        <Icon
+          color="default"
+          icon={icon as IconName}
+          size={12}
+          marginLeft={2}
+        />
       </Text>
     )
   }

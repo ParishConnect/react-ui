@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Overwrite } from 'utility-types'
 import { Icon } from '../../icon'
 import { ThemeContext } from '../../theme'
 import Button, { ButtonProps } from './Button'
+import { IconName } from '@blueprintjs/icons'
 
-interface UniqueIconButtonProps {
+export interface IconButtonProps extends ButtonProps {
   /**
    * Name of a Blueprint UI icon, or an icon element, to render.
    * This prop is required because it determines the content of the component, but it can
@@ -17,7 +17,7 @@ interface UniqueIconButtonProps {
    *   This type is supported to simplify usage of this component in other Blueprint components.
    *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
    */
-  icon?: string
+  icon?: IconName
   /**
    * Specifies an explicit icon size instead of the default value
    */
@@ -42,8 +42,6 @@ interface UniqueIconButtonProps {
    */
   classname?: boolean
 }
-
-export type IconButtonProps = Overwrite<ButtonProps, UniqueIconButtonProps>
 
 class IconButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext
@@ -93,7 +91,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
         {...props}
       >
         <Icon
-          icon={icon}
+          icon={icon as IconName}
           size={size}
           style={{ fill: this.getIconColor() }}
           color={this.getIconColor()}

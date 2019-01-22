@@ -7,6 +7,7 @@ import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
+import { IconName } from '@blueprintjs/icons'
 
 export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
@@ -34,11 +35,11 @@ export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
    * Sets an icon before the text. Can be any icon from Evergreen.
    */
-  iconBefore?: string
+  iconBefore?: IconName
   /**
    * Sets an icon after the text. Can be any icon from Evergreen.
    */
-  iconAfter?: string
+  iconAfter?: IconName
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.

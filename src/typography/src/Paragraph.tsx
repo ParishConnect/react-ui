@@ -2,12 +2,14 @@ import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { ThemeContext } from '../../theme'
 
+export type ParagraphSize = 300 | 400 | 500
+
 export interface ParagraphProps extends BoxProps {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500.
    */
-  size?: 300 | 400 | 500
+  size?: ParagraphSize
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.

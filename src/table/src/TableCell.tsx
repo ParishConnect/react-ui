@@ -24,7 +24,7 @@ export interface TableCellProps extends Omit<PaneProps, 'appearance'> {
    * Optional node to be placed on the right side of the table cell.
    * Useful for icons and icon buttons.
    */
-  rightView?: React.ReactChild
+  rightView?: React.ReactNode
 
   /**
    * Class name passed to the table cell.

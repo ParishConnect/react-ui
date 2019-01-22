@@ -52,7 +52,7 @@ export interface CornerDialogProps {
    * Children can be a string, node or a function accepting `({ close })`.
    * When passing a string, <Paragraph size={400} color="muted" /> is used to wrap the string.
    */
-  children: React.ReactNode | React.ReactChild | any
+  children: React.ReactNode | React.ReactNode | any
   /**
    * The intent of the CornerDialog. Used for the button.
    */

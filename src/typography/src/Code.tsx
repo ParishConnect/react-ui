@@ -8,7 +8,7 @@ export interface CodeProps extends Omit<TextProps, 'appearance'> {
   /**
    * The appearance of the code.
    */
-  appearance: 'default' | 'minimal'
+  appearance?: 'default' | 'minimal'
   /**
    * Class name passed to the button.
    * Only use if you know what you are doing.
@@ -22,7 +22,7 @@ class Code extends PureComponent<CodeProps> {
     appearance: 'default'
   }
   render() {
-    const { className, appearance, ...props } = this.props
+    const { className, appearance = 'default', ...props } = this.props
     const theme = this.context
 
     const {

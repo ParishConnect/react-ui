@@ -40,7 +40,7 @@ export interface OptionsListProps {
   optionSize?: number
   placeholder?: string
   defaultSearchValue?: string
-  renderItem?(props: any): React.ReactChild
+  renderItem?(props: any): React.ReactNode
   optionsFilter?(data: {}[], query: string): {}[]
   onSelect?(item: any): any
   onDeselect?(item: any): any

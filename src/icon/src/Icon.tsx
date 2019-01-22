@@ -1,6 +1,11 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { IconNames, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons'
+import {
+  IconNames,
+  IconSvgPaths16,
+  IconSvgPaths20,
+  IconName
+} from '@blueprintjs/icons'
 import { ThemeContext } from '../../theme'
 
 export { IconNames }
@@ -28,7 +33,7 @@ export interface IconProps extends BoxProps {
    *   This type is supported to simplify usage of this component in other Blueprint components.
    *   As a consumer, you should never use `<Icon icon={<element />}` directly; simply render `<element />` instead.
    */
-  icon: string
+  icon: IconName
   /**
    * Size of the icon, in pixels.
    * Blueprint contains 16px and 20px SVG icon images,

@@ -7,8 +7,8 @@ import SegmentedControlRadio from './SegmentedControlRadio'
 let radioCount = 1 // Used for generating unique input names
 
 interface ControlOptions {
-  label: React.ReactChild
-  value?: number | string
+  label: React.ReactNode
+  value?: number | string | boolean
 }
 
 export interface SegmentedControlProps extends BoxProps {
@@ -112,7 +112,7 @@ export default class SegmentedControl extends React.PureComponent<
         {options.map((option, index) => {
           return (
             <SegmentedControlRadio
-              key={option.value}
+              key={String(option.value)}
               id={this.name + index}
               name={name || this.name}
               label={option.label}

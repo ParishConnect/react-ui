@@ -24,7 +24,7 @@ export interface AutocompleteProps
    * This prop can be either a string or a Node.
    * It will provide a title for the items
    */
-  title?: string | React.ReactChild
+  title?: string | React.ReactNode
   /**
    * An array of items to be used as options for the select
    */
@@ -65,7 +65,7 @@ export interface AutocompleteProps
   /**
    * Function that returns a component to render the item
    */
-  renderItem?(item: any): React.ReactChild | any
+  renderItem?(item: any): React.ReactNode | any
   /**
    * A function that is used to filter the items.
    * It should return a subset of the initial items.

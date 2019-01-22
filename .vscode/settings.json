@@ -1,5 +1,6 @@
 {
   "eslint.enable": false,
+  "tslint.exclude": "**/node_modules/**",
   "files.associations": {
     "*.js": "javascriptreact"
   },

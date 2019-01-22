@@ -1,6 +1,7 @@
 import * as React from 'react'
 import cx from 'classnames'
 import Text, { TextProps } from './Text'
+import { ThemeContext } from '../../theme/index'
 
 export declare interface LinkProps {
   /**
@@ -15,7 +16,7 @@ export declare interface LinkProps {
   /**
    * Specifies whether underline should be present. Default: true
    */
-  noUnderline: boolean
+  noUnderline?: boolean
   /**
    * Target atrribute, common use case is target="_blank."
    */
@@ -32,12 +33,13 @@ export declare interface LinkProps {
 }
 
 class Link extends React.PureComponent<TextProps & LinkProps> {
+  static contextType = ThemeContext
   static defaultProps = {
     noUnderline: false
   }
 
   render() {
-    const { className, color, noUnderline, ...props } = this.props
+    const { className, color, noUnderline = false, ...props } = this.props
     const theme = this.context
 
     const themedClassName = theme.getLinkClassName(color || theme.themeColor)
