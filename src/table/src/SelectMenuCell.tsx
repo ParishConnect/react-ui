@@ -13,7 +13,7 @@ export interface SelectMenuCellProps extends TableCellProps {
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
    */
-  isSelectable: boolean
+  isSelectable?: boolean
 
   /**
    * When true, the cell can't be edited.
@@ -28,7 +28,7 @@ export interface SelectMenuCellProps extends TableCellProps {
   /**
    * The size used for the TextTableCell and Textarea.
    */
-  size: 300 | 400 | number
+  size?: 300 | 400 | number
 
   selectMenuProps?: object
 }

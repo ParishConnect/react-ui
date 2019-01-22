@@ -3,12 +3,14 @@ import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { ThemeContext } from '../../theme'
 
+export type TextSize = 300 | 400 | 500 | 600 | 700 | 800
+
 export interface TextProps extends Omit<BoxProps, 'apperance'> {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500, 600.
    */
-  size?: 300 | 400 | 500 | 600 | 700 | 800
+  size?: TextSize
   /**
    * Font family.
    * Can be: `ui`, `display` or `mono` or a custom font family.

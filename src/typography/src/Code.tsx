@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import cx from 'classnames'
 import Text, { TextProps } from './Text'
 import { ThemeContext } from '../../theme'
@@ -16,7 +16,7 @@ export interface CodeProps extends Omit<TextProps, 'appearance'> {
   className?: string
 }
 
-class Code extends PureComponent<CodeProps> {
+class Code extends React.PureComponent<CodeProps> {
   public static contextType = ThemeContext
   public static defaultProps = {
     appearance: 'default'

@@ -26,6 +26,7 @@
     "pretty": true,
     "isolatedModules": false,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "importHelpers": true,
     "declaration": true,
     "declarationDir": "dist",

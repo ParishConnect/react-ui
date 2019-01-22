@@ -1,13 +1,13 @@
 import { storiesOf } from '@storybook/react'
-import React from 'react'
+import * as React from 'react'
 import Box from '@hennessyevan/aluminum-box'
-import { Table } from '../../table'
-import { Portal } from '../../portal'
+import { Table, Portal } from '../src'
 import AdvancedTable from './AdvancedTable'
 import VirtualTable from './VirtualTable'
 import EditableTable from './EditableTable'
+import { IntentType } from '../src/constants'
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N: number) => Array.from({ length: N }, (_, k) => k + 1)
 
 const dynamicHeights = range(500).map(() => {
   return Math.max(Math.ceil(Math.random() * 100), 32)
@@ -104,7 +104,7 @@ storiesOf('table', module)
       })()}
       {['none', 'danger', 'warning', 'success'].map(intent => {
         return (
-          <Table.Row key={intent} isSelectable intent={intent}>
+          <Table.Row key={intent} isSelectable intent={intent as IntentType}>
             <Table.TextCell>{intent}</Table.TextCell>
           </Table.Row>
         )
@@ -117,7 +117,9 @@ storiesOf('table', module)
       </Table.Row>
       <Table.Row height="auto" paddingY={12}>
         <Table.TextCell>
-          Auto height <br />based on <br />the content
+          Auto height <br />
+          based on <br />
+          the content
         </Table.TextCell>
       </Table.Row>
     </Box>
@@ -198,7 +200,6 @@ storiesOf('table', module)
       <Table.VirtualBody height={600}>
         {dynamicHeights.map((height, index) => {
           return (
-            // eslint-disable-next-line react/no-array-index-key
             <Table.Row key={`${height}-${index}`} height={height}>
               <Table.TextCell>{height}</Table.TextCell>
             </Table.Row>

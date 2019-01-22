@@ -1,11 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import faker from 'faker'
-import { Table } from '../'
-import { Stack } from '../../stack'
-import { Pane } from '../../layers'
-import { SegmentedControl } from '../../segmented-control'
+import { Table, Stack, Pane, SegmentedControl } from '../src'
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N: number) => Array.from({ length: N }, (_, k) => k + 1)
 
 // Generate a bunch of users.
 const users = range(100).map(index => {
@@ -28,8 +25,16 @@ const users = range(100).map(index => {
   }
 })
 
-export default class EditableTable extends React.PureComponent {
-  state = {
+interface EditableTableState {
+  users: any[]
+  isSelectable: boolean
+}
+
+export default class EditableTable extends React.PureComponent<
+  {},
+  EditableTableState
+> {
+  state: EditableTableState = {
     users,
     isSelectable: true
   }

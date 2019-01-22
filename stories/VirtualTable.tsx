@@ -1,10 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import faker from 'faker'
-import { Table } from '../'
-import { Pane } from '../../layers'
-import { Paragraph } from '../../typography'
+import { Table, Pane, Paragraph } from '../src'
 
-const range = N => Array.from({ length: N }, (v, k) => k + 1)
+const range = (N: number) => Array.from({ length: N }, (_, k) => k + 1)
 
 const randomLengthContent = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
@@ -14,11 +12,12 @@ const randomLengthContent = [
 
 // Generate a bunch of users.
 const users = range(1000)
-  .map((user, index) => ({
+  .map((_, index) => ({
     id: index,
     name: faker.name.findName(),
     email: faker.internet.email(),
-    height: faker.random.arrayElement([32, 40, 56, 'auto'])
+    height: faker.random.arrayElement([32, 40, 56, 'auto']),
+    content: ''
   }))
   .map(item => {
     // When height is auto, use a variable length piece of content to render.

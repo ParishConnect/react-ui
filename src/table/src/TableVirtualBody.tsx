@@ -20,7 +20,7 @@ export interface TableVirtualBodyProps extends PaneProps {
   /**
    * The overscanCount property passed to react-tiny-virtual-list.
    */
-  overscanCount: number
+  overscanCount?: number
 
   /**
    * When passed, this is used as the `estimatedItemSize` in react-tiny-virtual-list.

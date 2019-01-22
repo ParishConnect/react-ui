@@ -1,16 +1,19 @@
-import React from 'react'
+import * as React from 'react'
 import { filter } from 'fuzzaldrin-plus'
-import { Table } from '../../table'
-import { Popover } from '../../popover'
-import { Position } from '../../constants'
-import { Menu } from '../../menu'
-import { Avatar } from '../../avatar'
-import { Text } from '../../typography'
-import { IconButton, TextDropdownButton } from '../../buttons'
-import profiles from './profiles.json' // eslint-disable-line import/extensions
+import {
+  Table,
+  Popover,
+  Position,
+  Menu,
+  Avatar,
+  Text,
+  IconButton,
+  TextDropdownButton
+} from '../src'
+import profiles from './profiles.json'
 
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
 
 const Order = {
@@ -19,16 +22,22 @@ const Order = {
   DESC: 'DESC'
 }
 
-export default class AdvancedTable extends React.Component {
-  constructor(props) {
-    super(props)
+interface AdvancedTableState {
+  searchQuery: string
+  orderedColumn: number
+  ordering: string
+  column2Show: string
+}
 
-    this.state = {
-      searchQuery: '',
-      orderedColumn: 1,
-      ordering: Order.NONE,
-      column2Show: 'email'
-    }
+export default class AdvancedTable extends React.Component<
+  {},
+  AdvancedTableState
+> {
+  state: AdvancedTableState = {
+    searchQuery: '',
+    orderedColumn: 1,
+    ordering: Order.NONE,
+    column2Show: 'email'
   }
 
   sort = profiles => {
@@ -109,7 +118,9 @@ export default class AdvancedTable extends React.Component {
                   { label: 'Descending', value: Order.DESC }
                 ]}
                 selected={
-                  this.state.orderedColumn === 2 ? this.state.ordering : null
+                  this.state.orderedColumn === 2
+                    ? this.state.ordering
+                    : undefined
                 }
                 onChange={value => {
                   this.setState({
@@ -173,7 +184,9 @@ export default class AdvancedTable extends React.Component {
                   { label: 'Descending', value: Order.DESC }
                 ]}
                 selected={
-                  this.state.orderedColumn === 3 ? this.state.ordering : null
+                  this.state.orderedColumn === 3
+                    ? this.state.ordering
+                    : undefined
                 }
                 onChange={value => {
                   this.setState({

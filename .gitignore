@@ -4,6 +4,7 @@ node_modules
 /commonjs/
 /esm/
 /lib/
+/dist/
 /.out/
 /docs/public/
 .cache

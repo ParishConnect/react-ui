@@ -43,18 +43,18 @@ export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onSelect: any
+  onSelect?: any
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onDeselect: any
-  onClick(e: Event): void
-  onKeyPress(e: any): void
-  innerRef(ref: any): any
+  onDeselect?: any
+  onClick?: any
+  onKeyPress?: any
+  innerRef?: any
   /**
    * Function that passes errors to custom handlers
    */
-  onError(object: { err: any; message: string }): any
+  onError?: any
 }
 
 class TableRow extends React.PureComponent<TableRowProps> {

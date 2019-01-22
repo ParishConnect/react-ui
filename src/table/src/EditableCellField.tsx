@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Textarea } from '../../textarea'
+import { TextSize } from '../../typography/src/Text'
 
 export interface EditableCellFieldProps {
   /**
@@ -173,7 +174,7 @@ export default class EditableCellField extends React.PureComponent<
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
         appearance="editable-cell"
-        size={size}
+        size={size as TextSize}
         style={{
           left,
           top,
@@ -184,7 +185,7 @@ export default class EditableCellField extends React.PureComponent<
           zIndex
         }}
         height={null}
-        width={null}
+        width={undefined}
         minHeight={null}
         position="fixed"
         defaultValue={value}

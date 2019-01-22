@@ -11,7 +11,7 @@ export interface EditableCellProps extends TableCellProps {
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
    */
-  isSelectable: boolean
+  isSelectable?: boolean
 
   /**
    * When true, the cell can't be edited.
