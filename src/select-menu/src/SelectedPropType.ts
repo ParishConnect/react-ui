@@ -3,5 +3,4 @@
  * or an array of string (multiple values)
  * NOTE: multiple values are not supported atm
  */
-type SelectedPropType = string | string[]
-export default SelectedPropType
+export type SelectedPropType = string | string[]

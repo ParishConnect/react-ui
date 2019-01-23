@@ -14,11 +14,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: Path.resolve(__dirname, '../src/'),
+        path: Path.resolve(__dirname, '../dist/'),
         name: 'evergreen'
       }
     },
-    'gatsby-transformer-react-docgen',
+    // 'gatsby-transformer-react-docgen',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-postcss'
   ],

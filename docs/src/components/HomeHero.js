@@ -1,12 +1,12 @@
 import React from 'react'
-import {Link} from 'gatsby'
-import {Button} from '../../../src'
+import { Link } from 'gatsby'
+import { Button } from '@hennessyevan/aluminum-ui'
 import spotIllustration from '../images/evergreen-spot-illustration.png'
 import GitHubIcon from './GitHubIcon'
 import LogoWordmark from './LogoWordmark'
 
-const NativeLink = ({...props}) => {
-  return <a target="_blank" rel="noopener noreferrer" {...props}/>
+const NativeLink = ({ ...props }) => {
+  return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
 export default class HomeHero extends React.PureComponent {
@@ -15,12 +15,11 @@ export default class HomeHero extends React.PureComponent {
       <section className="Hero">
         <div className="Hero-inner">
           <div className="Hero-left">
-            <LogoWordmark style={{marginBottom: 12}} width={134}/>
+            <LogoWordmark style={{ marginBottom: 12 }} width={134} />
             <h1>A Design System for the Web</h1>
             <p>
               ParishKit is a React UI Framework for building ambitious products
-              on the web. Brought to you by
-              {' '}
+              on the web. Brought to you by{' '}
               <NativeLink className="Link" href="https://parishconnect.ca/">
                 ParishConnect
               </NativeLink>

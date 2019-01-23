@@ -131,7 +131,7 @@ class TableRow extends React.PureComponent<TableRowProps> {
     const themedClassName = theme.getRowClassName(appearance, intent)
 
     return (
-      <TableRowProvider height={height}>
+      <TableRowProvider value={height}>
         <Pane
           innerRef={this.onRef}
           className={cx(themedClassName, className)}

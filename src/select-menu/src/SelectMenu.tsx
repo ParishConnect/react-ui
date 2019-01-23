@@ -5,7 +5,7 @@ import { Popover } from '../../popover'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
-import SelectedPropType from './SelectedPropType'
+import { SelectedPropType } from './SelectedPropType'
 
 export interface SelectMenuProps {
   /**
