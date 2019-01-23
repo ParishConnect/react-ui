@@ -3,6 +3,9 @@ module.exports = (_baseConfig, _env, config) => {
     test: /\.(ts|tsx)$/,
     use: [
       {
+        loader: require.resolve('cache-loader')
+      },
+      {
         loader: require.resolve('babel-loader')
       },
       {
