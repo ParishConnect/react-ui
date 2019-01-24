@@ -53,7 +53,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
   }
 
   getIconColor = () => {
-    const { appearance, fillColor } = this.props
+    const { appearance = 'default', fillColor } = this.props
     const theme = this.context
     if (fillColor) return fillColor
     switch (appearance) {
@@ -62,7 +62,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
       case 'primary':
         return 'white'
       default:
-        return 'default'
+        return 'currentColor'
     }
   }
 
