@@ -1,6 +1,6 @@
-# 🎉 Thanks for taking the time to contribute to 🌲Evergreen! 🎉
+# 🎉 Thanks for taking the time to contribute to ParishKit! 🎉
 
-It is highly appreciated that you take the time to help improve 🌲Evergreen.
+It is highly appreciated that you take the time to help improve ParishKit.
 We appreciate it if you would take the time to write up a bug report or feature request.
 
 Sadly, if we don't receive enough information, or the issue/feature request doesn't
