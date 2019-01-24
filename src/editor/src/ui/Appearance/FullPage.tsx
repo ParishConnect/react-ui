@@ -28,11 +28,11 @@ const ScrollContainer = styled(ContentStyles)`
 `
 ScrollContainer.displayName = 'ScrollContainer'
 
-const ContentArea = styled.div`
+const ContentArea = styled.div<{ maxWidth: any }>`
   line-height: 24px;
   height: 100%;
   width: 100%;
-  max-width: ${({ theme }: any) => theme.layoutMaxWidth + GUTTER_PADDING * 2}px;
+  max-width: ${({ maxWidth = 'auto' }) => maxWidth};
   padding-top: 50px;
   margin: 0 auto;
   display: flex;
@@ -185,6 +185,7 @@ export default class Editor extends React.Component<
       popupsScrollableElement,
       disabled,
       collabEdit,
+      containerProps,
       ...props
     } = this.props
 
@@ -230,7 +231,7 @@ export default class Editor extends React.Component<
           className="fabric-editor-popup-scroll-parent"
         >
           <ClickAreaBlock editorView={editorView}>
-            <ContentArea>
+            <ContentArea {...containerProps}>
               <div
                 style={{ padding: `0 ${GUTTER_PADDING}px` }}
                 className="ak-editor-content-area"

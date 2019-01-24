@@ -7,7 +7,6 @@
     "checkJs": false,
     "declaration": true,
     "declarationDir": "dist",
-    "dynamicImport": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "isolatedModules": false,
@@ -37,8 +36,11 @@
   "exclude": [
     "node_modules",
     "dist",
+    ".cache",
+    ".cache-loader",
     "stories",
     "tests",
+    "__tests__",
     "compiled",
     "src/**/__tests__"
   ]

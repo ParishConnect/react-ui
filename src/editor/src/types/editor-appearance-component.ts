@@ -1,47 +1,48 @@
-import { EditorView } from 'prosemirror-view';
-import { ProviderFactory, ExtensionHandlers } from '@atlaskit/editor-common';
-import { EventDispatcher } from '../event-dispatcher';
-import EditorActions from '../actions';
+import { EditorView } from 'prosemirror-view'
+import { ProviderFactory, ExtensionHandlers } from '@atlaskit/editor-common'
+import { EventDispatcher } from '../event-dispatcher'
+import EditorActions from '../actions'
 import {
   UIComponentFactory,
   ToolbarUIComponentFactory,
   ReactComponents,
-  InsertMenuCustomItem,
-} from '../types';
-import { CollabEditOptions } from '../plugins/collab-edit';
+  InsertMenuCustomItem
+} from '../types'
+import { CollabEditOptions } from '../plugins/collab-edit'
+import { BoxProps } from '@hennessyevan/aluminum-box'
 
-export interface EditorAppearanceComponentProps {
-  onUiReady?: (ref) => void;
-  onSave?: (editorView: EditorView) => void;
-  onCancel?: (editorView: EditorView) => void;
+export interface EditorAppearanceComponentProps extends BoxProps {
+  onUiReady?: (ref) => void
+  onSave?: (editorView: EditorView) => void
+  onCancel?: (editorView: EditorView) => void
 
-  providerFactory: ProviderFactory;
-  editorActions?: EditorActions;
-  editorDOMElement: JSX.Element;
-  editorView?: EditorView;
+  providerFactory: ProviderFactory
+  editorActions?: EditorActions
+  editorDOMElement: JSX.Element
+  editorView?: EditorView
 
-  eventDispatcher?: EventDispatcher;
+  eventDispatcher?: EventDispatcher
 
-  maxHeight?: number;
+  maxHeight?: number
 
-  contentComponents?: UIComponentFactory[];
-  primaryToolbarComponents?: ToolbarUIComponentFactory[];
-  secondaryToolbarComponents?: UIComponentFactory[];
+  contentComponents?: UIComponentFactory[]
+  primaryToolbarComponents?: ToolbarUIComponentFactory[]
+  secondaryToolbarComponents?: UIComponentFactory[]
 
-  customContentComponents?: ReactComponents;
-  customPrimaryToolbarComponents?: ReactComponents;
-  customSecondaryToolbarComponents?: ReactComponents;
-  insertMenuItems?: InsertMenuCustomItem[];
+  customContentComponents?: ReactComponents
+  customPrimaryToolbarComponents?: ReactComponents
+  customSecondaryToolbarComponents?: ReactComponents
+  insertMenuItems?: InsertMenuCustomItem[]
 
-  addonToolbarComponents?: ReactComponents;
+  addonToolbarComponents?: ReactComponents
 
-  popupsMountPoint?: HTMLElement;
-  popupsBoundariesElement?: HTMLElement;
-  popupsScrollableElement?: HTMLElement;
+  popupsMountPoint?: HTMLElement
+  popupsBoundariesElement?: HTMLElement
+  popupsScrollableElement?: HTMLElement
 
-  extensionHandlers?: ExtensionHandlers;
+  extensionHandlers?: ExtensionHandlers
 
-  disabled?: boolean;
+  disabled?: boolean
 
-  collabEdit?: CollabEditOptions;
+  collabEdit?: CollabEditOptions
 }

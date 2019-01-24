@@ -28,6 +28,8 @@ import { CollabEditOptions } from '../plugins/collab-edit/types'
 import { CodeBlockOptions } from '../plugins/code-block'
 import { CardProvider, CardOptions } from '../plugins/card/types'
 import { QuickInsertOptions } from '../plugins/quick-insert/types'
+import { BoxProps } from '@hennessyevan/aluminum-box'
+import { Omit } from 'utility-types'
 
 export type EditorAppearance =
   | 'message'
@@ -61,7 +63,7 @@ export interface ExtensionConfig {
   allowBreakout?: boolean
 }
 
-export interface EditorProps {
+export interface EditorProps extends Omit<BoxProps, 'appearance'> {
   /*
   Configure the display mode of the editor. Different modes may have different feature sets supported.
 
@@ -78,6 +80,11 @@ export interface EditorProps {
   primaryToolbarComponents?: ReactComponents
   secondaryToolbarComponents?: ReactComponents
   addonToolbarComponents?: ReactComponents
+
+  /**
+   * Styles the editor content container. Composes Box
+   */
+  containerProps?: Partial<BoxProps>
 
   // Configure allowed blocks in the editor, currently only supports `heading`, `blockquote`, `hardBreak` and `codeBlock`.
   allowBlockType?: { exclude?: Array<AllowedBlockTypes> }

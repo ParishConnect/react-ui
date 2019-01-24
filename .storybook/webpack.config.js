@@ -6,17 +6,14 @@ module.exports = (_baseConfig, _env, config) => {
         loader: require.resolve('cache-loader')
       },
       {
-        loader: require.resolve('babel-loader')
-      },
-      {
-        loader: require.resolve('awesome-typescript-loader'),
+        loader: require.resolve('babel-loader'),
         options: {
           plugins: ['lodash']
         }
-      },
-      {
-        loader: require.resolve('react-docgen-typescript-loader')
       }
+      // {
+      //   loader: require.resolve('react-docgen-typescript-loader')
+      // }
     ]
   })
   config.resolve.extensions.push('.ts', '.tsx', '.json')
