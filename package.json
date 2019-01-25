@@ -17,9 +17,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "sideEffects": false,
   "scripts": {
     "start": "yarn dev",
@@ -34,7 +31,7 @@
     "build": "tsc --declaration",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "clean": "git clean -Xdf",
-    "release": "np",
+    "release": "np --no-publish",
     "chromatic": "chromatic test --storybook-addon --script-name dev --app-code=alj8xoz1ujt"
   },
   "engines": {
