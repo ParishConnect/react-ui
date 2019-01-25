@@ -17,7 +17,9 @@
   "files": [
     "dist"
   ],
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": false,
   "scripts": {
     "start": "yarn dev",
