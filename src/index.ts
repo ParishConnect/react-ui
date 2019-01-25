@@ -14,6 +14,7 @@ export { StackingOrder, Intent, Position } from './constants'
 export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
 export * from './editor'
+export * from './renderer'
 export { FilePicker, ImagePicker } from './file-picker'
 export {
   FormField,
