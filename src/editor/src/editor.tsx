@@ -197,6 +197,24 @@ export default class Editor extends React.Component<EditorProps, {}> {
       onSave: this.props.onSave ? this.handleSave : undefined
     }
 
+    const {
+      disabled,
+      allowDynamicTextSizing,
+      maxHeight,
+      onSave,
+      onCancel,
+      popupsMountPoint,
+      popupsBoundariesElement,
+      insertMenuItems,
+      contentComponents,
+      primaryToolbarComponents,
+      secondaryToolbarComponents,
+      addonToolbarComponents,
+      collabEdit,
+      containerProps,
+      toolbarProps
+    } = this.props
+
     const editor = (
       <WidthProvider>
         <EditorContext editorActions={this.editorActions}>
@@ -213,29 +231,21 @@ export default class Editor extends React.Component<EditorProps, {}> {
                         providerFactory={this.providerFactory}
                         onEditorCreated={this.onEditorCreated}
                         onEditorDestroyed={this.onEditorDestroyed}
-                        disabled={this.props.disabled}
+                        disabled={disabled}
                         render={({ editor, view, eventDispatcher, config }) => (
-                          <BaseTheme
-                            dynamicTextSizing={
-                              this.props.allowDynamicTextSizing
-                            }
-                          >
+                          <BaseTheme dynamicTextSizing={allowDynamicTextSizing}>
                             <Component
-                              disabled={this.props.disabled}
+                              disabled={disabled}
                               editorActions={this.editorActions}
                               editorDOMElement={editor}
                               editorView={view}
                               providerFactory={this.providerFactory}
                               eventDispatcher={eventDispatcher}
-                              maxHeight={this.props.maxHeight}
-                              onSave={
-                                this.props.onSave ? this.handleSave : undefined
-                              }
-                              onCancel={this.props.onCancel}
-                              popupsMountPoint={this.props.popupsMountPoint}
-                              popupsBoundariesElement={
-                                this.props.popupsBoundariesElement
-                              }
+                              maxHeight={maxHeight}
+                              onSave={onSave ? this.handleSave : undefined}
+                              onCancel={onCancel}
+                              popupsMountPoint={popupsMountPoint}
+                              popupsBoundariesElement={popupsBoundariesElement}
                               contentComponents={config.contentComponents}
                               primaryToolbarComponents={
                                 config.primaryToolbarComponents
@@ -243,20 +253,18 @@ export default class Editor extends React.Component<EditorProps, {}> {
                               secondaryToolbarComponents={
                                 config.secondaryToolbarComponents
                               }
-                              insertMenuItems={this.props.insertMenuItems}
-                              customContentComponents={
-                                this.props.contentComponents
-                              }
+                              insertMenuItems={insertMenuItems}
+                              customContentComponents={contentComponents}
                               customPrimaryToolbarComponents={
-                                this.props.primaryToolbarComponents
+                                primaryToolbarComponents
                               }
                               customSecondaryToolbarComponents={
-                                this.props.secondaryToolbarComponents
+                                secondaryToolbarComponents
                               }
-                              addonToolbarComponents={
-                                this.props.addonToolbarComponents
-                              }
-                              collabEdit={this.props.collabEdit}
+                              addonToolbarComponents={addonToolbarComponents}
+                              collabEdit={collabEdit}
+                              containerProps={containerProps}
+                              toolbarProps={toolbarProps}
                             />
                           </BaseTheme>
                         )}

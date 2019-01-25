@@ -13,7 +13,7 @@ export { Combobox } from './combobox'
 export { StackingOrder, Intent, Position } from './constants'
 export { CornerDialog } from './corner-dialog'
 export { Dialog } from './dialog'
-export { Editor } from './editor'
+export * from './editor'
 export { FilePicker, ImagePicker } from './file-picker'
 export {
   FormField,

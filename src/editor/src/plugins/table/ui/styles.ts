@@ -1,6 +1,6 @@
 // @ts-ignore: unused variable
-import { css, Styles, StyledComponentClass } from 'styled-components';
-import { borderRadius, colors, fontSize } from '@atlaskit/theme';
+import { css, Styles, StyledComponentClass } from 'styled-components'
+import { borderRadius, colors, fontSize } from '@atlaskit/theme'
 import {
   browser,
   tableMarginTop,
@@ -9,10 +9,10 @@ import {
   akEditorUnitZIndex,
   akEditorSmallZIndex,
   akEditorTableNumberColumnWidth,
-  akEditorTableBorder,
-} from '@atlaskit/editor-common';
-import { scrollbarStyles } from '../../../ui/styles';
-import { TableCssClassName as ClassName } from '../types';
+  akEditorTableBorder
+} from '@atlaskit/editor-common'
+import { scrollbarStyles } from '../../../ui/styles'
+import { TableCssClassName as ClassName } from '../types'
 
 const {
   N40A,
@@ -31,29 +31,29 @@ const {
   N90,
   N200,
   N0,
-  R500,
-} = colors;
+  R500
+} = colors
 
-export const tableToolbarColor = N20;
-export const tableBorderColor = N50;
-export const tableFloatingControlsColor = N20;
-export const tableCellSelectedColor = B75;
-export const tableToolbarSelectedColor = B100;
-export const tableBorderSelectedColor = B300;
-export const tableCellDeleteColor = R50;
-export const tableBorderDeleteColor = R300;
-export const tableToolbarDeleteColor = R75;
+export const tableToolbarColor = N20
+export const tableBorderColor = N50
+export const tableFloatingControlsColor = N20
+export const tableCellSelectedColor = B75
+export const tableToolbarSelectedColor = B100
+export const tableBorderSelectedColor = B300
+export const tableCellDeleteColor = R50
+export const tableBorderDeleteColor = R300
+export const tableToolbarDeleteColor = R75
 
-export const tableToolbarSize = akEditorTableToolbarSize;
-export const tableBorderRadiusSize = 3;
-export const tableInsertColumnButtonSize = 20;
-export const tableDeleteButtonSize = 16;
-export const tablePadding = 8;
-export const contextualMenuTriggerSize = 16;
-export const contextualMenuDropdownWidth = 180;
-export const layoutButtonSize = 32;
+export const tableToolbarSize = akEditorTableToolbarSize
+export const tableBorderRadiusSize = 3
+export const tableInsertColumnButtonSize = 20
+export const tableDeleteButtonSize = 16
+export const tablePadding = 8
+export const contextualMenuTriggerSize = 16
+export const contextualMenuDropdownWidth = 180
+export const layoutButtonSize = 32
 
-const isIE11 = browser.ie_version === 11;
+const isIE11 = browser.ie_version === 11
 
 const InsertLine = (css?: string) => `
   .${ClassName.CONTROLS_INSERT_LINE} {
@@ -63,7 +63,7 @@ const InsertLine = (css?: string) => `
     z-index: ${akEditorUnitZIndex};
     ${css}
   }
-`;
+`
 
 const InsertMarker = (css?: string) => `
   .${ClassName.CONTROLS_INSERT_MARKER} {
@@ -75,7 +75,7 @@ const InsertMarker = (css?: string) => `
     pointer-events: none;
     ${css}
   }
-`;
+`
 
 const Button = (css?: string) => `
   border-radius: ${borderRadius()}px;
@@ -96,7 +96,7 @@ const Button = (css?: string) => `
     max-width: 100%;
   }
   ${css}
-`;
+`
 
 const HeaderButton = (css?: string) => `
   .${ClassName.CONTROLS_BUTTON} {
@@ -117,7 +117,7 @@ const HeaderButton = (css?: string) => `
     background-color: ${tableToolbarSelectedColor};
     border-color: ${tableBorderSelectedColor};
   }
-`;
+`
 
 const HeaderButtonHover = () => `
   .${ClassName.CONTROLS_BUTTON}:hover {
@@ -126,7 +126,7 @@ const HeaderButtonHover = () => `
     border-color: ${tableBorderSelectedColor};
     cursor: pointer;
   }
-`;
+`
 
 const HeaderButtonDanger = () => `
   .danger .${ClassName.CONTROLS_BUTTON} {
@@ -135,7 +135,7 @@ const HeaderButtonDanger = () => `
     position: relative;
     z-index: ${akEditorUnitZIndex};
   }
-`;
+`
 
 const InsertButton = () => `
   .${ClassName.CONTROLS_INSERT_BUTTON_INNER} {
@@ -157,7 +157,7 @@ const InsertButton = () => `
   .${ClassName.CONTROLS_INSERT_LINE} {
     display: none;
   }
-`;
+`
 
 const InsertButtonHover = () => `
   .${ClassName.CONTROLS_INSERT_BUTTON}:hover {
@@ -165,7 +165,7 @@ const InsertButtonHover = () => `
     color: white;
     cursor: pointer;
   }
-`;
+`
 
 const DeleteButton = (css?: string) => `
   .${ClassName.CONTROLS_DELETE_BUTTON_WRAP},
@@ -184,7 +184,7 @@ const DeleteButton = (css?: string) => `
       `)}
     }
   }
-`;
+`
 
 const DeleteButtonHover = () => `
   .${ClassName.CONTROLS_DELETE_BUTTON}:hover {
@@ -192,7 +192,7 @@ const DeleteButtonHover = () => `
     color: white;
     cursor: pointer;
   }
-`;
+`
 
 export const tableStyles = css`
   .${ClassName.LAYOUT_BUTTON} button {
@@ -223,8 +223,12 @@ export const tableStyles = css`
     }
 
     /* Breakout only works on top level */
-    > .${ClassName.NODEVIEW_WRAPPER} .${ClassName.TABLE_CONTAINER}[data-layout='full-width'],
-    > .${ClassName.NODEVIEW_WRAPPER} .${ClassName.TABLE_CONTAINER}[data-layout='wide'] {
+    > .${ClassName.NODEVIEW_WRAPPER} .${
+  ClassName.TABLE_CONTAINER
+}[data-layout='full-width'],
+    > .${ClassName.NODEVIEW_WRAPPER} .${
+  ClassName.TABLE_CONTAINER
+}[data-layout='wide'] {
       margin-left: 50%;
       transform: translateX(-50%);
     }
@@ -248,7 +252,9 @@ export const tableStyles = css`
       .${ClassName.COLUMN_CONTROLS_BUTTON_WRAP}:last-child > button {
         border-top-right-radius: ${tableBorderRadiusSize}px;
       }
-      .${ClassName.COLUMN_CONTROLS_BUTTON_WRAP}.active .${ClassName.CONTROLS_BUTTON},
+      .${ClassName.COLUMN_CONTROLS_BUTTON_WRAP}.active .${
+  ClassName.CONTROLS_BUTTON
+},
       .${ClassName.CONTROLS_BUTTON}:hover {
         z-index: ${akEditorUnitZIndex};
         position: relative;
@@ -298,9 +304,9 @@ export const tableStyles = css`
         left: -${tableDeleteButtonSize + 2}px;
       }
     }
-    :not(.${ClassName.IS_RESIZING}) .${ClassName.COLUMN_CONTROLS}, 
+    :not(.${ClassName.IS_RESIZING}) .${ClassName.COLUMN_CONTROLS},
     :not(.${ClassName.IS_RESIZING}) .${ClassName.CORNER_CONTROLS} {
-      ${ DeleteButtonHover()}
+      ${DeleteButtonHover()}
     }
     .${ClassName.COLUMN_CONTROLS},
     .${ClassName.CONTROLS_INSERT_COLUMN} {
@@ -374,7 +380,9 @@ export const tableStyles = css`
       background: ${tableToolbarSelectedColor};
       cursor: pointer;
     }
-    :not(.${ClassName.IS_RESIZING}) .${ClassName.CONTROLS_CORNER_BUTTON}.danger {
+    :not(.${ClassName.IS_RESIZING}) .${
+  ClassName.CONTROLS_CORNER_BUTTON
+}.danger {
       border-color: ${tableBorderDeleteColor};
       background: ${tableToolbarDeleteColor};
     }
@@ -397,7 +405,9 @@ export const tableStyles = css`
         position: relative;
         margin-top: -1px;
       }
-      .${ClassName.ROW_CONTROLS_BUTTON_WRAP}.active .${ClassName.CONTROLS_BUTTON},
+      .${ClassName.ROW_CONTROLS_BUTTON_WRAP}.active .${
+  ClassName.CONTROLS_BUTTON
+},
       .${ClassName.CONTROLS_BUTTON}:hover {
         z-index: ${akEditorUnitZIndex};
         position: relative;
@@ -490,7 +500,7 @@ export const tableStyles = css`
           color: ${N0};
         }
       }
-  
+
       /* scroll shadows */
       .${ClassName.TABLE_RIGHT_SHADOW},
       .${ClassName.TABLE_LEFT_SHADOW}::after {
@@ -570,7 +580,7 @@ export const tableStyles = css`
         pointer-events: none;
       }
     }
-    :not(.${ClassName.IS_RESIZING}) .${ClassName.TABLE_NODE_WRAPPER} > table { 
+    :not(.${ClassName.IS_RESIZING}) .${ClassName.TABLE_NODE_WRAPPER} > table {
       .${ClassName.HOVERED_CELL} {
         position: relative;
         border: 1px solid ${tableBorderSelectedColor};
@@ -665,7 +675,7 @@ export const tableStyles = css`
       pointer-events: none;
     }
   }
-`;
+`
 
 export const tableFullPageEditorStyles = css`
   .ProseMirror .${ClassName.TABLE_NODE_WRAPPER} > table {
@@ -682,7 +692,7 @@ export const tableFullPageEditorStyles = css`
       background: ${tableCellDeleteColor};
     }
   }
-`;
+`
 
 export const tableCommentEditorStyles = css`
   .ProseMirror .${ClassName.TABLE_NODE_WRAPPER} > table {
@@ -691,7 +701,7 @@ export const tableCommentEditorStyles = css`
 
     ${scrollbarStyles};
   }
-`;
+`
 
 export const tablePopupStyles = css`
   .${ClassName.CONTEXTUAL_SUBMENU} {
@@ -730,4 +740,4 @@ export const tablePopupStyles = css`
       color: ${N90};
     }
   }
-`;
+`

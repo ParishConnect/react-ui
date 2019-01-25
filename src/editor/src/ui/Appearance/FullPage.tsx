@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Box from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { colors } from '@atlaskit/theme'
 import { akEditorMenuZIndex } from '@atlaskit/editor-common'
 import { EditorAppearanceComponentProps, EditorAppearance } from '../../types'
@@ -28,66 +28,66 @@ const ScrollContainer = styled(ContentStyles)`
 `
 ScrollContainer.displayName = 'ScrollContainer'
 
-const ContentArea = styled.div<{ maxWidth: any }>`
-  line-height: 24px;
-  height: 100%;
-  width: 100%;
-  max-width: ${({ maxWidth = 'auto' }) => maxWidth};
-  padding-top: 50px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding-bottom: 55px;
+const ContentArea = ({ maxWidth = 'auto', children, ...props }) => (
+  <Box
+    lineHeight="24px"
+    height="100%"
+    width="100%"
+    maxWidth={maxWidth}
+    paddingTop={50}
+    marginX="auto"
+    display="flex"
+    flexDirection="column"
+    flexGrow={1}
+    paddingBottom={55}
+    css={{
+      '& .ProseMirror': {
+        flexGrow: 1,
+        boxSizing: 'border-box'
+      },
 
-  & .ProseMirror {
-    flex-grow: 1;
-    box-sizing: border-box;
-  }
-
-  && .ProseMirror {
-    & > * {
-      clear: both;
-    }
-    > p,
-    > ul,
-    > ol,
-    > h1,
-    > h2,
-    > h3,
-    > h4,
-    > h5,
-    > h6 {
-      clear: none;
-    }
-  }
-  ${tableFullPageEditorStyles};
-`
+      '&& .ProseMirror': {
+        '& > *': {
+          clear: 'both'
+        },
+        '> p, > ul, > ol, > h1, > h2, > h3, > h4, > h5, > h6': {
+          clear: 'none'
+        }
+      },
+      ...tableFullPageEditorStyles
+    }}
+    {...props}
+  >
+    {children}
+  </Box>
+)
 ContentArea.displayName = 'ContentArea'
 
-interface MainToolbarProps {
-  showKeyline: boolean
+interface MainToolbarProps extends BoxProps {
+  showKeyline?: boolean
 }
 
-const MainToolbar: React.ComponentClass<
-  React.HTMLAttributes<{}> & MainToolbarProps
-> = styled.div`
-  position: relative;
-  align-items: center;
-  box-shadow: ${(props: MainToolbarProps) =>
-    props.showKeyline
-      ? `0 ${akEditorToolbarKeylineHeight}px 0 0 ${colors.N30}`
-      : 'none'};
-  transition: box-shadow 200ms;
-  z-index: ${akEditorMenuZIndex};
-  display: flex;
-  height: 80px;
-  flex-shrink: 0;
-
-  & object {
-    height: 0 !important;
-  }
-`
+const MainToolbar = ({ showKeyline, children, ...props }: MainToolbarProps) => (
+  <Box
+    position="relative"
+    alignItems="center"
+    boxShadow={
+      showKeyline
+        ? `0 ${akEditorToolbarKeylineHeight}px 0 0 ${colors.N30}`
+        : 'none'
+    }
+    paddingX={32}
+    transition="box-shadow 200ms"
+    zIndex={akEditorMenuZIndex}
+    display="flex"
+    height={80}
+    flexShrink={0}
+    css={{ '& object': { height: '0 !important' } }}
+    {...props}
+  >
+    {children}
+  </Box>
+)
 MainToolbar.displayName = 'MainToolbar'
 
 const MainToolbarCustomComponentsSlot = styled.div`
@@ -186,6 +186,7 @@ export default class Editor extends React.Component<
       disabled,
       collabEdit,
       containerProps,
+      toolbarProps,
       ...props
     } = this.props
 
@@ -201,7 +202,7 @@ export default class Editor extends React.Component<
         className="akEditor"
         {...props}
       >
-        <MainToolbar showKeyline={showKeyline}>
+        <MainToolbar showKeyline={showKeyline} {...toolbarProps}>
           <Toolbar
             editorView={editorView!}
             editorActions={editorActions}
@@ -232,10 +233,7 @@ export default class Editor extends React.Component<
         >
           <ClickAreaBlock editorView={editorView}>
             <ContentArea {...containerProps}>
-              <div
-                style={{ padding: `0 ${GUTTER_PADDING}px` }}
-                className="ak-editor-content-area"
-              >
+              <div className="ak-editor-content-area">
                 {customContentComponents}
                 {
                   <PluginSlot

@@ -63,7 +63,7 @@ export interface ExtensionConfig {
   allowBreakout?: boolean
 }
 
-export interface EditorProps extends Omit<BoxProps, 'appearance'> {
+export interface EditorProps {
   /*
   Configure the display mode of the editor. Different modes may have different feature sets supported.
 
@@ -85,6 +85,11 @@ export interface EditorProps extends Omit<BoxProps, 'appearance'> {
    * Styles the editor content container. Composes Box
    */
   containerProps?: Partial<BoxProps>
+
+  /**
+   * Styles the toolbar area of the editor. Composes Box
+   */
+  toolbarProps?: Partial<BoxProps>
 
   // Configure allowed blocks in the editor, currently only supports `heading`, `blockquote`, `hardBreak` and `codeBlock`.
   allowBlockType?: { exclude?: Array<AllowedBlockTypes> }

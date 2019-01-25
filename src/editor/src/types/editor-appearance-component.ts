@@ -23,7 +23,7 @@ export interface EditorAppearanceComponentProps extends BoxProps {
 
   eventDispatcher?: EventDispatcher
 
-  maxHeight?: number
+  maxHeight?: number | string | boolean
 
   contentComponents?: UIComponentFactory[]
   primaryToolbarComponents?: ToolbarUIComponentFactory[]
