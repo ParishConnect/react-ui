@@ -73,6 +73,8 @@ class IconButton extends React.PureComponent<IconButtonProps> {
       iconSize,
       height = 32,
       intent = 'none',
+      paddingLeft,
+      paddingRight,
       ...props
     } = this.props
     const theme = this.context
@@ -93,7 +95,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
         <Icon
           icon={icon as IconName}
           size={size}
-          fill={this.getIconColor()}
+          style={{ fill: this.getIconColor() }}
           color={this.getIconColor()}
         />
       </Button>

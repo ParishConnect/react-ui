@@ -108,13 +108,8 @@ class Button extends React.PureComponent<ButtonProps> {
     const iconSize = theme.getIconSizeForButton(height)
 
     const pr =
-      paddingRight && paddingRight !== undefined
-        ? paddingRight
-        : Math.round(height / 2)
-    const pl =
-      paddingLeft && paddingLeft !== undefined
-        ? paddingLeft
-        : Math.round(height / 2)
+      paddingRight !== undefined ? paddingRight : Math.round(height / 2)
+    const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2)
 
     let iconBefore: React.ReactNode
     if (iconBeforeKey) {
