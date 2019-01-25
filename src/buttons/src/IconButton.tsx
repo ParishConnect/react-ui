@@ -93,7 +93,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
         <Icon
           icon={icon as IconName}
           size={size}
-          style={{ fill: this.getIconColor() }}
+          fill={this.getIconColor()}
           color={this.getIconColor()}
         />
       </Button>

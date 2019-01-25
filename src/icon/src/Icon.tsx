@@ -111,6 +111,7 @@ class Icon extends React.PureComponent<IconProps> {
     return (
       <Box
         is="svg"
+        position="absolute"
         {...svgProps}
         style={style}
         data-icon={icon}
