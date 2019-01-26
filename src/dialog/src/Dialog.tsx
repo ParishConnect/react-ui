@@ -268,8 +268,8 @@ class Dialog extends React.Component<DialogProps> {
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          '-webkit-overflow-scrolling': 'touch',
-          overflowY: scrollBehavior === 'inside' ? '' : 'scroll'
+          overflowY: scrollBehavior === 'inside' ? '' : 'scroll',
+          css: { '-webkit-overflow-scrolling': 'touch' }
         }}
         preventBodyScrolling={preventBodyScrolling}
       >
