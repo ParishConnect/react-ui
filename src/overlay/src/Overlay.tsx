@@ -143,6 +143,11 @@ export interface OverlayProps {
    * type: `Function(node: HtmlElement, isAppearing: bool) -> void`
    */
   onEntered?: any
+
+  /**
+   * Object that overrides certain css properties
+   */
+  css?: any
 }
 
 interface OverlayState {
@@ -318,7 +323,7 @@ class Overlay extends React.Component<OverlayProps, OverlayState> {
   }
 
   render() {
-    const { containerProps = {}, isShown, children } = this.props
+    const { containerProps = {}, css, isShown, children } = this.props
     const theme = this.context
 
     const { exiting, exited } = this.state
@@ -353,7 +358,10 @@ class Overlay extends React.Component<OverlayProps, OverlayState> {
                   right={0}
                   bottom={0}
                   zIndex={zIndex}
-                  css={animationStyles(theme.overlayBackgroundColor)}
+                  css={{
+                    ...animationStyles(theme.overlayBackgroundColor),
+                    ...css
+                  }}
                   data-state={state}
                   {...containerProps}
                 >
