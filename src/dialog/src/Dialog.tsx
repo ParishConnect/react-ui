@@ -158,7 +158,7 @@ export interface DialogProps {
   /**
    * Whether the dialog should not scroll internally. Default?: false
    */
-  externalScrolling?: boolean
+  scrollBehavior?: 'inside' | 'outside'
 
   /**
    * The min height of the body content.
@@ -202,7 +202,8 @@ class Dialog extends React.Component<DialogProps> {
     shouldCloseOnEscapePress: true,
     onCancel: (close: any) => close(),
     onConfirm: (close: any) => close(),
-    preventBodyScrolling: false
+    preventBodyScrolling: false,
+    scrollBehavior: 'inside'
   }
 
   renderChildren = (close: any) => {
@@ -225,7 +226,7 @@ class Dialog extends React.Component<DialogProps> {
       isShown = false,
       topOffset,
       sideOffset,
-      externalScrolling,
+      scrollBehavior,
       hasHeader,
       hasFooter,
       hasCancel,
@@ -253,9 +254,8 @@ class Dialog extends React.Component<DialogProps> {
     const topOffsetWithUnit = Number.isInteger(topOffset as number)
       ? `${topOffset}px`
       : topOffset
-    const maxHeight = externalScrolling
-      ? ''
-      : `calc(100% - ${topOffsetWithUnit} * 2)`
+    const maxHeight =
+      scrollBehavior === 'inside' ? `calc(100% - ${topOffsetWithUnit} * 2)` : ``
 
     return (
       <Overlay
@@ -268,7 +268,7 @@ class Dialog extends React.Component<DialogProps> {
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          overflowY: externalScrolling ? 'scroll' : ''
+          overflowY: scrollBehavior === 'inside' ? '' : 'scroll'
         }}
         preventBodyScrolling={preventBodyScrolling}
       >
@@ -311,7 +311,7 @@ class Dialog extends React.Component<DialogProps> {
             <Pane
               data-state={state}
               display="flex"
-              overflow={externalScrolling ? 'visible' : 'auto'}
+              overflow={scrollBehavior === 'inside' ? 'auto' : 'visible'}
               padding={16}
               flexDirection="column"
               minHeight={minHeightContent}
@@ -326,7 +326,7 @@ class Dialog extends React.Component<DialogProps> {
                   {/* Cancel should be first to make sure focus gets on it first. */}
                   {hasCancel && (
                     <Button
-                      tabIndex={externalScrolling ? null : 0}
+                      tabIndex={scrollBehavior === 'inside' ? 0 : null}
                       onClick={() => onCancel(close)}
                     >
                       {cancelLabel}
@@ -334,7 +334,7 @@ class Dialog extends React.Component<DialogProps> {
                   )}
 
                   <Button
-                    tabIndex={externalScrolling ? null : 0}
+                    tabIndex={scrollBehavior ? 0 : null}
                     marginLeft={8}
                     appearance="primary"
                     isLoading={isConfirmLoading}

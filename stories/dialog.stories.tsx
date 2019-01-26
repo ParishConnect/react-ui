@@ -11,9 +11,11 @@ import {
   Combobox,
   SideSheet,
   Pane,
-  Popover
+  Popover,
+  ReactRenderer
 } from '../src'
 import DialogManager from './DialogManager'
+import testDocument from './testDocument.json'
 
 // Generate a big list of items
 const comboboxItems = starWarsNames.all.sort((a, b) => {
@@ -181,6 +183,23 @@ storiesOf('dialog', module)
               <Box height={1200} width="100%" backgroundColor="#ddd" />
             </Dialog>
             <Button onClick={show}>Show Dialog with Internal Scrolling</Button>
+          </Box>
+        )}
+      </DialogManager>
+      <DialogManager>
+        {({ isShown, show, hide }) => (
+          <Box marginBottom={16}>
+            <Dialog
+              scrollBehavior="outside"
+              hasFooter={false}
+              hasHeader={false}
+              isShown={isShown}
+              title="Dialog with External Scrolling"
+              onCloseComplete={hide}
+            >
+              <ReactRenderer document={testDocument} />
+            </Dialog>
+            <Button onClick={show}>Show Dialog with External Scrolling</Button>
           </Box>
         )}
       </DialogManager>
