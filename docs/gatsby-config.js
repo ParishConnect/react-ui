@@ -15,7 +15,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: Path.resolve(__dirname, '../dist/'),
-        name: 'evergreen'
+        name: 'aluminum-ui'
       }
     },
     // 'gatsby-transformer-react-docgen',
@@ -24,6 +24,6 @@ module.exports = {
   ],
   siteMetadata: {
     title: 'ParishKit documentation',
-    description: 'ParishKit Design System by Segment'
+    description: 'ParishKit Design System'
   }
 }
