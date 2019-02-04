@@ -28,7 +28,7 @@ export default class Portal extends React.Component {
     portalContainer.removeChild(this.el)
   }
 
-  render() {
+  render(): any {
     // This fixes SSR
     if (!canUseDOM) {
       return null

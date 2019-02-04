@@ -9,11 +9,9 @@ storiesOf('icons', module).add('icons', () => (
     <Box paddingLeft={40}>
       <Heading size={800}>icons</Heading>
       <Paragraph marginTop="default">
-        Evergreen uses the amazing{' '}
-        <Link href="https://blueprintjs.com/docs/#icons">
-          @blueprintjs/icons
-        </Link>{' '}
-        package for all of its icons.
+        Aluminum now uses the amazing{' '}
+        <Link href="https://feathericons.com/">Feather Icons</Link> package for
+        all of its icons.
       </Paragraph>
     </Box>
 

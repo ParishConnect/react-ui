@@ -95,6 +95,7 @@
     "emotion": "^9.2.8",
     "eventemitter2": "^5.0.1",
     "exenv": "^1.2.2",
+    "feather-icons": "^4.16.0",
     "fuzzaldrin-plus": "^0.6.0",
     "glamor": "^2.20.40",
     "is-hotkey": "^0.1.4",
