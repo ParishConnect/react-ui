@@ -1,34 +1,28 @@
 import * as React from 'react'
-import Combobox, {
-  ComboboxProps,
-  ComboboxState
-} from '../../combobox/src/Combobox'
+import SelectField from '../../select/src/SelectField'
 import moment from 'moment-timezone'
-import { find } from 'lodash'
-import { timezones } from './data/timezones.js'
+import { timezones } from './data/timezones'
 
-export default class TimeZone extends React.Component<
-  ComboboxProps,
-  ComboboxState
-> {
+export default class TimeZone extends React.Component<any, any> {
   items: any = timezones
   guessedZone: any = moment.tz.guess()
-
-  state: ComboboxState = {
-    isOpenedByButton: false
-  }
 
   render() {
     const { items = this.items } = this.props
     return (
-      <Combobox
-        items={items}
-        defaultSelectedItem={find(this.items, item =>
-          item.utc.includes(this.guessedZone)
-        )}
-        itemToString={(i: any) => (i ? i.text : '')}
-        {...this.props}
-      />
+      <SelectField {...this.props}>
+        {items &&
+          items.map((item: any) => {
+            const selected: boolean = item.utc.includes(this.guessedZone)
+            console.log(selected)
+
+            return (
+              <option key={item.abbr} selected={selected} value={item}>
+                {item.text}
+              </option>
+            )
+          })}
+      </SelectField>
     )
   }
 }
