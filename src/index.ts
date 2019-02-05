@@ -62,6 +62,7 @@ export {
   TextTableCell
 } from './table'
 export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
+export { TimeZone } from './timezone'
 export { TextInput, TextInputField } from './text-input'
 export {
   ThemeProvider,

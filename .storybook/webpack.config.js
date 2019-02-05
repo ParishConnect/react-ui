@@ -1,3 +1,5 @@
+const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin')
+
 module.exports = (_baseConfig, _env, config) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
@@ -11,11 +13,15 @@ module.exports = (_baseConfig, _env, config) => {
           plugins: ['lodash']
         }
       }
-      // {
-      //   loader: require.resolve('react-docgen-typescript-loader')
-      // }
     ]
   })
+  config.plugins.push(
+    new MomentTimezoneDataPlugin({
+      startYear: 2017,
+      endYear: new Date().getFullYear() + 2,
+      matchZones: /(America|Canada)/
+    })
+  )
   config.resolve.extensions.push('.ts', '.tsx', '.json')
   return config
 }

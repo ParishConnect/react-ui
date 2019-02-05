@@ -57,7 +57,7 @@ export interface ComboboxProps extends BoxProps {
   autocompleteProps?: object
 }
 
-interface ComboboxState {
+export interface ComboboxState {
   isOpenedByButton: boolean
 }
 
