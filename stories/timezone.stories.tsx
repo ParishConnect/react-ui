@@ -11,9 +11,9 @@ storiesOf('timezone', module).add('TimeZone', () => (
         <React.Fragment>
           <TimeZone
             name="test"
-            returnValue="isdst"
+            returnValue="object"
             onChange={e =>
-              setState({ [e.target.name]: JSON.stringify(e.target.value) })
+              setState({ [e.target.name]: JSON.parse(e.target.value) })
             }
           />
           <pre>{JSON.stringify(state, null, 3)}</pre>

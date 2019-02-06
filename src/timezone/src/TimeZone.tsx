@@ -14,7 +14,14 @@ export interface TimeZoneProps extends SelectProps {
   /**
    * value to return onChange
    */
-  returnValue?: 'value' | 'abbr' | 'offset' | 'isdst' | 'text' | 'utc'
+  returnValue?:
+    | 'object'
+    | 'value'
+    | 'abbr'
+    | 'offset'
+    | 'isdst'
+    | 'text'
+    | 'utc'
 }
 
 export default class TimeZone extends React.Component<TimeZoneProps> {
@@ -39,7 +46,9 @@ export default class TimeZone extends React.Component<TimeZoneProps> {
         <option
           key={item.abbr + i}
           selected={selected ? true : false}
-          value={item[returnValue]}
+          value={
+            returnValue === 'object' ? JSON.stringify(item) : item[returnValue]
+          }
           data-return-value={String(returnValue)}
         >
           {item.text}
