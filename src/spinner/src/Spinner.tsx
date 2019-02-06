@@ -37,25 +37,103 @@ const inner = (color: string) => ({
 })
 
 export interface SpinnerProps extends BoxProps {
+  /**
+   * The size of the spinner.
+   * @default 40
+   */
   size?: number
+
+  /**
+   * Delay after which spinner should be visible.
+   * @default 0
+   */
+  delay?: number
+
+  /**
+   * Color of the spinner
+   * @default 'default'
+   * Passing 'theme' gives a color that adapts the darkness/lightness of the themeColor
+   */
+  color?: 'default' | 'theme' | string
+
+  /**
+   * Adapts the spinnerColor to the adaptive
+   * @requires baseColor
+   * @default false
+   */
+  adaptive?: boolean
+
+  /**
+   * Color to adapt to when adaptive=true
+   */
+  baseColor?: string
 }
 
-class Spinner extends React.PureComponent<SpinnerProps> {
+interface SpinnerState {
+  isVisible: Boolean
+}
+
+class Spinner extends React.PureComponent<SpinnerProps, SpinnerState> {
   public static contextType = ThemeContext
 
+  delayTimer: any
+
+  constructor({ delay }) {
+    super({ delay })
+
+    this.state = {
+      isVisible: delay === 0
+    }
+  }
+
   static defaultProps = {
-    size: 40
+    size: 40,
+    delay: 0
+  }
+
+  componentDidMount() {
+    const { delay = 0 } = this.props
+
+    if (delay > 0) {
+      this.delayTimer = setTimeout(() => {
+        this.setState({
+          isVisible: true
+        })
+      }, delay)
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.delayTimer)
   }
 
   render() {
-    const { size, ...props } = this.props
+    if (!this.state.isVisible) {
+      return null
+    }
+
+    const {
+      size = 40,
+      color = 'default',
+      adaptive = false,
+      baseColor,
+      ...props
+    } = this.props
     const theme = this.context
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
           <Box
             is="circle"
-            css={inner(theme.spinnerColor(theme.themeColor))}
+            css={inner(
+              color === 'theme'
+                ? theme.spinnerColor({
+                    color: theme.themeColor,
+                    adaptive,
+                    baseColor
+                  })
+                : theme.spinnerColor({ color, adaptive, baseColor })
+            )}
             cx="75"
             cy="75"
             r="60"

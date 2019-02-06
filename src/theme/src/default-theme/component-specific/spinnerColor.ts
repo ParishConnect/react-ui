@@ -1,14 +1,31 @@
 import tinycolor from 'tinycolor2'
-import { scales, palette } from '../foundational-styles/'
-import { ThemeColor } from '../../../../constants/src/Theme'
+import { scales, colors } from '../foundational-styles/'
+import themedProperty from '../utils/themedProperty'
 
-const spinnerColor = (themeColor: ThemeColor): string => {
-  if (palette[themeColor]) {
-    return tinycolor(palette[themeColor].base).isDark()
-      ? scales.neutral.N1
-      : scales.neutral.N6A
+const spinnerColor = ({
+  color,
+  adaptive,
+  baseColor
+}: {
+  color: string
+  adaptive: boolean
+  baseColor: string
+}): string => {
+  const defaultColor = scales.neutral.N6
+  if (adaptive) {
+    if (!baseColor) {
+      console.log('Base Color is required for adaptive')
+      return defaultColor
+    }
+
+    return tinycolor(baseColor).isDark() ? scales.neutral.N1 : defaultColor
   }
-  return scales.neutral.N6A
+
+  if (color) {
+    return themedProperty(colors.text, color)
+  }
+
+  return defaultColor
 }
 
 export default spinnerColor
