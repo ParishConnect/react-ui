@@ -39,7 +39,7 @@ export default class TimeZone extends React.Component<TimeZoneProps> {
         <option
           key={item.abbr + i}
           selected={selected ? true : false}
-          value={String(item[returnValue])}
+          value={item[returnValue]}
           data-return-value={String(returnValue)}
         >
           {item.text}
