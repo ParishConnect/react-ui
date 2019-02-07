@@ -78,11 +78,11 @@ class Spinner extends React.PureComponent<SpinnerProps, SpinnerState> {
 
   delayTimer: any
 
-  constructor({ delay }) {
-    super({ delay })
+  constructor(props: SpinnerProps) {
+    super(props)
 
     this.state = {
-      isVisible: delay === 0
+      isVisible: props.delay === 0
     }
   }
 
@@ -112,14 +112,15 @@ class Spinner extends React.PureComponent<SpinnerProps, SpinnerState> {
       return null
     }
 
+    const theme = this.context
     const {
       size = 40,
       color = 'default',
       adaptive = false,
-      baseColor,
+      baseColor = theme.getThemeColor(theme),
       ...props
     } = this.props
-    const theme = this.context
+
     return (
       <Box width={size} height={size} lineHeight={0} {...props}>
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
@@ -128,7 +129,7 @@ class Spinner extends React.PureComponent<SpinnerProps, SpinnerState> {
             css={inner(
               color === 'theme'
                 ? theme.spinnerColor({
-                    color: theme.themeColor,
+                    color: theme.getThemeColor(theme),
                     adaptive,
                     baseColor
                   })
