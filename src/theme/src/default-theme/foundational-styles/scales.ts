@@ -10,10 +10,10 @@ export default {
     N4: '#E4E7EB',
     N5: '#C7CED4',
     N6: '#A6B1BB',
-    N7: '#7B8B9A', // Large Text AA
-    N8: '#66788A', // Normal Text AA
-    N9: '#425A70', // Normal Text AAA
-    N10: '#234361', // Normal Text AAA
+    N7: '#999999', // Large Text AA
+    N8: '#8A8A8A', // Normal Text AA
+    N9: '#707070', // Normal Text AAA
+    N10: '#2D2D2D', // Normal Text AAA
 
     // Transparent variants.
     N1A: 'rgba(67, 90, 111, 0.04)',

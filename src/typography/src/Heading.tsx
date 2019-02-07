@@ -26,13 +26,13 @@ class Heading extends React.PureComponent<HeadingProps> {
   getColor(color: string | undefined) {
     const theme = this.context
     if (color === 'theme') {
-      return theme.palette[theme.themeColor].base
+      return theme.getThemeColor(theme)
     }
     return color
   }
 
   render() {
-    const { color = '#2d2d2d', marginTop, size, ...props } = this.props
+    const { color, marginTop, size, ...props } = this.props
     const theme = this.context
 
     const {
