@@ -32,7 +32,7 @@ class Heading extends React.PureComponent<HeadingProps> {
   }
 
   render() {
-    const { color, marginTop, size, ...props } = this.props
+    const { color = '#2d2d2d', marginTop, size, ...props } = this.props
     const theme = this.context
 
     const {
