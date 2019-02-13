@@ -45,6 +45,17 @@ export interface ButtonProps extends Omit<TextProps, 'appearance'> {
    * isLoading also sets the button to disabled.
    */
   disabled?: boolean
+
+  /**
+   * When true, text is a bolder option
+   */
+  strong?: boolean
+
+  /**
+   * When true, text is uppercase
+   */
+  isUppercase?: boolean
+
   /**
    * Class name passed to the button.
    * Only use if you know what you are doing.
@@ -80,6 +91,8 @@ class Button extends React.PureComponent<ButtonProps> {
       appearance = 'default',
       isLoading,
       round,
+      strong = this.props.appearance === 'primary',
+      isUppercase,
 
       // Paddings
       paddingRight,
@@ -158,7 +171,8 @@ class Button extends React.PureComponent<ButtonProps> {
         {...(isActive ? { 'data-active': true } : {})}
         position="relative"
         fontFamily="ui"
-        fontWeight={500}
+        fontWeight={strong ? 800 : 500}
+        textTransform={isUppercase ? 'uppercase' : ''}
         display="inline-flex"
         alignItems="center"
         flexWrap="nowrap"
