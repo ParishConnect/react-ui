@@ -15,12 +15,6 @@ import { escapeLinks, getPasteSource } from '../util'
 import { transformSliceToRemoveOpenBodiedExtension } from '../../extension/actions'
 import { transformSliceToRemoveOpenLayoutNodes } from '../../layout/utils'
 import { linkifyContent } from '../../hyperlink/utils'
-import { pluginKey as tableStateKey } from '../../table/pm-plugins/main'
-import {
-  transformSliceToRemoveOpenTable,
-  transformSliceToRemoveNumberColumn
-} from '../../table/utils'
-import { transformSliceToAddTableHeaders } from '../../table/actions'
 import {
   handlePasteIntoTaskAndDecision,
   handlePasteAsPlainText,
@@ -150,18 +144,6 @@ export function createPlugin(
             return true
           }
 
-          const { table, tableCell } = state.schema.nodes
-
-          // if we're pasting to outside a table or outside a table
-          // header, ensure that we apply any table headers to the first
-          // row of content we see, if required
-          if (!hasParentNodeOfType([table, tableCell])(state.selection)) {
-            const tableState = tableStateKey.getState(state)
-            if (tableState && tableState.pluginConfig.isHeaderRowRequired) {
-              slice = transformSliceToAddTableHeaders(slice, state.schema)
-            }
-          }
-
           // In case user is pasting inline code,
           // any backtick ` immediately preceding it should be removed.
           const tr = state.tr
@@ -216,12 +198,6 @@ export function createPlugin(
         return false
       },
       transformPasted(slice) {
-        // remove table number column if its part of the node
-        slice = transformSliceToRemoveNumberColumn(slice, schema)
-
-        /** If a partial paste of table, paste only table's content */
-        slice = transformSliceToRemoveOpenTable(slice, schema)
-
         // We do this separately so it also applies to drag/drop events
         slice = transformSliceToRemoveOpenLayoutNodes(slice, schema)
 

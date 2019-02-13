@@ -47,7 +47,6 @@ import {
 } from '../../../../ui/styles'
 import { BlockType } from '../../../block-type/types'
 import { MacroProvider } from '../../../macro/types'
-import { createTable } from '../../../table/actions'
 import { insertDate, openDatePicker } from '../../../date/actions'
 import { showPlaceholderFloatingToolbar } from '../../../placeholder-text/actions'
 import { createHorizontalRule } from '../../../rule/pm-plugins/input-rule'
@@ -588,18 +587,12 @@ class ToolbarInsertBlock extends React.PureComponent<
     return true
   }
 
-  private createTable = (): boolean => {
-    const { editorView } = this.props
-    createTable(editorView.state, editorView.dispatch)
-    return true
-  }
-
-  private createDate = (): boolean => {
-    const { editorView } = this.props
-    insertDate()(editorView.state, editorView.dispatch)
-    openDatePicker()(editorView.state, editorView.dispatch)
-    return true
-  }
+  // private createDate = (): boolean => {
+  //   const { editorView } = this.props
+  //   insertDate()(editorView.state, editorView.dispatch)
+  //   openDatePicker()(editorView.state, editorView.dispatch)
+  //   return true
+  // }
 
   private createPlaceholderText = (): boolean => {
     const { editorView } = this.props
@@ -677,9 +670,6 @@ class ToolbarInsertBlock extends React.PureComponent<
       case 'link':
         this.toggleLinkPanel()
         break
-      case 'table':
-        this.createTable()
-        break
       case 'image upload':
         if (handleImageUpload) {
           const { state, dispatch } = editorView
@@ -716,9 +706,9 @@ class ToolbarInsertBlock extends React.PureComponent<
           editorView.dispatch
         )
         break
-      case 'date':
-        this.createDate()
-        break
+      // case 'date':
+      //   this.createDate()
+      //   break
       case 'placeholder text':
         this.createPlaceholderText()
         break

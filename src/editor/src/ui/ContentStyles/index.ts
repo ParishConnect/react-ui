@@ -8,7 +8,6 @@ import {
 } from '@atlaskit/editor-common'
 import { telepointerStyle } from '../../plugins/collab-edit/styles'
 import { gapCursorStyles } from '../../plugins/gap-cursor/styles'
-import { tableStyles } from '../../plugins/table/ui/styles'
 import { placeholderStyles } from '../../plugins/placeholder/styles'
 import { blocktypeStyles } from '../../plugins/block-type/styles'
 import { codeBlockStyles } from '../../plugins/code-block/styles'
@@ -21,7 +20,6 @@ import { fakeCursorStyles } from '../../plugins/fake-text-cursor/styles'
 import { mentionsStyles } from '../../plugins/mentions/styles'
 import { textFormattingStyles } from '../../plugins/text-formatting/styles'
 import { placeholderTextStyles } from '../../plugins/placeholder-text/styles'
-import { gridStyles } from '../../plugins/grid/styles'
 import { linkStyles } from '../../plugins/hyperlink/styles'
 
 const ContentStyles: ComponentClass<
@@ -88,11 +86,9 @@ const ContentStyles: ComponentClass<
   ${layoutStyles}
   ${telepointerStyle}
   ${gapCursorStyles};
-  ${tableStyles};
   ${panelStyles}
   ${fakeCursorStyles}
   ${mentionsStyles}
-  ${gridStyles}
   ${linkStyles}
   ${blockMarksSharedStyles}
 

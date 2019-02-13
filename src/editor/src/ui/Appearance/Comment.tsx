@@ -10,7 +10,6 @@ import { EditorAppearanceComponentProps, EditorAppearance } from '../../types'
 import { pluginKey as maxContentSizePluginKey } from '../../plugins/max-content-size'
 import { stateKey as mediaPluginKey } from '../../plugins/media/pm-plugins/main'
 import { ClickAreaBlock } from '../Addon'
-import { tableCommentEditorStyles } from '../../plugins/table/ui/styles'
 import WithFlash from '../WithFlash'
 import {
   WidthConsumer,
@@ -109,8 +108,6 @@ const ContentArea = styled(ContentStyles)`
   }
 
   padding: ${TableControlsPadding}px;
-
-  ${tableCommentEditorStyles};
 `
 ContentArea.displayName = 'ContentArea'
 

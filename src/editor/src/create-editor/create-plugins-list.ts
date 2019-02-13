@@ -1,4 +1,3 @@
-import { CreateUIAnalyticsEventSignature } from '@atlaskit/analytics-next-types'
 import { EditorPlugin, EditorProps } from '../types'
 import {
   basePlugin,
@@ -6,9 +5,7 @@ import {
   blockTypePlugin,
   clearMarksOnChangeToEmptyDocumentPlugin,
   codeBlockPlugin,
-  collabEditPlugin,
-  confluenceInlineComment,
-  datePlugin,
+  // datePlugin,
   emojiPlugin,
   extensionPlugin,
   fakeTextCursorPlugin,
@@ -17,10 +14,9 @@ import {
   imageUploadPlugin,
   insertBlockPlugin,
   isMultilineContentPlugin,
-  jiraIssuePlugin,
   layoutPlugin,
   listsPlugin,
-  macroPlugin,
+  // macroPlugin,
   maxContentSizePlugin,
   mediaPlugin,
   mentionsPlugin,
@@ -31,7 +27,6 @@ import {
   rulePlugin,
   saveOnEnterPlugin,
   submitEditorPlugin,
-  tablesPlugin,
   textColorPlugin,
   textFormattingPlugin,
   unsupportedContentPlugin,
@@ -39,15 +34,10 @@ import {
   typeAheadPlugin,
   quickInsertPlugin,
   gapCursorPlugin,
-  inlineActionPlugin,
-  cardPlugin,
   floatingToolbarPlugin,
-  statusPlugin,
-  gridPlugin,
   alignment,
   editorDisabledPlugin,
   indentationPlugin,
-  annotationPlugin,
   compositionPlugin
 } from '../plugins'
 
@@ -73,10 +63,7 @@ export function getDefaultPluginsList(props: EditorProps): EditorPlugin[] {
 /**
  * Maps EditorProps to EditorPlugins
  */
-export default function createPluginsList(
-  props: EditorProps,
-  createAnalyticsEvent?: CreateUIAnalyticsEventSignature
-): EditorPlugin[] {
+export default function createPluginsList(props: EditorProps): EditorPlugin[] {
   const plugins = getDefaultPluginsList(props)
 
   if (props.allowBreakout && props.appearance === 'full-page') {
@@ -85,10 +72,6 @@ export default function createPluginsList(
 
   if (props.allowTextAlignment) {
     plugins.push(alignment)
-  }
-
-  if (props.allowInlineAction) {
-    plugins.push(inlineActionPlugin)
   }
 
   if (props.allowTextColor) {
@@ -113,15 +96,11 @@ export default function createPluginsList(
   }
 
   if (props.mentionProvider) {
-    plugins.push(mentionsPlugin(createAnalyticsEvent))
+    plugins.push(mentionsPlugin())
   }
 
   if (props.emojiProvider) {
     plugins.push(emojiPlugin)
-  }
-
-  if (props.allowTables) {
-    plugins.push(tablesPlugin(props.allowTables))
   }
 
   if (props.allowHelpDialog) {
@@ -145,16 +124,8 @@ export default function createPluginsList(
     }
   }
 
-  if (props.collabEdit || props.collabEditProvider) {
-    plugins.push(collabEditPlugin(props.collabEdit))
-  }
-
   if (props.maxContentSize) {
     plugins.push(maxContentSizePlugin)
-  }
-
-  if (props.allowJiraIssue) {
-    plugins.push(jiraIssuePlugin)
   }
 
   if (props.allowPanel) {
@@ -165,17 +136,13 @@ export default function createPluginsList(
     plugins.push(extensionPlugin)
   }
 
-  if (props.macroProvider) {
-    plugins.push(macroPlugin)
-  }
+  // if (props.macroProvider) {
+  //   plugins.push(macroPlugin)
+  // }
 
-  if (props.allowConfluenceInlineComment) {
-    plugins.push(confluenceInlineComment)
-  }
-
-  if (props.allowDate) {
-    plugins.push(datePlugin)
-  }
+  // if (props.allowDate) {
+  //   plugins.push(datePlugin)
+  // }
 
   if (props.allowTemplatePlaceholders) {
     const options =
@@ -189,18 +156,7 @@ export default function createPluginsList(
     plugins.push(layoutPlugin)
   }
 
-  if (props.UNSAFE_cards) {
-    plugins.push(cardPlugin)
-  }
-
   let statusMenuDisabled = true
-  if (props.allowStatus) {
-    statusMenuDisabled =
-      typeof props.allowStatus === 'object'
-        ? props.allowStatus.menuDisabled
-        : false
-    plugins.push(statusPlugin({ menuDisabled: statusMenuDisabled }))
-  }
 
   if (props.allowIndentation) {
     plugins.push(indentationPlugin)
@@ -215,12 +171,7 @@ export default function createPluginsList(
     })
   )
 
-  if (props.allowConfluenceInlineComment) {
-    plugins.push(annotationPlugin)
-  }
-
   plugins.push(gapCursorPlugin)
-  plugins.push(gridPlugin)
   plugins.push(submitEditorPlugin)
   plugins.push(fakeTextCursorPlugin)
   plugins.push(floatingToolbarPlugin)

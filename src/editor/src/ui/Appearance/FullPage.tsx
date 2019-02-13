@@ -9,7 +9,6 @@ import PluginSlot from '../PluginSlot'
 import Toolbar from '../Toolbar'
 import ContentStyles from '../ContentStyles'
 import { ClickAreaBlock } from '../Addon'
-import { tableFullPageEditorStyles } from '../../plugins/table/ui/styles'
 import { akEditorToolbarKeylineHeight } from '../../styles'
 import rafSchedule from 'raf-schd'
 import { scrollbarStyles } from '../styles'
@@ -53,8 +52,7 @@ const ContentArea = ({ maxWidth = 'auto', children, ...props }) => (
         '> p, > ul, > ol, > h1, > h2, > h3, > h4, > h5, > h6': {
           clear: 'none'
         }
-      },
-      ...tableFullPageEditorStyles
+      }
     }}
     {...props}
   >

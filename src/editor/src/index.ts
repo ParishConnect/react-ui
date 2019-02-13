@@ -4,7 +4,6 @@ export { default as getPropsPreset } from './create-editor/get-props-preset'
 export { default as EditorContext } from './ui/EditorContext'
 export { default as WithEditorActions } from './ui/WithEditorActions'
 export { default as WithHelpTrigger } from './ui/WithHelpTrigger'
-export { default as CollapsedEditor } from './ui/CollapsedEditor'
 export { default as ToolbarHelp } from './ui/ToolbarHelp'
 export { default as ToolbarFeedback } from './ui/ToolbarFeedback'
 export { EmojiResource } from '@atlaskit/emoji'
@@ -58,7 +57,6 @@ export {
   toggleStrong
 } from './plugins/text-formatting/commands/text-formatting'
 export { insertBlockType, setBlockType } from './plugins/block-type/commands'
-export { createTable } from './plugins/table/actions'
 export { EventDispatcher } from './event-dispatcher'
 export {
   pluginKey as statusPluginKey,

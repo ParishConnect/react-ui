@@ -14,7 +14,6 @@ import { MentionProvider } from '@atlaskit/mention'
 import { EmojiProvider } from '@atlaskit/emoji'
 import { TaskDecisionProvider } from '@atlaskit/task-decision'
 
-import { PluginConfig as TablesPluginConfig } from '../plugins/table/types'
 import { TextColorPluginConfig } from '../plugins/text-color/pm-plugins/main'
 import { MediaProvider, MediaState } from '../plugins/media/types'
 
@@ -113,10 +112,6 @@ export interface EditorProps {
 
   // Enables text colour. Ew are you sure you want to enable this?
   allowTextColor?: boolean | TextColorPluginConfig
-
-  // Enables tables. You can enable individual table features like table header rows and cell background colour.
-  // You will most likely need backend ADF storage for the advanced table features.
-  allowTables?: boolean | TablesPluginConfig
 
   // Enable the editor help dialog.
   allowHelpDialog?: boolean
