@@ -18,20 +18,9 @@ import {
   JSONTransformer,
   Code,
   Heading,
-  PlainTransformer
+  PlainTransformer,
+  Textarea
 } from '../src'
-
-const TitleInput = styled('input')`
-  border: none;
-  outline: none;
-  font-size: 2.07142857em;
-  margin: 0 0 21px;
-  padding: 0;
-
-  &::placeholder {
-    color: #ccc;
-  }
-`
 
 const InfoNode = ({ user }) => {
   return (
@@ -88,7 +77,16 @@ storiesOf('editor', module)
           <WithEditorActions
             render={actions => (
               <>
-                <TitleInput placeholder="Give this page a title..." />
+                <Textarea
+                  appearance="editor-title"
+                  component={Heading}
+                  size={900}
+                  autoresize
+                  marginBottom={16}
+                  maxLength="120"
+                  maxWidth={624}
+                  placeholder="Give this page a title..."
+                />
                 <InfoNode user={{ firstName: 'Evan', lastName: 'Hennessy' }} />
               </>
             )}

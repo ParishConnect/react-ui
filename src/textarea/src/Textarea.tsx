@@ -1,5 +1,6 @@
 import * as React from 'react'
 import cx from 'classnames'
+import TextareaAutosize from 'react-autosize-textarea'
 import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 import { TextProps } from '../../typography/src/Text'
@@ -46,6 +47,17 @@ export interface TextareaProps extends TextProps {
   width?: string | number
 
   /**
+   * When true, textarea grows height to fit text
+   */
+  autoresize?: boolean
+
+  /**
+   * Component used to render styles to the textarea
+   * @default Text
+   */
+  component?: any
+
+  /**
    * Class name passed to the button.
    * Only use if you know what you are doing.
    */
@@ -60,13 +72,18 @@ class Textarea extends React.PureComponent<TextareaProps> {
     disabled: false,
     isInvalid: false,
     spellCheck: true,
-    grammarly: false
+    grammarly: false,
+    autoresize: false
   }
 
   static styles = {
-    minHeight: 80,
     paddingX: 10,
-    paddingY: 8
+    paddingY: 8,
+    minHeight: 80
+  }
+
+  static editorStyles = {
+    paddingX: 0
   }
 
   render() {
@@ -83,14 +100,21 @@ class Textarea extends React.PureComponent<TextareaProps> {
       placeholder,
       spellCheck,
       grammarly,
+      autoresize,
+      component: RenderComponent = Text,
+      minHeight = this.props.autoresize ? 'initial' : 80,
+      paddingX = this.props.appearance === 'editor-title' && 0,
       ...props
     } = this.props
     const theme = this.context
     const themedClassName = theme.getTextareaClassName(appearance)
 
+    const renderStyles =
+      appearance === 'editor-title' ? Textarea.editorStyles : Textarea.styles
+
     return (
-      <Text
-        is="textarea"
+      <RenderComponent
+        is={autoresize ? TextareaAutosize : 'textarea'}
         className={cx(themedClassName, className)}
         size={400}
         width={width}
@@ -105,8 +129,8 @@ class Textarea extends React.PureComponent<TextareaProps> {
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        css={css}
-        {...Textarea.styles}
+        css={{ ...css, resize: autoresize ? 'none' : '' }}
+        {...renderStyles}
         {...props}
       />
     )

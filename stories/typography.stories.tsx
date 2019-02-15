@@ -18,7 +18,7 @@ import {
 import { ParagraphSize } from '../src/typography/src/Paragraph'
 import { ListTextSize } from '../src/typography/src/Shared'
 
-const TextSizes = [300, 400, 500]
+const TextSizes = [200, 300, 400, 500]
 const HeadingSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900]
 const dummyText = 'A red flair silhouetted the jagged edge of a wing.'
 
