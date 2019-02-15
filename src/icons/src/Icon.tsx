@@ -59,13 +59,8 @@ class Icon extends React.PureComponent<IconProps> {
 
     style = {
       ...style,
-      stroke: getIconColor(color)
-      // fill:
-      //   isSolid === true
-      //     ? theme.getIconColor
-      //       ? theme.getIconColor(color)
-      //       : 'currentColor'
-      //     : ''
+      stroke: getIconColor(color),
+      fill: isSolid ? getIconColor(color) : ''
     }
 
     return (

@@ -7,17 +7,21 @@ const camelCase = require('camelcase')
 const prettier = require('prettier')
 const { each } = require('lodash')
 
+const customIcons = require('./icons/icons')
 const iconsPath = path.resolve(__dirname, '../src/icons/src/generated')
 const iconsIndexPath = path.resolve(__dirname, '../src/icons/index.ts')
 const indexPath = path.resolve(__dirname, '../src/index.ts')
+
+const isFilledRegex = /filled/g
 
 async function main() {
   const prettierConfig = await prettier.resolveConfig(__dirname)
   await fs.emptyDir(iconsPath)
   const iconNames = []
   let promises = []
+  const icons = { ...feather.icons, ...customIcons }
   try {
-    promises = each(feather.icons, icon => {
+    promises = each(icons, icon => {
       const iconName = camelCase(icon.name, { pascalCase: true }) + 'Icon'
       const iconContents = icon.contents
       iconNames.push(iconName)
@@ -27,9 +31,9 @@ async function main() {
        export default class ${iconName} extends PureComponent<IconProps> {
          render() {
            return (
-             <Icon name="${icon.name}" viewBox="${
-        icon.attrs.viewBox
-      }" {...this.props}>${iconContents}</Icon>
+             <Icon ${isFilledRegex.test(icon.name) ? 'isSolid' : ''} name="${
+        icon.name
+      }" viewBox="${icon.attrs.viewBox}" {...this.props}>${iconContents}</Icon>
              )
            }
          }
