@@ -33,7 +33,7 @@ class Badge extends React.PureComponent<TextProps> {
 
     return (
       <Strong
-        size={300}
+        size={200}
         {...Badge.styles}
         color={color}
         backgroundColor={backgroundColor}

@@ -38,6 +38,10 @@ fills.solid = {
   purple: {
     color: 'white',
     backgroundColor: palette.purple.base
+  },
+  overlay: {
+    color: '#FFFFFF',
+    backgroundColor: 'rgba(0,0,0,0.8)'
   }
 }
 
@@ -73,6 +77,10 @@ fills.subtle = {
   purple: {
     color: palette.purple.dark,
     backgroundColor: palette.purple.light
+  },
+  overlay: {
+    color: '#FFFFFF',
+    backgroundColor: 'rgba(0,0,0,0.3)'
   }
 }
 
