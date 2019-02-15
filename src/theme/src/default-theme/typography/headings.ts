@@ -3,8 +3,8 @@ import fontFamilies from './fontFamilies'
 
 export default {
   '900': {
-    fontSize: '35px',
-    fontWeight: 500,
+    fontSize: '40px',
+    fontWeight: 600,
     lineHeight: '40px',
     letterSpacing: '-0.2px',
     marginTop: 52,
@@ -13,7 +13,7 @@ export default {
   },
   '800': {
     fontSize: '29px',
-    fontWeight: 500,
+    fontWeight: 600,
     lineHeight: '32px',
     letterSpacing: '-0.2px',
     marginTop: 40,
@@ -22,7 +22,7 @@ export default {
   },
   '700': {
     fontSize: '24px',
-    fontWeight: 500,
+    fontWeight: 600,
     lineHeight: '28px',
     letterSpacing: '-0.07px',
     marginTop: 40,

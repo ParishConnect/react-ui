@@ -47,5 +47,12 @@ export default {
     lineHeight: '16px',
     letterSpacing: '0',
     marginTop: 12
+  },
+  '200': {
+    fontSize: '10px',
+    fontWeight: 400,
+    lineHeight: '14px',
+    letterSpacing: '0',
+    marginTop: 12
   }
 }
