@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Button, { ButtonProps } from './Button'
+import { ArrowLeftCircleIcon } from '../../icons/index'
 
 export default class BackButton extends React.PureComponent<ButtonProps> {
   static defaultProps = {
@@ -12,6 +13,6 @@ export default class BackButton extends React.PureComponent<ButtonProps> {
   }
 
   render() {
-    return <Button iconBefore="arrow-left" {...this.props} />
+    return <Button iconBefore={ArrowLeftCircleIcon} {...this.props} />
   }
 }

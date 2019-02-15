@@ -2,9 +2,9 @@ import * as React from 'react'
 import { debounce } from 'lodash'
 import { ThemeContext } from '../../theme'
 import { SelectMenu } from '../../select-menu'
-import { Icon } from '../../icon'
 import TextTableCell from './TextTableCell'
 import { TableCellProps } from './TableCell'
+import { ChevronDownIcon } from '../../icons/index'
 
 const MIN_SELECT_MENU_WIDTH = 240
 
@@ -179,11 +179,7 @@ class SelectMenuCell extends React.PureComponent<
               onBlur={this.handleBlur}
               isSelectable={isSelectable && !disabled}
               rightView={
-                isSelectable ? (
-                  <Icon icon="caret-down" color="muted" />
-                ) : (
-                  undefined
-                )
+                isSelectable ? <ChevronDownIcon color="muted" /> : undefined
               }
               aria-haspopup
               aria-expanded={isShown}

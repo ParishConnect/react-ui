@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { ThemeContext } from '../../theme'
+import { ChevronDownIcon } from '../../icons/index'
 
 export interface SelectProps extends Omit<BoxProps, 'appearance'> {
   /**
@@ -114,8 +114,7 @@ class Select extends React.PureComponent<SelectProps> {
         >
           {children}
         </Text>
-        <Icon
-          icon="caret-down"
+        <ChevronDownIcon
           color="default"
           size={iconSize}
           position="absolute"

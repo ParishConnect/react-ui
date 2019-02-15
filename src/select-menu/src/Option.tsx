@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Pane } from '../../layers'
-import { Icon } from '../../icon'
 import { TableRow, TextTableCell } from '../../table'
 import { TableRowProps } from '../../table/src/TableRow'
+import { CheckIcon } from '../../icons/index'
 
 export interface OptionProps extends TableRowProps {
   label?: string | React.ReactNode
@@ -59,7 +59,7 @@ export default class Option extends React.PureComponent<OptionProps> {
           flexGrow={0}
           paddingTop={4}
         >
-          <Icon color="selected" icon="tick" size={14} />
+          <CheckIcon color="selected" size={14} />
         </Pane>
         <TextTableCell
           height={height}

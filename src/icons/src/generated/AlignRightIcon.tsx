@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class AlignRightIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class AlignRightIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="align-right" viewBox="0 0 24 24" {...this.props}>

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { css, keyframes } from 'glamor'
-import { Icon } from '../../icon'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import { Omit } from 'utility-types'
+import { XIcon } from '../../icons/index'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -142,7 +142,7 @@ export default class SheetClose extends React.PureComponent<SheetCloseProps> {
         className={getSheetCloseClassName(position as PositionType)}
         {...props}
       >
-        <Icon icon="cross" color="#fff" />
+        <XIcon color="#fff" />
       </Box>
     )
   }

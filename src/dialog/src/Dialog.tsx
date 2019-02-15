@@ -6,6 +6,7 @@ import { Overlay } from '../../overlay'
 import { Button, IconButton } from '../../buttons'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants/index'
+import { XIcon } from '../../icons/index'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
@@ -303,7 +304,7 @@ class Dialog extends React.Component<DialogProps> {
                 </Heading>
                 <IconButton
                   appearance="minimal"
-                  icon="cross"
+                  icon={XIcon}
                   onClick={() => onCancel(close)}
                 />
               </Pane>

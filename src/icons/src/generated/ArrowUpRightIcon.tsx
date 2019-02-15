@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class ArrowUpRightIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class ArrowUpRightIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="arrow-up-right" viewBox="0 0 24 24" {...this.props}>

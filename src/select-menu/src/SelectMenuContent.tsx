@@ -5,6 +5,7 @@ import { Pane, PaneProps } from '../../layers'
 import { Heading } from '../../typography'
 import OptionsList, { OptionsListProps } from './OptionsList'
 import OptionShapePropType from './OptionShapePropType'
+import { XIcon } from '../../icons/index'
 
 export interface SelectMenuContentProps extends PaneProps {
   title: string | undefined
@@ -80,7 +81,7 @@ export default class SelectMenuContent extends React.PureComponent<
                 <Heading size={400}>{title}</Heading>
               </Pane>
               <IconButton
-                icon="cross"
+                icon={XIcon}
                 appearance="minimal"
                 height={24}
                 onClick={close}

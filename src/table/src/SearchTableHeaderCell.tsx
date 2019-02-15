@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { noop } from 'lodash'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import TableHeaderCell from './TableHeaderCell'
 import { TableCellProps } from './TableCell'
+import { SearchIcon } from '../../icons/index'
 
 const invisibleInput = {
   border: 'none',
@@ -68,13 +68,7 @@ export default class SearchTableHeaderCell extends React.PureComponent<
 
     return (
       <TableHeaderCell {...props}>
-        <Icon
-          icon="search"
-          color="muted"
-          marginLeft={2}
-          marginRight={10}
-          size={12}
-        />
+        <SearchIcon color="muted" marginLeft={2} marginRight={10} size={12} />
         <Text
           is="input"
           size={300}

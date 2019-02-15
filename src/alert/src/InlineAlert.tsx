@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { IntentType } from '../../constants/'
 import { ThemeContext } from '../../theme'
 
@@ -30,20 +29,26 @@ class InlineAlert extends React.PureComponent<InlineAlertProps> {
     size: 400
   }
 
-  getIconForIntent = (intent: IntentType = 'none') => {
+  getIconForIntent = (intent: IntentType): { icon: any; color: string } => {
     const theme = this.context
 
-    return <Icon size={14} marginTop={2} {...theme.getIconForIntent(intent)} />
+    return theme.getIconForIntent(intent)
   }
 
   render() {
-    const { children, intent, hasIcon, size, ...props } = this.props
+    const { children, intent = 'none', hasIcon, size, ...props } = this.props
+
+    const Icon = hasIcon ? this.getIconForIntent(intent).icon : ''
 
     return (
       <Pane alignItems="center" display="flex" {...props}>
         {hasIcon && (
           <Pane display="inline" marginRight={8}>
-            {this.getIconForIntent(intent)}
+            <Icon
+              size={14}
+              marginTop={2}
+              color={this.getIconForIntent(intent).color}
+            />
           </Pane>
         )}
         <Text size={size} fontWeight={500}>

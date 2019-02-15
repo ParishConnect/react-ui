@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
-import { Icon } from '../../icon'
 import { TextInput } from '../../text-input'
 import { ThemeContext } from '../../theme'
 import { StackingOrder } from '../../constants'
 import { TextInputProps } from '../../text-input/src/TextInput'
+import { SearchIcon } from '../../icons/index'
 
 class SearchInput extends React.PureComponent<TextInputProps> {
   static contextType = ThemeContext
@@ -42,8 +42,7 @@ class SearchInput extends React.PureComponent<TextInputProps> {
           justifyContent="center"
           alignItems="center"
         >
-          <Icon
-            icon="search"
+          <SearchIcon
             color="default"
             zIndex={StackingOrder.FOCUSED + 1}
             size={iconSize}

@@ -7,6 +7,7 @@ import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
 import { Button, IconButton } from '../../buttons'
 import { IntentType } from '../../constants'
+import { XIcon } from '../../icons/index'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -230,7 +231,7 @@ export default class CornerDialog extends React.PureComponent<
                 </Heading>
                 <IconButton
                   height={32}
-                  icon="cross"
+                  icon={XIcon}
                   appearance="minimal"
                   onClick={this.handleClose}
                 />

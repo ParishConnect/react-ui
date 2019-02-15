@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class TrendingDownIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class TrendingDownIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="trending-down" viewBox="0 0 24 24" {...this.props}>

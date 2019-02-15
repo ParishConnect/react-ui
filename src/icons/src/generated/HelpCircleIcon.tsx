@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class HelpCircleIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class HelpCircleIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="help-circle" viewBox="0 0 24 24" {...this.props}>

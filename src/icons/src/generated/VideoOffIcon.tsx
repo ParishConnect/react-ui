@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class VideoOffIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class VideoOffIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="video-off" viewBox="0 0 24 24" {...this.props}>

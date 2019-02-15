@@ -17,6 +17,7 @@ const getCodeProps = (appearance: 'default' | 'minimal'): object => {
         paddingRight: 6,
         paddingTop: 3,
         paddingBottom: 3,
+        lineHeight: 1.75,
         borderRadius: 2
       }
   }

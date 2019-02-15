@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class ChevronsDownIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class ChevronsDownIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="chevrons-down" viewBox="0 0 24 24" {...this.props}>

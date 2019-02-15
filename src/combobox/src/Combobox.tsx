@@ -3,6 +3,7 @@ import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
+import { ChevronDownIcon } from '../../icons/index'
 
 export interface ComboboxProps extends BoxProps {
   /**
@@ -155,7 +156,7 @@ export default class Combobox extends React.PureComponent<
             <IconButton
               iconAim="down"
               color="muted"
-              icon="caret-down"
+              icon={ChevronDownIcon}
               appearance="default"
               height={height}
               marginLeft={-1}

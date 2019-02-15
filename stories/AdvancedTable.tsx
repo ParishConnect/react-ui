@@ -8,7 +8,9 @@ import {
   Avatar,
   Text,
   IconButton,
-  TextDropdownButton
+  TextDropdownButton,
+  ChevronDownIcon,
+  ChevronUpIcon
 } from '../src'
 import profiles from './profiles.json'
 
@@ -92,11 +94,11 @@ export default class AdvancedTable extends React.Component<
   getIconForOrder = order => {
     switch (order) {
       case Order.ASC:
-        return 'arrow-up'
+        return ChevronUpIcon
       case Order.DESC:
-        return 'arrow-down'
+        return ChevronDownIcon
       default:
-        return 'caret-down'
+        return ChevronDownIcon
     }
   }
 
@@ -160,7 +162,7 @@ export default class AdvancedTable extends React.Component<
             icon={
               this.state.orderedColumn === 2
                 ? this.getIconForOrder(this.state.ordering)
-                : 'caret-down'
+                : ChevronDownIcon
             }
           >
             {capitalize(this.state.column2Show)}

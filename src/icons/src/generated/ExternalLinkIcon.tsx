@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class ExternalLinkIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class ExternalLinkIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="external-link" viewBox="0 0 24 24" {...this.props}>

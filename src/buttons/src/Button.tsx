@@ -35,11 +35,11 @@ export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
    * Sets an icon before the text. Can be any icon from Evergreen.
    */
-  iconBefore?: IconName
+  iconBefore?: any
   /**
    * Sets an icon after the text. Can be any icon from Evergreen.
    */
-  iconAfter?: IconName
+  iconAfter?: any
   /**
    * When true, the button is disabled.
    * isLoading also sets the button to disabled.
@@ -101,8 +101,8 @@ class Button extends React.PureComponent<ButtonProps> {
       paddingBottom = 0,
 
       // Icons
-      iconBefore: iconBeforeKey,
-      iconAfter: iconAfterKey,
+      iconBefore: IconBefore = () => <></>,
+      iconAfter: IconAfter = () => <></>,
 
       ...props
     } = this.props
@@ -123,30 +123,6 @@ class Button extends React.PureComponent<ButtonProps> {
     const pr =
       paddingRight !== undefined ? paddingRight : Math.round(height / 2)
     const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2)
-
-    let iconBefore: React.ReactNode
-    if (iconBeforeKey) {
-      iconBefore = (
-        <Icon
-          icon={iconBeforeKey}
-          size={iconSize}
-          marginLeft={-Math.round(pl * 0.2)}
-          marginRight={Math.round(iconSize * 0.7)}
-        />
-      )
-    }
-
-    let iconAfter: React.ReactNode
-    if (iconAfterKey) {
-      iconAfter = (
-        <Icon
-          icon={iconAfterKey}
-          size={iconSize}
-          marginRight={-Math.round(pl * 0.2)}
-          marginLeft={Math.round(iconSize * 0.7)}
-        />
-      )
-    }
 
     return (
       <Text
@@ -186,9 +162,21 @@ class Button extends React.PureComponent<ButtonProps> {
             size={Math.round(height / 2)}
           />
         )}
-        {iconBefore || null}
+        {(
+          <IconBefore
+            size={iconSize}
+            marginLeft={-Math.round(pl * 0.2)}
+            marginRight={Math.round(iconSize * 0.7)}
+          />
+        ) || null}
         {children}
-        {iconAfter || null}
+        {(
+          <IconAfter
+            size={iconSize}
+            marginRight={-Math.round(pl * 0.2)}
+            marginLeft={Math.round(iconSize * 0.7)}
+          />
+        ) || null}
       </Text>
     )
   }

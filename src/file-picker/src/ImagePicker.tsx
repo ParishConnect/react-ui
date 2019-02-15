@@ -3,18 +3,25 @@ import Dropzone from 'react-dropzone'
 import { Omit } from 'utility-types'
 import Box from '@hennessyevan/aluminum-box'
 import { Pane, Card, PaneProps } from '../../layers'
-import { Icon } from '../../icon'
 import { Button } from '../../buttons'
 import { ThemeContext } from '../../theme'
 import { Heading } from '../../typography'
 import { BackgroundColor } from '../../constants/index'
+import {
+  PlusIcon,
+  PlusCircleIcon,
+  CheckIcon,
+  MoveIcon,
+  XIcon,
+  ImageIcon
+} from '../../icons/index'
 
 export const CLASS_PREFIX = 'evergreen-image-picker'
 
 export interface ImagePickerProps extends Omit<PaneProps, 'background'> {
   background?: BackgroundColor | string
   name?: string
-  icon?: string
+  icon?: any
   accept?: string | string[]
   required?: boolean
   disabled?: boolean
@@ -38,7 +45,7 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
   static defaultProps = {
     width: '100%',
     height: 350,
-    icon: 'add',
+    icon: PlusIcon,
     background: 'tint2'
   }
 
@@ -202,7 +209,7 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
                     marginRight={15}
                     appearance="default"
                     onClick={() => open()}
-                    iconAfter="plus"
+                    iconAfter={ImageIcon}
                   >
                     Change Image
                   </Button>
@@ -210,7 +217,7 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
                     onClick={this.handleRepositioning}
                     appearance={repositioning ? 'primary' : 'default'}
                     intent={repositioning ? 'success' : 'none'}
-                    iconAfter={repositioning ? 'tick' : 'arrows-vertical'}
+                    iconAfter={repositioning ? CheckIcon : MoveIcon}
                   >
                     {repositioning ? 'Save Position' : 'Reposition'}
                   </Button>
@@ -233,22 +240,36 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
                   </Heading>
                 </Card>
               )}
-              {!preview && (
-                <Icon
-                  className={`${CLASS_PREFIX}-button`}
-                  background={
-                    isDragActive && !isDragReject
-                      ? theme.palette[theme.themeColor].light
-                      : '#DDDDDD'
-                  }
-                  padding={15}
-                  borderRadius={100}
-                  boxSizing="content-box"
-                  size={32}
-                  color={isDragActive ? theme.getThemeColor(theme) : 'muted'}
-                  icon={isDragReject ? 'cross' : 'plus'}
-                />
-              )}
+              {!preview &&
+                (isDragReject ? (
+                  <XIcon
+                    className={`${CLASS_PREFIX}-button`}
+                    background={
+                      isDragActive && !isDragReject
+                        ? theme.palette[theme.themeColor].light
+                        : '#DDDDDD'
+                    }
+                    padding={15}
+                    borderRadius={100}
+                    boxSizing="content-box"
+                    size={32}
+                    color={isDragActive ? theme.getThemeColor(theme) : 'muted'}
+                  />
+                ) : (
+                  <PlusIcon
+                    className={`${CLASS_PREFIX}-button`}
+                    background={
+                      isDragActive && !isDragReject
+                        ? theme.palette[theme.themeColor].light
+                        : '#DDDDDD'
+                    }
+                    padding={15}
+                    borderRadius={100}
+                    boxSizing="content-box"
+                    size={32}
+                    color={isDragActive ? theme.getThemeColor(theme) : 'muted'}
+                  />
+                ))}
             </Pane>
           )
         }}

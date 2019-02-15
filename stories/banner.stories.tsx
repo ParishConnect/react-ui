@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { Banner, toaster } from '../src'
+import { Banner, toaster, ExternalLinkIcon } from '../src'
 
 const bannerStyle = {
   margin: 32,
@@ -14,7 +14,7 @@ storiesOf('banner', module).add('Banner', () => (
       subtitle="subtitle"
       action={{
         title: 'Action',
-        icon: 'document-share',
+        icon: ExternalLinkIcon,
         onClick: () => toaster.notify('message')
       }}
       {...bannerStyle}

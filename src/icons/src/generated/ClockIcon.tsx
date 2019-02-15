@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class ClockIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class ClockIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="clock" viewBox="0 0 24 24" {...this.props}>

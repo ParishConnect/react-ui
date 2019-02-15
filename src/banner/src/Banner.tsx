@@ -4,14 +4,12 @@ import Box from '@hennessyevan/aluminum-box'
 import Pane, { PaneProps } from '../../layers/src/Pane'
 import Text from '../../typography/src/Text'
 import Small from '../../typography/src/Small'
-import Icon from '../../icon/src/Icon'
 import { ThemeContext } from '../../theme'
 import { BackgroundTint } from '../../constants'
-import { IconName } from '@blueprintjs/icons'
 
 interface ActionType {
   title?: string
-  icon?: IconName
+  icon?: any
   onClick?(): void
 }
 
@@ -40,13 +38,14 @@ class Banner extends React.PureComponent<BannerProps> {
 
   getActionDescriptor = (action: ActionType, color: string) => {
     const theme = this.context
-    if (action.icon) {
+    const RenderIcon = action.icon
+    if (RenderIcon) {
       return (
         <Box
           color={color || theme.palette[theme.themeColor].base}
           paddingX={25}
         >
-          <Icon icon={action.icon} />
+          <RenderIcon />
         </Box>
       )
     }

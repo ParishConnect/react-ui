@@ -2,8 +2,8 @@ import * as React from 'react'
 import { noop } from 'lodash'
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { ThemeContext } from '../../theme'
+import { CheckIcon } from '../../icons/index'
 
 export interface MenuOptionProps {
   /**
@@ -82,10 +82,9 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
         alignItems="center"
       >
         {isSelected && (
-          <Icon
+          <CheckIcon
             aria-hidden
             color="selected"
-            icon="tick"
             marginLeft={16}
             marginRight={-4}
             size={16}

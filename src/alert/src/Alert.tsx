@@ -3,10 +3,10 @@ import { Omit } from 'utility-types'
 import { Pane, PaneProps } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
-import { Icon } from '../../icon'
 import { getTextColorForIntent } from '../../theme/src/default-theme/helpers'
 import { IntentType } from '../../constants'
 import { ThemeContext } from '../../theme'
+import { XIcon } from '../../icons/index'
 
 export interface AlertProps extends Omit<PaneProps, 'apperance'> {
   /**
@@ -53,10 +53,10 @@ class Alert extends React.PureComponent<AlertProps> {
     appearance: 'default'
   }
 
-  getIconForIntent = (intent: IntentType): React.ReactNode => {
+  getIconForIntent = (intent: IntentType): { icon: any; color: string } => {
     const theme = this.context
 
-    return <Icon size={14} {...theme.getIconForIntent(intent)} />
+    return theme.getIconForIntent(intent)
   }
 
   render() {
@@ -89,6 +89,8 @@ class Alert extends React.PureComponent<AlertProps> {
     const hasAction =
       typeof action !== 'undefined' && typeof action.title !== 'undefined'
 
+    const Icon = hasIcon ? this.getIconForIntent(intent).icon : ''
+
     return (
       <Pane
         className={className}
@@ -110,7 +112,7 @@ class Alert extends React.PureComponent<AlertProps> {
             display="block"
             marginTop={2}
           >
-            {this.getIconForIntent(intent)}
+            <Icon color={this.getIconForIntent(intent).color} />
           </Pane>
         )}
         <Pane display="flex" width="100%">
@@ -141,7 +143,7 @@ class Alert extends React.PureComponent<AlertProps> {
               marginRight={-2}
             >
               <IconButton
-                icon="cross"
+                icon={XIcon}
                 appearance="minimal"
                 height={24}
                 onClick={onRemove}

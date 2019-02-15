@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class FastForwardIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class FastForwardIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="fast-forward" viewBox="0 0 24 24" {...this.props}>

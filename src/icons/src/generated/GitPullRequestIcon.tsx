@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class GitPullRequestIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class GitPullRequestIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="git-pull-request" viewBox="0 0 24 24" {...this.props}>

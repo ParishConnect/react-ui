@@ -1,16 +1,11 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { ThemeContext } from '../../theme'
-
-/**
- * This implementation is a remix of the Icon component in Blueprintjs:
- * https://github.com/palantir/blueprint/blob/813e93f2/packages/core/src/components/icon/icon.tsx#L15
- * Refer to the LICENSE for BlueprintJS here: https://github.com/palantir/blueprint/blob/develop/LICENSE
- */
+import { ThemeContext } from '../../theme/'
+import { getIconColor } from '../../theme/src/default-theme/theme-helpers/index'
 
 export interface IconProps extends BoxProps {
   /**
-   * Color of icon. Equivalent to setting CSS `fill` property.
+   * Color of icon. Equivalent to setting CSS `stroke|fill` property.
    */
   color?: string
   /**
@@ -33,14 +28,13 @@ export interface IconProps extends BoxProps {
   /**
    * CSS style properties.
    */
-  style?: React.CSSProperties
+  style?: object
 }
 
 class Icon extends React.PureComponent<IconProps> {
+  public static contextType = ThemeContext
   static SIZE_STANDARD = 16
   static SIZE_LARGE = 20
-
-  public static contextType = ThemeContext
 
   static defaultProps = {
     size: 16,
@@ -53,28 +47,40 @@ class Icon extends React.PureComponent<IconProps> {
       children,
       name,
       size = 16,
+      isSolid,
       ...svgProps
     } = this.props
-    const theme = this.context
     let { style = {} } = this.props
+    const theme = this.context
 
     const viewBox = `0 0 24 24`
 
-    style = { ...style, stroke: theme.getIconColor(color) }
+    console.log(theme)
+
+    style = {
+      ...style,
+      stroke: getIconColor(color)
+      // fill:
+      //   isSolid === true
+      //     ? theme.getIconColor
+      //       ? theme.getIconColor(color)
+      //       : 'currentColor'
+      //     : ''
+    }
 
     return (
       <Box
         is="svg"
-        {...svgProps}
+        viewBox={viewBox}
         fill="none"
+        {...svgProps}
         style={style}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         data-icon={name}
         width={size}
         height={size}
-        viewBox={viewBox}
       >
         {name ? <title>{name}</title> : null}
         {children}

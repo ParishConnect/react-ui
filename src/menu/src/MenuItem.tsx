@@ -3,7 +3,6 @@ import { noop } from 'lodash'
 import { Omit } from 'utility-types'
 import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { ThemeContext } from '../../theme'
 import { IconName } from '@blueprintjs/icons'
 import { IntentType } from '../../constants/index'
@@ -21,7 +20,7 @@ export interface MenuItemProps extends Omit<PaneProps, 'appearance'> {
   /**
    * The icon before the label.
    */
-  icon?: IconName
+  icon?: any
 
   /**
    * Secondary text shown on the right.
@@ -75,7 +74,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
       appearance,
       secondaryText,
       intent,
-      icon,
+      icon: Icon,
       ...passthroughProps
     } = this.props
     const theme = this.context
@@ -89,17 +88,16 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
         className={themedClassName}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
-        height={icon ? 40 : 32}
+        height={Icon ? 40 : 32}
         tabIndex={0}
         data-isselectable="true"
         display="flex"
         alignItems="center"
         {...passthroughProps}
       >
-        {icon && (
+        {Icon && (
           <Icon
             color={intent === 'none' ? 'default' : intent}
-            icon={icon}
             marginLeft={16}
             marginRight={-4}
             size={16}

@@ -11,12 +11,12 @@ class Badge extends React.PureComponent<TextProps> {
   static styles = {
     display: 'inline-block',
     boxSizing: 'border-box',
-    height: 16,
-    paddingTop: 0,
+    height: 17,
+    paddingTop: 1,
     paddingRight: 6,
     paddingBottom: 0,
     paddingLeft: 6,
-    borderRadius: 2,
+    borderRadius: 3,
     textAlign: 'center',
     textDecoration: 'none',
     textTransform: 'uppercase'

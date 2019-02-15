@@ -8,7 +8,12 @@ import {
   ListItem,
   Menu,
   Popover,
-  Position
+  Position,
+  UsersIcon,
+  ArrowRightCircleIcon,
+  Edit2Icon,
+  Edit3Icon,
+  Trash2Icon
 } from '../src'
 
 storiesOf('menu', module)
@@ -37,15 +42,15 @@ storiesOf('menu', module)
         content={
           <Menu>
             <Menu.Group>
-              <Menu.Item icon="people">Share...</Menu.Item>
-              <Menu.Item icon="circle-arrow-right">Move...</Menu.Item>
-              <Menu.Item icon="edit" secondaryText="⌘R">
+              <Menu.Item icon={UsersIcon}>Share...</Menu.Item>
+              <Menu.Item icon={ArrowRightCircleIcon}>Move...</Menu.Item>
+              <Menu.Item icon={Edit3Icon} secondaryText="⌘R">
                 Rename...
               </Menu.Item>
             </Menu.Group>
             <Menu.Divider />
             <Menu.Group>
-              <Menu.Item icon="trash" intent="danger">
+              <Menu.Item icon={Trash2Icon} intent="danger">
                 Delete...
               </Menu.Item>
             </Menu.Group>
@@ -59,15 +64,15 @@ storiesOf('menu', module)
         content={
           <Menu>
             <Menu.Group title="Actions">
-              <Menu.Item icon="people">Share...</Menu.Item>
-              <Menu.Item icon="circle-arrow-right">Move...</Menu.Item>
-              <Menu.Item icon="edit" secondaryText="⌘R">
+              <Menu.Item icon={UsersIcon}>Share...</Menu.Item>
+              <Menu.Item icon={ArrowRightCircleIcon}>Move...</Menu.Item>
+              <Menu.Item icon={Edit3Icon} secondaryText="⌘R">
                 Rename...
               </Menu.Item>
             </Menu.Group>
             <Menu.Divider />
             <Menu.Group title="destructive">
-              <Menu.Item icon="trash" intent="danger">
+              <Menu.Item icon={Trash2Icon} intent="danger">
                 Delete...
               </Menu.Item>
             </Menu.Group>

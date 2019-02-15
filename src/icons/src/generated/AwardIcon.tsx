@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class AwardIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class AwardIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="award" viewBox="0 0 24 24" {...this.props}>

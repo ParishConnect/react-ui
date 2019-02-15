@@ -23,8 +23,8 @@ async function main() {
       iconNames.push(iconName)
       let iconFile = `
        import React, { PureComponent } from 'react'
-       import Icon from '../Icon'
-       export default class ${iconName} extends PureComponent {
+       import Icon, {IconProps} from '../Icon'
+       export default class ${iconName} extends PureComponent<IconProps> {
          render() {
            return (
              <Icon name="${icon.name}" viewBox="${

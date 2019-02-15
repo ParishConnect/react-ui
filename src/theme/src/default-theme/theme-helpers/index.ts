@@ -3,6 +3,12 @@ import themedProperty from '../utils/themedProperty'
 import { colors, elevations, palette } from '../foundational-styles/'
 import { fontFamilies, headings, paragraph, text } from '../typography/'
 import { ThemeType } from '../../../../constants/src/Theme'
+import {
+  CheckCircleIcon,
+  AlertOctagonIcon,
+  AlertTriangleIcon,
+  InfoIcon
+} from '../../../../icons/index'
 
 const isThemeColor = (color: string): boolean => {
   if (color in palette) {
@@ -132,24 +138,21 @@ const getIconColor = (color: string): string => {
 /**
  * Get the properties for an icon based on the intent.
  */
-const getIconForIntent = (
-  intent: IntentType,
-  defaultColor?: string
-): { icon: string; color: string } => {
+const getIconForIntent = (intent: IntentType, defaultColor?: string): any => {
   switch (intent) {
     case Intent.SUCCESS:
-      return { icon: 'tick-circle', color: 'success' }
+      return { icon: CheckCircleIcon, color: 'success' }
     case Intent.DANGER:
-      return { icon: 'error', color: 'danger' }
+      return { icon: AlertOctagonIcon, color: 'danger' }
     case Intent.WARNING:
-      return { icon: 'warning-sign', color: 'warning' }
+      return { icon: AlertTriangleIcon, color: 'warning' }
     case Intent.NONE:
     default:
       const color = !defaultColor
         ? 'info'
         : palette[defaultColor] && palette[defaultColor].base
       return {
-        icon: 'info-sign',
+        icon: InfoIcon,
         color
       }
   }

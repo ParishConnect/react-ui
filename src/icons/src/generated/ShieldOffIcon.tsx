@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class ShieldOffIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class ShieldOffIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="shield-off" viewBox="0 0 24 24" {...this.props}>

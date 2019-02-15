@@ -11,8 +11,7 @@ import {
   Text,
   Button,
   Position,
-  Icon,
-  IconNames
+  ArrowDownCircleIcon
 } from '../src'
 
 const PopoverContent = () => (
@@ -202,7 +201,7 @@ storiesOf('popover', module)
       })()}
       <Popover content={<PopoverContentWithTextInput />}>
         <Button marginRight={20}>
-          <Icon icon={IconNames.CIRCLE_ARROW_DOWN} />
+          <ArrowDownCircleIcon />
         </Button>
       </Popover>
     </Box>

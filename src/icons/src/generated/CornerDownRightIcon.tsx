@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class CornerDownRightIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class CornerDownRightIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="corner-down-right" viewBox="0 0 24 24" {...this.props}>

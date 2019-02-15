@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import Icon from '../Icon'
-export default class PlayCircleIcon extends PureComponent {
+import Icon, { IconProps } from '../Icon'
+export default class PlayCircleIcon extends PureComponent<IconProps> {
   render() {
     return (
       <Icon name="play-circle" viewBox="0 0 24 24" {...this.props}>

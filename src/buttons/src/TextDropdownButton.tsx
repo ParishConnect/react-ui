@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { Text } from '../../typography'
-import { Icon } from '../../icon'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IconButtonProps } from './IconButton'
+import { ChevronDownIcon } from '../../icons/'
 import { IconName } from '@blueprintjs/icons'
 
 class TextDropdownButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext
   static defaultProps = {
     isActive: false,
-    icon: 'caret-down'
+    icon: ChevronDownIcon
   }
 
   render() {
@@ -22,7 +22,7 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
       isLoading,
 
       // Icons
-      icon,
+      icon: Icon,
 
       ...props
     } = this.props
@@ -57,12 +57,7 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
           />
         )}
         {children}
-        <Icon
-          color="default"
-          icon={icon as IconName}
-          size={12}
-          marginLeft={2}
-        />
+        <Icon color="default" size={12} marginLeft={2} />
       </Text>
     )
   }
