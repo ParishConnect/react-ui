@@ -7,6 +7,9 @@ import {
   Heading,
   Link,
   Code,
+  CheckIcon,
+  CheckCircleIcon,
+  SlashIcon,
   Pre,
   Label,
   Small,
@@ -122,16 +125,16 @@ storiesOf('typography', module)
             You can add icons to list items individually.
           </Paragraph>
           <UnorderedList size={size as ListTextSize} marginY={16}>
-            <ListItem icon="tick-circle" iconColor="success">
+            <ListItem icon={CheckCircleIcon} iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="tick-circle" iconColor="success">
+            <ListItem icon={CheckCircleIcon} iconColor="success">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="ban-circle" iconColor="danger">
+            <ListItem icon={SlashIcon} iconColor="danger">
               Lorem ipsum dolar set amet
             </ListItem>
-            <ListItem icon="ban-circle" iconColor="danger">
+            <ListItem icon={SlashIcon} iconColor="danger">
               Lorem ipsum dolar set amet
             </ListItem>
           </UnorderedList>
@@ -141,7 +144,7 @@ storiesOf('typography', module)
           <UnorderedList
             size={size as ListTextSize}
             marginY={16}
-            icon="tick"
+            icon={CheckIcon}
             iconColor="success"
           >
             <ListItem>Lorem ipsum dolar set amet</ListItem>

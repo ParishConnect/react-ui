@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Icon } from '../../icon'
 import Text from './Text'
 import { PaneProps } from '../../layers'
 import { IconName } from '@blueprintjs/icons'
@@ -9,7 +8,7 @@ export declare interface ListItemProps extends PaneProps {
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
    */
-  icon?: IconName
+  icon?: any
   size?: 300 | 400 | 500 | 600
   /**
    * The color of the icon.
@@ -22,7 +21,7 @@ export default class ListItem extends React.PureComponent<ListItemProps> {
     size: 400
   }
   render() {
-    const { children, size, icon, iconColor, ...props } = this.props
+    const { children, size, icon: Icon, iconColor, ...props } = this.props
 
     let paddingLeft: number
     let iconTop: number
@@ -62,13 +61,12 @@ export default class ListItem extends React.PureComponent<ListItemProps> {
         position="relative"
         marginY="0.5em"
         size={size}
-        listStyleType={icon ? 'none' : undefined}
-        paddingLeft={icon ? paddingLeft : undefined}
+        listStyleType={Icon ? 'none' : undefined}
+        paddingLeft={Icon ? paddingLeft : undefined}
         {...props}
       >
-        {icon && (
+        {Icon && (
           <Icon
-            icon={icon}
             color={iconColor}
             position="absolute"
             size={iconSize}

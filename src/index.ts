@@ -26,7 +26,6 @@ export {
   FormFieldValidationMessage
 } from './form-field'
 export { Image } from './image'
-export { Icon } from './icons'
 export { Pane, Card } from './layers'
 export { Menu } from './menu'
 export { Overlay } from './overlay'
