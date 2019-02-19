@@ -214,6 +214,7 @@ export {
   HashIcon,
   HeadphonesIcon,
   HeartIcon,
+  HeartFilledIcon,
   HelpCircleIcon,
   HomeIcon,
   ImageIcon,
