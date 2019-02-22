@@ -1,23 +1,24 @@
-import * as React from 'react';
-import { PureComponent } from 'react';
-import DropdownList from '@atlaskit/droplist';
-import { Popup } from '@atlaskit/editor-common';
+import * as React from 'react'
+import { PureComponent } from 'react'
+import DropdownList from '@atlaskit/droplist'
+import { Popup } from '@atlaskit/editor-common'
+import { Popover } from '../../../../popover/index'
 
 export interface Props {
-  mountTo?: HTMLElement;
-  boundariesElement?: HTMLElement;
-  scrollableElement?: HTMLElement;
-  trigger: React.ReactElement<any>;
-  isOpen?: boolean;
-  onOpenChange?: (attrs) => void;
-  fitWidth?: number;
-  fitHeight?: number;
-  zIndex?: number;
+  mountTo?: HTMLElement
+  boundariesElement?: HTMLElement
+  scrollableElement?: HTMLElement
+  trigger: React.ReactElement<any>
+  isOpen?: boolean
+  onOpenChange?: (attrs) => void
+  fitWidth?: number
+  fitHeight?: number
+  zIndex?: number
 }
 
 export interface State {
-  target?: HTMLElement;
-  popupPlacement: [string, string];
+  target?: HTMLElement
+  popupPlacement: [string, string]
 }
 
 /**
@@ -28,23 +29,23 @@ export interface State {
  */
 export default class Dropdown extends PureComponent<Props, State> {
   constructor(props: Props) {
-    super(props);
+    super(props)
 
     this.state = {
-      popupPlacement: ['bottom', 'left'],
-    };
+      popupPlacement: ['bottom', 'left']
+    }
   }
 
   private handleRef = target => {
-    this.setState({ target });
-  };
+    this.setState({ target })
+  }
 
   private updatePopupPlacement = placement => {
-    this.setState({ popupPlacement: placement });
-  };
+    this.setState({ popupPlacement: placement })
+  }
 
   private renderDropdown() {
-    const { target, popupPlacement } = this.state;
+    const { target, popupPlacement } = this.state
     const {
       children,
       mountTo,
@@ -53,8 +54,8 @@ export default class Dropdown extends PureComponent<Props, State> {
       onOpenChange,
       fitHeight,
       fitWidth,
-      zIndex,
-    } = this.props;
+      zIndex
+    } = this.props
 
     return (
       <Popup
@@ -80,17 +81,17 @@ export default class Dropdown extends PureComponent<Props, State> {
           </DropdownList>
         </div>
       </Popup>
-    );
+    )
   }
 
   render() {
-    const { trigger, isOpen } = this.props;
+    const { trigger, isOpen } = this.props
 
     return (
       <div>
         <div ref={this.handleRef}>{trigger}</div>
         {isOpen ? this.renderDropdown() : null}
       </div>
-    );
+    )
   }
 }

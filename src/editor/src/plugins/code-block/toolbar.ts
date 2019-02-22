@@ -18,6 +18,7 @@ import { removeCodeBlock, changeLanguage } from './actions'
 import { pluginKey, CodeBlockState } from './pm-plugins/main'
 import { Command } from '../../types'
 import { createBreakoutToolbarItems } from '../breakout/utils/create-breakout-toolbar-items'
+import { TrashIcon } from '../../../../icons/index'
 
 export const messages = defineMessages({
   selectLanguage: {
@@ -71,7 +72,7 @@ export const getToolbarConfig: FloatingToolbarHandler = (
     const deleteButton: FloatingToolbarButton<Command> = {
       type: 'button',
       appearance: 'danger',
-      icon: RemoveIcon,
+      icon: TrashIcon,
       onClick: removeCodeBlock,
       title: formatMessage('remove')
     }

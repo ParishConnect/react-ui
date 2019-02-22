@@ -2,10 +2,10 @@ import * as React from 'react'
 import { PureComponent } from 'react'
 import { PluginKey } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import AttachmentIcon from '@atlaskit/icon/glyph/editor/attachment'
 
 import ToolbarButton from '../../../../ui/ToolbarButton'
 import { MediaPluginState } from '../../pm-plugins/main'
+import { ImageIcon } from '../../../../../../icons/index'
 
 export interface Props {
   editorView: EditorView
@@ -52,7 +52,7 @@ export default class ToolbarMedia extends PureComponent<Props, State> {
         disabled={isDisabled}
         title="Files & images"
         spacing={isReducedSpacing ? 'none' : 'default'}
-        iconBefore={<AttachmentIcon label="Files & images" />}
+        iconBefore={ImageIcon}
       />
     )
   }

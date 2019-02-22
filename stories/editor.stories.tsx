@@ -57,11 +57,9 @@ storiesOf('editor', module)
       <Editor
         disabled={false}
         appearance="full-page"
-        allowTextAlignment
         allowIndentation
-        shouldFocus
+        allowTextColor
         placeholder="Write something..."
-        toolbarProps={{ paddingX: 32 }}
         containerProps={{ paddingX: 48 }}
         primaryToolbarComponents={
           <WithEditorActions
@@ -80,6 +78,7 @@ storiesOf('editor', module)
                 <Textarea
                   appearance="editor-title"
                   component={Heading}
+                  autoFocus
                   size={900}
                   autoresize
                   marginBottom={16}

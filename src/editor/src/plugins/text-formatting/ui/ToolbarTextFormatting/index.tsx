@@ -2,13 +2,12 @@ import * as React from 'react'
 import { PureComponent } from 'react'
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl'
 import { EditorView } from 'prosemirror-view'
-import BoldIcon from '@atlaskit/icon/glyph/editor/bold'
-import ItalicIcon from '@atlaskit/icon/glyph/editor/italic'
 import { toggleBold, toggleItalic, tooltip } from '../../../../keymaps'
 import { TextFormattingState } from '../../pm-plugins/main'
 import ToolbarButton from '../../../../ui/ToolbarButton'
 import { ButtonGroup } from '../../../../ui/styles'
 import { toggleStrong, toggleEm } from '../../commands/text-formatting'
+import { BoldIcon, ItalicIcon } from '../../../../../../icons/index'
 
 export const messages = defineMessages({
   bold: {
@@ -54,23 +53,25 @@ class ToolbarTextFormatting extends PureComponent<Props & InjectedIntlProps> {
       <ButtonGroup width={isReducedSpacing ? 'small' : 'large'}>
         {strongHidden ? null : (
           <ToolbarButton
+            isIconButton
             spacing={isReducedSpacing ? 'none' : 'default'}
             onClick={this.handleBoldClick}
             selected={strongActive}
             disabled={disabled || strongDisabled}
             title={tooltip(toggleBold, labelBold)}
-            iconBefore={<BoldIcon label={labelBold} />}
+            icon={BoldIcon}
           />
         )}
 
         {emHidden ? null : (
           <ToolbarButton
+            isIconButton
             spacing={isReducedSpacing ? 'none' : 'default'}
             onClick={this.handleItalicClick}
             selected={emActive}
             disabled={disabled || emDisabled}
             title={tooltip(toggleItalic, labelItalic)}
-            iconBefore={<ItalicIcon label={labelItalic} />}
+            icon={ItalicIcon}
           />
         )}
       </ButtonGroup>

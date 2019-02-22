@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { ThemeContext } from '../../theme'
+import { ThemeContext } from '../../theme/index'
 
-export type TextSize = 200 | 300 | 400 | 500 | 600 | 700 | 800
+export type TextSize = 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
 export interface TextProps extends Omit<BoxProps, 'apperance'> {
   /**

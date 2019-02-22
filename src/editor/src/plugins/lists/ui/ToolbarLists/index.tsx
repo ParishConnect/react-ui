@@ -3,8 +3,6 @@ import { PureComponent } from 'react'
 import { injectIntl, InjectedIntlProps } from 'react-intl'
 import { EditorView } from 'prosemirror-view'
 import BulletListIcon from '@atlaskit/icon/glyph/editor/bullet-list'
-import NumberListIcon from '@atlaskit/icon/glyph/editor/number-list'
-import ExpandIcon from '@atlaskit/icon/glyph/chevron-down'
 
 import {
   toggleBulletList as toggleBulletListKeymap,
@@ -21,6 +19,7 @@ import {
   Shortcut
 } from '../../../../ui/styles'
 import { toggleBulletList, toggleOrderedList } from '../../commands'
+import { ListIcon, ChevronDownIcon } from '../../../../../../icons/index'
 
 export interface Props {
   editorView: EditorView
@@ -100,25 +99,23 @@ class ToolbarLists extends PureComponent<Props & InjectedIntlProps, State> {
     } = this.props
     const { isDropdownOpen } = this.state
     if (!isSmall) {
-      const labelUnorderedList = formatMessage('unorderedList')
-      const labelOrderedList = formatMessage('orderedList')
       return (
         <ButtonGroup width={isReducedSpacing ? 'small' : 'large'}>
           <ToolbarButton
+            isIconButton
             spacing={isReducedSpacing ? 'none' : 'default'}
             onClick={this.handleBulletListClick}
             selected={bulletListActive}
             disabled={bulletListDisabled || disabled}
-            title={tooltip(toggleBulletListKeymap, labelUnorderedList)}
-            iconBefore={<BulletListIcon label={labelUnorderedList} />}
+            icon={ListIcon}
           />
           <ToolbarButton
+            isIconButton
             spacing={isReducedSpacing ? 'none' : 'default'}
             onClick={this.handleOrderedListClick}
             selected={orderedListActive}
             disabled={orderedListDisabled || disabled}
-            title={tooltip(toggleOrderedListKeymap, labelOrderedList)}
-            iconBefore={<NumberListIcon label={labelOrderedList} />}
+            icon={ListIcon}
           />
           {isSeparator && <Separator />}
         </ButtonGroup>
@@ -131,7 +128,6 @@ class ToolbarLists extends PureComponent<Props & InjectedIntlProps, State> {
         popupsScrollableElement
       } = this.props
 
-      const labelLists = formatMessage('lists')
       return (
         <Wrapper>
           <DropdownMenu
@@ -150,13 +146,10 @@ class ToolbarLists extends PureComponent<Props & InjectedIntlProps, State> {
               selected={bulletListActive || orderedListActive}
               disabled={disabled}
               onClick={this.handleTriggerClick}
-              title={labelLists}
               iconBefore={
                 <Wrapper>
-                  <BulletListIcon label={labelLists} />
-                  <ExpandIconWrapper>
-                    <ExpandIcon label={labelLists} />
-                  </ExpandIconWrapper>
+                  <ListIcon />
+                  <ChevronDownIcon />
                 </Wrapper>
               }
             />

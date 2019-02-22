@@ -1,40 +1,40 @@
-import { Slice, Node, Schema } from 'prosemirror-model';
-import * as LinkifyIt from 'linkify-it';
-import { mapSlice } from '../../utils/slice';
+import { Slice, Node, Schema } from 'prosemirror-model'
+import LinkifyIt from 'linkify-it'
+import { mapSlice } from '../../utils/slice'
 
-export const LINK_REGEXP = /(https?|ftp):\/\/[^\s]+/;
+export const LINK_REGEXP = /(https?|ftp):\/\/[^\s]+/
 
 export interface Match {
-  schema: any;
-  index: number;
-  lastIndex: number;
-  raw: string;
-  text: string;
-  url: string;
-  length?: number;
-  input?: string;
+  schema: any
+  index: number
+  lastIndex: number
+  raw: string
+  text: string
+  url: string
+  length?: number
+  input?: string
 }
 
-const linkify = LinkifyIt();
-linkify.add('sourcetree:', 'http:');
+const linkify = LinkifyIt()
+linkify.add('sourcetree:', 'http:')
 
 const tlds = 'biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф'.split(
-  '|',
-);
+  '|'
+)
 const tlds2Char =
-  'a[cdefgilmnoqrtuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnoruvwxyz]|d[ejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrtuvwxyz]|n[acefgilopruz]|om|p[aefghkmnrtw]|qa|r[eosuw]|s[abcdegijklmnrtuvxyz]|t[cdfghjklmnortvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw]';
-tlds.push(tlds2Char);
-linkify.tlds(tlds, false);
+  'a[cdefgilmnoqrtuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnoruvwxyz]|d[ejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrtuvwxyz]|n[acefgilopruz]|om|p[aefghkmnrtw]|qa|r[eosuw]|s[abcdegijklmnrtuvxyz]|t[cdfghjklmnortvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw]'
+tlds.push(tlds2Char)
+linkify.tlds(tlds, false)
 
 export function getLinkMatch(str: string): Match | LinkifyMatch | null {
   if (!str) {
-    return null;
+    return null
   }
-  let match = linkifyMatch(str);
+  let match = linkifyMatch(str)
   if (!match.length) {
-    match = linkify.match(str);
+    match = linkify.match(str)
   }
-  return match && match[0];
+  return match && match[0]
 }
 
 /**
@@ -45,17 +45,17 @@ export function getLinkMatch(str: string): Match | LinkifyMatch | null {
 export class LinkMatcher {
   exec(str: string): Match[] | null {
     if (str.endsWith(' ')) {
-      const chunks = str.slice(0, str.length - 1).split(' ');
-      const lastChunk = chunks[chunks.length - 1];
-      const links: Match[] = linkify.match(lastChunk);
+      const chunks = str.slice(0, str.length - 1).split(' ')
+      const lastChunk = chunks[chunks.length - 1]
+      const links: Match[] = linkify.match(lastChunk)
       if (links && links.length > 0) {
-        const lastLink: Match = links[links.length - 1];
-        lastLink.input = lastChunk;
-        lastLink.length = lastLink.lastIndex - lastLink.index + 1;
-        return [lastLink];
+        const lastLink: Match = links[links.length - 1]
+        lastLink.input = lastChunk
+        lastLink.length = lastLink.lastIndex - lastLink.index + 1
+        return [lastLink]
       }
     }
-    return null;
+    return null
   }
 }
 
@@ -64,26 +64,26 @@ export class LinkMatcher {
  */
 export function normalizeUrl(url: string) {
   if (LINK_REGEXP.test(url)) {
-    return url;
+    return url
   }
-  const match = getLinkMatch(url);
-  return (match && match.url) || url;
+  const match = getLinkMatch(url)
+  return (match && match.url) || url
 }
 
 export function linkifyContent(schema: Schema): (slice: Slice) => Slice {
   return (slice: Slice): Slice =>
     mapSlice(slice, (node, parent) => {
       const isAllowedInParent =
-        !parent || parent.type !== schema.nodes.codeBlock;
+        !parent || parent.type !== schema.nodes.codeBlock
       if (isAllowedInParent && node.isText) {
-        const linkified = [] as Node[];
-        const link = node.type.schema.marks['link'];
-        const text = node.text!;
-        const matches: any[] = findLinkMatches(text);
-        let pos = 0;
+        const linkified = [] as Node[]
+        const link = node.type.schema.marks['link']
+        const text = node.text!
+        const matches: any[] = findLinkMatches(text)
+        let pos = 0
         matches.forEach(match => {
           if (match.start > 0) {
-            linkified.push(node.cut(pos, match.start));
+            linkified.push(node.cut(pos, match.start))
           }
           linkified.push(
             node
@@ -91,81 +91,81 @@ export function linkifyContent(schema: Schema): (slice: Slice) => Slice {
               .mark(
                 link
                   .create({ href: normalizeUrl(match.href) })
-                  .addToSet(node.marks),
-              ),
-          );
-          pos = match.end;
-        });
+                  .addToSet(node.marks)
+              )
+          )
+          pos = match.end
+        })
         if (pos < text.length) {
-          linkified.push(node.cut(pos));
+          linkified.push(node.cut(pos))
         }
-        return linkified;
+        return linkified
       }
-      return node;
-    });
+      return node
+    })
 }
 
 interface LinkMatch {
-  start: number;
-  end: number;
-  title: string;
-  href: string;
+  start: number
+  end: number
+  title: string
+  href: string
 }
 
 function findLinkMatches(text: string): LinkMatch[] {
-  const matches: LinkMatch[] = [];
-  let linkMatches: Match[] = text && linkify.match(text);
+  const matches: LinkMatch[] = []
+  let linkMatches: Match[] = text && linkify.match(text)
   if (linkMatches && linkMatches.length > 0) {
     linkMatches.forEach(match => {
       matches.push({
         start: match.index,
         end: match.lastIndex,
         title: match.raw,
-        href: match.url,
-      });
-    });
+        href: match.url
+      })
+    })
   }
-  return matches;
+  return matches
 }
 
 export interface LinkifyMatch {
-  index: number;
-  lastIndex: number;
-  raw: string;
-  url: string;
-  text: string;
-  schema: string;
+  index: number
+  lastIndex: number
+  raw: string
+  url: string
+  text: string
+  schema: string
 }
 
 export const linkifyMatch = (text: string): LinkifyMatch[] => {
-  const matches: LinkifyMatch[] = [];
+  const matches: LinkifyMatch[] = []
 
   if (!LINK_REGEXP.test(text)) {
-    return matches;
+    return matches
   }
 
-  let startpos = 0;
-  let substr;
+  let startpos = 0
+  let substr
 
   while ((substr = text.substr(startpos))) {
-    const link = (substr.match(LINK_REGEXP) || [''])[0];
+    const link = (substr.match(LINK_REGEXP) || [''])[0]
     if (link) {
-      const index = substr.search(LINK_REGEXP);
-      const start = index >= 0 ? index + startpos : index;
-      const end = start + link.length;
+      const index = substr.search(LINK_REGEXP)
+      const start = index >= 0 ? index + startpos : index
+      const end = start + link.length
       matches.push({
         index: start,
         lastIndex: end,
         raw: link,
         url: link,
         text: link,
-        schema: '',
-      });
-      startpos += end;
+        schema: ''
+      })
+      startpos += end
     } else {
-      break;
+      break
     }
   }
 
-  return matches;
-};
+  return matches
+}

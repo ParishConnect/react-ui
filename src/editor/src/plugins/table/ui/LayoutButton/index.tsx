@@ -5,13 +5,12 @@ import { EditorView } from 'prosemirror-view'
 import { findTable } from 'prosemirror-utils'
 import { TableLayout } from '@atlaskit/adf-schema'
 import { Popup, tableMarginTop } from '@atlaskit/editor-common'
-import ExpandIcon from '@atlaskit/icon/glyph/editor/expand'
-import CollapseIcon from '@atlaskit/icon/glyph/editor/collapse'
 
 import ToolbarButton from '../../../../ui/ToolbarButton'
 import { TableCssClassName as ClassName } from '../../types'
 import { toggleTableLayout } from '../../actions'
 import { layoutButtonSize } from '../styles'
+import { ChevronUpIcon, ChevronDownIcon } from '../../../../../../icons/index'
 
 export interface Props {
   editorView: EditorView
@@ -80,11 +79,7 @@ class LayoutButton extends React.Component<Props & InjectedIntlProps, any> {
             title={title}
             onClick={this.handleClick}
             iconBefore={
-              layout === 'full-width' ? (
-                <CollapseIcon label={title} />
-              ) : (
-                <ExpandIcon label={title} />
-              )
+              layout === 'full-width' ? ChevronUpIcon : ChevronDownIcon
             }
           />
         </div>

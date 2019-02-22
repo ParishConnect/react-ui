@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 // @ts-ignore: unused variable
 // prettier-ignore
 import { HTMLAttributes, ClassAttributes, ComponentClass } from 'react';
 
 // tslint:disable-next-line:variable-name
 export const TriggerWrapper: ComponentClass<HTMLAttributes<{}>> = styled.span`
-  width: 42px;
+  width: 100%;
 
   display: flex;
   align-items: center;
@@ -18,4 +18,4 @@ export const TriggerWrapper: ComponentClass<HTMLAttributes<{}>> = styled.span`
   > div > div {
     display: flex;
   }
-`;
+`

@@ -1,48 +1,48 @@
-import * as React from 'react';
-import { PureComponent, ReactElement } from 'react';
-import styled from 'styled-components';
-import DropList from '@atlaskit/droplist';
-import Item, { ItemGroup } from '@atlaskit/item';
-import Tooltip from '@atlaskit/tooltip';
-import { Popup, akEditorFloatingPanelZIndex } from '@atlaskit/editor-common';
-import withOuterListeners from '../with-outer-listeners';
+import * as React from 'react'
+import { PureComponent, ReactElement } from 'react'
+import styled from 'styled-components'
+import DropList from '@atlaskit/droplist'
+import Item, { ItemGroup } from '@atlaskit/item'
+import { Popup, akEditorFloatingPanelZIndex } from '@atlaskit/editor-common'
+import withOuterListeners from '../with-outer-listeners'
+import { Tooltip } from '../../../../tooltip/index'
 
 const Wrapper = styled.div`
   line-height: 0;
-`;
+`
 
 export interface Props {
-  mountTo?: HTMLElement;
-  boundariesElement?: HTMLElement;
-  scrollableElement?: HTMLElement;
-  isOpen?: boolean;
-  onOpenChange?: (attrs) => void;
-  onItemActivated?: (attrs) => void;
-  onMouseEnter?: (attrs) => void;
-  onMouseLeave?: (attrs) => void;
-  fitWidth?: number;
-  fitHeight?: number;
-  offset?: Array<number>;
-  zIndex?: number;
+  mountTo?: HTMLElement
+  boundariesElement?: HTMLElement
+  scrollableElement?: HTMLElement
+  isOpen?: boolean
+  onOpenChange?: (attrs) => void
+  onItemActivated?: (attrs) => void
+  onMouseEnter?: (attrs) => void
+  onMouseLeave?: (attrs) => void
+  fitWidth?: number
+  fitHeight?: number
+  offset?: Array<number>
+  zIndex?: number
   items: Array<{
     items: Array<{
-      content: string | ReactElement<any>;
-      elemBefore?: React.ReactNode;
-      elemAfter?: React.ReactNode;
-      tooltipDescription?: string;
-      tooltipPosition?: string;
-      isActive: boolean;
-      isDisabled?: boolean;
-    }>;
-  }>;
+      content: string | ReactElement<any>
+      elemBefore?: React.ReactNode
+      elemAfter?: React.ReactNode
+      tooltipDescription?: string
+      tooltipPosition?: string
+      isActive: boolean
+      isDisabled?: boolean
+    }>
+  }>
 }
 
 export interface State {
-  target?: HTMLElement;
-  popupPlacement: [string, string];
+  target?: HTMLElement
+  popupPlacement: [string, string]
 }
 
-const DropListWithOutsideListeners: any = withOuterListeners(DropList);
+const DropListWithOutsideListeners: any = withOuterListeners(DropList)
 
 /**
  * Hack for item to imitate old dropdown-menu selected styles
@@ -52,11 +52,11 @@ const ItemWrapper: any = styled.div`
     props.isSelected
       ? '&& > span, && > span:hover { background: #6c798f; color: #fff; }'
       : ''};
-`;
+`
 
 const ItemContentWrapper: any = styled.span`
   ${(props: any) => (props.hasElemBefore ? 'margin-left: 8px;' : '')};
-`;
+`
 
 /**
  * Wrapper around @atlaskit/droplist which uses Popup and Portal to render
@@ -66,30 +66,30 @@ const ItemContentWrapper: any = styled.span`
  */
 export default class DropdownMenuWrapper extends PureComponent<Props, State> {
   state: State = {
-    popupPlacement: ['bottom', 'left'],
-  };
+    popupPlacement: ['bottom', 'left']
+  }
 
   private handleRef = target => {
-    this.setState({ target });
-  };
+    this.setState({ target })
+  }
 
   private updatePopupPlacement = placement => {
-    this.setState({ popupPlacement: placement });
-  };
+    this.setState({ popupPlacement: placement })
+  }
 
   private handleClose = () => {
     if (this.props.onOpenChange) {
-      this.props.onOpenChange({ isOpen: false });
+      this.props.onOpenChange({ isOpen: false })
     }
-  };
+  }
 
   private renderItem(item) {
-    const { onItemActivated, onMouseEnter, onMouseLeave } = this.props;
+    const { onItemActivated, onMouseEnter, onMouseLeave } = this.props
 
     // onClick and value.name are the action indicators in the handlers
     // If neither are present, don't wrap in an Item.
     if (!item.onClick && !item.value && !item.value.name) {
-      return <span key={item.content}>{item.content}</span>;
+      return <span key={item.content}>{item.content}</span>
     }
 
     const dropListItem = (
@@ -108,7 +108,7 @@ export default class DropdownMenuWrapper extends PureComponent<Props, State> {
           </ItemContentWrapper>
         </Item>
       </ItemWrapper>
-    );
+    )
 
     if (item.tooltipDescription) {
       return (
@@ -119,14 +119,14 @@ export default class DropdownMenuWrapper extends PureComponent<Props, State> {
         >
           {dropListItem}
         </Tooltip>
-      );
+      )
     }
 
-    return dropListItem;
+    return dropListItem
   }
 
   private renderDropdownMenu() {
-    const { target, popupPlacement } = this.state;
+    const { target, popupPlacement } = this.state
     const {
       items,
       mountTo,
@@ -136,8 +136,8 @@ export default class DropdownMenuWrapper extends PureComponent<Props, State> {
       fitHeight,
       fitWidth,
       isOpen,
-      zIndex,
-    } = this.props;
+      zIndex
+    } = this.props
 
     return (
       <Popup
@@ -169,17 +169,17 @@ export default class DropdownMenuWrapper extends PureComponent<Props, State> {
           ))}
         </DropListWithOutsideListeners>
       </Popup>
-    );
+    )
   }
 
   render() {
-    const { children, isOpen } = this.props;
+    const { children, isOpen } = this.props
 
     return (
       <Wrapper>
         <div ref={this.handleRef}>{children}</div>
         {isOpen ? this.renderDropdownMenu() : null}
       </Wrapper>
-    );
+    )
   }
 }

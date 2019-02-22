@@ -33,6 +33,7 @@ import { messages as blockTypeMessages } from '../../block-type/types'
 
 import { messages as insertBlockMessages } from '../../insert-block/ui/ToolbarInsertBlock'
 import { closeHelpCommand } from '../'
+import { XIcon } from '../../../../../icons/index'
 
 const messages = defineMessages({
   editorHelp: {
@@ -98,7 +99,7 @@ export interface Format {
   imageEnabled?: boolean
 }
 
-export const formatting: ((intl: InjectedIntl) => Format[]) = ({
+export const formatting: (intl: InjectedIntl) => Format[] = ({
   formatMessage
 }) => [
   {
@@ -279,7 +280,7 @@ export const formatting: ((intl: InjectedIntl) => Format[]) = ({
 ]
 const shortcutNamesWithoutKeymap: string[] = ['emoji', 'mention', 'quickInsert']
 
-const otherFormatting: ((intl: InjectedIntl) => Format[]) = ({
+const otherFormatting: (intl: InjectedIntl) => Format[] = ({
   formatMessage
 }) => [
   {
@@ -318,7 +319,7 @@ const imageAutoFormat: Format = {
   )
 }
 
-const quickInsertAutoFormat: ((intl: InjectedIntl) => Format) = ({
+const quickInsertAutoFormat: (intl: InjectedIntl) => Format = ({
   formatMessage
 }) => ({
   name: formatMessage(messages.quickInsert),
@@ -391,12 +392,7 @@ const ModalHeader = injectIntl(
           onClick={onClose}
           title={formatMessage(messages.closeHelpDialog)}
           spacing="compact"
-          iconBefore={
-            <CrossIcon
-              label={formatMessage(messages.closeHelpDialog)}
-              size="medium"
-            />
-          }
+          iconBefore={XIcon}
         />
       </div>
     </Header>

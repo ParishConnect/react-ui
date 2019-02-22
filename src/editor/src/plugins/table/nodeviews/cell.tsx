@@ -3,7 +3,6 @@ import { injectIntl, InjectedIntlProps } from 'react-intl'
 import { Node as PmNode } from 'prosemirror-model'
 import { EditorView, NodeView } from 'prosemirror-view'
 import { setCellAttrs } from '@atlaskit/adf-schema'
-import ExpandIcon from '@atlaskit/icon/glyph/chevron-down'
 import ReactNodeView from '../../../nodeviews/ReactNodeView'
 import { PortalProviderAPI } from '../../../ui/PortalProvider'
 import ToolbarButton from '../../../ui/ToolbarButton'
@@ -22,6 +21,7 @@ import {
   EditorDisabledPluginState,
   pluginKey as editorDisabledPluginKey
 } from '../../editor-disabled'
+import { ChevronDownIcon } from '../../../../../icons/index'
 
 export interface CellViewProps {
   node: PmNode
@@ -72,7 +72,7 @@ class Cell extends React.Component<CellProps & InjectedIntlProps> {
               selected={isContextualMenuOpen}
               title={labelCellOptions}
               onClick={this.handleClick}
-              iconBefore={<ExpandIcon label={labelCellOptions} />}
+              iconBefore={ChevronDownIcon}
             />
           </div>
         )}

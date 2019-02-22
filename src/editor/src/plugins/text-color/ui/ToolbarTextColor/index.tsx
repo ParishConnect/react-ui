@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl'
-import ExpandIcon from '@atlaskit/icon/glyph/chevron-down'
 import TextColorIcon from '@atlaskit/icon/glyph/editor/text-color'
 import { akEditorMenuZIndex } from '@atlaskit/editor-common'
 import ToolbarButton from '../../../../ui/ToolbarButton'
@@ -8,6 +7,7 @@ import ColorPalette from '../../../../ui/ColorPalette'
 import Dropdown from '../../../../ui/Dropdown'
 import { TextColorPluginState } from '../../pm-plugins/main'
 import { TriggerWrapper, Separator, Wrapper, ExpandIconWrapper } from './styles'
+import { ChevronDownIcon, SquareIcon } from '../../../../../../icons/index'
 
 export const messages = defineMessages({
   textColor: {
@@ -70,16 +70,13 @@ class ToolbarTextColor extends React.Component<
               onClick={this.toggleOpen}
               iconBefore={
                 <TriggerWrapper>
-                  <TextColorIcon
-                    primaryColor={this.getIconColor(
+                  <SquareIcon
+                    color={this.getIconColor(
                       pluginState.color,
                       pluginState.defaultColor
                     )}
-                    label={labelTextColor}
                   />
-                  <ExpandIconWrapper>
-                    <ExpandIcon label={labelTextColor} />
-                  </ExpandIconWrapper>
+                  <ChevronDownIcon />
                 </TriggerWrapper>
               }
             />

@@ -1,23 +1,24 @@
-import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { EditorView } from 'prosemirror-view';
-import Avatar from '@atlaskit/avatar';
-import AvatarGroup from '@atlaskit/avatar-group';
-import { gridSize, colors } from '@atlaskit/theme';
-import InviteTeamIcon from '@atlaskit/icon/glyph/editor/add';
-import { akEditorSmallZIndex } from '@atlaskit/editor-common';
+import * as React from 'react'
+import styled, { keyframes } from 'styled-components'
+import { EditorView } from 'prosemirror-view'
+import Avatar from '@atlaskit/avatar'
+import AvatarGroup from '@atlaskit/avatar-group'
+import { gridSize, colors } from '@atlaskit/theme'
+import InviteTeamIcon from '@atlaskit/icon/glyph/editor/add'
+import { akEditorSmallZIndex } from '@atlaskit/editor-common'
 
-import WithPluginState from '../../../ui/WithPluginState';
-import { EventDispatcher } from '../../../event-dispatcher';
-import { pluginKey as collabEditPluginKey, PluginState } from '../plugin';
-import { getAvatarColor } from '../utils';
-import ToolbarButton from '../../../ui/ToolbarButton';
+import WithPluginState from '../../../ui/WithPluginState'
+import { EventDispatcher } from '../../../event-dispatcher'
+import { pluginKey as collabEditPluginKey, PluginState } from '../plugin'
+import { getAvatarColor } from '../utils'
+import ToolbarButton from '../../../ui/ToolbarButton'
+import { UserPlusIcon } from '../../../../../icons/index'
 
 export interface Props {
-  inviteToEditHandler?: (event: Event) => void;
-  isInviteToEditButtonSelected?: boolean;
-  editorView?: EditorView;
-  eventDispatcher?: EventDispatcher;
+  inviteToEditHandler?: (event: Event) => void
+  isInviteToEditButtonSelected?: boolean
+  editorView?: EditorView
+  eventDispatcher?: EventDispatcher
 }
 
 const AvatarContainer = styled.div`
@@ -30,14 +31,14 @@ const AvatarContainer = styled.div`
     width: 32px;
     padding: 2px;
   }
-`;
+`
 
 const InviteTeamWrapper = styled.div`
   background: ${colors.N20};
   border-radius: 50%;
   min-width: ${gridSize() * 4}px;
   margin-left: -${gridSize() / 2}px;
-`;
+`
 
 const itemAppear = keyframes`
 0% {
@@ -51,11 +52,11 @@ const itemAppear = keyframes`
 100% {
   transform: scale(1);
 }
-`;
+`
 
 const animateAvatar = ({ shouldAnimate }) => {
   if (!shouldAnimate) {
-    return;
+    return
   }
 
   return `
@@ -63,20 +64,20 @@ const animateAvatar = ({ shouldAnimate }) => {
       animation: ${itemAppear} 500ms 1;
       animation-fill-mode: both;
     }
-  `;
-};
+  `
+}
 
 const animateBadge = ({ shouldAnimate }) => {
   if (!shouldAnimate) {
-    return;
+    return
   }
 
   return `
     animation: ${itemAppear} 250ms 1;
     animation-fill-mode: both;
     animation-delay: 400ms;
-  `;
-};
+  `
+}
 
 const AvatarItem: any = styled.div`
   position: relative;
@@ -105,12 +106,12 @@ const AvatarItem: any = styled.div`
 
     ${animateBadge}
   }
-`;
+`
 
 function Item(props: any) {
-  const color = getAvatarColor(props.sessionId).color.solid;
-  const avatar = props.name.substr(0, 1).toUpperCase();
-  const { children, theme, ...other } = props;
+  const color = getAvatarColor(props.sessionId).color.solid
+  const avatar = props.name.substr(0, 1).toUpperCase()
+  const { children, theme, ...other } = props
 
   return (
     <AvatarItem
@@ -120,15 +121,15 @@ function Item(props: any) {
     >
       <Avatar {...other} />
     </AvatarItem>
-  );
+  )
 }
 export default class Avatars extends React.Component<Props, any> {
-  private onAvatarClick = event => {};
+  private onAvatarClick = event => {}
   private renderAvatars = state => {
     if (!state.data) {
-      return null;
+      return null
     }
-    const { sessionId, activeParticipants } = state.data as PluginState;
+    const { sessionId, activeParticipants } = state.data as PluginState
     const avatars = activeParticipants
       .toArray()
       .map(p => ({
@@ -138,12 +139,12 @@ export default class Avatars extends React.Component<Props, any> {
         src: p.avatar,
         sessionId: p.sessionId,
         size: 'medium',
-        component: Item,
+        component: Item
       }))
-      .sort(p => (p.sessionId === sessionId ? -1 : 1));
+      .sort(p => (p.sessionId === sessionId ? -1 : 1))
 
     if (!avatars.length) {
-      return null;
+      return null
     }
 
     return (
@@ -161,13 +162,13 @@ export default class Avatars extends React.Component<Props, any> {
               selected={this.props.isInviteToEditButtonSelected}
               title="Invite to edit"
               titlePosition="bottom"
-              iconBefore={<InviteTeamIcon label="Invite to edit" />}
+              iconBefore={UserPlusIcon}
             />
           </InviteTeamWrapper>
         )}
       </AvatarContainer>
-    );
-  };
+    )
+  }
 
   render() {
     return (
@@ -176,6 +177,6 @@ export default class Avatars extends React.Component<Props, any> {
         render={this.renderAvatars}
         editorView={this.props.editorView}
       />
-    );
+    )
   }
 }

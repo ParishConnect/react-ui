@@ -14,6 +14,7 @@ import {
 import ToolbarButton from '../../../../ui/ToolbarButton'
 import { EmojiState } from '../../pm-plugins/main'
 import { OuterContainer } from './styles'
+import { SmileIcon } from '../../../../../../icons/index'
 
 export interface Props {
   isReducedSpacing?: boolean
@@ -200,7 +201,7 @@ export default class ToolbarEmojiPicker extends PureComponent<Props, State> {
         selected={isOpen}
         disabled={disabled || isDisabled}
         onClick={this.toggleOpen}
-        iconBefore={<EmojiIcon label="Emoji" />}
+        iconBefore={SmileIcon}
         ref={this.handleButtonRef}
         title="Emoji :"
         hideTooltip={isOpen}

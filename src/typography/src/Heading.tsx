@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { ThemeContext } from '../../theme'
+import { ThemeContext } from '../../theme/index'
 
 export declare interface HeadingProps extends BoxProps {
   /**

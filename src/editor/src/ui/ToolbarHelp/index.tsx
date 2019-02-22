@@ -1,7 +1,7 @@
-import * as React from 'react';
-import QuestionIcon from '@atlaskit/icon/glyph/question';
-import ToolbarButton from '../ToolbarButton';
-import WithHelpTrigger from '../WithHelpTrigger';
+import * as React from 'react'
+import ToolbarButton from '../ToolbarButton'
+import WithHelpTrigger from '../WithHelpTrigger'
+import { HelpCircleIcon } from '../../../../icons/index'
 
 const ToolbarHelp = () => (
   <WithHelpTrigger
@@ -10,10 +10,10 @@ const ToolbarHelp = () => (
         onClick={showHelp}
         title="Open help dialog"
         titlePosition="left"
-        iconBefore={<QuestionIcon label="Open help dialog" />}
+        iconBefore={HelpCircleIcon}
       />
     )}
   />
-);
+)
 
-export default ToolbarHelp;
+export default ToolbarHelp

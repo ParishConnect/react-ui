@@ -1,64 +1,60 @@
-import * as React from 'react';
-import { defineMessages } from 'react-intl';
-import ExpandIcon from '@atlaskit/icon/glyph/chevron-down';
-import ToolbarButton from '../../../../ui/ToolbarButton';
-import Dropdown from '../../../../ui/Dropdown';
-import EditorAlignLeftIcon from '@atlaskit/icon/glyph/editor/align-left';
-import EditorAlignCenterIcon from '@atlaskit/icon/glyph/editor/align-center';
-import EditorAlignRightIcon from '@atlaskit/icon/glyph/editor/align-right';
+import * as React from 'react'
+import { defineMessages } from 'react-intl'
+import ToolbarButton from '../../../../ui/ToolbarButton'
+import Dropdown from '../../../../ui/Dropdown'
 
 export const iconMap = {
-  start: <EditorAlignLeftIcon label="Align left" />,
-  end: <EditorAlignRightIcon label="Align right" />,
-  center: <EditorAlignCenterIcon label="Align center" />,
-};
+  start: AlignLeftIcon,
+  end: AlignRightIcon,
+  center: AlignCenterIcon
+}
 
+import { TriggerWrapper, Separator, Wrapper } from './styles'
+import Alignment from '../../../../ui/Alignment'
+import { AlignmentPluginState, AlignmentState } from '../../pm-plugins/main'
 import {
-  TriggerWrapper,
-  Separator,
-  Wrapper,
-  ExpandIconWrapper,
-} from './styles';
-import Alignment from '../../../../ui/Alignment';
-import { AlignmentPluginState, AlignmentState } from '../../pm-plugins/main';
+  ChevronDownIcon,
+  AlignLeftIcon,
+  AlignRightIcon,
+  AlignCenterIcon
+} from '../../../../../../icons/index'
 
 export const messages = defineMessages({
   alignment: {
     id: 'fabric.editor.alignment',
     defaultMessage: 'Alignment',
-    description: 'Aligns text',
-  },
-});
+    description: 'Aligns text'
+  }
+})
 
 export interface State {
-  isOpen: boolean;
+  isOpen: boolean
 }
 
 export interface Props {
-  pluginState: AlignmentPluginState;
-  changeAlignment: (align: AlignmentState) => void;
-  popupsMountPoint?: HTMLElement;
-  popupsBoundariesElement?: HTMLElement;
-  popupsScrollableElement?: HTMLElement;
-  isReducedSpacing?: boolean;
-  disabled?: boolean;
+  pluginState: AlignmentPluginState
+  changeAlignment: (align: AlignmentState) => void
+  popupsMountPoint?: HTMLElement
+  popupsBoundariesElement?: HTMLElement
+  popupsScrollableElement?: HTMLElement
+  isReducedSpacing?: boolean
+  disabled?: boolean
 }
 
 class AlignmentToolbar extends React.Component<Props, State> {
   state: State = {
-    isOpen: false,
-  };
+    isOpen: false
+  }
 
   render() {
-    const { isOpen } = this.state;
+    const { isOpen } = this.state
     const {
       popupsMountPoint,
       popupsBoundariesElement,
       popupsScrollableElement,
-      isReducedSpacing,
       pluginState,
-      disabled,
-    } = this.props;
+      disabled
+    } = this.props
 
     return (
       <Wrapper>
@@ -68,25 +64,23 @@ class AlignmentToolbar extends React.Component<Props, State> {
           scrollableElement={popupsScrollableElement}
           isOpen={this.state.isOpen}
           onOpenChange={this.handleOpenChange}
-          fitWidth={242}
+          fitWidth={285}
           fitHeight={80}
           trigger={
             <ToolbarButton
-              spacing={isReducedSpacing ? 'none' : 'default'}
               disabled={disabled}
               selected={isOpen}
               title="Text alignment"
-              ariaLabel="Text alignment"
-              className="align-btn"
               onClick={this.toggleOpen}
-              iconBefore={
-                <TriggerWrapper>
-                  {iconMap[pluginState.align]}
-                  <ExpandIconWrapper>
-                    <ExpandIcon label={'Alignment'} />
-                  </ExpandIconWrapper>
-                </TriggerWrapper>
-              }
+              iconBefore={() => {
+                const CurrIcon = iconMap[pluginState.align]
+                return (
+                  <TriggerWrapper>
+                    <CurrIcon />
+                    <ChevronDownIcon />
+                  </TriggerWrapper>
+                )
+              }}
             />
           }
         >
@@ -97,21 +91,21 @@ class AlignmentToolbar extends React.Component<Props, State> {
         </Dropdown>
         <Separator />
       </Wrapper>
-    );
+    )
   }
 
   private changeAlignment = align => {
-    this.toggleOpen();
-    return this.props.changeAlignment(align);
-  };
+    this.toggleOpen()
+    return this.props.changeAlignment(align)
+  }
 
   private toggleOpen = () => {
-    this.handleOpenChange({ isOpen: !this.state.isOpen });
-  };
+    this.handleOpenChange({ isOpen: !this.state.isOpen })
+  }
 
   private handleOpenChange = ({ isOpen }) => {
-    this.setState({ isOpen });
-  };
+    this.setState({ isOpen })
+  }
 }
 
-export default AlignmentToolbar;
+export default AlignmentToolbar

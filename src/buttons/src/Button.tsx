@@ -6,7 +6,6 @@ import { TextProps } from '../../typography/src/Text'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
-import { IconName } from '@blueprintjs/icons'
 
 export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
@@ -161,21 +160,25 @@ class Button extends React.PureComponent<ButtonProps> {
             size={Math.round(height / 2)}
           />
         )}
-        {(
-          <IconBefore
-            size={iconSize}
-            marginLeft={-Math.round(pl * 0.2)}
-            marginRight={Math.round(iconSize * 0.7)}
-          />
-        ) || null}
+        {typeof IconBefore === 'object'
+          ? IconBefore
+          : (
+              <IconBefore
+                size={iconSize}
+                marginLeft={-Math.round(pl * 0.2)}
+                marginRight={Math.round(iconSize * 0.7)}
+              />
+            ) || null}
         {children}
-        {(
-          <IconAfter
-            size={iconSize}
-            marginRight={-Math.round(pl * 0.2)}
-            marginLeft={Math.round(iconSize * 0.7)}
-          />
-        ) || null}
+        {typeof IconAfter === 'object'
+          ? IconAfter
+          : (
+              <IconAfter
+                size={iconSize}
+                marginRight={-Math.round(pl * 0.2)}
+                marginLeft={Math.round(iconSize * 0.7)}
+              />
+            ) || null}
       </Text>
     )
   }

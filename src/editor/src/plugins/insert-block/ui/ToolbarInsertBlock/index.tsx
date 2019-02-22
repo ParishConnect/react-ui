@@ -4,23 +4,9 @@ import * as ReactDOM from 'react-dom'
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl'
 import { EditorView } from 'prosemirror-view'
 import { Node as PMNode } from 'prosemirror-model'
-import AddIcon from '@atlaskit/icon/glyph/editor/add'
-import ExpandIcon from '@atlaskit/icon/glyph/chevron-down'
 import TableIcon from '@atlaskit/icon/glyph/editor/table'
-import EditorImageIcon from '@atlaskit/icon/glyph/editor/image'
-import CodeIcon from '@atlaskit/icon/glyph/editor/code'
-import InfoIcon from '@atlaskit/icon/glyph/editor/info'
-import MentionIcon from '@atlaskit/icon/glyph/editor/mention'
-import TaskIcon from '@atlaskit/icon/glyph/editor/task'
 import DecisionIcon from '@atlaskit/icon/glyph/editor/decision'
 import QuoteIcon from '@atlaskit/icon/glyph/quote'
-import EditorMoreIcon from '@atlaskit/icon/glyph/editor/more'
-import LinkIcon from '@atlaskit/icon/glyph/editor/link'
-import EmojiIcon from '@atlaskit/icon/glyph/editor/emoji'
-import DateIcon from '@atlaskit/icon/glyph/editor/date'
-import LabelIcon from '@atlaskit/icon/glyph/label'
-import PlaceholderTextIcon from '@atlaskit/icon/glyph/media-services/text'
-import LayoutTwoEqualIcon from '@atlaskit/icon/glyph/editor/layout-two-equal'
 import HorizontalRuleIcon from '@atlaskit/icon/glyph/editor/horizontal-rule'
 import {
   EmojiId,
@@ -57,6 +43,21 @@ import { Command } from '../../../../types'
 import { showLinkToolbar } from '../../../hyperlink/commands'
 import { insertMentionQuery } from '../../../mentions/commands/insert-mention-query'
 import { updateStatus } from '../../../status/actions'
+import {
+  ChevronDownIcon,
+  PlusIcon,
+  CheckSquareIcon,
+  ImageIcon,
+  AtSignIcon,
+  SmileIcon,
+  CalendarIcon,
+  LayoutIcon,
+  TagIcon,
+  MoreHorizontalIcon,
+  CodeIcon,
+  InfoIcon,
+  LinkIcon
+} from '../../../../../../icons/index'
 
 export const messages = defineMessages({
   action: {
@@ -334,10 +335,8 @@ class ToolbarInsertBlock extends React.PureComponent<
         title={`${labelInsertMenu} /`}
         iconBefore={
           <TriggerWrapper>
-            <AddIcon label={labelInsertMenu} />
-            <ExpandIconWrapper>
-              <ExpandIcon label={labelInsertMenu} />
-            </ExpandIconWrapper>
+            <PlusIcon />
+            <ChevronDownIcon />
           </TriggerWrapper>
         }
       />
@@ -347,11 +346,12 @@ class ToolbarInsertBlock extends React.PureComponent<
       <ButtonGroup width={isReducedSpacing ? 'small' : 'large'}>
         {buttons.map(btn => (
           <ToolbarButton
+            isIconButton
             ref={btn.handleRef || noop}
             key={btn.content}
             spacing={isReducedSpacing ? 'none' : 'default'}
             disabled={isDisabled || btn.isDisabled}
-            iconBefore={btn.elemBefore}
+            icon={btn.elemBefore}
             selected={btn.isActive}
             title={btn.content + (btn.shortcut ? ' ' + btn.shortcut : '')}
             onClick={() => this.onItemActivated({ item: btn })}
@@ -415,7 +415,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelAction,
         value: { name: 'action' },
-        elemBefore: <TaskIcon label={labelAction} />,
+        elemBefore: CheckSquareIcon,
         elemAfter: <Shortcut>{'[]'}</Shortcut>,
         shortcut: '[]'
       })
@@ -428,7 +428,7 @@ class ToolbarInsertBlock extends React.PureComponent<
         content: labelLink,
         value: { name: 'link' },
         isDisabled: linkDisabled,
-        elemBefore: <LinkIcon label={labelLink} />,
+        elemBefore: LinkIcon,
         elemAfter: <Shortcut>{shortcutLink}</Shortcut>,
         shortcut: shortcutLink
       })
@@ -438,7 +438,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelFilesAndImages,
         value: { name: 'media' },
-        elemBefore: <EditorImageIcon label={labelFilesAndImages} />
+        elemBefore: ImageIcon
       })
     }
     if (imageUploadSupported) {
@@ -447,7 +447,7 @@ class ToolbarInsertBlock extends React.PureComponent<
         content: labelImage,
         value: { name: 'image upload' },
         isDisabled: !imageUploadEnabled,
-        elemBefore: <EditorImageIcon label={labelImage} />
+        elemBefore: ImageIcon
       })
     }
     if (mentionsSupported) {
@@ -456,7 +456,7 @@ class ToolbarInsertBlock extends React.PureComponent<
         content: labelMention,
         value: { name: 'mention' },
         isDisabled: !isTypeAheadAllowed,
-        elemBefore: <MentionIcon label={labelMention} />,
+        elemBefore: AtSignIcon,
         elemAfter: <Shortcut>@</Shortcut>,
         shortcut: '@'
       })
@@ -467,7 +467,7 @@ class ToolbarInsertBlock extends React.PureComponent<
         content: labelEmoji,
         value: { name: 'emoji' },
         isDisabled: emojiDisabled,
-        elemBefore: <EmojiIcon label={labelEmoji} />,
+        elemBefore: SmileIcon,
         handleRef: this.handleButtonRef,
         elemAfter: <Shortcut>:</Shortcut>,
         shortcut: ':'
@@ -494,7 +494,7 @@ class ToolbarInsertBlock extends React.PureComponent<
         items.push({
           content: labelBlock,
           value: blockType,
-          elemBefore: <BlockTypeIcon label={labelBlock} />,
+          elemBefore: BlockTypeIcon,
           elemAfter: <Shortcut>{shortcutBlock}</Shortcut>,
           shortcut: shortcutBlock
         })
@@ -529,7 +529,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelDate,
         value: { name: 'date' },
-        elemBefore: <DateIcon label={labelDate} />
+        elemBefore: CalendarIcon
       })
     }
 
@@ -538,7 +538,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelPlaceholderText,
         value: { name: 'placeholder text' },
-        elemBefore: <PlaceholderTextIcon label={labelPlaceholderText} />
+        elemBefore: CodeIcon
       })
     }
 
@@ -547,7 +547,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelColumns,
         value: { name: 'layout' },
-        elemBefore: <LayoutTwoEqualIcon label={labelColumns} />
+        elemBefore: LayoutIcon
       })
     }
 
@@ -556,7 +556,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelStatus,
         value: { name: 'status' },
-        elemBefore: <LabelIcon label={labelStatus} />
+        elemBefore: TagIcon
       })
     }
 
@@ -570,7 +570,7 @@ class ToolbarInsertBlock extends React.PureComponent<
       items.push({
         content: labelViewMore,
         value: { name: 'macro' },
-        elemBefore: <EditorMoreIcon label={labelViewMore} />
+        elemBefore: MoreHorizontalIcon
       })
     }
     return items

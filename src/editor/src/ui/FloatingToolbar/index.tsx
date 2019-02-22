@@ -1,35 +1,36 @@
-import * as React from 'react';
-import { PureComponent } from 'react';
-import { Popup } from '@atlaskit/editor-common';
-import { Container } from './styles';
+import * as React from 'react'
+import { PureComponent } from 'react'
+import { Popup } from '@atlaskit/editor-common'
+import { Container } from './styles'
+import { Card } from '../../../../layers/index'
 
 export type Coordinates = {
-  left?: number;
-  right?: number;
-  top?: number;
-  bottom?: number;
-};
+  left?: number
+  right?: number
+  top?: number
+  bottom?: number
+}
 
 export interface Props {
-  zIndex?: number;
-  className?: string;
-  containerRef?: (node: HTMLElement) => void;
-  target?: HTMLElement;
-  popupsMountPoint?: HTMLElement;
-  popupsBoundariesElement?: HTMLElement;
-  offset?: number[];
-  fitWidth?: number;
-  fitHeight?: number;
-  alignX?: 'left' | 'center' | 'right';
-  alignY?: 'bottom' | 'top';
-  onPositionCalculated?: (position: Coordinates) => any;
+  zIndex?: number
+  className?: string
+  containerRef?: (node: HTMLElement) => void
+  target?: HTMLElement
+  popupsMountPoint?: HTMLElement
+  popupsBoundariesElement?: HTMLElement
+  offset?: number[]
+  fitWidth?: number
+  fitHeight?: number
+  alignX?: 'left' | 'center' | 'right'
+  alignY?: 'bottom' | 'top'
+  onPositionCalculated?: (position: Coordinates) => any
 }
 
 export {
   handlePositionCalculatedWith,
   getOffsetParent,
-  getNearestNonTextNode,
-} from './utils';
+  getNearestNonTextNode
+} from './utils'
 
 export default class FloatingToolbar extends PureComponent<Props, any> {
   render() {
@@ -46,11 +47,11 @@ export default class FloatingToolbar extends PureComponent<Props, any> {
       className,
       alignX,
       alignY,
-      zIndex,
-    } = this.props;
+      zIndex
+    } = this.props
 
     if (!target) {
-      return null;
+      return null
     }
 
     return (
@@ -66,14 +67,20 @@ export default class FloatingToolbar extends PureComponent<Props, any> {
         fitHeight={fitHeight}
         onPositionCalculated={onPositionCalculated}
       >
-        <Container
+        <Card
+          display="flex"
+          paddingY={4}
+          paddingX={8}
+          background="white"
+          alignItems="center"
+          elevation={4}
           height={fitHeight}
           className={className}
           innerRef={containerRef}
         >
           {children}
-        </Container>
+        </Card>
       </Popup>
-    );
+    )
   }
 }

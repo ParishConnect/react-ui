@@ -1,17 +1,13 @@
-import * as MarkdownIt from 'markdown-it'
 // @ts-ignore
 import { handlePaste as handlePasteTable } from 'prosemirror-tables'
 import { Schema, Slice, Node, Fragment } from 'prosemirror-model'
 import { Plugin, PluginKey, TextSelection, Selection } from 'prosemirror-state'
 import { closeHistory } from 'prosemirror-history'
 import { hasParentNodeOfType } from 'prosemirror-utils'
-import { MarkdownTransformer } from '@atlaskit/editor-markdown-transformer'
 
 import * as clipboard from '../../../utils/clipboard'
 import { EditorAppearance } from '../../../types'
 import { insertMediaAsMediaSingle } from '../../media/utils/media-single'
-import linkify from '../linkify-md-plugin'
-import { escapeLinks, getPasteSource } from '../util'
 import { transformSliceToRemoveOpenBodiedExtension } from '../../extension/actions'
 import { transformSliceToRemoveOpenLayoutNodes } from '../../layout/utils'
 import { linkifyContent } from '../../hyperlink/utils'
@@ -35,27 +31,10 @@ import { queueCardsFromChangedTr } from '../../card/pm-plugins/doc'
 
 export const stateKey = new PluginKey('pastePlugin')
 
-export const md = MarkdownIt('zero', { html: false })
-
-md.enable([
-  // Process html entity - &#123;, &#xAF;, &quot;, ...
-  'entity',
-  // Process escaped chars and hardbreaks
-  'escape',
-
-  'newline'
-])
-
-// enable modified version of linkify plugin
-// @see https://product-fabric.atlassian.net/browse/ED-3097
-md.use(linkify)
-
 export function createPlugin(
   schema: Schema,
   editorAppearance?: EditorAppearance
 ) {
-  const atlassianMarkDownParser = new MarkdownTransformer(schema, md)
-
   return new Plugin({
     key: stateKey,
     props: {
@@ -87,26 +66,6 @@ export function createPlugin(
           return true
         }
 
-        let markdownSlice: Slice | undefined
-        if (text && !html) {
-          const doc = atlassianMarkDownParser.parse(escapeLinks(text))
-          if (doc && doc.content) {
-            markdownSlice = new Slice(
-              doc.content,
-              slice.openStart,
-              slice.openEnd
-            )
-          }
-
-          // run macro autoconvert prior to other conversions
-          if (
-            markdownSlice &&
-            handleMacroAutoConvert(text, markdownSlice)(state, dispatch, view)
-          ) {
-            return true
-          }
-        }
-
         if (handlePasteIntoTaskAndDecision(slice)(state, dispatch)) {
           return true
         }
@@ -124,20 +83,6 @@ export function createPlugin(
           slice.content.firstChild!.type === media
         ) {
           return insertMediaAsMediaSingle(view, slice.content.firstChild!)
-        }
-
-        // If the clipboard only contains plain text, attempt to parse it as Markdown
-        if (text && !html && markdownSlice) {
-          if (handlePastePreservingMarks(markdownSlice)(state, dispatch)) {
-            return true
-          }
-
-          const tr = closeHistory(state.tr)
-          tr.replaceSelection(markdownSlice)
-
-          queueCardsFromChangedTr(state, tr)
-          dispatch(tr.scrollIntoView())
-          return true
         }
 
         // finally, handle rich-text copy-paste

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { PureComponent } from 'react'
 import { EditorView } from 'prosemirror-view'
-import MentionIcon from '@atlaskit/icon/glyph/editor/mention'
 
 import ToolbarButton from '../../../../ui/ToolbarButton'
 import { insertMentionQuery } from '../../commands/insert-mention-query'
+import { AtSignIcon } from '../../../../../../icons/index'
 
 export interface Props {
   editorView?: EditorView
@@ -23,7 +23,7 @@ export default class ToolbarMention extends PureComponent<Props> {
         onClick={this.handleInsertMention}
         disabled={this.props.isDisabled}
         title="Mention @"
-        iconBefore={<MentionIcon label="Mention" />}
+        iconBefore={AtSignIcon}
       />
     )
   }
