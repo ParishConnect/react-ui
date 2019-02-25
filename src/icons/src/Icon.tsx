@@ -55,8 +55,6 @@ class Icon extends React.PureComponent<IconProps> {
 
     const viewBox = `0 0 24 24`
 
-    console.log(theme)
-
     style = {
       ...style,
       stroke: getIconColor(color),

@@ -58,8 +58,12 @@ storiesOf('editor', module)
         disabled={false}
         appearance="full-page"
         allowIndentation
-        allowTextColor
         placeholder="Write something..."
+        mentionProvider={
+          new Promise((res, rej) => {
+            return 'hello'
+          })
+        }
         containerProps={{ paddingX: 48 }}
         primaryToolbarComponents={
           <WithEditorActions

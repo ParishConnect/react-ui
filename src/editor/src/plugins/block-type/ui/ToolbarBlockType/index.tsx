@@ -1,20 +1,23 @@
 import * as React from 'react'
 import { ReactElement, createElement } from 'react'
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl'
-import TextStyleIcon from '@atlaskit/icon/glyph/editor/text-style'
-
 import ToolbarButton from '../../../../ui/ToolbarButton'
-import { Separator, Wrapper, MenuWrapper } from '../../../../ui/styles'
+import { Separator, Wrapper } from '../../../../ui/styles'
 import { BlockTypeState } from '../../pm-plugins/main'
 import { BlockType } from '../../types'
 import { BlockTypeMenuItem } from './styled'
 import { ButtonGroup } from '@atlaskit/button'
 
 export const messages = defineMessages({
-  textStyles: {
-    id: 'fabric.editor.textStyles',
-    defaultMessage: 'Text styles',
-    description: 'Menu provides access to various heading styles or normal text'
+  heading1: {
+    id: 'fabric.editor.heading1',
+    defaultMessage: 'Heading 1',
+    description: ''
+  },
+  heading2: {
+    id: 'fabric.editor.heading2',
+    defaultMessage: 'Heading 2',
+    description: ''
   }
 })
 
@@ -30,7 +33,7 @@ export interface Props {
 }
 
 export interface State {
-  active: boolean
+  active: string
 }
 
 class ToolbarBlockType extends React.PureComponent<
@@ -38,7 +41,7 @@ class ToolbarBlockType extends React.PureComponent<
   State
 > {
   state = {
-    active: false
+    active: ''
   }
 
   render() {
@@ -61,25 +64,23 @@ class ToolbarBlockType extends React.PureComponent<
     }
 
     const toolbarButtonFactory = (disabled: boolean) => {
-      const labelTextStyles = formatMessage(messages.textStyles)
       const items = this.createItems()
-
-      console.log(items)
 
       return (
         <ButtonGroup>
           {items.map(item => {
-            console.log(item)
+            const blockType = item.value
 
+            if (blockType.name === 'normal') return
             return (
               <ToolbarButton
                 isIconButton
-                key={item.value}
-                selected={active}
+                key={blockType}
+                selected={active === blockType.name}
                 disabled={disabled}
                 onClick={() => this.handleSelectBlockType(item)}
-                title={labelTextStyles}
-                icon={TextStyleIcon}
+                title={formatMessage(blockType.title) || ''}
+                icon={blockType.icon}
               />
             )
           })}
@@ -139,11 +140,17 @@ class ToolbarBlockType extends React.PureComponent<
   }
 
   private handleSelectBlockType = item => {
-    console.log(item.value)
-
     const blockType = item.value
-    this.props.setBlockType(blockType.name)
-    this.setState({ active: false })
+    const { active } = this.state
+
+    if (blockType.name !== active) {
+      this.props.setBlockType(blockType.name)
+      this.setState({ active: blockType.name })
+      return
+    }
+
+    this.props.setBlockType('normal')
+    this.setState({ active: '' })
   }
 }
 

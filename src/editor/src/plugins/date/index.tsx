@@ -19,6 +19,7 @@ import {
   EditorDisabledPluginState
 } from '../editor-disabled'
 import { todayTimestampInUTC } from '@atlaskit/editor-common'
+import { CalendarIcon } from '../../../../icons/index'
 
 const DatePicker = Loadable({
   loader: () =>
@@ -107,7 +108,7 @@ const datePlugin: EditorPlugin = {
         title: formatMessage(messages.date),
         priority: 800,
         keywords: ['time', 'today', '/'],
-        icon: () => <EditorDateIcon label={formatMessage(messages.date)} />,
+        icon: () => <CalendarIcon />,
         action(insert, state) {
           const dateNode = state.schema.nodes.date.createChecked({
             timestamp: todayTimestampInUTC()

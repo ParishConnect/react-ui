@@ -5,7 +5,7 @@ import { akEditorFloatingDialogZIndex } from '@atlaskit/editor-common'
 import PanelTextInput from '../../../../ui/PanelTextInput'
 import { getNearestNonTextNode } from '../../../../ui/FloatingToolbar'
 import { FloatingToolbar, Separator } from '../styles'
-import { ExternalLinkIcon, TrashIcon } from '../../../../../../icons/index'
+import { ExternalLinkIcon, UnlinkIcon } from '../../../../../../icons/index'
 import ToolbarButton from '../../../../ui/ToolbarButton/index'
 
 export const messages = defineMessages({
@@ -104,6 +104,7 @@ class HyperlinkEdit extends React.Component<Props & InjectedIntlProps, State> {
         {(onOpenLink || onUnlink) && <Separator />}
         {onOpenLink && (
           <ToolbarButton
+            is="a"
             isIconButton
             spacing="compact"
             href={alwaysOpenLinkAt || this.state.text}
@@ -119,7 +120,7 @@ class HyperlinkEdit extends React.Component<Props & InjectedIntlProps, State> {
             spacing="compact"
             onClick={onUnlink}
             title={labelUnlink}
-            icon={TrashIcon}
+            icon={UnlinkIcon}
           />
         )}
       </FloatingToolbar>

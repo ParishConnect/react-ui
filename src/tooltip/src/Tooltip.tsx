@@ -29,6 +29,11 @@ export interface TooltipProps {
   hideDelay: number
 
   /**
+   * Time in ms before showing the Tooltip
+   */
+  showDelay: number
+
+  /**
    * When True, manually show the Tooltip.
    */
   isShown?: boolean
@@ -58,14 +63,15 @@ export default class Tooltip extends React.PureComponent<
   static defaultProps = {
     appearance: 'default',
     position: Position.BOTTOM,
-    hideDelay: 120
+    hideDelay: 120,
+    showDelay: 120
   }
 
   constructor(props: TooltipProps) {
     super(props)
 
     this.state = {
-      id: `evergreen-tooltip-${++idCounter}`,
+      id: `parishconnect-tooltip-${++idCounter}`,
       isShown: props.isShown,
       isShownByTarget: false
     }
@@ -76,6 +82,7 @@ export default class Tooltip extends React.PureComponent<
     )
 
     this.hide = debounce(this.hide, this.props.hideDelay)
+    this.show = debounce(this.show, this.props.showDelay)
   }
 
   show = () => {

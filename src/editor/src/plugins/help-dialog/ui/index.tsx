@@ -1,39 +1,37 @@
+import { browser } from '@atlaskit/editor-common'
+import Modal, { ModalTransition } from '@atlaskit/modal-dialog'
+import { Schema } from 'prosemirror-model'
+import { EditorView } from 'prosemirror-view'
 import * as React from 'react'
 import {
-  injectIntl,
   defineMessages,
   FormattedMessage,
   InjectedIntl,
-  InjectedIntlProps
+  InjectedIntlProps,
+  injectIntl
 } from 'react-intl'
-import { Schema } from 'prosemirror-model'
-import { EditorView } from 'prosemirror-view'
-import { browser } from '@atlaskit/editor-common'
-import CrossIcon from '@atlaskit/icon/glyph/cross'
-import Modal, { ModalTransition } from '@atlaskit/modal-dialog'
-import {
-  Header,
-  Footer,
-  ContentWrapper,
-  Line,
-  Content,
-  ColumnRight,
-  ColumnLeft,
-  Row,
-  CodeSm,
-  CodeMd,
-  CodeLg,
-  Title
-} from './styles'
-import * as keymaps from '../../../keymaps'
-import ToolbarButton from '../../../ui/ToolbarButton'
-import { messages as textFormattingMessages } from '../../text-formatting/ui/ToolbarTextFormatting'
-import { messages as advancedTextFormattingMessages } from '../../text-formatting/ui/ToolbarAdvancedTextFormatting'
-import { messages as blockTypeMessages } from '../../block-type/types'
-
-import { messages as insertBlockMessages } from '../../insert-block/ui/ToolbarInsertBlock'
 import { closeHelpCommand } from '../'
 import { XIcon } from '../../../../../icons/index'
+import * as keymaps from '../../../keymaps'
+import ToolbarButton from '../../../ui/ToolbarButton'
+import { messages as blockTypeMessages } from '../../block-type/types'
+import { messages as insertBlockMessages } from '../../insert-block/ui/ToolbarInsertBlock'
+import { messages as advancedTextFormattingMessages } from '../../text-formatting/ui/ToolbarAdvancedTextFormatting'
+import { messages as textFormattingMessages } from '../../text-formatting/ui/ToolbarTextFormatting'
+import {
+  CodeLg,
+  CodeMd,
+  CodeSm,
+  ColumnLeft,
+  ColumnRight,
+  Content,
+  ContentWrapper,
+  Footer,
+  Header,
+  Line,
+  Row,
+  Title
+} from './styles'
 
 const messages = defineMessages({
   editorHelp: {

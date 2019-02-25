@@ -1,8 +1,6 @@
 import * as React from 'react'
-import EditorQuoteIcon from '@atlaskit/icon/glyph/editor/quote'
 import { heading, blockquote, hardBreak } from '@atlaskit/adf-schema'
 import { EditorPlugin, AllowedBlockTypes } from '../../types'
-import { ToolbarSize } from '../../ui/Toolbar'
 import { createPlugin, pluginKey } from './pm-plugins/main'
 import keymapPlugin from './pm-plugins/keymap'
 import inputRulePlugin from './pm-plugins/input-rule'
@@ -11,6 +9,7 @@ import WithPluginState from '../../ui/WithPluginState'
 import { setBlockType } from './commands'
 import { messages } from './types'
 import { NodeSpec } from 'prosemirror-model'
+import { QuoteIcon } from '../../../../icons/index'
 
 interface BlockTypeNode {
   name: AllowedBlockTypes
@@ -58,7 +57,6 @@ const blockType: EditorPlugin = {
     popupsMountPoint,
     popupsBoundariesElement,
     popupsScrollableElement,
-    toolbarSize,
     disabled,
     isToolbarReducedSpacing,
     eventDispatcher
@@ -98,9 +96,7 @@ const blockType: EditorPlugin = {
       {
         title: formatMessage(messages.blockquote),
         priority: 1300,
-        icon: () => (
-          <EditorQuoteIcon label={formatMessage(messages.blockquote)} />
-        ),
+        icon: () => <QuoteIcon />,
         action(insert, state) {
           return insert(
             state.schema.nodes.blockquote.createChecked(

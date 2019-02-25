@@ -1,24 +1,24 @@
-import * as React from 'react';
-import EmojiIcon from '@atlaskit/icon/glyph/editor/emoji';
-import { emoji, emojiQuery } from '@atlaskit/adf-schema';
-import { WithProviders } from '@atlaskit/editor-common';
+import * as React from 'react'
+import { emoji, emojiQuery } from '@atlaskit/adf-schema'
+import { WithProviders } from '@atlaskit/editor-common'
 
-import { EditorPlugin } from '../../types';
-import { messages } from '../insert-block/ui/ToolbarInsertBlock';
-import { createPlugin, emojiPluginKey } from './pm-plugins/main';
-import inputRulePlugin from './pm-plugins/input-rules';
-import keymap from './pm-plugins/keymap';
-import { inputRulePlugin as asciiInputRulePlugin } from './pm-plugins/ascii-input-rules';
-import ToolbarEmojiPicker from './ui/ToolbarEmojiPicker';
-import EmojiTypeAhead from './ui/EmojiTypeAhead';
+import { EditorPlugin } from '../../types'
+import { messages } from '../insert-block/ui/ToolbarInsertBlock'
+import { createPlugin, emojiPluginKey } from './pm-plugins/main'
+import inputRulePlugin from './pm-plugins/input-rules'
+import keymap from './pm-plugins/keymap'
+import { inputRulePlugin as asciiInputRulePlugin } from './pm-plugins/ascii-input-rules'
+import ToolbarEmojiPicker from './ui/ToolbarEmojiPicker'
+import EmojiTypeAhead from './ui/EmojiTypeAhead'
+import { SmileIcon } from '../../../../icons/index'
 
 const emojiPlugin: EditorPlugin = {
   nodes() {
-    return [{ name: 'emoji', node: emoji }];
+    return [{ name: 'emoji', node: emoji }]
   },
 
   marks() {
-    return [{ name: 'emojiQuery', mark: emojiQuery }];
+    return [{ name: 'emojiQuery', mark: emojiQuery }]
   },
 
   pmPlugins() {
@@ -26,19 +26,19 @@ const emojiPlugin: EditorPlugin = {
       {
         name: 'emoji',
         plugin: ({ providerFactory, portalProviderAPI }) =>
-          createPlugin(portalProviderAPI, providerFactory),
+          createPlugin(portalProviderAPI, providerFactory)
       },
       {
         name: 'emojiInputRule',
-        plugin: ({ schema }) => inputRulePlugin(schema),
+        plugin: ({ schema }) => inputRulePlugin(schema)
       },
       { name: 'emojiKeymap', plugin: ({ schema }) => keymap(schema) },
       {
         name: 'emojiAsciiInputRule',
         plugin: ({ schema, providerFactory }) =>
-          asciiInputRulePlugin(schema, providerFactory),
-      },
-    ];
+          asciiInputRulePlugin(schema, providerFactory)
+      }
+    ]
   },
 
   contentComponent({
@@ -46,7 +46,7 @@ const emojiPlugin: EditorPlugin = {
     providerFactory,
     popupsMountPoint,
     popupsBoundariesElement,
-    popupsScrollableElement,
+    popupsScrollableElement
   }) {
     const renderNode = providers => {
       return (
@@ -57,8 +57,8 @@ const emojiPlugin: EditorPlugin = {
           popupsMountPoint={popupsMountPoint}
           popupsBoundariesElement={popupsBoundariesElement}
         />
-      );
-    };
+      )
+    }
 
     return (
       <WithProviders
@@ -66,7 +66,7 @@ const emojiPlugin: EditorPlugin = {
         providers={['emojiProvider']}
         renderNode={renderNode}
       />
-    );
+    )
   },
 
   secondaryToolbarComponent({
@@ -77,7 +77,7 @@ const emojiPlugin: EditorPlugin = {
     popupsMountPoint,
     popupsBoundariesElement,
     popupsScrollableElement,
-    disabled,
+    disabled
   }) {
     const renderNode = providers => {
       // numFollowingButtons must be changed if buttons are added after ToolbarEmojiPicker to the message editor
@@ -93,8 +93,8 @@ const emojiPlugin: EditorPlugin = {
           popupsBoundariesElement={popupsBoundariesElement}
           popupsScrollableElement={popupsScrollableElement}
         />
-      );
-    };
+      )
+    }
 
     return (
       <WithProviders
@@ -102,7 +102,7 @@ const emojiPlugin: EditorPlugin = {
         providers={['emojiProvider']}
         renderNode={renderNode}
       />
-    );
+    )
   },
 
   pluginsOptions: {
@@ -110,15 +110,15 @@ const emojiPlugin: EditorPlugin = {
       {
         title: formatMessage(messages.emoji),
         priority: 500,
-        icon: () => <EmojiIcon label={formatMessage(messages.emoji)} />,
+        icon: () => <SmileIcon />,
         action(insert, state) {
-          const mark = state.schema.mark('emojiQuery');
-          const emojiText = state.schema.text(':', [mark]);
-          return insert(emojiText);
-        },
-      },
-    ],
-  },
-};
+          const mark = state.schema.mark('emojiQuery')
+          const emojiText = state.schema.text(':', [mark])
+          return insert(emojiText)
+        }
+      }
+    ]
+  }
+}
 
-export default emojiPlugin;
+export default emojiPlugin

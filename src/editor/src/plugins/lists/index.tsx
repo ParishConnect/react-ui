@@ -8,8 +8,8 @@ import inputRulePlugin from './pm-plugins/input-rule'
 import keymapPlugin from './pm-plugins/keymap'
 import WithPluginState from '../../ui/WithPluginState'
 
-import EditorBulletListIcon from '@atlaskit/icon/glyph/editor/bullet-list'
 import EditorNumberedListIcon from '@atlaskit/icon/glyph/editor/number-list'
+import { ListIcon } from '../../../../icons/index'
 
 const listPlugin: EditorPlugin = {
   nodes() {
@@ -37,9 +37,7 @@ const listPlugin: EditorPlugin = {
         title: formatMessage('unorderedList'),
         keywords: ['ul', 'unordered list'],
         priority: 1100,
-        icon: () => (
-          <EditorBulletListIcon label={formatMessage('unorderedList')} />
-        ),
+        icon: () => <ListIcon />,
         action(insert, state) {
           return insert(
             state.schema.nodes.bulletList.createChecked(

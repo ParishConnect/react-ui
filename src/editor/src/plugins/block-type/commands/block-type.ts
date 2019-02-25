@@ -1,30 +1,30 @@
-import { EditorState, Selection, TextSelection } from 'prosemirror-state';
-import { Node as PMNode } from 'prosemirror-model';
-import { findWrapping } from 'prosemirror-transform';
-import { Command } from '../../../types';
+import { EditorState, Selection, TextSelection } from 'prosemirror-state'
+import { Node as PMNode } from 'prosemirror-model'
+import { findWrapping } from 'prosemirror-transform'
+import { Command } from '../../../types'
 import {
   CODE_BLOCK,
   BLOCK_QUOTE,
   PANEL,
   HEADINGS_BY_NAME,
-  NORMAL_TEXT,
-} from '../types';
-import { removeBlockMarks } from '../../../utils/mark';
+  NORMAL_TEXT
+} from '../types'
+import { removeBlockMarks } from '../../../utils/mark'
 
 export function setBlockType(name: string): Command {
   return (state, dispatch) => {
-    const { nodes } = state.schema;
+    const { nodes } = state.schema
     if (name === NORMAL_TEXT.name && nodes.paragraph) {
-      return setNormalText()(state, dispatch);
+      return setNormalText()(state, dispatch)
     }
 
-    const headingBlockType = HEADINGS_BY_NAME[name];
+    const headingBlockType = HEADINGS_BY_NAME[name]
     if (headingBlockType && nodes.heading && headingBlockType.level) {
-      return setHeading(headingBlockType.level)(state, dispatch);
+      return setHeading(headingBlockType.level)(state, dispatch)
     }
 
-    return false;
-  };
+    return false
+  }
 }
 
 export function setNormalText(): Command {
@@ -32,13 +32,13 @@ export function setNormalText(): Command {
     const {
       tr,
       selection: { $from, $to },
-      schema,
-    } = state;
+      schema
+    } = state
     if (dispatch) {
-      dispatch(tr.setBlockType($from.pos, $to.pos, schema.nodes.paragraph));
+      dispatch(tr.setBlockType($from.pos, $to.pos, schema.nodes.paragraph))
     }
-    return true;
-  };
+    return true
+  }
 }
 
 export function setHeading(level: number): Command {
@@ -46,40 +46,40 @@ export function setHeading(level: number): Command {
     const {
       tr,
       selection: { $from, $to },
-      schema,
-    } = state;
+      schema
+    } = state
     if (dispatch) {
       dispatch(
-        tr.setBlockType($from.pos, $to.pos, schema.nodes.heading, { level }),
-      );
+        tr.setBlockType($from.pos, $to.pos, schema.nodes.heading, { level })
+      )
     }
-    return true;
-  };
+    return true
+  }
 }
 
 export function insertBlockType(name: string): Command {
   return function(state, dispatch) {
-    const { nodes } = state.schema;
+    const { nodes } = state.schema
 
     switch (name) {
       case BLOCK_QUOTE.name:
         if (nodes.paragraph && nodes.blockquote) {
-          return wrapSelectionIn(nodes.blockquote)(state, dispatch);
+          return wrapSelectionIn(nodes.blockquote)(state, dispatch)
         }
-        break;
+        break
       case CODE_BLOCK.name:
         if (nodes.codeBlock) {
-          return insertCodeBlock()(state, dispatch);
+          return insertCodeBlock()(state, dispatch)
         }
-        break;
+        break
       case PANEL.name:
         if (nodes.panel && nodes.paragraph) {
-          return wrapSelectionIn(nodes.panel)(state, dispatch);
+          return wrapSelectionIn(nodes.panel)(state, dispatch)
         }
-        break;
+        break
     }
-    return false;
-  };
+    return false
+  }
 }
 
 /**
@@ -90,33 +90,33 @@ export function insertBlockType(name: string): Command {
  */
 function wrapSelectionIn(type): Command {
   return function(state: EditorState, dispatch) {
-    let { tr } = state;
-    const { $from, $to } = state.selection;
-    const { paragraph } = state.schema.nodes;
-    const { alignment, indentation } = state.schema.marks;
+    let { tr } = state
+    const { $from, $to } = state.selection
+    const { paragraph } = state.schema.nodes
+    const { alignment, indentation } = state.schema.marks
 
     /** Alignment or Indentation is not valid inside block types */
-    const removeAlignTr = removeBlockMarks(state, [alignment, indentation]);
-    tr = removeAlignTr || tr;
+    const removeAlignTr = removeBlockMarks(state, [alignment, indentation])
+    tr = removeAlignTr || tr
 
-    const range = $from.blockRange($to) as any;
-    const wrapping = range && (findWrapping(range, type) as any);
+    const range = $from.blockRange($to) as any
+    const wrapping = range && (findWrapping(range, type) as any)
     if (range && wrapping) {
-      tr.wrap(range, wrapping).scrollIntoView();
+      tr.wrap(range, wrapping).scrollIntoView()
     } else {
       /** We always want to append a block type */
       tr.replaceRangeWith(
         $to.pos + 1,
         $to.pos + 1,
-        type.createAndFill({}, paragraph.create()),
-      );
-      tr.setSelection(Selection.near(tr.doc.resolve(state.selection.to + 1)));
+        type.createAndFill({}, paragraph.create())
+      )
+      tr.setSelection(Selection.near(tr.doc.resolve(state.selection.to + 1)))
     }
     if (dispatch) {
-      dispatch(tr);
+      dispatch(tr)
     }
-    return true;
-  };
+    return true
+  }
 }
 
 /**
@@ -124,40 +124,38 @@ function wrapSelectionIn(type): Command {
  */
 function insertCodeBlock(): Command {
   return function(state: EditorState, dispatch) {
-    const { tr } = state;
-    const { $to } = state.selection;
-    const { codeBlock } = state.schema.nodes;
+    const { tr } = state
+    const { $to } = state.selection
+    const { codeBlock } = state.schema.nodes
 
-    const getNextNode = state.doc.nodeAt($to.pos + 1);
-    const addPos = getNextNode && getNextNode.isText ? 0 : 1;
+    const getNextNode = state.doc.nodeAt($to.pos + 1)
+    const addPos = getNextNode && getNextNode.isText ? 0 : 1
 
     /** We always want to append a block type */
     tr.replaceRangeWith(
       $to.pos + addPos,
       $to.pos + addPos,
-      codeBlock.createAndFill() as PMNode,
-    );
-    tr.setSelection(
-      Selection.near(tr.doc.resolve(state.selection.to + addPos)),
-    );
+      codeBlock.createAndFill() as PMNode
+    )
+    tr.setSelection(Selection.near(tr.doc.resolve(state.selection.to + addPos)))
     if (dispatch) {
-      dispatch(tr);
+      dispatch(tr)
     }
-    return true;
-  };
+    return true
+  }
 }
 
 export const cleanUpAtTheStartOfDocument: Command = (state, dispatch) => {
-  const { $cursor } = state.selection as TextSelection;
+  const { $cursor } = state.selection as TextSelection
   if (
     $cursor &&
     !$cursor.nodeBefore &&
     !$cursor.nodeAfter &&
     $cursor.pos === 1
   ) {
-    const { tr, schema } = state;
-    const { paragraph } = schema.nodes;
-    const { parent } = $cursor;
+    const { tr, schema } = state
+    const { paragraph } = schema.nodes
+    const { parent } = $cursor
 
     /**
      * Use cases:
@@ -166,11 +164,11 @@ export const cleanUpAtTheStartOfDocument: Command = (state, dispatch) => {
      *
      * NOTE: We already know it's an empty doc so it's safe to use 0
      */
-    tr.setNodeMarkup(0, paragraph, parent.attrs, []);
+    tr.setNodeMarkup(0, paragraph, parent.attrs, [])
     if (dispatch) {
-      dispatch(tr);
+      dispatch(tr)
     }
-    return true;
+    return true
   }
-  return false;
-};
+  return false
+}

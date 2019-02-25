@@ -6,7 +6,6 @@ import { EditorView } from 'prosemirror-view'
 import { Node as PMNode } from 'prosemirror-model'
 import TableIcon from '@atlaskit/icon/glyph/editor/table'
 import DecisionIcon from '@atlaskit/icon/glyph/editor/decision'
-import QuoteIcon from '@atlaskit/icon/glyph/quote'
 import HorizontalRuleIcon from '@atlaskit/icon/glyph/editor/horizontal-rule'
 import {
   EmojiId,
@@ -25,12 +24,7 @@ import {
 import { InsertMenuCustomItem } from '../../../../types'
 import DropdownMenu from '../../../../ui/DropdownMenu'
 import ToolbarButton from '../../../../ui/ToolbarButton'
-import {
-  Wrapper,
-  ButtonGroup,
-  ExpandIconWrapper,
-  Shortcut
-} from '../../../../ui/styles'
+import { Wrapper, ButtonGroup, Shortcut } from '../../../../ui/styles'
 import { BlockType } from '../../../block-type/types'
 import { MacroProvider } from '../../../macro/types'
 import { createTable } from '../../../table/actions'
@@ -56,7 +50,8 @@ import {
   MoreHorizontalIcon,
   CodeIcon,
   InfoIcon,
-  LinkIcon
+  LinkIcon,
+  QuoteIcon
 } from '../../../../../../icons/index'
 
 export const messages = defineMessages({

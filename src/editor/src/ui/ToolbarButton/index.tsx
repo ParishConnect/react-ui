@@ -5,6 +5,7 @@ import { Tooltip } from '../../../../tooltip/index'
 import { Position, PositionEnum } from '../../../../constants/index'
 
 export interface Props {
+  is?: any
   isIconButton?: boolean
   selected?: boolean
   className?: string
@@ -18,6 +19,7 @@ export interface Props {
   onClick?: (event: Event) => void
   spacing?: 'default' | 'compact' | 'none'
   title?: string
+  label?: string
   titlePosition?: string
 }
 
@@ -25,6 +27,7 @@ export default class ToolbarButton extends PureComponent<Props, {}> {
   render() {
     const InternalButton = () => (
       <ToolbarButtonFactory
+        is={this.props.is}
         isIconButton={this.props.isIconButton}
         isActive={this.props.selected}
         appearance="minimal"
@@ -35,6 +38,11 @@ export default class ToolbarButton extends PureComponent<Props, {}> {
         iconBefore={this.props.iconBefore}
         disabled={this.props.disabled}
         onClick={this.handleClick}
+        target={this.props.target}
+        title={this.props.hideTooltip && this.props.title}
+        label={
+          (!this.props.hideTooltip && this.props.label) || this.props.title
+        }
         spacing={this.props.spacing || 'default'}
       >
         {this.props.children}

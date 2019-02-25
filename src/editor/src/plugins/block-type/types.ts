@@ -8,6 +8,12 @@
 // nomenclature for what 'block type' is active.
 import { defineMessages } from 'react-intl'
 import { MessageDescriptor } from '../../types'
+import {
+  HeadingOneIcon,
+  HeadingTwoIcon,
+  NormalTextIcon,
+  QuoteIcon
+} from '../../../../icons/index'
 
 export const messages = defineMessages<
   { [key in BlockTypeName]: MessageDescriptor }
@@ -100,7 +106,8 @@ export const NORMAL_TEXT: BlockType = {
   name: 'normal',
   title: messages.normal,
   nodeName: 'paragraph',
-  tagName: 'p'
+  tagName: 'p',
+  icon: NormalTextIcon
 }
 
 export const HEADING_1: BlockType = {
@@ -108,14 +115,16 @@ export const HEADING_1: BlockType = {
   title: messages.heading1,
   nodeName: 'heading',
   tagName: 'h1',
-  level: 1
+  level: 1,
+  icon: HeadingOneIcon
 }
 export const HEADING_2: BlockType = {
   name: 'heading2',
   title: messages.heading2,
   nodeName: 'heading',
   tagName: 'h2',
-  level: 2
+  level: 2,
+  icon: HeadingTwoIcon
 }
 export const HEADING_3: BlockType = {
   name: 'heading3',
@@ -148,7 +157,8 @@ export const HEADING_6: BlockType = {
 export const BLOCK_QUOTE: BlockType = {
   name: 'blockquote',
   title: messages.blockquote,
-  nodeName: 'blockquote'
+  nodeName: 'blockquote',
+  icon: QuoteIcon
 }
 export const CODE_BLOCK: BlockType = {
   name: 'codeblock',
@@ -213,4 +223,5 @@ export interface BlockType {
   nodeName: string
   tagName?: string
   level?: number
+  icon?: any
 }
