@@ -1,23 +1,22 @@
 import * as React from 'react'
 import { defineMessages } from 'react-intl'
-import ToolbarButton from '../../../../ui/ToolbarButton'
+import {
+  AlignCenterIcon,
+  AlignLeftIcon,
+  AlignRightIcon,
+  ChevronDownIcon
+} from '../../../../../../icons/index'
+import Alignment from '../../../../ui/Alignment'
 import Dropdown from '../../../../ui/Dropdown'
+import ToolbarButton from '../../../../ui/ToolbarButton'
+import { AlignmentPluginState, AlignmentState } from '../../pm-plugins/main'
+import { Separator, TriggerWrapper, Wrapper } from './styles'
 
 export const iconMap = {
   start: AlignLeftIcon,
   end: AlignRightIcon,
   center: AlignCenterIcon
 }
-
-import { TriggerWrapper, Separator, Wrapper } from './styles'
-import Alignment from '../../../../ui/Alignment'
-import { AlignmentPluginState, AlignmentState } from '../../pm-plugins/main'
-import {
-  ChevronDownIcon,
-  AlignLeftIcon,
-  AlignRightIcon,
-  AlignCenterIcon
-} from '../../../../../../icons/index'
 
 export const messages = defineMessages({
   alignment: {

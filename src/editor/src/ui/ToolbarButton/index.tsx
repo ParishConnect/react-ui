@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { PureComponent } from 'react'
 import { ToolbarButtonFactory } from './styles'
-import { Tooltip } from '../../../../tooltip/index'
-import { Position, PositionEnum } from '../../../../constants/index'
 
 export interface Props {
   is?: any
@@ -25,8 +23,7 @@ export interface Props {
 
 export default class ToolbarButton extends PureComponent<Props, {}> {
   render() {
-    const InternalButton = () => (
-      //@ts-ignore
+    return (
       <ToolbarButtonFactory
         is={this.props.is}
         isIconButton={this.props.isIconButton}
@@ -41,20 +38,15 @@ export default class ToolbarButton extends PureComponent<Props, {}> {
         onClick={this.handleClick}
         target={this.props.target}
         title={this.props.hideTooltip && this.props.title}
-        label={
-          !this.props.hideTooltip
-            ? this.props.label
-            : this.props.title || this.props.title
-        }
+        label={this.props.label}
+        hideTooltip={this.props.hideTooltip}
         spacing={this.props.spacing || 'default'}
         children={this.props.children}
       />
     )
-
-    return this.props.title ? <InternalButton /> : <InternalButton />
   }
 
-  private handleClick = (event: Event) => {
+  handleClick = (event: Event) => {
     const { disabled, onClick } = this.props
 
     if (!disabled && onClick) {
