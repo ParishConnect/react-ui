@@ -1,10 +1,6 @@
 import * as React from 'react'
 import uuid from 'uuid'
 import { Plugin, PluginKey, StateField } from 'prosemirror-state'
-import {
-  AnalyticsEventPayload,
-  CreateUIAnalyticsEventSignature
-} from '@atlaskit/analytics-next-types'
 import MentionIcon from '@atlaskit/icon/glyph/editor/mention'
 import {
   MentionProvider,
@@ -38,18 +34,18 @@ import {
   buildTypeAheadRenderedPayload
 } from './analytics'
 
-const mentionsPlugin = (
-  createAnalyticsEvent?: CreateUIAnalyticsEventSignature
-): EditorPlugin => {
+const mentionsPlugin = (): // createAnalyticsEvent?: CreateUIAnalyticsEventSignature
+EditorPlugin => {
   let sessionId = uuid()
-  const fireEvent = <T extends AnalyticsEventPayload>(payload: T): void => {
-    if (createAnalyticsEvent) {
-      if (payload.attributes && !payload.attributes.sessionId) {
-        payload.attributes.sessionId = sessionId
-      }
-      createAnalyticsEvent(payload).fire(ELEMENTS_CHANNEL)
-    }
-  }
+  const fireEvent = () => {}
+  // <T extends AnalyticsEventPayload>(payload: T): void => {
+  //   if (createAnalyticsEvent) {
+  //     if (payload.attributes && !payload.attributes.sessionId) {
+  //       payload.attributes.sessionId = sessionId
+  //     }
+  //     createAnalyticsEvent(payload).fire(ELEMENTS_CHANNEL)
+  //   }
+  // }
 
   return {
     nodes() {
@@ -152,18 +148,18 @@ const mentionsPlugin = (
             ? Date.now() - typeAheadPluginState.queryStarted
             : 0
 
-          fireEvent(
-            buildTypeAheadInsertedPayload(
-              pickerElapsedTime,
-              typeAheadPluginState.upKeyCount,
-              typeAheadPluginState.downKeyCount,
-              sessionId,
-              mode,
-              item.mention,
-              pluginState.mentions,
-              typeAheadPluginState.query || ''
-            )
-          )
+          // fireEvent(
+          //   buildTypeAheadInsertedPayload(
+          //     pickerElapsedTime,
+          //     typeAheadPluginState.upKeyCount,
+          //     typeAheadPluginState.downKeyCount,
+          //     sessionId,
+          //     mode,
+          //     item.mention,
+          //     pluginState.mentions,
+          //     typeAheadPluginState.query || ''
+          //   )
+          // )
 
           sessionId = uuid()
 
@@ -185,15 +181,15 @@ const mentionsPlugin = (
             ? Date.now() - typeAheadPluginState.queryStarted
             : 0
 
-          fireEvent(
-            buildTypeAheadCancelPayload(
-              pickerElapsedTime,
-              typeAheadPluginState.upKeyCount,
-              typeAheadPluginState.downKeyCount,
-              sessionId,
-              typeAheadPluginState.query || ''
-            )
-          )
+          // fireEvent(
+          //   buildTypeAheadCancelPayload(
+          //     pickerElapsedTime,
+          //     typeAheadPluginState.upKeyCount,
+          //     typeAheadPluginState.downKeyCount,
+          //     sessionId,
+          //     typeAheadPluginState.query || ''
+          //   )
+          // )
 
           sessionId = uuid()
         }

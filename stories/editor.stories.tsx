@@ -1,6 +1,5 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import styled from 'react-emotion'
 import Box from '@hennessyevan/aluminum-box'
 import testDocument from './testDocument.json'
 import { Manager } from '../src/manager'
@@ -21,6 +20,8 @@ import {
   PlainTransformer,
   Textarea
 } from '../src'
+
+const mediaProvider = () => {}
 
 const InfoNode = ({ user }) => {
   return (
@@ -59,11 +60,7 @@ storiesOf('editor', module)
         appearance="full-page"
         allowIndentation
         placeholder="Write something..."
-        mentionProvider={
-          new Promise((res, rej) => {
-            return 'hello'
-          })
-        }
+        mentionProvider={new Promise(() => {})}
         containerProps={{ paddingX: 48 }}
         primaryToolbarComponents={
           <WithEditorActions
