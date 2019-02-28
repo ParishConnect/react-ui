@@ -2,7 +2,6 @@ import * as React from 'react'
 import { PureComponent } from 'react'
 import { injectIntl, InjectedIntlProps } from 'react-intl'
 import { EditorView } from 'prosemirror-view'
-import BulletListIcon from '@atlaskit/icon/glyph/editor/bullet-list'
 
 import {
   toggleBulletList as toggleBulletListKeymap,
@@ -15,7 +14,6 @@ import {
   ButtonGroup,
   Separator,
   Wrapper,
-  ExpandIconWrapper,
   Shortcut
 } from '../../../../ui/styles'
 import { toggleBulletList, toggleOrderedList } from '../../commands'

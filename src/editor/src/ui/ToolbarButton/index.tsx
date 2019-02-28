@@ -26,6 +26,7 @@ export interface Props {
 export default class ToolbarButton extends PureComponent<Props, {}> {
   render() {
     const InternalButton = () => (
+      //@ts-ignore
       <ToolbarButtonFactory
         is={this.props.is}
         isIconButton={this.props.isIconButton}
@@ -41,24 +42,16 @@ export default class ToolbarButton extends PureComponent<Props, {}> {
         target={this.props.target}
         title={this.props.hideTooltip && this.props.title}
         label={
-          (!this.props.hideTooltip && this.props.label) || this.props.title
+          !this.props.hideTooltip
+            ? this.props.label
+            : this.props.title || this.props.title
         }
         spacing={this.props.spacing || 'default'}
-      >
-        {this.props.children}
-      </ToolbarButtonFactory>
+        children={this.props.children}
+      />
     )
 
-    const position = (this.props.titlePosition as PositionEnum) || Position.TOP
-    const tooltipContent = !this.props.hideTooltip ? this.props.title : null
-
-    return this.props.title ? (
-      <Tooltip content={tooltipContent} position={position}>
-        <InternalButton />
-      </Tooltip>
-    ) : (
-      <InternalButton />
-    )
+    return this.props.title ? <InternalButton /> : <InternalButton />
   }
 
   private handleClick = (event: Event) => {

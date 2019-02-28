@@ -3,8 +3,10 @@ import { Card } from '../../../../../../layers/index'
 import Box from '@hennessyevan/aluminum-box'
 import { scales } from '../../../../../../theme/src/default-theme/foundational-styles/index'
 
-export const Toolbar = () => (
-  <Card display="flex" background="white" padding={5} />
+export const Toolbar = props => (
+  <Card display="flex" background="white" padding={5}>
+    {props.children}
+  </Card>
 )
 export const Separator = () => (
   <Box

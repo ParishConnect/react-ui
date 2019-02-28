@@ -113,7 +113,7 @@ export default function createPluginsList(
   }
 
   if (props.mentionProvider) {
-    plugins.push(mentionsPlugin(createAnalyticsEvent))
+    plugins.push(mentionsPlugin())
   }
 
   if (props.emojiProvider) {
