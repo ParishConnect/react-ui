@@ -60,7 +60,6 @@ storiesOf('editor', module)
         appearance="full-page"
         allowIndentation
         placeholder="Write something..."
-        mentionProvider={new Promise(() => {})}
         containerProps={{ paddingX: 48 }}
         primaryToolbarComponents={
           <WithEditorActions

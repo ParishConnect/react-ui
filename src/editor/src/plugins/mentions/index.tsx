@@ -5,9 +5,7 @@ import MentionIcon from '@atlaskit/icon/glyph/editor/mention'
 import {
   MentionProvider,
   MentionItem,
-  isSpecialMention,
-  MentionDescription,
-  ELEMENTS_CHANNEL
+  MentionDescription
 } from '@atlaskit/mention'
 import { mention } from '@atlaskit/adf-schema'
 import {

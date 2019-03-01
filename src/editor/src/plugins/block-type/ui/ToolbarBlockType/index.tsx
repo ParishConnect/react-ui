@@ -76,7 +76,9 @@ class ToolbarBlockType extends React.PureComponent<
               <ToolbarButton
                 isIconButton
                 key={blockType}
-                selected={active === blockType.name}
+                selected={
+                  active === blockType.name && active === currentBlockType.name
+                }
                 disabled={disabled}
                 onClick={() => this.handleSelectBlockType(item)}
                 title={formatMessage(blockType.title) || ''}
@@ -150,7 +152,7 @@ class ToolbarBlockType extends React.PureComponent<
     }
 
     this.props.setBlockType('normal')
-    this.setState({ active: '' })
+    this.setState({ active: 'normal' })
   }
 }
 
