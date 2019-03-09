@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { PureComponent } from 'react'
 import { Pane } from '../../layers'
 import { TableRow, TextTableCell } from '../../table'
 import { TableRowProps } from '../../table/src/TableRow'
@@ -12,8 +12,9 @@ export interface OptionProps extends TableRowProps {
   isSelected?: boolean
   isSelectable?: boolean
   disabled?: boolean
-  onSelect(): void
-  onDeselect(): void
+  hasIcon?: boolean
+  onSelect: any
+  onDeselect: any
 }
 
 export default class Option extends React.PureComponent<OptionProps> {
@@ -28,6 +29,7 @@ export default class Option extends React.PureComponent<OptionProps> {
       disabled,
       style,
       height,
+      hasIcon = true,
       ...props
     } = this.props
 
@@ -52,18 +54,20 @@ export default class Option extends React.PureComponent<OptionProps> {
         borderBottom={false}
         {...props}
       >
-        <Pane
-          paddingLeft={12}
-          paddingRight={8}
-          opacity={isSelected ? 1 : 0}
-          flexGrow={0}
-          paddingTop={4}
-        >
-          <CheckIcon color="selected" size={14} />
-        </Pane>
+        {hasIcon && (
+          <Pane
+            paddingLeft={12}
+            paddingRight={8}
+            opacity={isSelected ? 1 : 0}
+            flexGrow={0}
+            paddingTop={4}
+          >
+            <CheckIcon size={14} color="selected" />
+          </Pane>
+        )}
         <TextTableCell
           height={height}
-          borderBottom="muted"
+          // borderBottom="muted"
           textProps={textProps}
           paddingLeft={0}
           borderRight={null}

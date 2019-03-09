@@ -6,6 +6,7 @@ import * as React from 'react'
 const {
   Provider: TableRowProvider,
   Consumer: TableRowConsumer
-} = React.createContext(null as any)
+  //@ts-ignore
+} = React.createContext()
 
 export { TableRowProvider, TableRowConsumer }

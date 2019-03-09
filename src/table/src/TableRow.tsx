@@ -1,12 +1,13 @@
 import * as React from 'react'
 import cx from 'classnames'
-import { Omit } from 'utility-types'
-import { noop } from 'lodash'
 import { Pane, PaneProps } from '../../layers'
-import { ThemeContext } from '../../theme'
+import { withTheme, ThemeContext } from '../../theme'
+import safeInvoke from '../../lib/safe-invoke'
+import warning from '../../lib/warning'
 import { TableRowProvider } from './TableRowContext'
 import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
-import { IntentType } from '../../constants'
+import { Omit } from 'utility-types'
+import { IntentType } from '../../constants/index'
 
 export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
   /**
@@ -58,21 +59,22 @@ export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
 }
 
 class TableRow extends React.PureComponent<TableRowProps> {
-  public static contextType = ThemeContext
+  mainRef: any
+  static contextType = ThemeContext
   static defaultProps = {
     intent: 'none',
     appearance: 'default',
     height: 48,
-    onClick: noop(),
-    onSelect: noop(),
-    onDeselect: noop(),
-    onKeyPress: noop()
+    onSelect: () => {},
+    onDeselect: () => {},
+    onKeyPress: () => {}
   }
 
-  mainRef: HTMLElement
+  handleClick = e => {
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
+    }
 
-  handleClick = (e: Event) => {
-    this.props.onClick(e)
     if (this.props.isSelectable) {
       if (this.props.isSelected) {
         this.props.onDeselect()
@@ -82,7 +84,7 @@ class TableRow extends React.PureComponent<TableRowProps> {
     }
   }
 
-  handleKeyDown = (e: KeyboardEvent) => {
+  handleKeyDown = e => {
     if (this.props.isSelectable) {
       const { key } = e
       if (key === 'Enter' || key === ' ') {
@@ -91,35 +93,35 @@ class TableRow extends React.PureComponent<TableRowProps> {
       } else if (key === 'ArrowUp' || key === 'ArrowDown') {
         try {
           manageTableRowFocusInteraction(key, this.mainRef)
-        } catch (err) {
-          this.props.onError({
-            err,
-            message: 'Error handling keydown Keyboard Event'
-          })
-        }
-      } else if (key === 'Escape' && this.mainRef) {
-        this.mainRef.blur()
+        } catch (error) {}
+      } else if (key === 'Escape') {
+        if (this.mainRef) this.mainRef.blur()
       }
     }
 
     this.props.onKeyPress(e)
   }
 
-  onRef = (ref: HTMLElement) => {
+  onRef = ref => {
     this.mainRef = ref
-    if (typeof this.props.innerRef === 'function') {
-      this.props.innerRef(ref)
-    }
+    safeInvoke(this.props.innerRef, ref)
   }
 
   render() {
     const {
+      innerRef,
       className,
       height,
       children,
       intent,
       appearance,
       tabIndex = -1,
+
+      // Filter out
+      onClick,
+      onKeyPress,
+      onSelect,
+      onDeselect,
 
       isHighlighted,
       isSelectable,
@@ -128,10 +130,17 @@ class TableRow extends React.PureComponent<TableRowProps> {
     } = this.props
     const theme = this.context
 
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof onClick === 'function',
+        '<Table.Row> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
+
     const themedClassName = theme.getRowClassName(appearance, intent)
 
     return (
-      <TableRowProvider value={height}>
+      <TableRowProvider height={height}>
         <Pane
           innerRef={this.onRef}
           className={cx(themedClassName, className)}

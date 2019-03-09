@@ -1,11 +1,11 @@
 import * as React from 'react'
 import arrify from 'arrify'
-import { noop } from 'lodash'
 import { Popover } from '../../popover'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import SelectMenuContent from './SelectMenuContent'
 import OptionShapePropType from './OptionShapePropType'
 import { SelectedPropType } from './SelectedPropType'
+import { SearchIcon } from '../../icons/index'
 
 export interface SelectMenuProps {
   /**
@@ -46,11 +46,25 @@ export interface SelectMenuProps {
    */
   position?: PositionEnum | PositionType | any
   /**
+   * The icon of the search filter.
+   */
+  filterIcon: React.ReactChild
+  /**
+   * The placeholder of the search filter.
+   */
+  filterPlaceholder: string
+  /**
    * Can be a function that returns a node, or a node itself, that is
    * rendered on the right side of the Select Menu to give additional
    * information when an option is selected.
    */
   detailView?: any
+  /**
+   * Can be a function that returns a node, or a node itself, that is
+   * rendered in the header section of the Select Menu to customize
+   * the header.
+   */
+  titleView?: any
   /**
    * Can be a function that returns a node, or a node itself, that is
    * rendered instead of the options list when there are no options.
@@ -72,15 +86,17 @@ export interface SelectMenuProps {
 
 export default class SelectMenu extends React.PureComponent<SelectMenuProps> {
   static defaultProps = {
-    onSelect: noop(),
-    onDeselect: noop(),
+    onSelect: () => {},
+    onDeselect: () => {},
     width: 240,
     height: 248,
     position: Position.BOTTOM_LEFT,
-    isMultiSelect: false
+    isMultiSelect: false,
+    filterPlaceholder: 'Filter...',
+    filterIcon: SearchIcon
   }
 
-  getDetailView = (close: Function, detailView: any) => {
+  getDetailView = (close, detailView) => {
     if (typeof detailView === 'function') {
       return {
         detailView: detailView({ close })
@@ -94,7 +110,7 @@ export default class SelectMenu extends React.PureComponent<SelectMenuProps> {
     return {}
   }
 
-  getEmptyView = (close: Function, emptyView: any) => {
+  getEmptyView = (close, emptyView) => {
     if (typeof emptyView === 'function') {
       return {
         emptyView: emptyView({ close })
@@ -118,8 +134,11 @@ export default class SelectMenu extends React.PureComponent<SelectMenuProps> {
       position,
       hasTitle,
       hasFilter,
+      filterPlaceholder,
+      filterIcon,
       detailView,
       emptyView,
+      titleView,
       isMultiSelect,
       ...props
     } = this.props
@@ -129,25 +148,24 @@ export default class SelectMenu extends React.PureComponent<SelectMenuProps> {
         minWidth={width}
         position={position}
         minHeight={height}
-        // tslint:disable:react-this-binding-issue
-        // tslint:disable-next-line:jsx-no-lambda
-        content={({ close }: { close: Function }) => (
+        content={({ close }) => (
           <SelectMenuContent
             width={width}
             height={height}
             options={options}
             title={title}
             hasFilter={hasFilter}
+            filterPlaceholder={filterPlaceholder}
+            filterIcon={filterIcon}
             hasTitle={hasTitle}
             isMultiSelect={isMultiSelect}
+            titleView={titleView}
             listProps={{
               onSelect: item => {
-                const { onSelect = noop } = this.props
-                onSelect(item)
+                this.props.onSelect(item)
               },
               onDeselect: item => {
-                const { onDeselect = noop } = this.props
-                onDeselect(item)
+                this.props.onDeselect(item)
               },
               onFilterChange: this.props.onFilterChange,
               selected: arrify(selected)
