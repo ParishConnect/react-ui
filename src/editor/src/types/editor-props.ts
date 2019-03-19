@@ -1,35 +1,29 @@
-import { ReactElement } from 'react'
+import { ActivityProvider } from '@atlaskit/activity'
+import {
+  ContextIdentifierProvider,
+  ErrorReportingHandler,
+  ExtensionHandlers,
+  Transformer
+} from '@atlaskit/editor-common'
+import { EmojiProvider } from '@atlaskit/emoji'
+import { MentionProvider } from '@atlaskit/mention'
+import { TaskDecisionProvider } from '@atlaskit/task-decision'
+import { BoxProps } from '@hennessyevan/aluminum-box'
 import { Node, Schema } from 'prosemirror-model'
 import { EditorView } from 'prosemirror-view'
+import { ReactElement } from 'react'
 import { EditorActionsOptions } from '../actions/index'
-
-import {
-  Transformer,
-  ContextIdentifierProvider,
-  ExtensionHandlers,
-  ErrorReportingHandler
-} from '@atlaskit/editor-common'
-import { ActivityProvider } from '@atlaskit/activity'
-import { MentionProvider } from '@atlaskit/mention'
-import { EmojiProvider } from '@atlaskit/emoji'
-import { TaskDecisionProvider } from '@atlaskit/task-decision'
-
+import { CardOptions, CardProvider } from '../plugins/card/types'
+import { CodeBlockOptions } from '../plugins/code-block'
+import { ImageUploadHandler } from '../plugins/image-upload/types'
+import { MediaOptions } from '../plugins/media'
+import { MediaProvider, MediaState } from '../plugins/media/types'
+import { PlaceholderTextOptions } from '../plugins/placeholder-text'
+import { MacroProvider } from '../plugins/plugin-macro/types'
+import { QuickInsertOptions } from '../plugins/quick-insert/types'
 import { PluginConfig as TablesPluginConfig } from '../plugins/table/types'
 import { TextColorPluginConfig } from '../plugins/text-color/pm-plugins/main'
-import { MediaProvider, MediaState } from '../plugins/media/types'
-
-import { ImageUploadHandler } from '../plugins/image-upload/types'
 import { TextFormattingOptions } from '../plugins/text-formatting'
-import { CollabEditProvider } from '../plugins/collab-edit/provider'
-import { MacroProvider } from '../plugins/macro/types'
-import { MediaOptions } from '../plugins/media'
-import { PlaceholderTextOptions } from '../plugins/placeholder-text'
-import { CollabEditOptions } from '../plugins/collab-edit/types'
-import { CodeBlockOptions } from '../plugins/code-block'
-import { CardProvider, CardOptions } from '../plugins/card/types'
-import { QuickInsertOptions } from '../plugins/quick-insert/types'
-import { BoxProps } from '@hennessyevan/aluminum-box'
-import { Omit } from 'utility-types'
 
 export type EditorAppearance =
   | 'message'
@@ -193,7 +187,6 @@ export interface EditorProps {
   uploadErrorHandler?: (state: MediaState) => void
 
   activityProvider?: Promise<ActivityProvider>
-  collabEditProvider?: Promise<CollabEditProvider>
   presenceProvider?: Promise<any>
   emojiProvider?: Promise<EmojiProvider>
   taskDecisionProvider?: Promise<TaskDecisionProvider>
@@ -214,7 +207,6 @@ export interface EditorProps {
   // Set to configure media features. Media single refers to the embedded version of media,
   // which is probably what you want. Media group refers to a filmstrip, thumbnail view of media files which was used in Stride.
   media?: MediaOptions
-  collabEdit?: CollabEditOptions
 
   // Set to disable text formatting styles. If not specified, they will be all enabled by default. Code here refers to inline code.
   // Smart text completion refers to the auto replacement of characters like arrows, quotes and correct casing of Atlassian product names.

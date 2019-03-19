@@ -1,36 +1,31 @@
-import * as React from 'react'
-import uuid from 'uuid'
-import { Plugin, PluginKey, StateField } from 'prosemirror-state'
-import MentionIcon from '@atlaskit/icon/glyph/editor/mention'
-import {
-  MentionProvider,
-  MentionItem,
-  MentionDescription
-} from '@atlaskit/mention'
 import { mention } from '@atlaskit/adf-schema'
 import {
-  ProviderFactory,
-  ContextIdentifierProvider
+  ContextIdentifierProvider,
+  ProviderFactory
 } from '@atlaskit/editor-common'
-
-import { EditorPlugin, Command, EditorAppearance } from '../../types'
+import MentionIcon from '@atlaskit/icon/glyph/editor/mention'
+import {
+  MentionDescription,
+  MentionItem,
+  MentionProvider
+} from '@atlaskit/mention'
+import { Plugin, PluginKey, StateField } from 'prosemirror-state'
+import * as React from 'react'
+import uuid from 'uuid'
 import { Dispatch } from '../../event-dispatcher'
+import { ReactNodeView } from '../../nodeviews'
+import { Command, EditorAppearance, EditorPlugin } from '../../types'
 import { PortalProviderAPI } from '../../ui/PortalProvider'
 import WithPluginState from '../../ui/WithPluginState'
-import {
-  pluginKey as typeAheadPluginKey,
-  PluginState as TypeAheadPluginState,
-  createInitialPluginState
-} from '../type-ahead/pm-plugins/main'
 import { messages } from '../insert-block/ui/ToolbarInsertBlock'
-import { ReactNodeView } from '../../nodeviews'
-import ToolbarMention from './ui/ToolbarMention'
-import mentionNodeView from './nodeviews/mention'
 import {
-  buildTypeAheadInsertedPayload,
-  buildTypeAheadCancelPayload,
-  buildTypeAheadRenderedPayload
-} from './analytics'
+  createInitialPluginState,
+  pluginKey as typeAheadPluginKey,
+  PluginState as TypeAheadPluginState
+} from '../type-ahead/pm-plugins/main'
+import { buildTypeAheadRenderedPayload } from './analytics'
+import mentionNodeView from './nodeviews/mention'
+import ToolbarMention from './ui/ToolbarMention'
 
 const mentionsPlugin = (): // createAnalyticsEvent?: CreateUIAnalyticsEventSignature
 EditorPlugin => {
@@ -314,6 +309,7 @@ function mentionPluginFactory(
         return newPluginState
       }
     } as StateField<MentionPluginState>,
+    //@ts-ignore
     props: {
       nodeViews: {
         mention: ReactNodeView.fromComponent(

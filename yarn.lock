@@ -11120,6 +11120,10 @@ rxjs-async-map@^0.1.2:
   dependencies:
     rxjs "^5.5.6"
 
+rxjs-compat@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/rxjs-compat/-/rxjs-compat-6.4.0.tgz#800923c15697948e1f30f18c531b12b49451c75c"
+
 rxjs@6.2.2:
   version "6.2.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.2.tgz#eb75fa3c186ff5289907d06483a77884586e1cf9"

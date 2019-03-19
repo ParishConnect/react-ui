@@ -1,27 +1,26 @@
-import * as React from 'react';
-import { EditorPlugin } from '../../types';
-import { WithProviders } from '@atlaskit/editor-common';
-import { pluginKey as blockTypeStateKey } from '../block-type/pm-plugins/main';
-import { stateKey as mediaStateKey } from '../media/pm-plugins/main';
-import { stateKey as hyperlinkPluginKey } from '../hyperlink/pm-plugins/main';
-import { mentionPluginKey } from '../mentions';
-import { pluginKey as tablesStateKey } from '../table/pm-plugins/main';
-import { stateKey as imageUploadStateKey } from '../image-upload/pm-plugins/main';
-import { pluginKey as placeholderTextStateKey } from '../placeholder-text';
-import { pluginKey as layoutStateKey } from '../layout';
+import { WithProviders } from '@atlaskit/editor-common'
+import * as React from 'react'
+import { EditorPlugin } from '../../types'
+import { ToolbarSize } from '../../ui/Toolbar'
+import WithPluginState from '../../ui/WithPluginState'
+import { insertBlockType } from '../block-type/commands'
+import { pluginKey as blockTypeStateKey } from '../block-type/pm-plugins/main'
+import { emojiPluginKey } from '../emoji/pm-plugins/main'
+import { stateKey as hyperlinkPluginKey } from '../hyperlink/pm-plugins/main'
+import { startImageUpload } from '../image-upload/pm-plugins/commands'
+import { stateKey as imageUploadStateKey } from '../image-upload/pm-plugins/main'
+import { pluginKey as layoutStateKey } from '../layout'
+import { stateKey as mediaStateKey } from '../media/pm-plugins/main'
+import { mentionPluginKey } from '../mentions'
+import { pluginKey as placeholderTextStateKey } from '../placeholder-text'
 import {
-  pluginKey as macroStateKey,
-  MacroState,
   insertMacroFromMacroBrowser,
-} from '../macro';
-import { pluginKey as dateStateKey } from '../date/plugin';
-import { emojiPluginKey } from '../emoji/pm-plugins/main';
-import WithPluginState from '../../ui/WithPluginState';
-import { ToolbarSize } from '../../ui/Toolbar';
-import ToolbarInsertBlock from './ui/ToolbarInsertBlock';
-import { insertBlockType } from '../block-type/commands';
-import { startImageUpload } from '../image-upload/pm-plugins/commands';
-import { pluginKey as typeAheadPluginKey } from '../type-ahead/pm-plugins/main';
+  MacroState,
+  pluginKey as macroStateKey
+} from '../plugin-macro'
+import { pluginKey as tablesStateKey } from '../table/pm-plugins/main'
+import { pluginKey as typeAheadPluginKey } from '../type-ahead/pm-plugins/main'
+import ToolbarInsertBlock from './ui/ToolbarInsertBlock'
 
 const toolbarSizeToButtons = toolbarSize => {
   switch (toolbarSize) {
@@ -29,20 +28,20 @@ const toolbarSizeToButtons = toolbarSize => {
     case ToolbarSize.XL:
     case ToolbarSize.L:
     case ToolbarSize.M:
-      return 6;
+      return 6
 
     case ToolbarSize.S:
-      return 2;
+      return 2
 
     default:
-      return 0;
+      return 0
   }
-};
+}
 
 export interface InsertBlockOptions {
-  insertMenuItems?: any;
-  horizontalRuleEnabled?: boolean;
-  nativeStatusSupported?: boolean;
+  insertMenuItems?: any
+  horizontalRuleEnabled?: boolean
+  nativeStatusSupported?: boolean
 }
 
 const insertBlockPlugin = (options: InsertBlockOptions): EditorPlugin => ({
@@ -57,9 +56,9 @@ const insertBlockPlugin = (options: InsertBlockOptions): EditorPlugin => ({
     popupsScrollableElement,
     toolbarSize,
     disabled,
-    isToolbarReducedSpacing,
+    isToolbarReducedSpacing
   }) {
-    const buttons = toolbarSizeToButtons(toolbarSize);
+    const buttons = toolbarSizeToButtons(toolbarSize)
     const renderNode = providers => {
       return (
         <WithPluginState
@@ -72,10 +71,9 @@ const insertBlockPlugin = (options: InsertBlockOptions): EditorPlugin => ({
             macroState: macroStateKey,
             hyperlinkState: hyperlinkPluginKey,
             emojiState: emojiPluginKey,
-            dateState: dateStateKey,
             imageUpload: imageUploadStateKey,
             placeholderTextState: placeholderTextStateKey,
-            layoutState: layoutStateKey,
+            layoutState: layoutStateKey
           }}
           render={({
             typeAheadState,
@@ -89,7 +87,7 @@ const insertBlockPlugin = (options: InsertBlockOptions): EditorPlugin => ({
             dateState,
             imageUpload,
             placeholderTextState,
-            layoutState,
+            layoutState
           }) => (
             <ToolbarInsertBlock
               buttons={buttons}
@@ -138,8 +136,8 @@ const insertBlockPlugin = (options: InsertBlockOptions): EditorPlugin => ({
             />
           )}
         />
-      );
-    };
+      )
+    }
 
     return (
       <WithProviders
@@ -147,8 +145,8 @@ const insertBlockPlugin = (options: InsertBlockOptions): EditorPlugin => ({
         providers={['emojiProvider']}
         renderNode={renderNode}
       />
-    );
-  },
-});
+    )
+  }
+})
 
-export default insertBlockPlugin;
+export default insertBlockPlugin

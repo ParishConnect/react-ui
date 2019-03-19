@@ -1,18 +1,17 @@
+import { akEditorMenuZIndex } from '@atlaskit/editor-common'
+import { colors } from '@atlaskit/theme'
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import rafSchedule from 'raf-schd'
 import * as React from 'react'
 import styled from 'styled-components'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { colors } from '@atlaskit/theme'
-import { akEditorMenuZIndex } from '@atlaskit/editor-common'
-import { EditorAppearanceComponentProps, EditorAppearance } from '../../types'
-import Avatars from '../../plugins/collab-edit/ui/avatars'
-import PluginSlot from '../PluginSlot'
-import Toolbar from '../Toolbar'
-import ContentStyles from '../ContentStyles'
-import { ClickAreaBlock } from '../Addon'
 import { tableFullPageEditorStyles } from '../../plugins/table/ui/styles'
 import { akEditorToolbarKeylineHeight } from '../../styles'
-import rafSchedule from 'raf-schd'
+import { EditorAppearance, EditorAppearanceComponentProps } from '../../types'
+import { ClickAreaBlock } from '../Addon'
+import ContentStyles from '../ContentStyles'
+import PluginSlot from '../PluginSlot'
 import { scrollbarStyles } from '../styles'
+import Toolbar from '../Toolbar'
 import WidthEmitter from '../WidthEmitter'
 
 const GUTTER_PADDING = 32
@@ -216,14 +215,6 @@ export default class Editor extends React.Component<
             disabled={!!disabled}
           />
           <MainToolbarCustomComponentsSlot>
-            <Avatars
-              editorView={editorView}
-              eventDispatcher={eventDispatcher}
-              inviteToEditHandler={collabEdit && collabEdit.inviteToEditHandler}
-              isInviteToEditButtonSelected={
-                collabEdit && collabEdit.isInviteToEditButtonSelected
-              }
-            />
             {customPrimaryToolbarComponents}
           </MainToolbarCustomComponentsSlot>
         </MainToolbar>

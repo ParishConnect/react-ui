@@ -1,89 +1,87 @@
-import { toggleMark } from 'prosemirror-commands';
+import {
+  JSONDocNode,
+  JSONNode,
+  JSONTransformer
+} from '@atlaskit/editor-json-transformer'
+import { toggleMark } from 'prosemirror-commands'
 import {
   Fragment,
   Mark,
   MarkType,
   Node,
+  NodeRange,
   NodeType,
   ResolvedPos,
-  Slice,
   Schema,
-  NodeRange,
-} from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
+  Slice
+} from 'prosemirror-model'
 import {
   EditorState,
   NodeSelection,
   Selection,
   TextSelection,
-  Transaction,
-} from 'prosemirror-state';
-import { liftTarget, findWrapping } from 'prosemirror-transform';
-import { LEFT } from '../keymaps';
-import {
-  JSONTransformer,
-  JSONDocNode,
-  JSONNode,
-} from '@atlaskit/editor-json-transformer';
-import { FakeTextCursorSelection } from '../plugins/fake-text-cursor/cursor';
-import { hasParentNodeOfType } from 'prosemirror-utils';
-import { GapCursorSelection, Side } from '../plugins/gap-cursor/selection';
+  Transaction
+} from 'prosemirror-state'
+import { findWrapping, liftTarget } from 'prosemirror-transform'
+import { hasParentNodeOfType } from 'prosemirror-utils'
+import { EditorView } from 'prosemirror-view'
+import { LEFT } from '../keymaps'
+import { FakeTextCursorSelection } from '../plugins/fake-text-cursor/cursor'
+import { GapCursorSelection, Side } from '../plugins/gap-cursor/selection'
 
-export * from './document';
-export * from './action';
-export * from './step';
-export * from './mark';
-
-export { JSONDocNode, JSONNode };
-
-export { filterContentByType } from './filter';
+export * from './action'
+export * from './document'
+export { filterContentByType } from './filter'
+export * from './mark'
+export * from './step'
+export { JSONDocNode, JSONNode }
 
 function validateNode(node: Node): boolean {
-  return false;
+  return false
 }
 
 function isMarkTypeCompatibleWithMark(markType: MarkType, mark: Mark): boolean {
-  return !mark.type.excludes(markType) && !markType.excludes(mark.type);
+  return !mark.type.excludes(markType) && !markType.excludes(mark.type)
 }
 
 function isMarkTypeAllowedInNode(
   markType: MarkType,
-  state: EditorState,
+  state: EditorState
 ): boolean {
-  return toggleMark(markType)(state);
+  return toggleMark(markType)(state)
 }
 
 function closest(
   node: HTMLElement | null | undefined,
-  s: string,
+  s: string
 ): HTMLElement | null {
-  let el = node as HTMLElement;
+  let el = node as HTMLElement
   if (!el) {
-    return null;
+    return null
   }
   if (!document.documentElement || !document.documentElement.contains(el)) {
-    return null;
+    return null
   }
-  const matches = el.matches ? 'matches' : 'msMatchesSelector';
+  const matches = el.matches ? 'matches' : 'msMatchesSelector'
 
   do {
     if (el[matches](s)) {
-      return el;
+      return el
     }
-    el = (el.parentElement || el.parentNode) as HTMLElement;
-  } while (el !== null && el.nodeType === 1);
-  return null;
+    el = (el.parentElement || el.parentNode) as HTMLElement
+  } while (el !== null && el.nodeType === 1)
+  return null
 }
 
 export const isImage = (fileType?: string): boolean => {
   return (
     !!fileType &&
     (fileType.indexOf('image/') > -1 || fileType.indexOf('video/') > -1)
-  );
-};
+  )
+}
 
 export function canMoveUp(state: EditorState): boolean {
-  const { selection, doc } = state;
+  const { selection, doc } = state
 
   /**
    * If there's a media element on the selection,
@@ -93,30 +91,30 @@ export function canMoveUp(state: EditorState): boolean {
   if (selection instanceof NodeSelection) {
     if (selection.node.type.name === 'media') {
       /** Weird way of checking if the previous element is a paragraph */
-      const mediaAncestorNode = doc.nodeAt(selection.anchor - 3);
+      const mediaAncestorNode = doc.nodeAt(selection.anchor - 3)
       return !!(
         mediaAncestorNode && mediaAncestorNode.type.name === 'paragraph'
-      );
+      )
     } else if (selection.node.type.name === 'mediaGroup') {
-      const mediaGroupAncestorNode = selection.$anchor.nodeBefore;
+      const mediaGroupAncestorNode = selection.$anchor.nodeBefore
       return !!(
         mediaGroupAncestorNode &&
         mediaGroupAncestorNode.type.name === 'paragraph'
-      );
+      )
     }
   }
 
   if (selection instanceof TextSelection) {
     if (!selection.empty) {
-      return true;
+      return true
     }
   }
 
-  return !atTheBeginningOfDoc(state);
+  return !atTheBeginningOfDoc(state)
 }
 
 export function canMoveDown(state: EditorState): boolean {
-  const { selection, doc } = state;
+  const { selection, doc } = state
 
   /**
    * If there's a media element on the selection,
@@ -125,67 +123,67 @@ export function canMoveDown(state: EditorState): boolean {
    */
   if (selection instanceof NodeSelection) {
     if (selection.node.type.name === 'media') {
-      const nodeAfter = doc.nodeAt(selection.$head.after());
-      return !!(nodeAfter && nodeAfter.type.name === 'paragraph');
+      const nodeAfter = doc.nodeAt(selection.$head.after())
+      return !!(nodeAfter && nodeAfter.type.name === 'paragraph')
     } else if (selection.node.type.name === 'mediaGroup') {
       return !(
         selection.$head.parentOffset === selection.$anchor.parent.content.size
-      );
+      )
     }
   }
   if (selection instanceof TextSelection) {
     if (!selection.empty) {
-      return true;
+      return true
     }
   }
 
-  return !atTheEndOfDoc(state);
+  return !atTheEndOfDoc(state)
 }
 
 export function atTheEndOfDoc(state: EditorState): boolean {
-  const { selection, doc } = state;
-  return doc.nodeSize - selection.$to.pos - 2 === selection.$to.depth;
+  const { selection, doc } = state
+  return doc.nodeSize - selection.$to.pos - 2 === selection.$to.depth
 }
 
 export function atTheBeginningOfDoc(state: EditorState): boolean {
-  const { selection } = state;
-  return selection.$from.pos === selection.$from.depth;
+  const { selection } = state
+  return selection.$from.pos === selection.$from.depth
 }
 
 export function atTheEndOfBlock(state: EditorState): boolean {
-  const { selection } = state;
-  const { $to } = selection;
+  const { selection } = state
+  const { $to } = selection
   if (selection instanceof GapCursorSelection) {
-    return false;
+    return false
   }
   if (selection instanceof NodeSelection && selection.node.isBlock) {
-    return true;
+    return true
   }
-  return endPositionOfParent($to) === $to.pos + 1;
+  return endPositionOfParent($to) === $to.pos + 1
 }
 
 export function atTheBeginningOfBlock(state: EditorState): boolean {
-  const { selection } = state;
-  const { $from } = selection;
+  const { selection } = state
+  const { $from } = selection
   if (selection instanceof GapCursorSelection) {
-    return false;
+    return false
   }
   if (selection instanceof NodeSelection && selection.node.isBlock) {
-    return true;
+    return true
   }
-  return startPositionOfParent($from) === $from.pos;
+  return startPositionOfParent($from) === $from.pos
 }
 
 export function startPositionOfParent(resolvedPos: ResolvedPos): number {
-  return resolvedPos.start(resolvedPos.depth);
+  return resolvedPos.start(resolvedPos.depth)
 }
 
 export function endPositionOfParent(resolvedPos: ResolvedPos): number {
-  return resolvedPos.end(resolvedPos.depth) + 1;
+  return resolvedPos.end(resolvedPos.depth) + 1
 }
 
 export function getCursor(selection: Selection): ResolvedPos | undefined {
-  return (selection as TextSelection).$cursor || undefined;
+  return (selection as TextSelection).$cursor || undefined
 }
 
 /**
@@ -196,48 +194,48 @@ export function getCursor(selection: Selection): ResolvedPos | undefined {
  */
 export function isMarkTypeAllowedInCurrentSelection(
   markType: MarkType,
-  state: EditorState,
+  state: EditorState
 ) {
   if (state.selection instanceof FakeTextCursorSelection) {
-    return true;
+    return true
   }
 
   if (!isMarkTypeAllowedInNode(markType, state)) {
-    return false;
+    return false
   }
 
-  const { empty, $cursor, ranges } = state.selection as TextSelection;
+  const { empty, $cursor, ranges } = state.selection as TextSelection
   if (empty && !$cursor) {
-    return false;
+    return false
   }
 
   let isCompatibleMarkType = mark =>
-    isMarkTypeCompatibleWithMark(markType, mark);
+    isMarkTypeCompatibleWithMark(markType, mark)
 
   // Handle any new marks in the current transaction
   if (
     state.tr.storedMarks &&
     !state.tr.storedMarks.every(isCompatibleMarkType)
   ) {
-    return false;
+    return false
   }
 
   if ($cursor) {
-    return $cursor.marks().every(isCompatibleMarkType);
+    return $cursor.marks().every(isCompatibleMarkType)
   }
 
   // Check every node in a selection - ensuring that it is compatible with the current mark type
   return ranges.every(({ $from, $to }) => {
     let allowedInActiveMarks =
-      $from.depth === 0 ? state.doc.marks.every(isCompatibleMarkType) : true;
+      $from.depth === 0 ? state.doc.marks.every(isCompatibleMarkType) : true
 
     state.doc.nodesBetween($from.pos, $to.pos, node => {
       allowedInActiveMarks =
-        allowedInActiveMarks && node.marks.every(isCompatibleMarkType);
-    });
+        allowedInActiveMarks && node.marks.every(isCompatibleMarkType)
+    })
 
-    return allowedInActiveMarks;
-  });
+    return allowedInActiveMarks
+  })
 }
 
 /**
@@ -248,17 +246,17 @@ export function isRangeOfType(
   doc,
   $from: ResolvedPos,
   $to: ResolvedPos,
-  nodeType: NodeType,
+  nodeType: NodeType
 ): boolean {
   return (
     getAncestorNodesBetween(doc, $from, $to).filter(
-      node => node.type !== nodeType,
+      node => node.type !== nodeType
     ).length === 0
-  );
+  )
 }
 
 export function createSliceWithContent(content: string, state: EditorState) {
-  return new Slice(Fragment.from(state.schema.text(content)), 0, 0);
+  return new Slice(Fragment.from(state.schema.text(content)), 0, 0)
 }
 
 /**
@@ -268,54 +266,54 @@ export function createSliceWithContent(content: string, state: EditorState) {
 export function canJoinDown(
   selection: Selection,
   doc: any,
-  nodeType: NodeType,
+  nodeType: NodeType
 ): boolean {
-  return checkNodeDown(selection, doc, node => node.type === nodeType);
+  return checkNodeDown(selection, doc, node => node.type === nodeType)
 }
 
 export function checkNodeDown(
   selection: Selection,
   doc: Node,
-  filter: (node: Node) => boolean,
+  filter: (node: Node) => boolean
 ): boolean {
   const res = doc.resolve(
-    selection.$to.after(findAncestorPosition(doc, selection.$to).depth),
-  );
-  return res.nodeAfter ? filter(res.nodeAfter) : false;
+    selection.$to.after(findAncestorPosition(doc, selection.$to).depth)
+  )
+  return res.nodeAfter ? filter(res.nodeAfter) : false
 }
 
 export const setNodeSelection = (view: EditorView, pos: number) => {
-  const { state, dispatch } = view;
+  const { state, dispatch } = view
 
   if (!isFinite(pos)) {
-    return;
+    return
   }
 
-  const tr = state.tr.setSelection(NodeSelection.create(state.doc, pos));
-  dispatch(tr);
-};
+  const tr = state.tr.setSelection(NodeSelection.create(state.doc, pos))
+  dispatch(tr)
+}
 
 export function setTextSelection(
   view: EditorView,
   anchor: number,
-  head?: number,
+  head?: number
 ) {
-  const { state } = view;
+  const { state } = view
   const tr = state.tr.setSelection(
-    TextSelection.create(state.doc, anchor, head),
-  );
-  view.dispatch(tr);
+    TextSelection.create(state.doc, anchor, head)
+  )
+  view.dispatch(tr)
 }
 
 export function setGapCursorSelection(
   view: EditorView,
   pos: number,
-  side: Side,
+  side: Side
 ) {
-  const { state } = view;
+  const { state } = view
   view.dispatch(
-    state.tr.setSelection(new GapCursorSelection(state.doc.resolve(pos), side)),
-  );
+    state.tr.setSelection(new GapCursorSelection(state.doc.resolve(pos), side))
+  )
 }
 
 /**
@@ -325,12 +323,12 @@ export function setGapCursorSelection(
 export function canJoinUp(
   selection: Selection,
   doc: any,
-  nodeType: NodeType,
+  nodeType: NodeType
 ): boolean {
   const res = doc.resolve(
-    selection.$from.before(findAncestorPosition(doc, selection.$from).depth),
-  );
-  return res.nodeBefore && res.nodeBefore.type === nodeType;
+    selection.$from.before(findAncestorPosition(doc, selection.$from).depth)
+  )
+  return res.nodeBefore && res.nodeBefore.type === nodeType
 }
 
 /**
@@ -339,41 +337,41 @@ export function canJoinUp(
 export function getAncestorNodesBetween(
   doc,
   $from: ResolvedPos,
-  $to: ResolvedPos,
+  $to: ResolvedPos
 ): Node[] {
-  const nodes = Array<Node>();
-  const maxDepth = findAncestorPosition(doc, $from).depth;
-  let current = doc.resolve($from.start(maxDepth));
+  const nodes = Array<Node>()
+  const maxDepth = findAncestorPosition(doc, $from).depth
+  let current = doc.resolve($from.start(maxDepth))
 
   while (current.pos <= $to.start($to.depth)) {
-    const depth = Math.min(current.depth, maxDepth);
-    const node = current.node(depth);
+    const depth = Math.min(current.depth, maxDepth)
+    const node = current.node(depth)
 
     if (node) {
-      nodes.push(node);
+      nodes.push(node)
     }
 
     if (depth === 0) {
-      break;
+      break
     }
 
-    let next: ResolvedPos = doc.resolve(current.after(depth));
+    let next: ResolvedPos = doc.resolve(current.after(depth))
     if (next.start(depth) >= doc.nodeSize - 2) {
-      break;
+      break
     }
 
     if (next.depth !== current.depth) {
-      next = doc.resolve(next.pos + 2);
+      next = doc.resolve(next.pos + 2)
     }
 
     if (next.depth) {
-      current = doc.resolve(next.start(next.depth));
+      current = doc.resolve(next.start(next.depth))
     } else {
-      current = doc.resolve(next.end(next.depth));
+      current = doc.resolve(next.end(next.depth))
     }
   }
 
-  return nodes;
+  return nodes
 }
 
 /**
@@ -396,24 +394,24 @@ export function getGroupsInRange(
   doc,
   $from: ResolvedPos,
   $to: ResolvedPos,
-  isNodeValid: (node: Node) => boolean = validateNode,
+  isNodeValid: (node: Node) => boolean = validateNode
 ): Array<{ $from: ResolvedPos; $to: ResolvedPos }> {
-  const groups = Array<{ $from: ResolvedPos; $to: ResolvedPos }>();
-  const commonAncestor = hasCommonAncestor(doc, $from, $to);
-  const fromAncestor = findAncestorPosition(doc, $from);
+  const groups = Array<{ $from: ResolvedPos; $to: ResolvedPos }>()
+  const commonAncestor = hasCommonAncestor(doc, $from, $to)
+  const fromAncestor = findAncestorPosition(doc, $from)
 
   if (
     commonAncestor ||
     (fromAncestor.depth === 1 && isNodeValid($from.node(1)!))
   ) {
-    groups.push({ $from, $to });
+    groups.push({ $from, $to })
   } else {
-    let current = $from;
+    let current = $from
 
     while (current.pos < $to.pos) {
-      let ancestorPos = findAncestorPosition(doc, current);
+      let ancestorPos = findAncestorPosition(doc, current)
       while (ancestorPos.depth > 1) {
-        ancestorPos = findAncestorPosition(doc, ancestorPos);
+        ancestorPos = findAncestorPosition(doc, ancestorPos)
       }
 
       const endPos = doc.resolve(
@@ -421,46 +419,46 @@ export function getGroupsInRange(
           // should not be smaller then start position in case of an empty paragraph for example.
           Math.max(
             ancestorPos.start(ancestorPos.depth),
-            ancestorPos.end(ancestorPos.depth) - 3,
+            ancestorPos.end(ancestorPos.depth) - 3
           ),
-          $to.pos,
-        ),
-      );
+          $to.pos
+        )
+      )
 
       groups.push({
         $from: current,
-        $to: endPos,
-      });
+        $to: endPos
+      })
 
-      current = doc.resolve(Math.min(endPos.after(1) + 1, doc.nodeSize - 2));
+      current = doc.resolve(Math.min(endPos.after(1) + 1, doc.nodeSize - 2))
     }
   }
 
-  return groups;
+  return groups
 }
 
 /**
  * Traverse the document until an "ancestor" is found. Any nestable block can be an ancestor.
  */
 export function findAncestorPosition(doc: Node, pos: any): any {
-  const nestableBlocks = ['blockquote', 'bulletList', 'orderedList'];
+  const nestableBlocks = ['blockquote', 'bulletList', 'orderedList']
 
   if (pos.depth === 1) {
-    return pos;
+    return pos
   }
 
-  let node: Node | undefined = pos.node(pos.depth);
-  let newPos = pos;
+  let node: Node | undefined = pos.node(pos.depth)
+  let newPos = pos
   while (pos.depth >= 1) {
-    pos = doc.resolve(pos.before(pos.depth));
-    node = pos.node(pos.depth);
+    pos = doc.resolve(pos.before(pos.depth))
+    node = pos.node(pos.depth)
 
     if (node && nestableBlocks.indexOf(node.type.name) !== -1) {
-      newPos = pos;
+      newPos = pos
     }
   }
 
-  return newPos;
+  return newPos
 }
 
 /**
@@ -469,126 +467,126 @@ export function findAncestorPosition(doc: Node, pos: any): any {
 export function hasCommonAncestor(
   doc,
   $from: ResolvedPos,
-  $to: ResolvedPos,
+  $to: ResolvedPos
 ): boolean {
-  let current;
-  let target;
+  let current
+  let target
 
   if ($from.depth > $to.depth) {
-    current = findAncestorPosition(doc, $from);
-    target = findAncestorPosition(doc, $to);
+    current = findAncestorPosition(doc, $from)
+    target = findAncestorPosition(doc, $to)
   } else {
-    current = findAncestorPosition(doc, $to);
-    target = findAncestorPosition(doc, $from);
+    current = findAncestorPosition(doc, $to)
+    target = findAncestorPosition(doc, $from)
   }
 
   while (current.depth > target.depth && current.depth > 1) {
-    current = findAncestorPosition(doc, current);
+    current = findAncestorPosition(doc, current)
   }
 
-  return current.node(current.depth) === target.node(target.depth);
+  return current.node(current.depth) === target.node(target.depth)
 }
 
 /**
  * Takes a selection $from and $to and lift all text nodes from their parents to document-level
  */
 export function liftSelection(tr, doc, $from: ResolvedPos, $to: ResolvedPos) {
-  let startPos = $from.start($from.depth);
-  let endPos = $to.end($to.depth);
-  const target = Math.max(0, findAncestorPosition(doc, $from).depth - 1);
+  let startPos = $from.start($from.depth)
+  let endPos = $to.end($to.depth)
+  const target = Math.max(0, findAncestorPosition(doc, $from).depth - 1)
 
   tr.doc.nodesBetween(startPos, endPos, (node, pos) => {
     if (
       node.isText || // Text node
       (node.isTextblock && !node.textContent) // Empty paragraph
     ) {
-      const res = tr.doc.resolve(tr.mapping.map(pos));
-      const sel = new NodeSelection(res);
-      const range = sel.$from.blockRange(sel.$to)!;
+      const res = tr.doc.resolve(tr.mapping.map(pos))
+      const sel = new NodeSelection(res)
+      const range = sel.$from.blockRange(sel.$to)!
 
       if (liftTarget(range as NodeRange) !== undefined) {
-        tr.lift(range, target);
+        tr.lift(range, target)
       }
     }
-  });
+  })
 
-  startPos = tr.mapping.map(startPos);
-  endPos = tr.mapping.map(endPos);
-  endPos = tr.doc.resolve(endPos).end(tr.doc.resolve(endPos).depth); // We want to select the entire node
+  startPos = tr.mapping.map(startPos)
+  endPos = tr.mapping.map(endPos)
+  endPos = tr.doc.resolve(endPos).end(tr.doc.resolve(endPos).depth) // We want to select the entire node
 
   tr.setSelection(
-    new TextSelection(tr.doc.resolve(startPos), tr.doc.resolve(endPos)),
-  );
+    new TextSelection(tr.doc.resolve(startPos), tr.doc.resolve(endPos))
+  )
 
   return {
     tr: tr,
     $from: tr.doc.resolve(startPos),
-    $to: tr.doc.resolve(endPos),
-  };
+    $to: tr.doc.resolve(endPos)
+  }
 }
 
 /**
  * Lift nodes in block to one level above.
  */
 export function liftSiblingNodes(view: EditorView) {
-  const { tr } = view.state;
-  const { $from, $to } = view.state.selection;
-  const blockStart = tr.doc.resolve($from.start($from.depth - 1));
-  const blockEnd = tr.doc.resolve($to.end($to.depth - 1));
-  const range = blockStart.blockRange(blockEnd)!;
-  view.dispatch(tr.lift(range as NodeRange, blockStart.depth - 1));
+  const { tr } = view.state
+  const { $from, $to } = view.state.selection
+  const blockStart = tr.doc.resolve($from.start($from.depth - 1))
+  const blockEnd = tr.doc.resolve($to.end($to.depth - 1))
+  const range = blockStart.blockRange(blockEnd)!
+  view.dispatch(tr.lift(range as NodeRange, blockStart.depth - 1))
 }
 
 /**
  * Lift sibling nodes to document-level and select them.
  */
 export function liftAndSelectSiblingNodes(view: EditorView): Transaction {
-  const { tr } = view.state;
-  const { $from, $to } = view.state.selection;
-  const blockStart = tr.doc.resolve($from.start($from.depth - 1));
-  const blockEnd = tr.doc.resolve($to.end($to.depth - 1));
+  const { tr } = view.state
+  const { $from, $to } = view.state.selection
+  const blockStart = tr.doc.resolve($from.start($from.depth - 1))
+  const blockEnd = tr.doc.resolve($to.end($to.depth - 1))
   // TODO: [ts30] handle void and null properly
-  const range = blockStart.blockRange(blockEnd) as NodeRange;
-  tr.setSelection(new TextSelection(blockStart, blockEnd));
-  tr.lift(range as NodeRange, blockStart.depth - 1);
-  return tr;
+  const range = blockStart.blockRange(blockEnd) as NodeRange
+  tr.setSelection(new TextSelection(blockStart, blockEnd))
+  tr.lift(range as NodeRange, blockStart.depth - 1)
+  return tr
 }
 
 export function wrapIn(
   nodeType: NodeType,
   tr: Transaction,
   $from: ResolvedPos,
-  $to: ResolvedPos,
+  $to: ResolvedPos
 ): Transaction {
-  const range = $from.blockRange($to) as any;
-  const wrapping = range && (findWrapping(range, nodeType) as any);
+  const range = $from.blockRange($to) as any
+  const wrapping = range && (findWrapping(range, nodeType) as any)
   if (wrapping) {
-    tr = tr.wrap(range, wrapping).scrollIntoView();
+    tr = tr.wrap(range, wrapping).scrollIntoView()
   }
-  return tr;
+  return tr
 }
 
-const transformer = new JSONTransformer();
+const transformer = new JSONTransformer()
 export function toJSON(node: Node): JSONDocNode {
-  return transformer.encode(node);
+  return transformer.encode(node)
 }
 
 /**
  * Repeating string for multiple times
  */
 export function stringRepeat(text: string, length: number): string {
-  let result = '';
+  let result = ''
   for (let x = 0; x < length; x++) {
-    result += text;
+    result += text
   }
-  return result;
+  return result
 }
 
 /**
  * A replacement for `Array.from` until it becomes widely implemented.
  */
 export function arrayFrom(obj: any): any[] {
-  return Array.prototype.slice.call(obj);
+  return Array.prototype.slice.call(obj)
 }
 
 /**
@@ -597,69 +595,70 @@ export function arrayFrom(obj: any): any[] {
  */
 export function closestElement(
   node: HTMLElement | null | undefined,
-  s: string,
+  s: string
 ): HTMLElement | null {
-  return closest(node, s);
+  return closest(node, s)
 }
 
 export function moveLeft(view: EditorView) {
   const event = new CustomEvent('keydown', {
     bubbles: true,
-    cancelable: true,
-  });
-  (event as any).keyCode = LEFT;
+    cancelable: true
+  })
+  ;(event as any).keyCode = LEFT
 
-  (view as any).dispatchEvent(event);
+  ;(view as any).dispatchEvent(event)
 }
 
 /**
  * Function will create a list of wrapper blocks present in a selection.
  */
 function getSelectedWrapperNodes(state: EditorState): NodeType[] {
-  const nodes: Array<NodeType> = [];
+  const nodes: Array<NodeType> = []
   if (state.selection) {
-    const { $from, $to } = state.selection;
+    const { $from, $to } = state.selection
     const {
       blockquote,
       panel,
       orderedList,
       bulletList,
       listItem,
-      codeBlock,
-    } = state.schema.nodes;
+      codeBlock
+    } = state.schema.nodes
     state.doc.nodesBetween($from.pos, $to.pos, (node, pos) => {
       if (
         (node.isBlock &&
           [blockquote, panel, orderedList, bulletList, listItem].indexOf(
-            node.type,
+            node.type
           ) >= 0) ||
         node.type === codeBlock
       ) {
-        nodes.push(node.type);
+        nodes.push(node.type)
       }
-    });
+    })
   }
-  return nodes;
+  return nodes
 }
 
 /**
  * Function will check if changing block types: Paragraph, Heading is enabled.
  */
 export function areBlockTypesDisabled(state: EditorState): boolean {
-  const nodesTypes: NodeType[] = getSelectedWrapperNodes(state);
-  const { panel } = state.schema.nodes;
-  return nodesTypes.filter(type => type !== panel).length > 0;
+  const nodesTypes: NodeType[] = getSelectedWrapperNodes(state)
+  const { panel } = state.schema.nodes
+  return nodesTypes.filter(type => type !== panel).length > 0
 }
 
 export const isTemporary = (id: string): boolean => {
-  return id.indexOf('temporary:') === 0;
-};
+  return id.indexOf('temporary:') === 0
+}
 
 // @see: https://github.com/ProseMirror/prosemirror/issues/710
 // @see: https://bugs.chromium.org/p/chromium/issues/detail?id=740085
 // Chrome >= 58
 export const isChromeWithSelectionBug =
-  parseInt((navigator.userAgent.match(/Chrome\/(\d{2})/) || [])[1], 10) >= 58;
+  typeof navigator !== 'undefined' &&
+  parseInt((navigator.userAgent.match(/Chrome\/(\d{2})/) || [])[1], 10) >= 58
 
 export const isEmptyNode = (schema: Schema) => {
   const {
@@ -678,108 +677,108 @@ export const isEmptyNode = (schema: Schema) => {
     decisionItem,
     media,
     mediaGroup,
-    mediaSingle,
-  } = schema.nodes;
+    mediaSingle
+  } = schema.nodes
   const innerIsEmptyNode = (node: Node) => {
     switch (node.type) {
       case media:
       case mediaGroup:
       case mediaSingle:
-        return false;
+        return false
       case paragraph:
       case codeBlock:
       case heading:
       case taskItem:
       case decisionItem:
-        return node.content.size === 0;
+        return node.content.size === 0
       case blockquote:
       case panel:
       case listItem:
         return (
           node.content.size === 2 && innerIsEmptyNode(node.content.firstChild!)
-        );
+        )
       case bulletList:
       case orderedList:
         return (
           node.content.size === 4 && innerIsEmptyNode(node.content.firstChild!)
-        );
+        )
       case taskList:
       case decisionList:
         return (
           node.content.size === 2 && innerIsEmptyNode(node.content.firstChild!)
-        );
+        )
       case doc:
-        let isEmpty = true;
+        let isEmpty = true
         node.content.forEach(child => {
-          isEmpty = isEmpty && innerIsEmptyNode(child);
-        });
-        return isEmpty;
+          isEmpty = isEmpty && innerIsEmptyNode(child)
+        })
+        return isEmpty
       default:
-        throw new Error(`${node.type.name} node is not implemented`);
+        throw new Error(`${node.type.name} node is not implemented`)
     }
-  };
-  return innerIsEmptyNode;
-};
+  }
+  return innerIsEmptyNode
+}
 
 export const insideTableCell = (state: EditorState) => {
-  const { tableCell, tableHeader } = state.schema.nodes;
-  return hasParentNodeOfType([tableCell, tableHeader])(state.selection);
-};
+  const { tableCell, tableHeader } = state.schema.nodes
+  return hasParentNodeOfType([tableCell, tableHeader])(state.selection)
+}
 
 export const isElementInTableCell = (
-  element: HTMLElement | null,
+  element: HTMLElement | null
 ): HTMLElement | null => {
-  return closest(element, 'td') || closest(element, 'th');
-};
+  return closest(element, 'td') || closest(element, 'th')
+}
 
 export const isLastItemMediaGroup = (node: Node): boolean => {
-  const { content } = node;
-  return !!content.lastChild && content.lastChild.type.name === 'mediaGroup';
-};
+  const { content } = node
+  return !!content.lastChild && content.lastChild.type.name === 'mediaGroup'
+}
 
 export const isInListItem = (state: EditorState): boolean => {
-  return hasParentNodeOfType(state.schema.nodes.listItem)(state.selection);
-};
+  return hasParentNodeOfType(state.schema.nodes.listItem)(state.selection)
+}
 
 export const hasOpenEnd = (slice: Slice): boolean => {
-  return slice.openStart > 0 || slice.openEnd > 0;
-};
+  return slice.openStart > 0 || slice.openEnd > 0
+}
 
 export function filterChildrenBetween(
   doc: Node,
   from: number,
   to: number,
-  predicate: (node: Node, pos: number, parent: Node) => boolean | undefined,
+  predicate: (node: Node, pos: number, parent: Node) => boolean | undefined
 ) {
-  const results = [] as { node: Node; pos: number }[];
+  const results = [] as { node: Node; pos: number }[]
   doc.nodesBetween(from, to, (node, pos, parent) => {
     if (predicate(node, pos, parent)) {
-      results.push({ node, pos });
+      results.push({ node, pos })
     }
-  });
-  return results;
+  })
+  return results
 }
 
 export function dedupe<T>(
   list: T[] = [],
-  iteratee?: (T) => (keyof T) | T,
+  iteratee?: (T) => (keyof T) | T
 ): T[] {
-  const transformed = iteratee ? list.map(iteratee) : list;
+  const transformed = iteratee ? list.map(iteratee) : list
 
   return transformed
     .map((item, index, list) => (list.indexOf(item) === index ? item : null))
     .reduce<T[]>(
       (acc, item, index) => (!!item ? acc.concat(list[index]) : acc),
-      [],
-    );
+      []
+    )
 }
 
 export const isTextSelection = (
-  selection: Selection,
-): selection is TextSelection => selection instanceof TextSelection;
+  selection: Selection
+): selection is TextSelection => selection instanceof TextSelection
 
 /** Helper type for single arg function */
-type Func<A, B> = (a: A) => B;
+type Func<A, B> = (a: A) => B
 
 /**
  * Compose 1 to n functions.
@@ -803,8 +802,8 @@ export function compose<
     ? (a: A) => ReturnType<F1>
     : Func<any, ReturnType<F1>> // Doubtful we'd ever want to pipe this many functions, but in the off chance someone does, we can still infer the return type
 >(func: F1, ...funcs: FN): R {
-  const allFuncs = [func, ...funcs];
+  const allFuncs = [func, ...funcs]
   return function composed(raw: any) {
-    return allFuncs.reduceRight((memo, func) => func(memo), raw);
-  } as R;
+    return allFuncs.reduceRight((memo, func) => func(memo), raw)
+  } as R
 }

@@ -53,8 +53,6 @@ export default {
     'tableColResizing',
     'blockTypeKeyMap',
     'tableEditing',
-    'pmCollab',
-    'collab',
     'ruleInputRule',
     'ruleKeymap',
     'panel',
@@ -62,7 +60,6 @@ export default {
     'mediaKeymap',
     'mediaSingleKeymap',
     'unsupportedContent',
-    'jiraIssue',
     'fakeTextCursor',
     'helpDialog',
     'helpDialogKeymap',
@@ -82,7 +79,7 @@ export default {
     'width',
     'maxContentSize',
     'multilineContent',
-    'grid',
+    'grid'
   ],
   nodes: [
     'doc',
@@ -101,7 +98,6 @@ export default {
     'confluenceUnsupportedInline',
     'unsupportedBlock',
     'unsupportedInline',
-    'confluenceJiraIssue',
     'hardBreak',
     'emoji',
     'placeholder',
@@ -110,12 +106,8 @@ export default {
     'mediaSingle',
     'media',
     'tableHeader',
-    'decisionList',
     'tableRow',
-    'decisionItem',
     'tableCell',
-    'taskList',
-    'taskItem',
     'extension',
     'bodiedExtension',
     'inlineExtension',
@@ -124,11 +116,11 @@ export default {
     'layoutColumn',
     'inlineCard',
     'blockCard',
+    'bibleCard'
   ],
   marks: [
     // Inline marks
     'link',
-    'confluenceInlineComment',
     'em',
     'strong',
     'strike',
@@ -144,6 +136,6 @@ export default {
     'alignment',
     'breakout',
     'indentation',
-    'annotation',
-  ],
-};
+    'annotation'
+  ]
+}

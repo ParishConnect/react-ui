@@ -1,28 +1,27 @@
-import styled from 'styled-components'
-import { HTMLAttributes, ComponentClass } from 'react'
 import {
+  blockMarksSharedStyles,
   editorFontSize,
-  paragraphSharedStyles,
   indentationSharedStyles,
-  blockMarksSharedStyles
+  paragraphSharedStyles
 } from '@atlaskit/editor-common'
-import { telepointerStyle } from '../../plugins/collab-edit/styles'
-import { gapCursorStyles } from '../../plugins/gap-cursor/styles'
-import { tableStyles } from '../../plugins/table/ui/styles'
-import { placeholderStyles } from '../../plugins/placeholder/styles'
+import { ComponentClass, HTMLAttributes } from 'react'
+import styled from 'styled-components'
 import { blocktypeStyles } from '../../plugins/block-type/styles'
 import { codeBlockStyles } from '../../plugins/code-block/styles'
-import { listsStyles } from '../../plugins/lists/styles'
-import { ruleStyles } from '../../plugins/rule/styles'
-import { mediaStyles } from '../../plugins/media/styles'
-import { layoutStyles } from '../../plugins/layout/styles'
-import { panelStyles } from '../../plugins/panel/styles'
 import { fakeCursorStyles } from '../../plugins/fake-text-cursor/styles'
-import { mentionsStyles } from '../../plugins/mentions/styles'
-import { textFormattingStyles } from '../../plugins/text-formatting/styles'
-import { placeholderTextStyles } from '../../plugins/placeholder-text/styles'
+import { gapCursorStyles } from '../../plugins/gap-cursor/styles'
 import { gridStyles } from '../../plugins/grid/styles'
 import { linkStyles } from '../../plugins/hyperlink/styles'
+import { layoutStyles } from '../../plugins/layout/styles'
+import { listsStyles } from '../../plugins/lists/styles'
+import { mediaStyles } from '../../plugins/media/styles'
+import { mentionsStyles } from '../../plugins/mentions/styles'
+import { panelStyles } from '../../plugins/panel/styles'
+import { placeholderTextStyles } from '../../plugins/placeholder-text/styles'
+import { placeholderStyles } from '../../plugins/placeholder/styles'
+import { ruleStyles } from '../../plugins/rule/styles'
+import { tableStyles } from '../../plugins/table/ui/styles'
+import { textFormattingStyles } from '../../plugins/text-formatting/styles'
 
 const ContentStyles: ComponentClass<
   HTMLAttributes<{}> & { theme?: any }
@@ -62,6 +61,7 @@ const ContentStyles: ComponentClass<
   }
 
   .inlineCardView-content-wrap,
+  .bibleCardView-content-wrap,
   .blockCardView-content-wrap {
     display: inline-block;
   }
@@ -86,7 +86,6 @@ const ContentStyles: ComponentClass<
   ${ruleStyles}
   ${mediaStyles}
   ${layoutStyles}
-  ${telepointerStyle}
   ${gapCursorStyles};
   ${tableStyles};
   ${panelStyles}

@@ -1,12 +1,9 @@
-import { InjectedIntl, defineMessages } from 'react-intl'
 import { EditorState, NodeSelection } from 'prosemirror-state'
 import { removeSelectedNode } from 'prosemirror-utils'
-
-import RemoveIcon from '@atlaskit/icon/glyph/editor/remove'
-import OpenIcon from '@atlaskit/icon/glyph/open'
-
-import { Command } from '../../../src/types'
+import { defineMessages, InjectedIntl } from 'react-intl'
+import { ExternalLinkIcon, Trash2Icon } from '../../../../icons/index'
 import { FloatingToolbarConfig } from '../../../src/plugins/floating-toolbar/types'
+import { Command } from '../../../src/types'
 
 export const messages = defineMessages({
   block: {
@@ -129,16 +126,16 @@ export const floatingToolbar = (
       // { type: 'separator' },
       {
         type: 'button',
-        icon: OpenIcon,
-        title: intl.formatMessage('visit'),
+        icon: ExternalLinkIcon,
+        title: 'Visit',
         onClick: visit
       },
       { type: 'separator' },
       {
         type: 'button',
         appearance: 'danger',
-        icon: RemoveIcon,
-        title: intl.formatMessage('remove'),
+        icon: Trash2Icon,
+        title: 'Remove',
         onClick: remove
       }
     ]

@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
 import InlineDatePicker, { InlineDatePickerProps } from './InlineDatePicker'
@@ -8,9 +7,7 @@ function defaultDateFormatter(date) {
   return date instanceof Date ? date.toDateString() : date
 }
 
-export default class DatePicker extends React.Component<
-  Partial<InlineDatePickerProps>
-> {
+export default class DatePicker extends React.Component<InlineDatePickerProps> {
   state = {
     selected: this.props.value!.toDateString()
   }

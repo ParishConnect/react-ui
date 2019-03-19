@@ -13,6 +13,21 @@ const map24 = {
   '11': 23
 }
 
+const map24Num = {
+  12: 12,
+  1: 13,
+  2: 14,
+  3: 15,
+  4: 16,
+  5: 17,
+  6: 18,
+  7: 19,
+  8: 20,
+  9: 21,
+  10: 22,
+  11: 23
+}
+
 export function isValid(timeString: string): boolean {
   const time = timeString.trim().match(/(\d+)(?::(\d\d))?\s*(a|p)?/i)
   const time24hr = timeString.trim().match(/(\d\d)[:.]?(\d\d)/)
@@ -34,6 +49,13 @@ export function formatSemi24(time: string): string {
   if (time.length === 2) return `${time}00`
   if (time.length === 3) return `0${time}`
   return time
+}
+
+export function convertHourTo24(hour: number, meridiem: string): number {
+  if (hour > 24) return 0
+  if (hour === 12 && meridiem === 'AM') return 0
+  else if (hour < 12 && meridiem === 'PM') return map24Num[hour]
+  return hour
 }
 
 export function checkHour(hour: string, meridiem: string): string | null {

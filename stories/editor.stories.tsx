@@ -1,27 +1,31 @@
+import Box from '@hennessyevan/aluminum-box'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import Box from '@hennessyevan/aluminum-box'
-import testDocument from './testDocument.json'
-import { Manager } from '../src/manager'
 import {
-  Editor,
-  WithEditorActions,
-  Card,
-  Strong,
   Button,
-  toaster,
-  ReactRenderer,
-  ImagePicker,
-  Small,
-  Text,
-  JSONTransformer,
+  Card,
   Code,
+  Editor,
+  EditorContext,
   Heading,
+  ImagePicker,
+  JSONTransformer,
   PlainTransformer,
-  Textarea
+  ReactRenderer,
+  Small,
+  SmartCardProvider,
+  Strong,
+  Text,
+  Textarea,
+  toaster,
+  WithEditorActions
 } from '../src'
+import { Manager } from '../src/manager'
+import { BibleCardClient, BibleCardProvider } from './bibleProvider'
+import testDocument from './testDocument.json'
 
-const mediaProvider = () => {}
+const bibleClient = new BibleCardClient()
+const bibleCardProvider = new BibleCardProvider()
 
 const InfoNode = ({ user }) => {
   return (
@@ -55,43 +59,55 @@ storiesOf('editor', module)
   .add('Editor Core', () => (
     <Card elevation={3} maxWidth={1200} margin={40}>
       <ImagePicker />
-      <Editor
-        disabled={false}
-        appearance="full-page"
-        allowIndentation
-        placeholder="Write something..."
-        containerProps={{ paddingX: 48 }}
-        primaryToolbarComponents={
-          <WithEditorActions
-            render={actions => <SaveAndCancelButtons editorActions={actions} />}
+      <EditorContext>
+        <SmartCardProvider client={bibleClient}>
+          <Editor
+            disabled={false}
+            appearance="full-page"
+            UNSAFE_cards={{
+              provider: Promise.resolve(bibleCardProvider)
+            }}
+            allowIndentation
+            onChange={console.log}
+            placeholder="Write something..."
+            containerProps={{ paddingX: 48 }}
+            primaryToolbarComponents={
+              <WithEditorActions
+                render={actions => (
+                  <SaveAndCancelButtons editorActions={actions} />
+                )}
+              />
+            }
+            textFormatting={{
+              disableCode: true,
+              disableSuperscriptAndSubscript: true,
+              disableSmartTextCompletion: true
+            }}
+            contentComponents={
+              <WithEditorActions
+                render={actions => (
+                  <>
+                    <Textarea
+                      appearance="editor-title"
+                      component={Heading}
+                      autoFocus
+                      size={900}
+                      autoresize
+                      marginBottom={16}
+                      maxLength="120"
+                      maxWidth={624}
+                      placeholder="Give this page a title..."
+                    />
+                    <InfoNode
+                      user={{ firstName: 'Evan', lastName: 'Hennessy' }}
+                    />
+                  </>
+                )}
+              />
+            }
           />
-        }
-        textFormatting={{
-          disableCode: true,
-          disableSuperscriptAndSubscript: true,
-          disableSmartTextCompletion: true
-        }}
-        contentComponents={
-          <WithEditorActions
-            render={actions => (
-              <>
-                <Textarea
-                  appearance="editor-title"
-                  component={Heading}
-                  autoFocus
-                  size={900}
-                  autoresize
-                  marginBottom={16}
-                  maxLength="120"
-                  maxWidth={624}
-                  placeholder="Give this page a title..."
-                />
-                <InfoNode user={{ firstName: 'Evan', lastName: 'Hennessy' }} />
-              </>
-            )}
-          />
-        }
-      />
+        </SmartCardProvider>
+      </EditorContext>
     </Card>
   ))
   .add('JSON Transformer', () => (

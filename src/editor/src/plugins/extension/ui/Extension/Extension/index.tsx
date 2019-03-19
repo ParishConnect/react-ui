@@ -1,56 +1,56 @@
-import * as React from 'react';
-import { Component } from 'react';
-import { Node as PmNode } from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
-import { MacroProvider } from '../../../../macro';
-import { Wrapper, Header, Content, ContentWrapper } from './styles';
-import { Overlay } from '../styles';
-import ExtensionLozenge from '../Lozenge';
+import { calcBreakoutWidth } from '@atlaskit/editor-common'
+import { Node as PmNode } from 'prosemirror-model'
+import { EditorView } from 'prosemirror-view'
+import * as React from 'react'
+import { Component } from 'react'
+import WithPluginState from '../../../../../ui/WithPluginState'
+import { MacroProvider } from '../../../../plugin-macro'
 import {
   pluginKey as widthPluginKey,
-  WidthPluginState,
-} from '../../../../width';
-import { calcBreakoutWidth } from '@atlaskit/editor-common';
-import WithPluginState from '../../../../../ui/WithPluginState';
+  WidthPluginState
+} from '../../../../width'
+import ExtensionLozenge from '../Lozenge'
+import { Overlay } from '../styles'
+import { Content, ContentWrapper, Header, Wrapper } from './styles'
 
 export interface Props {
-  node: PmNode;
-  macroProvider?: MacroProvider;
-  handleContentDOMRef: (node: HTMLElement | null) => void;
-  onSelectExtension: (hasBody) => void;
-  children?: React.ReactNode;
-  view: EditorView;
+  node: PmNode
+  macroProvider?: MacroProvider
+  handleContentDOMRef: (node: HTMLElement | null) => void
+  onSelectExtension: (hasBody) => void
+  children?: React.ReactNode
+  view: EditorView
 }
 
 export default class Extension extends Component<Props, any> {
   private onSelectExtension = () => {
-    const { onSelectExtension, node } = this.props;
-    onSelectExtension(node.type.name === 'bodiedExtension');
-  };
+    const { onSelectExtension, node } = this.props
+    onSelectExtension(node.type.name === 'bodiedExtension')
+  }
 
   render() {
-    const { node, handleContentDOMRef, children, view } = this.props;
+    const { node, handleContentDOMRef, children, view } = this.props
 
-    const hasBody = node.type.name === 'bodiedExtension';
-    const hasChildren = !!children;
+    const hasBody = node.type.name === 'bodiedExtension'
+    const hasChildren = !!children
 
     return (
       <WithPluginState
         editorView={view}
         plugins={{
-          widthState: widthPluginKey,
+          widthState: widthPluginKey
         }}
         render={({
-          widthState = { width: 0 },
+          widthState = { width: 0 }
         }: {
-          widthState?: WidthPluginState;
+          widthState?: WidthPluginState
         }) => {
           return (
             <Wrapper
               data-layout={node.attrs.layout}
               className={`extension-container ${hasBody ? '' : 'with-overlay'}`}
               style={{
-                width: calcBreakoutWidth(node.attrs.layout, widthState.width),
+                width: calcBreakoutWidth(node.attrs.layout, widthState.width)
               }}
             >
               <Overlay className="extension-overlay" />
@@ -70,9 +70,9 @@ export default class Extension extends Component<Props, any> {
                 </ContentWrapper>
               )}
             </Wrapper>
-          );
+          )
         }}
       />
-    );
+    )
   }
 }

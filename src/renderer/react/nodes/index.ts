@@ -1,6 +1,7 @@
-import * as React from 'react'
 import { Fragment, Node } from 'prosemirror-model'
-
+import * as React from 'react'
+import Loadable from 'react-loadable'
+import { bigEmojiHeight } from '../../utils'
 import Blockquote from './blockquote'
 import BodiedExtension, {
   Props as BodiedExtensionProps
@@ -16,8 +17,8 @@ import Image from './image'
 import InlineExtension, {
   Props as InlineExtensionProps
 } from './inlineExtension'
-import LayoutSection from './layoutSection'
 import LayoutColumn from './layoutColumn'
+import LayoutSection from './layoutSection'
 import ListItem from './listItem'
 import MediaSingle from './mediaSingle'
 import OrderedList from './orderedList'
@@ -25,14 +26,13 @@ import Panel from './panel'
 import Paragraph from './paragraph'
 import Placeholder from './placeholder'
 import Rule from './rule'
-import TaskItem from './taskItem'
-import TaskList from './taskList'
 import Table from './table'
 import TableCell from './tableCell'
 import TableHeader from './tableHeader'
 import TableRow from './tableRow'
+import TaskItem from './taskItem'
+import TaskList from './taskList'
 import UnknownBlock from './unknownBlock'
-import Loadable from 'react-loadable'
 
 const DecisionItem = Loadable({
   loader: () =>
@@ -69,6 +69,13 @@ const InlineCard = Loadable({
   loading: () => null
 })
 
+const BibleCard = Loadable({
+  loader: () =>
+    import(/* webpackChunkName:"@atlaskit-internal-renderer-node_BibleCard" */
+    './bibleCard').then(module => module.default),
+  loading: () => null
+})
+
 const BlockCard = Loadable({
   loader: () =>
     import(/* webpackChunkName:"@atlaskit-internal-renderer-node_BlockCard" */
@@ -97,9 +104,8 @@ const Mention = Loadable({
   loading: () => null
 })
 
-import { bigEmojiHeight } from '../../utils'
-
 export const nodeToReact = {
+  bibleCard: BibleCard,
   blockquote: Blockquote,
   bulletList: BulletList,
   blockCard: BlockCard,

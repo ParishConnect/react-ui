@@ -1,15 +1,14 @@
-import { EditorView } from 'prosemirror-view'
-import { ProviderFactory, ExtensionHandlers } from '@atlaskit/editor-common'
-import { EventDispatcher } from '../event-dispatcher'
-import EditorActions from '../actions'
-import {
-  UIComponentFactory,
-  ToolbarUIComponentFactory,
-  ReactComponents,
-  InsertMenuCustomItem
-} from '../types'
-import { CollabEditOptions } from '../plugins/collab-edit'
+import { ExtensionHandlers, ProviderFactory } from '@atlaskit/editor-common'
 import { BoxProps } from '@hennessyevan/aluminum-box'
+import { EditorView } from 'prosemirror-view'
+import EditorActions from '../actions'
+import { EventDispatcher } from '../event-dispatcher'
+import {
+  InsertMenuCustomItem,
+  ReactComponents,
+  ToolbarUIComponentFactory,
+  UIComponentFactory
+} from '../types'
 
 export interface EditorAppearanceComponentProps extends BoxProps {
   onUiReady?: (ref) => void
@@ -43,6 +42,4 @@ export interface EditorAppearanceComponentProps extends BoxProps {
   extensionHandlers?: ExtensionHandlers
 
   disabled?: boolean
-
-  collabEdit?: CollabEditOptions
 }

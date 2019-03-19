@@ -1,27 +1,25 @@
-import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import { EditorState, Transaction, Selection } from 'prosemirror-state'
-import { EditorView, DirectEditorProps } from 'prosemirror-view'
-import { intlShape } from 'react-intl'
-
 import { CreateUIAnalyticsEventSignature } from '@atlaskit/analytics-next-types'
 import { ProviderFactory, Transformer } from '@atlaskit/editor-common'
-import { EventDispatcher, createDispatch } from '../event-dispatcher'
-import { processRawValue } from '../utils'
-import createPluginList from './create-plugins-list'
-import { EditorProps, EditorConfig, EditorPlugin } from '../types'
-import { PortalProviderAPI } from '../ui/PortalProvider'
+import * as PropTypes from 'prop-types'
+import { EditorState, Selection, Transaction } from 'prosemirror-state'
+import { DirectEditorProps, EditorView } from 'prosemirror-view'
+import * as React from 'react'
+import { intlShape } from 'react-intl'
+import { createDispatch, EventDispatcher } from '../event-dispatcher'
 import {
-  pluginKey as editorDisabledPluginKey,
-  EditorDisabledPluginState
+  EditorDisabledPluginState,
+  pluginKey as editorDisabledPluginKey
 } from '../plugins/editor-disabled'
-
+import { EditorConfig, EditorPlugin, EditorProps } from '../types'
+import { PortalProviderAPI } from '../ui/PortalProvider'
+import { processRawValue } from '../utils'
 import {
-  processPluginsList,
-  createSchema,
   createErrorReporter,
-  createPMPlugins
+  createPMPlugins,
+  createSchema,
+  processPluginsList
 } from './create-editor'
+import createPluginList from './create-plugins-list'
 
 export interface EditorViewProps {
   editorProps: EditorProps
@@ -29,31 +27,25 @@ export interface EditorViewProps {
   providerFactory: ProviderFactory
   portalProviderAPI: PortalProviderAPI
   disabled?: any
-  render?: (
-    props: {
-      editor: JSX.Element
-      view?: EditorView
-      config: EditorConfig
-      eventDispatcher: EventDispatcher
-      transformer?: Transformer<string>
-    }
-  ) => JSX.Element
-  onEditorCreated: (
-    instance: {
-      view: EditorView
-      config: EditorConfig
-      eventDispatcher: EventDispatcher
-      transformer?: Transformer<string>
-    }
-  ) => void
-  onEditorDestroyed: (
-    instance: {
-      view: EditorView
-      config: EditorConfig
-      eventDispatcher: EventDispatcher
-      transformer?: Transformer<string>
-    }
-  ) => void
+  render?: (props: {
+    editor: JSX.Element
+    view?: EditorView
+    config: EditorConfig
+    eventDispatcher: EventDispatcher
+    transformer?: Transformer<string>
+  }) => JSX.Element
+  onEditorCreated: (instance: {
+    view: EditorView
+    config: EditorConfig
+    eventDispatcher: EventDispatcher
+    transformer?: Transformer<string>
+  }) => void
+  onEditorDestroyed: (instance: {
+    view: EditorView
+    config: EditorConfig
+    eventDispatcher: EventDispatcher
+    transformer?: Transformer<string>
+  }) => void
 }
 
 export default class ReactEditorView<T = {}> extends React.Component<
@@ -121,11 +113,8 @@ export default class ReactEditorView<T = {}> extends React.Component<
   }
 
   // Helper to allow tests to inject plugins directly
-  getPlugins(
-    editorProps: EditorProps,
-    createAnalyticsEvent?: CreateUIAnalyticsEventSignature
-  ): EditorPlugin[] {
-    return createPluginList(editorProps, createAnalyticsEvent)
+  getPlugins(editorProps: EditorProps): EditorPlugin[] {
+    return createPluginList(editorProps)
   }
 
   createEditorState = (options: {
@@ -148,10 +137,7 @@ export default class ReactEditorView<T = {}> extends React.Component<
     }
 
     this.config = processPluginsList(
-      this.getPlugins(
-        options.props.editorProps,
-        options.props.createAnalyticsEvent
-      ),
+      this.getPlugins(options.props.editorProps),
       options.props.editorProps
     )
     const schema = createSchema(this.config)

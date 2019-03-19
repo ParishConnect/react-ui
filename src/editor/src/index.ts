@@ -1,21 +1,5 @@
 // Used in products integration code
-export { default as Editor } from './editor'
-export { default as getPropsPreset } from './create-editor/get-props-preset'
-export { default as EditorContext } from './ui/EditorContext'
-export { default as WithEditorActions } from './ui/WithEditorActions'
-export { default as WithHelpTrigger } from './ui/WithHelpTrigger'
-export { default as CollapsedEditor } from './ui/CollapsedEditor'
-export { default as ToolbarHelp } from './ui/ToolbarHelp'
-export { default as ToolbarFeedback } from './ui/ToolbarFeedback'
 export { EmojiResource } from '@atlaskit/emoji'
-export {
-  DefaultMediaStateManager,
-  MediaStateManager,
-  MediaProvider,
-  CustomMediaPicker
-} from './plugins/media'
-export { CollabEditProvider } from './plugins/collab-edit'
-export { MediaOptions } from './plugins/media'
 export {
   AbstractMentionResource,
   MentionProvider,
@@ -23,67 +7,74 @@ export {
   PresenceProvider,
   PresenceResource
 } from '@atlaskit/mention'
-export {
-  QuickInsertProvider,
-  QuickInsertItem
-} from './plugins/quick-insert/types'
-
-// Used in mobile bridge
-export { stateKey as mediaPluginKey } from './plugins/media/pm-plugins/main'
-export { mentionPluginKey, MentionPluginState } from './plugins/mentions'
-export {
-  TextFormattingState,
-  pluginKey as textFormattingStateKey
-} from './plugins/text-formatting/pm-plugins/main'
-export { textColorPluginKey, TextColorPluginState } from './plugins/text-color'
-export { changeColor } from './plugins/text-color/commands/change-color'
+export { default as EditorActions } from './actions'
+export { ReactEditorView } from './create-editor'
+export { getDefaultPluginsList } from './create-editor/create-plugins-list'
+export { default as getPropsPreset } from './create-editor/get-props-preset'
+export { default as Editor } from './editor'
+export { EventDispatcher } from './event-dispatcher'
 export { blockPluginStateKey, BlockTypeState } from './plugins'
+export { insertBlockType, setBlockType } from './plugins/block-type/commands'
+export { CardProvider } from './plugins/card'
+export {
+  indentList,
+  outdentList,
+  toggleBulletList,
+  toggleOrderedList
+} from './plugins/lists/commands'
 export {
   ListsPluginState as ListsState,
   pluginKey as listsStateKey
 } from './plugins/lists/pm-plugins/main'
 export {
-  indentList,
-  outdentList,
-  toggleOrderedList,
-  toggleBulletList
-} from './plugins/lists/commands'
+  CustomMediaPicker,
+  DefaultMediaStateManager,
+  MediaOptions,
+  MediaProvider,
+  MediaStateManager
+} from './plugins/media'
+// Used in mobile bridge
+export { stateKey as mediaPluginKey } from './plugins/media/pm-plugins/main'
+export { mentionPluginKey, MentionPluginState } from './plugins/mentions'
 export {
-  toggleSuperscript,
-  toggleSubscript,
-  toggleStrike,
-  toggleCode,
-  toggleUnderline,
-  toggleEm,
-  toggleStrong
-} from './plugins/text-formatting/commands/text-formatting'
-export { insertBlockType, setBlockType } from './plugins/block-type/commands'
+  ExtensionType,
+  MacroAttributes,
+  MacroProvider
+} from './plugins/plugin-macro'
+export {
+  QuickInsertItem,
+  QuickInsertProvider
+} from './plugins/quick-insert/types'
 export { createTable } from './plugins/table/actions'
-export { EventDispatcher } from './event-dispatcher'
+export { textColorPluginKey, TextColorPluginState } from './plugins/text-color'
+export { changeColor } from './plugins/text-color/commands/change-color'
 export {
-  pluginKey as statusPluginKey,
-  StatusState,
-  StatusType
-} from './plugins/status/plugin'
+  toggleCode,
+  toggleEm,
+  toggleStrike,
+  toggleStrong,
+  toggleSubscript,
+  toggleSuperscript,
+  toggleUnderline
+} from './plugins/text-formatting/commands/text-formatting'
 export {
-  commitStatusPicker,
-  setStatusPickerAt,
-  updateStatus
-} from './plugins/status/actions'
+  pluginKey as textFormattingStateKey,
+  TextFormattingState
+} from './plugins/text-formatting/pm-plugins/main'
 export { typeAheadPluginKey, TypeAheadPluginState } from './plugins/type-ahead'
-export { TypeAheadItem } from './plugins/type-ahead/types'
 export { selectItem } from './plugins/type-ahead/commands/select-item'
-
-// Used in editor-test-helpers
-export { setTextSelection } from './utils'
-export { ReactEditorView } from './create-editor'
-export { getDefaultPluginsList } from './create-editor/create-plugins-list'
-export { EditorPlugin, EditorProps, EditorInstance } from './types'
-export { default as EditorActions } from './actions'
-export { MacroProvider, MacroAttributes, ExtensionType } from './plugins/macro'
-export { CardProvider } from './plugins/card'
+export { TypeAheadItem } from './plugins/type-ahead/types'
+export { EditorInstance, EditorPlugin, EditorProps } from './types'
+export { default as CollapsedEditor } from './ui/CollapsedEditor'
+export { default as EditorContext } from './ui/EditorContext'
 export {
   PortalProvider,
   PortalProviderAPI,
   PortalRenderer
 } from './ui/PortalProvider'
+export { default as ToolbarFeedback } from './ui/ToolbarFeedback'
+export { default as ToolbarHelp } from './ui/ToolbarHelp'
+export { default as WithEditorActions } from './ui/WithEditorActions'
+export { default as WithHelpTrigger } from './ui/WithHelpTrigger'
+// Used in editor-test-helpers
+export { setTextSelection } from './utils'

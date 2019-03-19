@@ -1,25 +1,22 @@
-import { defineMessages } from 'react-intl'
-import { hasParentNodeOfType } from 'prosemirror-utils'
-
-import RemoveIcon from '@atlaskit/icon/glyph/editor/remove'
 import EditIcon from '@atlaskit/icon/glyph/editor/edit'
+import CenterIcon from '@atlaskit/icon/glyph/editor/media-center'
 import FullWidthIcon from '@atlaskit/icon/glyph/editor/media-full-width'
 import WideIcon from '@atlaskit/icon/glyph/editor/media-wide'
-import CenterIcon from '@atlaskit/icon/glyph/editor/media-center'
-
+import RemoveIcon from '@atlaskit/icon/glyph/editor/remove'
+import { hasParentNodeOfType } from 'prosemirror-utils'
+import { defineMessages } from 'react-intl'
 import { Command } from '../../types'
-
-import { MacroState, pluginKey as macroPluginKey } from '../macro'
 import {
   FloatingToolbarHandler,
   FloatingToolbarItem
 } from '../floating-toolbar/types'
+import { MacroState, pluginKey as macroPluginKey } from '../plugin-macro'
 import {
-  updateExtensionLayout,
   editExtension,
-  removeExtension
+  removeExtension,
+  updateExtensionLayout
 } from './actions'
-import { pluginKey, ExtensionState } from './plugin'
+import { ExtensionState, pluginKey } from './plugin'
 
 export const messages = defineMessages({
   edit: {

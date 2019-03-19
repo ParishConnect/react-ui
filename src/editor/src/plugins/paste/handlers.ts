@@ -1,24 +1,18 @@
-import { TextSelection } from 'prosemirror-state'
-import { hasParentNodeOfType } from 'prosemirror-utils'
-import { taskDecisionSliceFilter } from '../../utils/filter'
-import { linkifyContent } from '../hyperlink/utils'
-
-import { Slice } from 'prosemirror-model'
-import { EditorState } from 'prosemirror-state'
-import { EditorView } from 'prosemirror-view'
-import { runMacroAutoConvert } from '../macro'
 import { closeHistory } from 'prosemirror-history'
-import {
-  applyTextMarksToSlice,
-  getPasteSource,
-  hasOnlyNodesOfType
-} from './util'
+import { Slice } from 'prosemirror-model'
+import { EditorState, TextSelection } from 'prosemirror-state'
+import { hasParentNodeOfType } from 'prosemirror-utils'
+import { EditorView } from 'prosemirror-view'
+import { compose } from '../../utils'
+import { taskDecisionSliceFilter } from '../../utils/filter'
 import { queueCardsFromChangedTr } from '../card/pm-plugins/doc'
+import { linkifyContent } from '../hyperlink/utils'
+import { runMacroAutoConvert } from '../plugin-macro'
 import {
   pluginKey as textFormattingPluginKey,
   TextFormattingState
 } from '../text-formatting/pm-plugins/main'
-import { compose } from '../../utils'
+import { applyTextMarksToSlice, hasOnlyNodesOfType } from './util'
 
 export function handlePasteIntoTaskAndDecision(
   slice: Slice

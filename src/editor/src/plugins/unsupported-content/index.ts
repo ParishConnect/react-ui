@@ -2,81 +2,82 @@ import {
   confluenceUnsupportedBlock,
   confluenceUnsupportedInline,
   unsupportedBlock,
-  unsupportedInline,
-} from '@atlaskit/adf-schema';
-import { EditorState, Plugin, PluginKey } from 'prosemirror-state';
-import { EditorPlugin, PMPluginFactory } from '../../types';
-import { ReactNodeView } from '../../nodeviews';
-import ReactUnsupportedBlockNode from './nodeviews/unsupported-block';
-import ReactUnsupportedInlineNode from './nodeviews/unsupported-inline';
-import { traverseNode } from './utils';
+  unsupportedInline
+} from '@atlaskit/adf-schema'
+import { EditorState, Plugin, PluginKey } from 'prosemirror-state'
+import { ReactNodeView } from '../../nodeviews'
+import { EditorPlugin, PMPluginFactory } from '../../types'
+import ReactUnsupportedBlockNode from './nodeviews/unsupported-block'
+import ReactUnsupportedInlineNode from './nodeviews/unsupported-inline'
+import { traverseNode } from './utils'
 
-export const pluginKey = new PluginKey('unsupportedContentPlugin');
+export const pluginKey = new PluginKey('unsupportedContentPlugin')
 
 const createPlugin: PMPluginFactory = ({ schema, portalProviderAPI }) => {
   return new Plugin({
     state: {
       init(config, state: EditorState) {
-        traverseNode(state.doc, schema);
+        traverseNode(state.doc, schema)
       },
       apply(tr, pluginState, oldState, newState) {
-        return pluginState;
-      },
+        return pluginState
+      }
     },
     key: pluginKey,
+    //@ts-ignore
     props: {
       nodeViews: {
         confluenceUnsupportedBlock: ReactNodeView.fromComponent(
           ReactUnsupportedBlockNode,
-          portalProviderAPI,
+          portalProviderAPI
         ),
         confluenceUnsupportedInline: ReactNodeView.fromComponent(
           ReactUnsupportedInlineNode,
-          portalProviderAPI,
+          portalProviderAPI
         ),
         unsupportedBlock: ReactNodeView.fromComponent(
           ReactUnsupportedBlockNode,
-          portalProviderAPI,
+          portalProviderAPI
         ),
         unsupportedInline: ReactNodeView.fromComponent(
           ReactUnsupportedInlineNode,
-          portalProviderAPI,
-        ),
-      },
-    },
-  });
-};
+          portalProviderAPI
+        )
+      }
+    }
+  })
+}
 
 const unsupportedContentPlugin: EditorPlugin = {
   nodes() {
     return [
       {
         name: 'confluenceUnsupportedBlock',
-        node: confluenceUnsupportedBlock,
+        node: confluenceUnsupportedBlock
       },
       {
         name: 'confluenceUnsupportedInline',
-        node: confluenceUnsupportedInline,
+        node: confluenceUnsupportedInline
       },
       {
         name: 'unsupportedBlock',
-        node: unsupportedBlock,
+        node: unsupportedBlock
       },
       {
         name: 'unsupportedInline',
-        node: unsupportedInline,
-      },
-    ];
+        node: unsupportedInline
+      }
+    ]
   },
 
   pmPlugins() {
     return [
       {
         name: 'unsupportedContent',
-        plugin: createPlugin,
-      },
-    ];
-  },
-};
+        plugin: createPlugin
+      }
+    ]
+  }
+}
 
-export default unsupportedContentPlugin;
+export default unsupportedContentPlugin

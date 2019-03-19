@@ -1,20 +1,18 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { PureComponent } from 'react'
-import Spinner from '@atlaskit/spinner'
-import { Popup } from '@atlaskit/editor-common'
 import Button, { ButtonGroup } from '@atlaskit/button'
-
+import { Popup } from '@atlaskit/editor-common'
+import Spinner from '@atlaskit/spinner'
+import * as React from 'react'
+import { PureComponent } from 'react'
+import * as ReactDOM from 'react-dom'
 import ToolbarButton from '../ToolbarButton'
 import withOuterListeners from '../with-outer-listeners'
-
 import {
-  Wrapper,
   ButtonContent,
+  ConfirmationHeader,
+  ConfirmationImg,
   ConfirmationPopup,
   ConfirmationText,
-  ConfirmationHeader,
-  ConfirmationImg
+  Wrapper
 } from './styles'
 
 const PopupWithOutsideListeners: any = withOuterListeners(Popup)
@@ -106,12 +104,17 @@ export const getBrowserInfo = nAgt => {
     // In most other browsers, "name/version" is at the end of userAgent
     browserName = nAgt.substring(nameOffset, verOffset)
     browserVersion = nAgt.substring(verOffset + 1)
-    if (browserName.toLowerCase() === browserName.toUpperCase()) {
+    if (
+      typeof navigator !== 'undefined' &&
+      browserName.toLowerCase() === browserName.toUpperCase()
+    ) {
       browserName = navigator.appName
     }
   } else {
-    browserName = navigator.appName
-    browserVersion = '' + parseFloat(navigator.appVersion)
+    if (typeof navigator !== 'undefined') {
+      browserName = navigator.appName
+      browserVersion = '' + parseFloat(navigator.appVersion)
+    }
   }
   // trim the versionStr string at semicolon/space if present
   if ((index = browserVersion.indexOf(';')) !== -1) {

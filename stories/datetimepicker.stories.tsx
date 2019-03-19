@@ -1,16 +1,33 @@
+import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
-import {
-  InlineDatePicker,
-  DatePicker,
-  TimePicker,
-  TimeInput
-} from '../src/datetime-picker'
 import * as React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import { Position, PositionEnum } from '../src/constants'
+import {
+  DatePicker,
+  DateTimePicker,
+  InlineDatePicker,
+  TimePicker
+} from '../src/datetime-picker'
 import { majorScale } from '../src/scales'
 
 storiesOf('datetime-picker', module)
+  .add('Date-Time Picker', () => (
+    <Box padding={majorScale(6)}>
+      <Component initialState={{}}>
+        {({ state, setState }) => (
+          <>
+            <DateTimePicker
+              position={Position.BOTTOM_LEFT as PositionEnum}
+              onChange={date => setState({ date })}
+            />
+            {JSON.stringify(state.date)}
+          </>
+        )}
+      </Component>
+    </Box>
+  ))
+
   .add('Inline Date Picker', () => (
     <Box padding={majorScale(6)}>
       <Component initialState={{}}>
@@ -33,11 +50,6 @@ storiesOf('datetime-picker', module)
   ))
   .add('Time Picker', () => (
     <Box padding={majorScale(6)}>
-      <TimePicker onChange={console.log} />
-    </Box>
-  ))
-  .add('Time Input', () => (
-    <Box padding={majorScale(6)}>
-      <TimeInput label="Time Picker" value="15:45" onChange={console.log} />
+      <TimePicker value="13:00" onChange={console.log} />
     </Box>
   ))

@@ -5,8 +5,9 @@ import uniqueId from 'lodash/uniqueId'
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import * as components from '@hennessyevan/aluminum-ui'
 import Component from '@reactions/component'
-import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live'
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import profiles from './examples/profiles.json' // eslint-disable-line import/extensions
+import { CodeIcon } from '../../../src/icons/index.js'
 
 export default class Playground extends React.Component {
   static propTypes = {
@@ -28,11 +29,11 @@ export default class Playground extends React.Component {
 
   componentDidCatch() {
     // Display fallback UI
-    this.setState({hasError: true})
+    this.setState({ hasError: true })
   }
 
   handleToggle = () => {
-    this.setState(({isCodeCollapsed}) => ({
+    this.setState(({ isCodeCollapsed }) => ({
       isCodeCollapsed: !isCodeCollapsed
     }))
   }
@@ -42,7 +43,7 @@ export default class Playground extends React.Component {
       <div className="Playground-error">
         <p>
           Oops, something went wrong in with this live preview.
-          <br/> Please reload the page and try again.
+          <br /> Please reload the page and try again.
         </p>
       </div>
     )
@@ -81,34 +82,34 @@ export default class Playground extends React.Component {
   }
 
   render() {
-    const {scope} = this.props
-    const {codeText, hasError, isCodeCollapsed, uniqueId} = this.state
+    const { scope } = this.props
+    const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state
 
     if (hasError) {
-return this.renderError()
-}
+      return this.renderError()
+    }
     return (
       <LiveProvider
         theme="evergreen"
-        scope={{ReactDOM, Component, profiles, ...components, ...scope}}
+        scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
         code={codeText}
         mountStylesheet={false}
       >
         <div className="Playground" data-iscodecollapsed={isCodeCollapsed}>
           <div>
-            <LiveError/>
+            <LiveError />
             <div
               id={`code-playground-${uniqueId}`}
               className="Playground-preview"
             >
-              <LivePreview/>
+              <LivePreview />
             </div>
             {!isCodeCollapsed && (
               <div>
                 {codeText.includes('<Component') &&
                   this.renderComponentNotice()}
                 {codeText.includes('profiles') && this.renderProfilesNotice()}
-                <LiveEditor onChange={this.handleChange}/>
+                <LiveEditor onChange={this.handleChange} />
               </div>
             )}
           </div>
@@ -119,7 +120,7 @@ return this.renderError()
             className="Playground-header"
             onClick={this.handleToggle}
           >
-            <components.Icon icon="code" marginRight={8}/>{' '}
+            <CodeIcon marginRight={8} />{' '}
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
           </div>
         </div>

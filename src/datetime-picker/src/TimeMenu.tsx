@@ -1,14 +1,14 @@
-import * as React from 'react'
-import { Pane } from '../../layers/index'
-import { OptionsList } from '../../select-menu/index'
-import { memoize, noop } from 'lodash'
-import { Heading } from '../../typography/index'
-import { IconButton } from '../../buttons/index'
-import { XIcon } from '../../icons/index'
-import { Position } from '../../constants/index'
-import { ThemeContext } from '../../theme/index'
 import arrify from 'arrify'
 import { format } from 'date-fns'
+import { memoize } from 'lodash'
+import * as React from 'react'
+import { IconButton } from '../../buttons/index'
+import { Position } from '../../constants/index'
+import { XIcon } from '../../icons/index'
+import { Pane } from '../../layers/index'
+import { OptionsList } from '../../select-menu/index'
+import { ThemeContext } from '../../theme/index'
+import { Heading } from '../../typography/index'
 
 const arrowKeys = {
   ArrowDown: 'down',
@@ -32,7 +32,10 @@ export default class TimeMenu extends React.Component<any, any> {
     this.state = {
       hour,
       minute,
-      meridian
+      meridian,
+      hourOffset: 0,
+      minuteOffset: 0,
+      meridianOffset: 0
     }
   }
 
@@ -49,6 +52,16 @@ export default class TimeMenu extends React.Component<any, any> {
     interval: 5
   }
 
+  getBuffer = () => {
+    const bufferCount = this.props.height / 2 - 33
+    const roundedCount = Math.round(bufferCount / 33)
+    let bufferArray: any[] = []
+    for (let i = 0; i < roundedCount; i++) {
+      bufferArray.push({ disabled: true, label: '' })
+    }
+    return bufferArray
+  }
+
   getHours = () => {
     let hours: object[] = []
 
@@ -62,13 +75,9 @@ export default class TimeMenu extends React.Component<any, any> {
       hours = this.props.allowedHours
     }
 
-    return [
-      { disabled: true, label: '' },
-      { disabled: true, label: '' },
-      ...hours,
-      { disabled: true, label: '' },
-      { disabled: true, label: '' }
-    ]
+    const buffer = this.getBuffer()
+
+    return [...buffer, ...hours, ...buffer]
   }
 
   getMinutes = () => {
@@ -81,23 +90,19 @@ export default class TimeMenu extends React.Component<any, any> {
         label: String(this.padTime(k))
       })
     }
-    return [
-      { disabled: true, label: '' },
-      { disabled: true, label: '' },
-      ...minutes,
-      { disabled: true, label: '' },
-      { disabled: true, label: '' }
-    ]
+    const buffer = this.getBuffer()
+    return [...buffer, ...minutes, ...buffer]
   }
 
-  getMeridians = () => [
-    { disabled: true, label: '' },
-    { disabled: true, label: '' },
-    { label: 'AM', value: 'AM' },
-    { label: 'PM', value: 'PM' },
-    { disabled: true, label: '' },
-    { disabled: true, label: '' }
-  ]
+  getMeridians = () => {
+    const buffer = this.getBuffer()
+    return [
+      ...buffer,
+      { label: 'AM', value: 'AM' },
+      { label: 'PM', value: 'PM' },
+      ...buffer
+    ]
+  }
 
   padTime = time => {
     if (time < 10) {
@@ -148,7 +153,7 @@ export default class TimeMenu extends React.Component<any, any> {
   }) => {
     const value = this.formatTime({ hour, minute, meridian })
     this.setState({ value, hour, minute, meridian })
-    this.props.onChange(value)
+    this.props.onChange(value, { hour, minute, meridian })
   }
 
   handleSelect = ({ value }, name: string) => {
@@ -178,10 +183,6 @@ export default class TimeMenu extends React.Component<any, any> {
       if (hour > 12) return hour - 12
     }
     return hour
-  }
-
-  scrollToIndex = (name: string, index: number) => {
-    this.setState({ [`${name}Index`]: index })
   }
 
   handleKeyDown = (e, name) => {
@@ -245,7 +246,8 @@ export default class TimeMenu extends React.Component<any, any> {
     const virtualListProps = (name: string) => {
       return {
         scrollToAlignment: 'center',
-        scrollToIndex: indexes[name]
+        scrollToIndex: indexes[name],
+        name
       }
     }
 

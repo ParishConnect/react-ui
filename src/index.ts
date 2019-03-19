@@ -8,16 +8,15 @@ export { Avatar } from './avatar'
 export { Badge, Pill } from './badges'
 export { Banner } from './banner'
 export { BackButton, Button, IconButton, TextDropdownButton } from './buttons'
-export { InlineDatePicker, DatePicker, TimePicker } from './datetime-picker'
 export { Checkbox } from './checkbox'
 export { Combobox } from './combobox'
-export { StackingOrder, Intent, Position } from './constants'
+export { Intent, Position, StackingOrder } from './constants'
 export { CornerDialog } from './corner-dialog'
+export { DatePicker, InlineDatePicker, TimePicker } from './datetime-picker'
 export { Dialog } from './dialog'
 export * from './editor'
 export * from './editor-json-transformer'
 export * from './editor-plain-transformer'
-export * from './renderer'
 export { FilePicker, ImagePicker } from './file-picker'
 export {
   FormField,
@@ -26,72 +25,6 @@ export {
   FormFieldLabel,
   FormFieldValidationMessage
 } from './form-field'
-export { Image } from './image'
-export { Pane, Card } from './layers'
-export { Menu } from './menu'
-export { Overlay } from './overlay'
-export { Popover } from './popover'
-export { Portal } from './portal'
-export { Positioner } from './positioner'
-export { Radio, RadioGroup } from './radio'
-export { minorScale, majorScale } from './scales'
-export { SearchInput } from './search-input'
-export { SegmentedControl } from './segmented-control'
-export { Select, SelectField } from './select'
-export {
-  OptionShapePropType,
-  OptionsList,
-  SelectedPropType,
-  SelectMenu,
-  SelectMenuContent
-} from './select-menu'
-export { SideSheet } from './side-sheet'
-export { Spinner } from './spinner'
-export { Switch } from './switch'
-export { extractStyles } from './ssr'
-export { Stack, StackingContext } from './stack'
-export {
-  Table,
-  TableHead,
-  TableHeaderCell,
-  TextTableHeaderCell,
-  SearchTableHeaderCell,
-  TableBody,
-  TableRow,
-  TableCell,
-  TextTableCell
-} from './table'
-export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
-export { TimeZone } from './timezone'
-export { TextInput, TextInputField } from './text-input'
-export {
-  ThemeProvider,
-  ThemeConsumer,
-  withTheme,
-  defaultTheme,
-  ThemeContext
-} from './theme'
-export { Textarea } from './textarea'
-export { toaster } from './toaster'
-export { Tooltip } from './tooltip'
-export {
-  UnorderedList,
-  Ul,
-  OrderedList,
-  Ol,
-  ListItem,
-  Li,
-  Text,
-  Paragraph,
-  Heading,
-  Code,
-  Pre,
-  Label,
-  Link,
-  Small,
-  Strong
-} from './typography'
-
 export {
   ActivityIcon,
   AirplayIcon,
@@ -106,57 +39,57 @@ export {
   ApertureIcon,
   ArchiveIcon,
   ArrowDownCircleIcon,
+  ArrowDownIcon,
   ArrowDownLeftIcon,
   ArrowDownRightIcon,
-  ArrowDownIcon,
   ArrowLeftCircleIcon,
   ArrowLeftIcon,
   ArrowRightCircleIcon,
   ArrowRightIcon,
   ArrowUpCircleIcon,
+  ArrowUpIcon,
   ArrowUpLeftIcon,
   ArrowUpRightIcon,
-  ArrowUpIcon,
   AtSignIcon,
   AwardIcon,
   BarChart2Icon,
   BarChartIcon,
   BatteryChargingIcon,
   BatteryIcon,
-  BellOffIcon,
   BellIcon,
+  BellOffIcon,
   BluetoothIcon,
   BoldIcon,
-  BookOpenIcon,
   BookIcon,
   BookmarkIcon,
+  BookOpenIcon,
   BoxIcon,
   BriefcaseIcon,
   CalendarIcon,
-  CameraOffIcon,
   CameraIcon,
+  CameraOffIcon,
   CastIcon,
   CheckCircleIcon,
-  CheckSquareIcon,
   CheckIcon,
+  CheckSquareIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  ChevronUpIcon,
   ChevronsDownIcon,
   ChevronsLeftIcon,
   ChevronsRightIcon,
   ChevronsUpIcon,
+  ChevronUpIcon,
   ChromeIcon,
   CircleIcon,
   ClipboardIcon,
   ClockIcon,
   CloudDrizzleIcon,
+  CloudIcon,
   CloudLightningIcon,
   CloudOffIcon,
   CloudRainIcon,
   CloudSnowIcon,
-  CloudIcon,
   CodeIcon,
   CodepenIcon,
   CoffeeIcon,
@@ -186,38 +119,38 @@ export {
   Edit3Icon,
   EditIcon,
   ExternalLinkIcon,
-  EyeOffIcon,
   EyeIcon,
+  EyeOffIcon,
   FacebookIcon,
   FastForwardIcon,
   FeatherIcon,
+  FileIcon,
   FileMinusIcon,
   FilePlusIcon,
   FileTextIcon,
-  FileIcon,
   FilmIcon,
   FilterIcon,
   FlagIcon,
+  FolderIcon,
   FolderMinusIcon,
   FolderPlusIcon,
-  FolderIcon,
   FrownIcon,
   GiftIcon,
   GitBranchIcon,
   GitCommitIcon,
-  GitMergeIcon,
-  GitPullRequestIcon,
   GithubIcon,
   GitlabIcon,
+  GitMergeIcon,
+  GitPullRequestIcon,
   GlobeIcon,
   GridIcon,
   HardDriveIcon,
   HashIcon,
-  HeadphonesIcon,
   HeadingOneIcon,
   HeadingTwoIcon,
-  HeartIcon,
+  HeadphonesIcon,
   HeartFilledIcon,
+  HeartIcon,
   HelpCircleIcon,
   HomeIcon,
   ImageIcon,
@@ -230,29 +163,29 @@ export {
   LayoutIcon,
   LifeBuoyIcon,
   Link2Icon,
-  LinkIcon,
   LinkedinIcon,
+  LinkIcon,
   ListIcon,
   LoaderIcon,
   LockIcon,
   LogInIcon,
   LogOutIcon,
   MailIcon,
-  MapPinIcon,
   MapIcon,
+  MapPinIcon,
   Maximize2Icon,
   MaximizeIcon,
   MehIcon,
   MenuIcon,
   MessageCircleIcon,
   MessageSquareIcon,
-  MicOffIcon,
   MicIcon,
+  MicOffIcon,
   Minimize2Icon,
   MinimizeIcon,
   MinusCircleIcon,
-  MinusSquareIcon,
   MinusIcon,
+  MinusSquareIcon,
   MonitorIcon,
   MoonIcon,
   MoreHorizontalIcon,
@@ -272,17 +205,17 @@ export {
   PercentIcon,
   PhoneCallIcon,
   PhoneForwardedIcon,
+  PhoneIcon,
   PhoneIncomingIcon,
   PhoneMissedIcon,
   PhoneOffIcon,
   PhoneOutgoingIcon,
-  PhoneIcon,
   PieChartIcon,
   PlayCircleIcon,
   PlayIcon,
   PlusCircleIcon,
-  PlusSquareIcon,
   PlusIcon,
+  PlusSquareIcon,
   PocketIcon,
   PowerIcon,
   PrinterIcon,
@@ -303,8 +236,8 @@ export {
   SettingsIcon,
   Share2Icon,
   ShareIcon,
-  ShieldOffIcon,
   ShieldIcon,
+  ShieldOffIcon,
   ShoppingBagIcon,
   ShoppingCartIcon,
   ShuffleIcon,
@@ -344,33 +277,100 @@ export {
   TypeIcon,
   UmbrellaIcon,
   UnderlineIcon,
-  UnlockIcon,
   UnlinkIcon,
+  UnlockIcon,
   UploadCloudIcon,
   UploadIcon,
   UserCheckIcon,
+  UserIcon,
   UserMinusIcon,
   UserPlusIcon,
-  UserXIcon,
-  UserIcon,
   UsersIcon,
-  VideoOffIcon,
+  UserXIcon,
   VideoIcon,
+  VideoOffIcon,
   VoicemailIcon,
   Volume1Icon,
   Volume2Icon,
-  VolumeXIcon,
   VolumeIcon,
+  VolumeXIcon,
   WatchIcon,
-  WifiOffIcon,
   WifiIcon,
+  WifiOffIcon,
   WindIcon,
   XCircleIcon,
-  XSquareIcon,
   XIcon,
+  XSquareIcon,
   YoutubeIcon,
-  ZapOffIcon,
   ZapIcon,
+  ZapOffIcon,
   ZoomInIcon,
   ZoomOutIcon
 } from './icons'
+export { Image } from './image'
+export { Card, Pane } from './layers'
+export { Menu } from './menu'
+export { Overlay } from './overlay'
+export { Popover } from './popover'
+export { Portal } from './portal'
+export { Positioner } from './positioner'
+export { Radio, RadioGroup } from './radio'
+export * from './renderer'
+export { majorScale, minorScale } from './scales'
+export { SearchInput } from './search-input'
+export { SegmentedControl } from './segmented-control'
+export { Select, SelectField } from './select'
+export {
+  OptionShapePropType,
+  OptionsList,
+  SelectedPropType,
+  SelectMenu,
+  SelectMenuContent
+} from './select-menu'
+export { SideSheet } from './side-sheet'
+export { Provider as SmartCardProvider } from './smart-card'
+export { Spinner } from './spinner'
+export { extractStyles } from './ssr'
+export { Stack, StackingContext } from './stack'
+export { Switch } from './switch'
+export {
+  SearchTableHeaderCell,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+  TextTableCell,
+  TextTableHeaderCell
+} from './table'
+export { SidebarTab, Tab, Tablist, TabNavigation } from './tabs'
+export { TextInput, TextInputField } from './text-input'
+export { Textarea } from './textarea'
+export {
+  defaultTheme,
+  ThemeConsumer,
+  ThemeContext,
+  ThemeProvider,
+  withTheme
+} from './theme'
+export { TimeZone } from './timezone'
+export { toaster } from './toaster'
+export { Tooltip } from './tooltip'
+export {
+  Code,
+  Heading,
+  Label,
+  Li,
+  Link,
+  ListItem,
+  Ol,
+  OrderedList,
+  Paragraph,
+  Pre,
+  Small,
+  Strong,
+  Text,
+  Ul,
+  UnorderedList
+} from './typography'

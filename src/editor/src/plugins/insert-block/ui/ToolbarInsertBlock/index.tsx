@@ -1,58 +1,54 @@
-import * as React from 'react'
-import { ReactInstance } from 'react'
-import * as ReactDOM from 'react-dom'
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl'
-import { EditorView } from 'prosemirror-view'
-import { Node as PMNode } from 'prosemirror-model'
-import TableIcon from '@atlaskit/icon/glyph/editor/table'
-import DecisionIcon from '@atlaskit/icon/glyph/editor/decision'
-import HorizontalRuleIcon from '@atlaskit/icon/glyph/editor/horizontal-rule'
+import { akEditorMenuZIndex, Popup } from '@atlaskit/editor-common'
 import {
   EmojiId,
   EmojiPicker as AkEmojiPicker,
   EmojiProvider
 } from '@atlaskit/emoji'
-import { Popup, akEditorMenuZIndex } from '@atlaskit/editor-common'
-import EditorActions from '../../../../actions'
-
+import DecisionIcon from '@atlaskit/icon/glyph/editor/decision'
+import HorizontalRuleIcon from '@atlaskit/icon/glyph/editor/horizontal-rule'
+import TableIcon from '@atlaskit/icon/glyph/editor/table'
+import { Node as PMNode } from 'prosemirror-model'
+import { EditorView } from 'prosemirror-view'
+import * as React from 'react'
+import { ReactInstance } from 'react'
+import * as ReactDOM from 'react-dom'
+import { defineMessages, InjectedIntlProps, injectIntl } from 'react-intl'
 import {
-  toggleTable,
-  tooltip,
-  findKeymapByDescription,
-  addLink
-} from '../../../../keymaps'
-import { InsertMenuCustomItem } from '../../../../types'
-import DropdownMenu from '../../../../ui/DropdownMenu'
-import ToolbarButton from '../../../../ui/ToolbarButton'
-import { Wrapper, ButtonGroup, Shortcut } from '../../../../ui/styles'
-import { BlockType } from '../../../block-type/types'
-import { MacroProvider } from '../../../macro/types'
-import { createTable } from '../../../table/actions'
-import { insertDate, openDatePicker } from '../../../date/actions'
-import { showPlaceholderFloatingToolbar } from '../../../placeholder-text/actions'
-import { createHorizontalRule } from '../../../rule/pm-plugins/input-rule'
-import { TriggerWrapper } from './styles'
-import { insertLayoutColumns } from '../../../layout/actions'
-import { Command } from '../../../../types'
-import { showLinkToolbar } from '../../../hyperlink/commands'
-import { insertMentionQuery } from '../../../mentions/commands/insert-mention-query'
-import { updateStatus } from '../../../status/actions'
-import {
-  ChevronDownIcon,
-  PlusIcon,
-  CheckSquareIcon,
-  ImageIcon,
   AtSignIcon,
-  SmileIcon,
   CalendarIcon,
-  LayoutIcon,
-  TagIcon,
-  MoreHorizontalIcon,
+  CheckSquareIcon,
+  ChevronDownIcon,
   CodeIcon,
+  ImageIcon,
   InfoIcon,
+  LayoutIcon,
   LinkIcon,
-  QuoteIcon
+  MoreHorizontalIcon,
+  PlusIcon,
+  QuoteIcon,
+  SmileIcon,
+  TagIcon
 } from '../../../../../../icons/index'
+import EditorActions from '../../../../actions'
+import {
+  addLink,
+  findKeymapByDescription,
+  toggleTable,
+  tooltip
+} from '../../../../keymaps'
+import { Command, InsertMenuCustomItem } from '../../../../types'
+import DropdownMenu from '../../../../ui/DropdownMenu'
+import { ButtonGroup, Shortcut, Wrapper } from '../../../../ui/styles'
+import ToolbarButton from '../../../../ui/ToolbarButton'
+import { BlockType } from '../../../block-type/types'
+import { showLinkToolbar } from '../../../hyperlink/commands'
+import { insertLayoutColumns } from '../../../layout/actions'
+import { insertMentionQuery } from '../../../mentions/commands/insert-mention-query'
+import { showPlaceholderFloatingToolbar } from '../../../placeholder-text/actions'
+import { MacroProvider } from '../../../plugin-macro/types'
+import { createHorizontalRule } from '../../../rule/pm-plugins/input-rule'
+import { createTable } from '../../../table/actions'
+import { TriggerWrapper } from './styles'
 
 export const messages = defineMessages({
   action: {
@@ -589,13 +585,6 @@ class ToolbarInsertBlock extends React.PureComponent<
     return true
   }
 
-  private createDate = (): boolean => {
-    const { editorView } = this.props
-    insertDate()(editorView.state, editorView.dispatch)
-    openDatePicker()(editorView.state, editorView.dispatch)
-    return true
-  }
-
   private createPlaceholderText = (): boolean => {
     const { editorView } = this.props
     showPlaceholderFloatingToolbar(editorView.state, editorView.dispatch)
@@ -605,12 +594,6 @@ class ToolbarInsertBlock extends React.PureComponent<
   private insertLayoutColumns = (): boolean => {
     const { editorView } = this.props
     insertLayoutColumns(editorView.state, editorView.dispatch)
-    return true
-  }
-
-  private createStatus = (): boolean => {
-    const { editorView } = this.props
-    updateStatus()(editorView)
     return true
   }
 
@@ -711,17 +694,12 @@ class ToolbarInsertBlock extends React.PureComponent<
           editorView.dispatch
         )
         break
-      case 'date':
-        this.createDate()
-        break
       case 'placeholder text':
         this.createPlaceholderText()
         break
       case 'layout':
         this.insertLayoutColumns()
         break
-      case 'status':
-        this.createStatus()
         break
       default:
         if (item && item.onClick) {

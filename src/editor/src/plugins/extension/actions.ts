@@ -1,92 +1,92 @@
-import { NodeSelection } from 'prosemirror-state';
-import { findParentNodeOfType } from 'prosemirror-utils';
-import { Slice, Schema } from 'prosemirror-model';
+import { Schema, Slice } from 'prosemirror-model'
+import { NodeSelection } from 'prosemirror-state'
 import {
-  removeSelectedNode,
-  removeParentNodeOfType,
+  findParentNodeOfType,
   findSelectedNodeOfType,
-} from 'prosemirror-utils';
-import { pluginKey } from './plugin';
-import { MacroProvider, insertMacroFromMacroBrowser } from '../macro';
-import { getExtensionNode } from './utils';
-import { mapFragment } from '../../utils/slice';
-import { Command } from '../../types';
+  removeParentNodeOfType,
+  removeSelectedNode
+} from 'prosemirror-utils'
+import { Command } from '../../types'
+import { mapFragment } from '../../utils/slice'
+import { insertMacroFromMacroBrowser, MacroProvider } from '../plugin-macro'
+import { pluginKey } from './plugin'
+import { getExtensionNode } from './utils'
 
 export const updateExtensionLayout = (layout): Command => (state, dispatch) => {
-  const { selection, schema, tr } = state;
-  const { bodiedExtension, extension, inlineExtension } = schema.nodes;
-  const parentExtNode = findParentNodeOfType([bodiedExtension])(selection);
+  const { selection, schema, tr } = state
+  const { bodiedExtension, extension, inlineExtension } = schema.nodes
+  const parentExtNode = findParentNodeOfType([bodiedExtension])(selection)
 
-  let extPosition;
-  let extNode;
+  let extPosition
+  let extNode
 
   const selectedNode = findSelectedNodeOfType([
     bodiedExtension,
     inlineExtension,
-    extension,
-  ])(selection);
+    extension
+  ])(selection)
 
   if (!parentExtNode && !selectedNode) {
-    return false;
+    return false
   }
 
   if (selectedNode) {
-    extPosition = selectedNode.pos;
-    extNode = selectedNode.node;
+    extPosition = selectedNode.pos
+    extNode = selectedNode.node
   } else {
-    extPosition = parentExtNode!.pos;
-    extNode = parentExtNode!.node;
+    extPosition = parentExtNode!.pos
+    extNode = parentExtNode!.node
   }
 
-  const pluginState = pluginKey.getState(state);
+  const pluginState = pluginKey.getState(state)
 
   tr.setNodeMarkup(extPosition, undefined, {
     ...extNode!.attrs,
-    layout,
-  }).setMeta(pluginKey, { ...pluginState, layout });
+    layout
+  }).setMeta(pluginKey, { ...pluginState, layout })
 
   if (dispatch) {
-    dispatch(tr);
+    dispatch(tr)
   }
 
-  return true;
-};
+  return true
+}
 
 export const editExtension = (macroProvider: MacroProvider | null) => (
   state,
-  dispatch,
+  dispatch
 ): boolean => {
-  const node = getExtensionNode(state);
+  const node = getExtensionNode(state)
 
   if (!node || !macroProvider) {
-    return false;
+    return false
   }
 
-  insertMacroFromMacroBrowser(macroProvider, node.node, true)(state, dispatch);
-  return true;
-};
+  insertMacroFromMacroBrowser(macroProvider, node.node, true)(state, dispatch)
+  return true
+}
 
 export const removeExtension = (): Command => (state, dispatch) => {
-  const { schema, selection } = state;
-  const pluginState = pluginKey.getState(state);
-  let tr = state.tr.setMeta(pluginKey, { ...pluginState, element: null });
+  const { schema, selection } = state
+  const pluginState = pluginKey.getState(state)
+  let tr = state.tr.setMeta(pluginKey, { ...pluginState, element: null })
 
   if (
     selection instanceof NodeSelection &&
     (selection.node.type === schema.nodes.inlineExtension ||
       selection.node.type === schema.nodes.extension)
   ) {
-    tr = removeSelectedNode(tr);
+    tr = removeSelectedNode(tr)
   } else {
-    tr = removeParentNodeOfType(schema.nodes.bodiedExtension)(tr);
+    tr = removeParentNodeOfType(schema.nodes.bodiedExtension)(tr)
   }
 
   if (dispatch) {
-    dispatch(tr);
+    dispatch(tr)
   }
 
-  return true;
-};
+  return true
+}
 
 /**
  * Lift content out of "open" top-level bodiedExtensions.
@@ -94,22 +94,22 @@ export const removeExtension = (): Command => (state, dispatch) => {
  */
 export const transformSliceToRemoveOpenBodiedExtension = (
   slice: Slice,
-  schema: Schema,
+  schema: Schema
 ) => {
-  const { bodiedExtension } = schema.nodes;
+  const { bodiedExtension } = schema.nodes
 
   const fragment = mapFragment(slice.content, (node, parent, index) => {
     if (node.type === bodiedExtension && !parent) {
-      const currentNodeIsAtStartAndIsOpen = slice.openStart && index === 0;
+      const currentNodeIsAtStartAndIsOpen = slice.openStart && index === 0
       const currentNodeIsAtEndAndIsOpen =
-        slice.openEnd && index + 1 === slice.content.childCount;
+        slice.openEnd && index + 1 === slice.content.childCount
 
       if (currentNodeIsAtStartAndIsOpen || currentNodeIsAtEndAndIsOpen) {
-        return node.content;
+        return node.content
       }
     }
-    return node;
-  });
+    return node
+  })
 
   // If the first/last child has changed - then we know we've removed a bodied extension & to decrement the open depth
   return new Slice(
@@ -121,6 +121,6 @@ export const transformSliceToRemoveOpenBodiedExtension = (
     fragment.lastChild &&
     fragment.lastChild!.type !== slice.content.lastChild!.type
       ? slice.openEnd - 1
-      : slice.openEnd,
-  );
-};
+      : slice.openEnd
+  )
+}

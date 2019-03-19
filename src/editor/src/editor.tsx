@@ -1,23 +1,22 @@
-import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import { EditorView } from 'prosemirror-view'
-import { intlShape, IntlShape, IntlProvider } from 'react-intl'
-
 import {
+  BaseTheme,
   ProviderFactory,
   Transformer,
-  BaseTheme,
   WidthProvider
 } from '@atlaskit/editor-common'
-import { getUiComponent, ReactEditorView } from './create-editor'
-import EditorActions from './actions'
-import { EditorProps } from './types/editor-props'
-import { EventDispatcher } from './event-dispatcher'
-import EditorContext from './ui/EditorContext'
-import { WithCreateAnalyticsEvent } from './ui/WithCreateAnalyticsEvent'
-import { PortalProvider, PortalRenderer } from './ui/PortalProvider'
 import { Context as CardContext } from '@atlaskit/smart-card'
+import * as PropTypes from 'prop-types'
+import { EditorView } from 'prosemirror-view'
+import * as React from 'react'
+import { IntlProvider, intlShape, IntlShape } from 'react-intl'
+import EditorActions from './actions'
+import { getUiComponent, ReactEditorView } from './create-editor'
+import { EventDispatcher } from './event-dispatcher'
 import { createContextAdapter } from './nodeviews'
+import { EditorProps } from './types/editor-props'
+import EditorContext from './ui/EditorContext'
+import { PortalProvider, PortalRenderer } from './ui/PortalProvider'
+import { WithCreateAnalyticsEvent } from './ui/WithCreateAnalyticsEvent'
 
 export * from './types'
 
@@ -115,13 +114,11 @@ export default class Editor extends React.Component<EditorProps, {}> {
       mediaProvider,
       taskDecisionProvider,
       contextIdentifierProvider,
-      collabEditProvider,
       activityProvider,
       presenceProvider,
       macroProvider,
       legacyImageUploadProvider,
       media,
-      collabEdit,
       quickInsert,
       UNSAFE_cards
     } = props
@@ -142,12 +139,6 @@ export default class Editor extends React.Component<EditorProps, {}> {
     this.providerFactory.setProvider(
       'imageUploadProvider',
       legacyImageUploadProvider
-    )
-    this.providerFactory.setProvider(
-      'collabEditProvider',
-      collabEdit && collabEdit.provider
-        ? collabEdit.provider
-        : collabEditProvider
     )
     this.providerFactory.setProvider('activityProvider', activityProvider)
     this.providerFactory.setProvider('presenceProvider', presenceProvider)
@@ -210,7 +201,6 @@ export default class Editor extends React.Component<EditorProps, {}> {
       primaryToolbarComponents,
       secondaryToolbarComponents,
       addonToolbarComponents,
-      collabEdit,
       containerProps,
       toolbarProps
     } = this.props
@@ -262,7 +252,6 @@ export default class Editor extends React.Component<EditorProps, {}> {
                                 secondaryToolbarComponents
                               }
                               addonToolbarComponents={addonToolbarComponents}
-                              collabEdit={collabEdit}
                               containerProps={containerProps}
                               toolbarProps={toolbarProps}
                             />

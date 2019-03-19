@@ -1,23 +1,20 @@
-import * as React from 'react'
 import Box from '@hennessyevan/aluminum-box'
-
 import addDays from 'date-fns/add_days'
-import addWeeks from 'date-fns/add_weeks'
 import addMonths from 'date-fns/add_months'
+import addWeeks from 'date-fns/add_weeks'
 import addYears from 'date-fns/add_years'
+import * as React from 'react'
 import uuid from 'uuid'
-
-import { Text } from '../../typography'
 import { Button, IconButton } from '../../buttons'
-import { majorScale } from '../../scales'
-
-import Calendar from './Calendar'
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-  ChevronsRightIcon,
-  ChevronsLeftIcon
+  ChevronsLeftIcon,
+  ChevronsRightIcon
 } from '../../icons/index'
+import { majorScale } from '../../scales'
+import { Text } from '../../typography'
+import Calendar from './Calendar'
 
 const arrowKeys = {
   ArrowDown: 'down',
@@ -47,10 +44,11 @@ export interface InlineDatePickerProps {
   todayButtonLabel: string
   shouldShowTodayButton: boolean
   shouldShowYearButtons: boolean
-  width: string | number
+  width?: string | number
   dateFormatter?: any
   mobile?: boolean
   detectMobile?: boolean
+  [key: string]: any
 }
 
 export interface InlineDatePickerState {
