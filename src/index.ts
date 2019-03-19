@@ -12,7 +12,12 @@ export { Checkbox } from './checkbox'
 export { Combobox } from './combobox'
 export { Intent, Position, StackingOrder } from './constants'
 export { CornerDialog } from './corner-dialog'
-export { DatePicker, InlineDatePicker, TimePicker } from './datetime-picker'
+export {
+  DatePicker,
+  DateTimePicker,
+  InlineDatePicker,
+  TimePicker
+} from './datetime-picker'
 export { Dialog } from './dialog'
 export * from './editor'
 export * from './editor-json-transformer'

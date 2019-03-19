@@ -57,7 +57,7 @@ export default class TimeMenu extends React.Component<any, any> {
     const roundedCount = Math.round(bufferCount / 33)
     let bufferArray: any[] = []
     for (let i = 0; i < roundedCount; i++) {
-      bufferArray.push({ disabled: true, label: '' })
+      bufferArray.push({ disabled: true, label: '', height: 10 })
     }
     return bufferArray
   }

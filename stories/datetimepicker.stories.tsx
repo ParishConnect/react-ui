@@ -17,11 +17,12 @@ storiesOf('datetime-picker', module)
       <Component initialState={{}}>
         {({ state, setState }) => (
           <>
+            {JSON.stringify(state.date)}
             <DateTimePicker
+              label="Date time Picker"
               position={Position.BOTTOM_LEFT as PositionEnum}
               onChange={date => setState({ date })}
             />
-            {JSON.stringify(state.date)}
           </>
         )}
       </Component>

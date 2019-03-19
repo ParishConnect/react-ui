@@ -1,7 +1,8 @@
-import Box from '@hennessyevan/aluminum-box'
+import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
 import { format, setHours, setMinutes } from 'date-fns'
 import * as React from 'react'
 import { PositionEnum } from '../../constants/index'
+import { FormField } from '../../form-field/index'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
 import { convertHourTo24 } from '../utils/parseTime'
@@ -15,6 +16,69 @@ function defaultDateFormatter(date) {
 }
 
 interface DateTimePickerProps {
+  id?: string
+  /**
+   * Makes the input element required.
+   */
+  required?: boolean
+  /**
+   * Makes the input element disabled.
+   */
+  disabled?: boolean
+  /**
+   * Sets visual styling to be invalid.
+   */
+  isInvalid?: boolean
+  /**
+   * Use the native spell check functionality of the browser.
+   */
+  spellCheck?: boolean
+  /**
+   * The placeholder text when there is no value present.
+   */
+  placeholder?: string
+  /**
+   * The appearance of the TextInput.
+   */
+  appearance?: string
+  /**
+   * Class name passed to the button.
+   * Only use if you know what you are doing.
+   */
+  className?: string
+  /**
+   * Passed on the label as a htmlFor prop.
+   */
+  labelFor?: string
+  /**
+   * The label used above the input element.
+   */
+  label?: React.ReactNode
+  /**
+   * Wether or not show a asterix after the label.
+   */
+  isRequired?: boolean
+  /**
+   * A optional description of the field under the label, above the input element.
+   */
+  description?: React.ReactNode
+  /**
+   * A optional hint under the input element.
+   */
+  hint?: React.ReactNode
+  /**
+   * If a validation message is passed it is shown under the input element
+   * and above the hint.
+   */
+  validationMessage?: React.ReactNode
+  /**
+   * The height of the input element.
+   */
+  inputHeight?: number
+  /**
+   * The width of the input width.
+   */
+  inputWidth?: number | string
   /**
    * Set an initial day value and/or assume control via this prop
    * @default new Date()
@@ -104,6 +168,19 @@ export default class DateTimePicker extends React.Component<
 
   render() {
     const {
+      id,
+      inputWidth,
+      inputHeight,
+      disabled,
+      required,
+      isInvalid,
+      appearance,
+      placeholder,
+      spellCheck,
+      label,
+      description,
+      validationMessage,
+      hint,
       value,
       width,
       height,
@@ -122,6 +199,7 @@ export default class DateTimePicker extends React.Component<
       ...props
     } = this.props
     const { selected, isShown } = this.state
+    const { matchedProps, remainingProps } = splitBoxProps(props)
 
     return (
       <Popover
@@ -152,7 +230,31 @@ export default class DateTimePicker extends React.Component<
           </Box>
         )}
       >
-        <TextInput type={type} value={dateFormatter(selected)} {...props} />
+        <FormField
+          marginBottom={24}
+          label={label}
+          isRequired={required}
+          hint={hint}
+          description={description}
+          validationMessage={validationMessage}
+          labelFor={id}
+          {...matchedProps}
+        >
+          <TextInput
+            id={id}
+            width={inputWidth}
+            height={inputHeight}
+            disabled={disabled}
+            required={required}
+            isInvalid={isInvalid}
+            appearance={appearance}
+            placeholder={placeholder}
+            spellCheck={spellCheck}
+            type={type}
+            value={dateFormatter(selected)}
+            {...remainingProps}
+          />
+        </FormField>
       </Popover>
     )
   }
