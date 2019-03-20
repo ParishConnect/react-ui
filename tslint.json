@@ -40,7 +40,7 @@
     "semicolon": [false],
     "space-before-function-paren": [false],
     "switch-default": false,
-    "triple-equals": true,
+    "triple-equals": false,
     "typedef": [true],
     "unified-signatures": [false],
     "variable-name": false,

@@ -1,13 +1,17 @@
 import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
 import { format, setHours, setMinutes } from 'date-fns'
 import * as React from 'react'
+import { IconButton } from '../../buttons/index'
 import { PositionEnum } from '../../constants/index'
 import { FormField } from '../../form-field/index'
+import { XIcon } from '../../icons/index'
+import { Pane } from '../../layers/index'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
+import { Heading } from '../../typography/index'
+import { TimePicker } from '../index'
 import { convertHourTo24 } from '../utils/parseTime'
 import InlineDatePicker from './InlineDatePicker'
-import TimeMenu from './TimeMenu'
 
 const DEFAULT_FORMAT_STRING = 'MMMM Do, YYYY h:mm A'
 
@@ -135,6 +139,7 @@ export default class DateTimePicker extends React.Component<
     shouldShowTodayButton: true,
     shouldShowYearButtons: true,
     todayButtonLabel: 'Today',
+    label: 'Pick a time',
     locale: 'en-US',
     localeOptions: {
       weekday: 'short',
@@ -220,13 +225,22 @@ export default class DateTimePicker extends React.Component<
               disableDates={disableDates}
               onChange={date => this.onChange(date, 'date')}
             />
-            <TimeMenu
-              value={value}
-              height={height}
-              interval={interval}
-              onChange={(_, time) => this.onChange(time, 'time')}
-              close={close}
-            />
+            <Box>
+              <Pane
+                justifyContent="space-between"
+                alignItems="center"
+                display="flex"
+                borderBottom
+                paddingY={4}
+                paddingX={8}
+              >
+                <Heading marginLeft={8} size={400}>
+                  Pick a Time
+                </Heading>
+                <IconButton onClick={close} appearance="minimal" icon={XIcon} />
+              </Pane>
+              <TimePicker margin={16} useAmPm value={value} />
+            </Box>
           </Box>
         )}
       >

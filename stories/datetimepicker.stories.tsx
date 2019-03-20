@@ -1,6 +1,7 @@
 import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
+import { startOfMinute } from 'date-fns'
 import * as React from 'react'
 import { Position, PositionEnum } from '../src/constants'
 import {
@@ -20,6 +21,7 @@ storiesOf('datetime-picker', module)
             {JSON.stringify(state.date)}
             <DateTimePicker
               label="Date time Picker"
+              value={new Date(2019, 3, 15, 11, 25)}
               position={Position.BOTTOM_LEFT as PositionEnum}
               onChange={date => setState({ date })}
             />
@@ -28,7 +30,24 @@ storiesOf('datetime-picker', module)
       </Component>
     </Box>
   ))
-
+  .add('Inline Time Picker', () => (
+    <Box padding={majorScale(6)}>
+      <Component initialState={{ time: new Date() }}>
+        {({ state, setState }) => (
+          <>
+            <TimePicker
+              label="Pick a time"
+              showArrowButtons
+              useAmPm
+              value={state.time}
+              onChange={time => setState({ time })}
+            />
+            <pre>{JSON.stringify(startOfMinute(state.time))}</pre>
+          </>
+        )}
+      </Component>
+    </Box>
+  ))
   .add('Inline Date Picker', () => (
     <Box padding={majorScale(6)}>
       <Component initialState={{}}>
@@ -46,11 +65,6 @@ storiesOf('datetime-picker', module)
   ))
   .add('Date Picker', () => (
     <Box padding={majorScale(6)}>
-      <DatePicker mobile />
-    </Box>
-  ))
-  .add('Time Picker', () => (
-    <Box padding={majorScale(6)}>
-      <TimePicker value="13:00" onChange={console.log} />
+      <DatePicker />
     </Box>
   ))

@@ -10,13 +10,6 @@ import { OptionsList } from '../../select-menu/index'
 import { ThemeContext } from '../../theme/index'
 import { Heading } from '../../typography/index'
 
-const arrowKeys = {
-  ArrowDown: 'down',
-  ArrowLeft: 'left',
-  ArrowUp: 'up',
-  ArrowRight: 'right'
-}
-
 const ISO_TIME_REGEX = /([01]?[0-9]|2[0-3]):([0-5][0-9])/
 
 interface TimeMenuProps {
@@ -185,15 +178,6 @@ export default class TimeMenu extends React.Component<any, any> {
     return hour
   }
 
-  handleKeyDown = (e, name) => {
-    const { key } = e
-    const arrowKey = arrowKeys[key]
-    switch (arrowKey) {
-      case 'up':
-        console.log(name)
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.value === this.props.value) return false
     this.changeTime(this.parseTime(nextProps.value))
@@ -296,7 +280,6 @@ export default class TimeMenu extends React.Component<any, any> {
             ) : (
               <OptionsList
                 onFocus={this.props.onFocus}
-                onKeyDown={e => this.handleKeyDown(e, 'hour')}
                 options={getHours()}
                 onSelect={item => this.handleSelect(item, 'hour')}
                 virtualListProps={virtualListProps('hour')}

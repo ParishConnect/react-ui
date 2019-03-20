@@ -1,4 +1,4 @@
-const map24 = {
+export const map24 = {
   '12': 12,
   '01': 13,
   '02': 14,
@@ -13,7 +13,7 @@ const map24 = {
   '11': 23
 }
 
-const map24Num = {
+export const map24Num = {
   12: 12,
   1: 13,
   2: 14,
