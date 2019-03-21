@@ -287,6 +287,7 @@ export default class InlineTimePicker extends React.Component<
       (isDirectionUp ? this.incrementTime : this.decrementTime)(timeUnit)
     return (
       <IconButton
+        type="button"
         appearance="minimal"
         display="inline-block"
         height={24}
