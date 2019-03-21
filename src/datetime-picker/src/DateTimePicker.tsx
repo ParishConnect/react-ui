@@ -134,7 +134,7 @@ export default class DateTimePicker extends React.Component<
   static defaultProps = {
     value: startOfMinute(new Date()),
     interval: 5,
-    isShown: true,
+    isShown: false,
     width: 'auto',
     height: 320,
     shouldShowTodayButton: true,
