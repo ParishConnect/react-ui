@@ -1,5 +1,6 @@
 import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
-import { format, setHours, setMinutes } from 'date-fns'
+import { format, startOfMinute } from 'date-fns'
+import { DateTime } from 'luxon'
 import * as React from 'react'
 import { IconButton } from '../../buttons/index'
 import { PositionEnum } from '../../constants/index'
@@ -10,7 +11,6 @@ import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
 import { Heading } from '../../typography/index'
 import { TimePicker } from '../index'
-import { convertHourTo24 } from '../utils/parseTime'
 import InlineDatePicker from './InlineDatePicker'
 
 const DEFAULT_FORMAT_STRING = 'MMMM Do, YYYY h:mm A'
@@ -33,6 +33,17 @@ interface DateTimePickerProps {
    * Sets visual styling to be invalid.
    */
   isInvalid?: boolean
+  /**
+   * Whether to show arrows buttons for changing the time.
+   * @default false
+   */
+  showArrowButtons?: boolean
+
+  /**
+   * Whether to use a 12 hour format with an AM/PM dropdown.
+   * @default false
+   */
+  useAmPm?: boolean
   /**
    * Use the native spell check functionality of the browser.
    */
@@ -92,6 +103,10 @@ interface DateTimePickerProps {
    * Set a locale
    * @default 'en-CA'
    */
+  /**
+   * The name of the text input
+   */
+  name?: string
   locale: string
   localeOptions: Partial<Intl.DateTimeFormatOptions>
   disableDates?: (date: Date) => boolean
@@ -100,8 +115,6 @@ interface DateTimePickerProps {
   shouldShowTodayButton: boolean
   shouldShowYearButtons: boolean
   dateFormatter?: any
-  mobile?: boolean
-  detectMobile?: boolean
   interval: number
   height: string | number
   width?: string | number
@@ -114,26 +127,14 @@ export default class DateTimePicker extends React.Component<
   DateTimePickerProps
 > {
   state = {
-    selected: format(
-      setMinutes(
-        this.props.value,
-        Math.round(this.props.value.getMinutes() / this.props.interval) *
-          this.props.interval
-      )!,
-      DEFAULT_FORMAT_STRING
-    ),
-    date: new Date(),
-    time: {
-      hour: new Date().getHours(),
-      minute: new Date().getMinutes()
-    },
+    value: this.props.value,
     isShown: this.props.isShown
   }
 
   static defaultProps = {
-    value: new Date(),
+    value: startOfMinute(new Date()),
     interval: 5,
-    isShown: false,
+    isShown: true,
     width: 'auto',
     height: 320,
     shouldShowTodayButton: true,
@@ -149,22 +150,22 @@ export default class DateTimePicker extends React.Component<
     }
   }
 
-  onChange = (input, picker) => {
-    let selected = input
+  onChange = (input: Date, picker: 'date' | 'time') => {
+    const oldDate = this.state.value
+    let newDate = input
     if (picker === 'date') {
-      selected = setMinutes(
-        setHours(input, this.state.time.hour),
-        this.state.time.minute
-      )
-      this.setState({ date: input })
+      const { year, month, day } = DateTime.fromJSDate(newDate).toObject()
+      newDate = DateTime.fromJSDate(oldDate)
+        .set({ year, month, day })
+        .toJSDate()
+    } else if (picker === 'time') {
+      const { hour, minute } = DateTime.fromJSDate(newDate).toObject()
+      newDate = DateTime.fromJSDate(oldDate)
+        .set({ hour, minute })
+        .toJSDate()
     }
-    if (picker === 'time') {
-      const hour = convertHourTo24(input.hour, input.meridian)
-      selected = setMinutes(setHours(this.state.date, hour), input.minute)
-      this.setState({ time: input })
-    }
-    this.setState({ selected })
-    return this.props.onChange(selected)
+    this.setState({ value: newDate })
+    return this.props.onChange(newDate)
   }
 
   close = () => {
@@ -199,11 +200,12 @@ export default class DateTimePicker extends React.Component<
       localeOptions,
       disableDates,
       onChange,
-      mobile,
+      useAmPm,
+      showArrowButtons,
       dateFormatter = defaultDateFormatter,
       ...props
     } = this.props
-    const { selected, isShown } = this.state
+    const { isShown } = this.state
     const { matchedProps, remainingProps } = splitBoxProps(props)
 
     return (
@@ -239,7 +241,13 @@ export default class DateTimePicker extends React.Component<
                 </Heading>
                 <IconButton onClick={close} appearance="minimal" icon={XIcon} />
               </Pane>
-              <TimePicker margin={16} useAmPm value={value} />
+              <TimePicker
+                margin={16}
+                onChange={time => this.onChange(time, 'time')}
+                useAmPm={useAmPm}
+                showArrowButtons={showArrowButtons}
+                value={value}
+              />
             </Box>
           </Box>
         )}
@@ -265,7 +273,7 @@ export default class DateTimePicker extends React.Component<
             placeholder={placeholder}
             spellCheck={spellCheck}
             type={type}
-            value={dateFormatter(selected)}
+            value={dateFormatter(value)}
             {...remainingProps}
           />
         </FormField>

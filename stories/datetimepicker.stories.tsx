@@ -15,15 +15,18 @@ import { majorScale } from '../src/scales'
 storiesOf('datetime-picker', module)
   .add('Date-Time Picker', () => (
     <Box padding={majorScale(6)}>
-      <Component initialState={{}}>
+      <Component initialState={{ date: startOfMinute(new Date()) }}>
         {({ state, setState }) => (
           <>
             {JSON.stringify(state.date)}
             <DateTimePicker
+              name="dtstart"
               label="Date time Picker"
-              value={new Date(2019, 3, 15, 11, 25)}
+              value={state.date}
               position={Position.BOTTOM_LEFT as PositionEnum}
               onChange={date => setState({ date })}
+              showArrowButtons
+              useAmPm
             />
           </>
         )}
@@ -32,7 +35,7 @@ storiesOf('datetime-picker', module)
   ))
   .add('Inline Time Picker', () => (
     <Box padding={majorScale(6)}>
-      <Component initialState={{ time: new Date() }}>
+      <Component initialState={{ time: new Date(0, 0, 0, 11, 25) }}>
         {({ state, setState }) => (
           <>
             <TimePicker
