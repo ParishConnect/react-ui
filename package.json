@@ -20,7 +20,7 @@
   "sideEffects": false,
   "scripts": {
     "start": "yarn dev",
-    "test": "yarn run tslint",
+    "test": "yarn tsc --noEmit",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "prepublishOnly": "rm -rf dist && yarn run build",
     "dev": "start-storybook -p 6006",
