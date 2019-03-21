@@ -2,9 +2,9 @@ import { format, getHours, getMinutes } from 'date-fns'
 import * as React from 'react'
 import { Popover } from '../../popover/index'
 import { TextInputField } from '../../text-input/index'
+import TimeMenu from '../src/TimeMenu'
 import { defaultTimeFormat, defaultTimes } from '../utils/index'
 import parseTime from '../utils/parseTime'
-import TimeMenu from './TimeMenu'
 
 interface TimePickerProps {
   /**

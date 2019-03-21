@@ -80,10 +80,6 @@ export function wrapTimeAtUnit(unit: TimeUnit, time: number) {
   return time
 }
 
-export function getTimeUnitClassName(unit: TimeUnit) {
-  return TimeUnitMetadata[unit].className
-}
-
 export function getTimeUnitMax(unit: TimeUnit) {
   return TimeUnitMetadata[unit].max
 }
