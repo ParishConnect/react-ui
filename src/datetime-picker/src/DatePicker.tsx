@@ -17,7 +17,7 @@ export default class DatePicker extends React.Component<InlineDatePickerProps> {
 
   onChange = date => {
     this.setState({ selected: date })
-    return this.props.onChange
+    return this.props.onChange(date)
   }
 
   render() {

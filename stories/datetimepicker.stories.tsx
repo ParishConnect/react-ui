@@ -68,6 +68,16 @@ storiesOf('datetime-picker', module)
   ))
   .add('Date Picker', () => (
     <Box padding={majorScale(6)}>
-      <DatePicker />
+      <Component initialState={{ date: new Date(2019, 5, 14) }}>
+        {({ state, setState }) => (
+          <>
+            <DatePicker
+              value={state.date}
+              onChange={date => setState({ date })}
+            />
+            {JSON.stringify(state.date)}
+          </>
+        )}
+      </Component>
     </Box>
   ))
