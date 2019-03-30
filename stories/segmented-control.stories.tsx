@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react'
-import * as React from 'react'
 import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
-import { SegmentedControl } from '../src'
+import { storiesOf } from '@storybook/react'
+import * as React from 'react'
+import { SegmentedControl, Text } from '../src'
 
 storiesOf('segmented-control', module).add('SegmentedControl', () => (
   <Box padding={40}>
@@ -27,7 +27,10 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
           height={36}
           options={state.options}
           value={state.value}
-          onChange={value => setState({ value })}
+          onChange={value => {
+            setState({ value })
+            console.log(value)
+          }}
         />
       )}
     </Component>
@@ -38,25 +41,41 @@ storiesOf('segmented-control', module).add('SegmentedControl', () => (
       }}
     >
       {({ state, setState }) => (
-        <SegmentedControl
-          name="switch"
-          marginTop={24}
-          width={80}
-          height={24}
-          options={state.options}
-          value={state.value}
-          onChange={value => {
-            setState({ value })
-          }}
-        />
+        <Box marginTop={24}>
+          <Text>Controlled</Text>
+          <SegmentedControl
+            name="switch"
+            marginTop={24}
+            width={80}
+            height={24}
+            options={state.options}
+            value={state.value}
+            onChange={value => {
+              setState({ value })
+            }}
+          />
+          <SegmentedControl
+            name="switch"
+            marginTop={24}
+            width={80}
+            height={24}
+            options={state.options}
+            value={state.value}
+            onChange={value => {
+              setState({ value })
+            }}
+          />
+        </Box>
       )}
     </Component>
-    <SegmentedControl
-      marginTop={24}
-      width={80}
-      height={24}
-      options={[{ label: 'On', value: true }, { label: 'Off', value: false }]}
-      defaultValue={false}
-    />
+    <Box marginTop={24}>
+      <Text>Uncontrolled</Text>
+      <SegmentedControl
+        width={80}
+        height={24}
+        options={[{ label: 'On', value: true }, { label: 'Off', value: false }]}
+        defaultValue={false}
+      />
+    </Box>
   </Box>
 ))

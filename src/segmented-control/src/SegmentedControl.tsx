@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { noop } from 'lodash'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import * as React from 'react'
+import safeInvoke from '../../lib/safe-invoke'
 import { scales } from '../../theme/src/default-theme/foundational-styles'
 import SegmentedControlRadio from './SegmentedControlRadio'
 
@@ -72,30 +72,28 @@ export default class SegmentedControl extends React.PureComponent<
     return typeof this.props.value !== 'undefined' && this.props.value !== null
   }
 
-  handleChange = (value: number | string | boolean) => {
+  handleChange = value => {
     // Save a render cycle when it's a controlled input
     if (!this.isControlled()) {
       this.setState({ value })
     }
 
-    if (typeof this.props.onChange === 'function') {
-      const { onChange = noop } = this.props
-      onChange(value)
-    }
+    safeInvoke(this.props.onChange, value)
   }
 
   render() {
     const {
-      // tslint:disable-next-line:no-unused
       value: filterOutValue, // Filter out.
       name,
       height = 32,
       options,
+      onChange,
+      defaultValue,
       ...props
     } = this.props
 
     // Allows it to behave like a controlled input
-    let value = this.state.value
+    let { value } = this.state
     if (this.isControlled()) {
       value = this.props.value
     }

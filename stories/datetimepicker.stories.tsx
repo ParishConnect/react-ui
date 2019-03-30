@@ -22,6 +22,7 @@ storiesOf('datetime-picker', module)
             <DateTimePicker
               name="dtstart"
               label="Date time Picker"
+              hint="hint"
               value={state.date}
               position={Position.BOTTOM_LEFT as PositionEnum}
               onChange={date => setState({ date })}
@@ -72,6 +73,8 @@ storiesOf('datetime-picker', module)
         {({ state, setState }) => (
           <>
             <DatePicker
+              label="DatePicker Label"
+              hint="DatePicker Hint"
               value={state.date}
               onChange={date => setState({ date })}
             />

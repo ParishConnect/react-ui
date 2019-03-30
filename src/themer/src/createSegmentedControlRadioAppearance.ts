@@ -20,7 +20,7 @@ const activeState =
   '&:not([disabled="true"]):not([data-disabled="true"]):active, &:not([disabled="true"]):not([data-disabled="true"])[data-popover-opened="true"], &:not([disabled="true"]):not([data-disabled="true"])[data-active="true"]'
 const focusState = '& input:focus + label'
 
-export interface SegementedControlRadioAppearance {
+export interface SegmentedControlRadioAppearance {
   base: object
   hover: object
   disabled: object
@@ -32,7 +32,7 @@ export interface SegementedControlRadioAppearance {
 }
 
 const createSegmentedControlRadioAppearance: any = (
-  items: SegementedControlRadioAppearance
+  items: SegmentedControlRadioAppearance
 ) => {
   missingStateWarning({
     items,
@@ -63,7 +63,7 @@ const createSegmentedControlRadioAppearance: any = (
       padding: '0 -10px',
       margin: '0 -10px',
       zIndex: 5,
-      label: {
+      '&>label': {
         color: items.active.labelColor
       }
     }

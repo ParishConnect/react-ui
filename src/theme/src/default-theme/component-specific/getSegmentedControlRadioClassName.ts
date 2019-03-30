@@ -1,7 +1,7 @@
 import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
+import { elevations, palette, scales } from '../foundational-styles'
 import { defaultControlStyles } from '../shared'
-import { elevations, scales, palette } from '../foundational-styles'
+import memoizeClassName from '../utils/memoizeClassName'
 
 const defaultAppearance = (appearance: any) => {
   return Themer.createSegmentedControlRadioAppearance({
@@ -22,7 +22,7 @@ const defaultAppearance = (appearance: any) => {
         ? palette[appearance].base
         : scales.blue.B8
     },
-    focus: defaultControlStyles.focus
+    focus: { ...defaultControlStyles.focus, borderRadius: 999 }
   })
 }
 

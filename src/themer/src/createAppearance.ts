@@ -19,7 +19,8 @@ const whitelist = [
 
   'outline',
   // Not sure if cursor should be configurable
-  'cursor'
+  'cursor',
+  'labelColor'
 ]
 
 function createAppearance(obj = {}) {

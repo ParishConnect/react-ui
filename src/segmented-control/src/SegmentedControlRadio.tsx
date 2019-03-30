@@ -1,11 +1,10 @@
+import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import cx from 'classnames'
+import { css } from 'glamor'
 import * as React from 'react'
 import { Omit } from 'utility-types'
-import { noop } from 'lodash'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { css } from 'glamor'
-import cx from 'classnames'
-import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
+import { Text } from '../../typography'
 
 const labelClass = css({
   display: 'flex',
@@ -57,7 +56,7 @@ export interface SegmentedControlRadioProps
   /**
    * The value attribute of the radio input.
    */
-  value: string
+  value: any
 
   /**
    * The height of the control.
@@ -92,7 +91,7 @@ export interface SegmentedControlRadioProps
   /**
    * Function called when the state changes.
    */
-  onChange?(value?: string | number | boolean): any
+  onChange?: any
 }
 
 class SegmentedControlRadio extends React.PureComponent<
@@ -108,7 +107,7 @@ class SegmentedControlRadio extends React.PureComponent<
       value,
       height,
       checked,
-      onChange = noop,
+      onChange,
       appearance,
       isFirstItem,
       isLastItem
@@ -145,9 +144,7 @@ class SegmentedControlRadio extends React.PureComponent<
           name={name}
           value={value}
           checked={checked}
-          // tslint:disable:jsx-no-lambda
-          // tslint:disable-next-line:react-this-binding-issue
-          onChange={e => onChange(e.target.value!)}
+          onChange={e => onChange(e.target.value)}
         />
         <Text
           is="label"
