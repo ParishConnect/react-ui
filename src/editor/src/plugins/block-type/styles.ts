@@ -13,7 +13,7 @@ export const blocktypeStyles = css`
       letter-spacing: -0.2px;
       margin-top: 40px;
       font-family: ${defaultTheme.typography.fontFamilies.display};
-      color: ${defaultTheme.colors.text.dark};
+      color: #2d2d2d;
     }
     & h2 {
       font-size: 20px;
@@ -22,7 +22,7 @@ export const blocktypeStyles = css`
       letter-spacing: -0.07px;
       margin-top: 28px;
       font-family: ${defaultTheme.typography.fontFamilies.display};
-      color: ${defaultTheme.colors.text.dark};
+      color: #2d2d2d;
     }
   }
 `
