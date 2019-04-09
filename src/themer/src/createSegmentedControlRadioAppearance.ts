@@ -60,11 +60,14 @@ const createSegmentedControlRadioAppearance: any = (
     [activeState]: createAppearance(items.active),
     '&[data-active="true"]': {
       cursor: 'default',
-      padding: '0 -10px',
+      padding: '0',
       margin: '0 -10px',
       zIndex: 5,
       '&>label': {
         color: items.active.labelColor
+      },
+      '+ div': {
+        padding: '0 10px'
       }
     }
   }
