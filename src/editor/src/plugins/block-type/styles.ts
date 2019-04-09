@@ -1,8 +1,8 @@
 // @ts-ignore: unused variable
-import { css } from 'styled-components'
 import { blockquoteSharedStyles } from '@atlaskit/editor-common'
-import { fontFamilies } from '../../../../theme/src/default-theme/typography/index'
+import { css } from 'styled-components'
 import { colors } from '../../../../theme/src/default-theme/foundational-styles/index'
+import { fontFamilies } from '../../../../theme/src/default-theme/typography/index'
 
 export const blocktypeStyles = css`
   .ProseMirror {
@@ -14,7 +14,7 @@ export const blocktypeStyles = css`
       letter-spacing: -0.2px;
       margin-top: 40px;
       font-family: ${fontFamilies.display};
-      color: ${colors.text.dark};
+      color: ${colors && colors.text.dark};
     }
     & h2 {
       font-size: 20px;
@@ -23,7 +23,7 @@ export const blocktypeStyles = css`
       letter-spacing: -0.07px;
       margin-top: 28px;
       font-family: ${fontFamilies.display};
-      color: ${colors.text.dark};
+      color: ${colors && colors.text.dark};
     }
   }
 `
