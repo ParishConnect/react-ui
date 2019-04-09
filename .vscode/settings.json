@@ -1,6 +1,9 @@
 {
   "eslint.enable": false,
   "tslint.exclude": "**/node_modules/**",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false
+  },
   "files.associations": {
     "*.js": "javascriptreact"
   },
