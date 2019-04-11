@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import Component from '@reactions/component'
 import Box from '@hennessyevan/aluminum-box'
 import starWarsNames from 'starwars-names'
 import { Combobox, Heading } from '../src'
@@ -19,6 +20,9 @@ const items = starWarsNames.all.sort((a, b) => {
 })
 
 const customItems = items.map(i => ({ label: i }))
+const seasons = ['Easter', 'Christmas', 'Pentecost']
+
+const objectItems = seasons.map(i => ({ key: i, value: i }))
 
 const handleChange = selectedItem => {
   console.log(selectedItem)
@@ -59,9 +63,27 @@ storiesOf('combobox', module).add('Combobox', () => (
       <Combobox
         defaultSelectedItem={customItems[0]}
         items={customItems}
-        itemToString={i => i.label}
+        itemToString={i => (i ? i.label : '')}
         onChange={handleChange}
       />
+    </Box>
+    <Box marginBottom={16}>
+      <Heading>Creatable</Heading>
+      <Component initialState={{ objectItems }}>
+        {({ state, setState }) => (
+          <Combobox
+            createable
+            openOnFocus
+            onItemCreated={item =>
+              setState({ objectItems: [item].concat(objectItems) })
+            }
+            items={state.objectItems}
+            itemToString={i => (i ? i.value : '')}
+            selectedItem={state.selectedItem && state.selectedItem}
+            onChange={selectedItem => setState({ selectedItem })}
+          />
+        )}
+      </Component>
     </Box>
   </Box>
 ))

@@ -4,12 +4,19 @@ import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
 import { ChevronDownIcon } from '../../icons/index'
+import { create } from 'domain'
+import { createTable } from 'prosemirror-utils'
 
 export interface ComboboxProps extends BoxProps {
   /**
    * The options to show in the menu.
    */
   items: any[]
+
+  /**
+   * Allows users to create a custom item on the fly
+   */
+  createable?: boolean
 
   /**
    * The selected item when controlled.
@@ -56,10 +63,13 @@ export interface ComboboxProps extends BoxProps {
    * Properties forwarded to the autocomplete component. Use with caution.
    */
   autocompleteProps?: object
+
+  onItemCreated?: any
 }
 
 export interface ComboboxState {
   isOpenedByButton: boolean
+  createableValue?: any
 }
 
 export default class Combobox extends React.PureComponent<
@@ -87,6 +97,8 @@ export default class Combobox extends React.PureComponent<
   render() {
     const {
       items,
+      createable,
+      onItemCreated,
       selectedItem,
       defaultSelectedItem,
       itemToString,
@@ -108,6 +120,8 @@ export default class Combobox extends React.PureComponent<
         defaultSelectedItem={defaultSelectedItem}
         itemToString={itemToString}
         onChange={onChange}
+        createable={createable}
+        onItemCreated={onItemCreated}
         onStateChange={this.handleStateChange}
         isFilterDisabled={this.state.isOpenedByButton}
         {...autocompleteProps}
@@ -154,7 +168,6 @@ export default class Combobox extends React.PureComponent<
               })}
             />
             <IconButton
-              iconAim="down"
               color="muted"
               icon={ChevronDownIcon}
               appearance="default"

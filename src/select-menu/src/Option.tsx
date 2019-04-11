@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react'
 import { Pane } from '../../layers'
 import { TableRow, TextTableCell } from '../../table'
 import { TableRowProps } from '../../table/src/TableRow'
-import { CheckIcon } from '../../icons/index'
+import { CheckIcon, PlusIcon } from '../../icons/index'
+import { Text } from '../../typography/index'
+import { majorScale } from '../../scales/index'
 
 export interface OptionProps extends TableRowProps {
   label?: string | React.ReactNode
@@ -13,6 +15,7 @@ export interface OptionProps extends TableRowProps {
   isSelectable?: boolean
   disabled?: boolean
   hasIcon?: boolean
+  createable?: boolean
   onSelect: any
   onDeselect: any
 }
@@ -21,6 +24,7 @@ export default class Option extends React.PureComponent<OptionProps> {
   render() {
     const {
       label,
+      createable,
       onSelect,
       onDeselect,
       isHighlighted,
@@ -58,11 +62,15 @@ export default class Option extends React.PureComponent<OptionProps> {
           <Pane
             paddingLeft={12}
             paddingRight={8}
-            opacity={isSelected ? 1 : 0}
+            opacity={isSelected || createable ? 1 : 0}
             flexGrow={0}
             paddingTop={4}
           >
-            <CheckIcon size={14} color="selected" />
+            {createable ? (
+              <PlusIcon size={16} color="selected" />
+            ) : (
+              <CheckIcon size={16} color="selected" />
+            )}
           </Pane>
         )}
         <TextTableCell
@@ -75,6 +83,11 @@ export default class Option extends React.PureComponent<OptionProps> {
           alignSelf="stretch"
           cursor={disabled ? 'default' : 'pointer'}
         >
+          {createable && (
+            <Text marginRight={majorScale(1)} color="theme" size={300}>
+              Create
+            </Text>
+          )}
           {label}
         </TextTableCell>
       </TableRow>

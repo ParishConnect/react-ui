@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cloneWith, concat } from 'lodash'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift, { DownshiftInterface } from 'downshift'
 import VirtualList, {
@@ -11,8 +12,22 @@ import { Pane, PaneProps } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
 import { Assign } from 'utility-types'
 
-const fuzzyFilter = (items: {}[], input: string) =>
-  fuzzaldrin.filter(items, input)
+const fuzzyFilter = (itemToString: any) => {
+  if (itemToString) {
+    return (items: any, input: string) => {
+      const wrappedItems = items.map(item => ({
+        key: itemToString(item),
+        item
+      }))
+
+      return fuzzaldrin
+        .filter(wrappedItems, input, { key: 'key' })
+        .map(({ item }) => item)
+    }
+  }
+
+  return (items: any, input: string) => fuzzaldrin.filter(items, input)
+}
 
 const autocompleteItemRenderer = (props: any) => <AutocompleteItem {...props} />
 
@@ -20,6 +35,10 @@ export interface AutocompleteProps
   extends Assign<PaneProps, DownshiftInterface> {
   children?: any
   position?: PositionType
+  /**
+   * Allows an item to be created on the fly
+   */
+  creatable?: boolean
   /**
    * This prop can be either a string or a Node.
    * It will provide a title for the items
@@ -72,10 +91,12 @@ export interface AutocompleteProps
    * By default the "fuzzaldrin-plus" package is used.
    */
   itemsFilter?(items: [], input: any): never[]
+  onItemCreated?: any
 }
 
 export interface AutocompleteState {
   targetWidth: number
+  createableRef?: string
 }
 
 // Issue still exists: https://github.com/paypal/downshift/issues/164
@@ -86,7 +107,6 @@ export default class Autocomplete extends React.PureComponent<
   public static defaultProps = {
     itemToString: (i: any) => (i ? String(i) : ''),
     itemSize: 32,
-    itemsFilter: fuzzyFilter,
     isFilterDisabled: false,
     popoverMinWidth: 240,
     popoverMaxHeight: 240,
@@ -105,6 +125,17 @@ export default class Autocomplete extends React.PureComponent<
     })
   }
 
+  generateCreateableItem(inputValue: string) {
+    let clone = this.props.items[0]
+    if (typeof clone === 'object') {
+      const newObj = { createable: true }
+      Object.keys(clone).forEach(key => (newObj[key] = inputValue))
+      return newObj
+    } else {
+      return inputValue
+    }
+  }
+
   renderResults = ({
     width,
     inputValue,
@@ -115,19 +146,35 @@ export default class Autocomplete extends React.PureComponent<
   }: any) => {
     const {
       title,
+      createable,
       itemSize = 32,
-      itemsFilter = fuzzyFilter,
+      itemsFilter,
       items: originalItems,
       itemToString = (i: any) => (i ? String(i) : ''),
       renderItem = autocompleteItemRenderer,
       popoverMaxHeight = 240,
-      isFilterDisabled = false
+      isFilterDisabled = false,
+      onItemCreated
     } = this.props
 
-    const items =
+    const filter = itemsFilter || fuzzyFilter(itemToString)
+    let items =
       isFilterDisabled || inputValue.trim() === ''
         ? originalItems
-        : itemsFilter(originalItems, inputValue)
+        : filter(originalItems, inputValue)
+
+    if (createable) {
+      if (
+        inputValue.trim() !== '' &&
+        !items.includes(inputValue) &&
+        items.filter(item => Object.values(item).includes(inputValue)).length <=
+          0
+      ) {
+        const item = this.generateCreateableItem(inputValue)
+        this.setState({ createableRef: inputValue })
+        items = concat(item, items)
+      }
+    }
 
     if (items.length === 0) return null
 
@@ -150,15 +197,26 @@ export default class Autocomplete extends React.PureComponent<
             renderItem={({ index, style }) => {
               const item = items[index]
               const itemString = itemToString(item)
+              const isCreateable =
+                (item === inputValue || item.createable === true) &&
+                inputValue === this.state.createableRef
+
               return renderItem(
                 getItemProps({
                   item,
+                  createable: isCreateable,
                   key: itemString,
                   index,
                   style,
                   children: itemString,
                   onMouseUp: () => {
-                    selectItemAtIndex(index)
+                    if (isCreateable && onItemCreated) {
+                      delete item.createable
+                      onItemCreated(item)
+                      this.setState({ createableRef: undefined })
+                    } else {
+                      selectItemAtIndex(index)
+                    }
                   },
                   isSelected: itemToString(selectedItem) === itemString,
                   isHighlighted: highlightedIndex === index
@@ -173,6 +231,11 @@ export default class Autocomplete extends React.PureComponent<
 
   render() {
     const {
+      createable,
+      itemSize,
+      renderItem,
+      itemsFilter,
+      popoverMaxHeight,
       children,
       position,
       popoverMinWidth = 240,
@@ -189,9 +252,10 @@ export default class Autocomplete extends React.PureComponent<
           selectedItem,
           highlightedIndex,
           selectItemAtIndex,
+          getRootProps,
           ...restDownshiftProps
         }) => (
-          <div>
+          <Pane width="100%" {...getRootProps({ refKey: 'innerRef' })}>
             <Popover
               bringFocusInside={false}
               isShown={isShown}
@@ -232,7 +296,7 @@ export default class Autocomplete extends React.PureComponent<
                 })
               }
             </Popover>
-          </div>
+          </Pane>
         )}
       </Downshift>
     )

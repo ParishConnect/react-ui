@@ -11,10 +11,18 @@ export default class AutocompleteItem extends React.PureComponent<
   AutocompleteItemProps
 > {
   render() {
-    const { isHighlighted, isSelected, style, children, ...props } = this.props
+    const {
+      isHighlighted,
+      createable,
+      isSelected,
+      style,
+      children,
+      ...props
+    } = this.props
 
     return (
       <Option
+        createable={createable}
         isHighlighted={isHighlighted}
         isSelected={isSelected}
         label={children}
