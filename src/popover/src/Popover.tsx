@@ -44,6 +44,15 @@ export interface PopoverProps extends PaneProps {
    */
   bringFocusInside?: boolean
   /**
+   * When true, bring focus to target on Popover close
+   * @default true
+   */
+  focusTargetOnClose?: boolean
+  /**
+   * Whether to close after clicking. Useful for menus
+   */
+  closeOnClick?: boolean
+  /**
    * Function called when the Popover opens.
    */
   onOpen?(): () => {}
@@ -75,11 +84,13 @@ export default class Popover extends React.Component<
     minWidth: 200,
     minHeight: 40,
     animationDuration: 300,
-    onOpen: noop(),
-    onClose: noop(),
-    onOpenComplete: noop(),
-    onCloseComplete: noop(),
-    bringFocusInside: false
+    onOpen: () => {},
+    onClose: () => {},
+    onOpenComplete: () => {},
+    onCloseComplete: () => {},
+    bringFocusInside: false,
+    closeOnClick: false,
+    focusTargetOnClose: true
   }
 
   popoverNode: HTMLElement | any
@@ -152,6 +163,7 @@ export default class Popover extends React.Component<
 
       // Bring back focus on the target.
       if (
+        this.props.focusTargetOnClose &&
         this.targetRef &&
         (document.activeElement === document.body || isFocusInsideModal)
       ) {
@@ -212,8 +224,8 @@ export default class Popover extends React.Component<
 
     this.bringFocusBackToTarget()
 
-    const { onClose = noop } = this.props
-    onClose()
+    const { onClose } = this.props
+    onClose!()
   }
 
   handleOpenComplete = () => {

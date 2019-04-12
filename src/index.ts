@@ -19,6 +19,7 @@ export {
   TimePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
+export { Suggest } from './suggest'
 export * from './editor'
 export * from './editor-json-transformer'
 export * from './editor-plain-transformer'

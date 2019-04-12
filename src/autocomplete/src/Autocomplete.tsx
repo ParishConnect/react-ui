@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { cloneWith, concat } from 'lodash'
+import { concat } from 'lodash'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift, { DownshiftInterface } from 'downshift'
 import VirtualList, {

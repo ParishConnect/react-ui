@@ -30,6 +30,14 @@ export interface MenuOptionProps {
    * The default theme only supports one default appearance.
    */
   appearance: string
+
+  /**
+   * Set an icon if not
+   */
+  icon?: any
+
+  onClick?: any
+  onKeyPress?: any
 }
 
 class MenuOption extends React.PureComponent<MenuOptionProps> {
@@ -42,30 +50,40 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
     onKeyPress: noop
   }
 
-  handleClick = () => {
-    this.props.onSelect()
+  handleClick = e => {
+    this.props.onSelect(e)
   }
 
   handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      this.props.onSelect()
+      this.props.onSelect(e)
       e.preventDefault()
     }
   }
 
   render() {
-    const { id, children, appearance, secondaryText, isSelected } = this.props
+    const {
+      id,
+      children,
+      icon,
+      appearance,
+      secondaryText,
+      isSelected
+    } = this.props
     const theme = this.context
 
     const themedClassName = theme.getMenuItemClassName(appearance, 'none')
 
-    const textProps = isSelected
-      ? {
-          color: 'selected',
-          fontWeight: 500,
-          marginLeft: 16
-        }
-      : { marginLeft: 44 }
+    const textProps =
+      isSelected || icon
+        ? {
+            color: 'selected',
+            fontWeight: 500,
+            marginLeft: 16
+          }
+        : { marginLeft: 44 }
+
+    const Icon = isSelected ? CheckIcon : icon ? icon : null
 
     return (
       <Pane
@@ -81,8 +99,8 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
         display="flex"
         alignItems="center"
       >
-        {isSelected && (
-          <CheckIcon
+        {Icon && (
+          <Icon
             aria-hidden
             color="selected"
             marginLeft={16}

@@ -16,7 +16,7 @@ import {
   TimeUnit,
   wrapTimeAtUnit
 } from './common/timeUnit'
-import * as Utils from './common/utils'
+import * as Utils from '../../utils/utils'
 
 const Keys = {
   BACKSPACE: 8,
