@@ -14,11 +14,7 @@ import {
 } from '@remirror/core'
 import { ResolvedPos } from 'prosemirror-model'
 import { Plugin } from 'prosemirror-state'
-import {
-  findChildrenByType,
-  findSelectedNodeOfType,
-  ContentNodeWithPos
-} from 'prosemirror-utils'
+import { ContentNodeWithPos, findSelectedNodeOfType } from 'prosemirror-utils'
 
 /**
  * Update the selection with the provided MarkType
@@ -146,11 +142,11 @@ export class Image extends NodeExtension<ImageOptions> {
   public plugin() {
     return new Plugin<EditorSchema>({
       props: {
-        nodeViews: {
-          image(node, view, getPos) {
-            return new ImageView(node, view, getPos)
-          }
-        },
+        // nodeViews: {
+        //   image(node, view, getPos) {
+        //     return new ImageView(node, view, getPos)
+        //   }
+        // },
         handleDOMEvents: {
           drop(view, e) {
             const event = Cast<DragEvent>(e)

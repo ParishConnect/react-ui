@@ -54,22 +54,22 @@ export default function editorStyles(theme: ThemeType) {
       },
 
       // Images
-      '.img-wrapper': {
+      img: {
+        borderRadius: 3,
         maxWidth: '100%',
         display: 'inline-flex',
         alignItems: 'center',
         cursor: 'pointer',
-        marginBottom: 0,
         position: 'relative',
-        paddingLeft: majorScale(1),
-        paddingRight: majorScale(1),
-        paddingTop: majorScale(1),
-        borderRadius: 2,
+        marginLeft: majorScale(1),
+        marginRight: majorScale(1),
+        marginTop: majorScale(1),
         '&.ProseMirror-selectednode': {
           boxShadow: `0 0 0 2px ${theme.getThemeColor(theme)}`
         },
         '&[layout="center"]': {
-          margin: '0 auto',
+          marginRight: 'auto',
+          marginLeft: 'auto',
           display: 'flex'
         },
         '&[layout="align-start"]': {
@@ -96,11 +96,6 @@ export default function editorStyles(theme: ThemeType) {
           paddingBottom: majorScale(1),
           width: '100%'
         }
-      },
-
-      'img, picture': {
-        borderRadius: 3,
-        maxWidth: '100%'
       }
     }
   })

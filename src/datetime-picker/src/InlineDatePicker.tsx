@@ -37,13 +37,13 @@ export interface InlineDatePickerProps {
    * Set a locale
    * @default 'en-CA'
    */
-  locale: string
-  localeOptions: Partial<Intl.DateTimeFormatOptions>
+  locale?: string
+  localeOptions?: Partial<Intl.DateTimeFormatOptions>
   disableDates?: (date: Date) => boolean
   onChange?: any
-  todayButtonLabel: string
-  shouldShowTodayButton: boolean
-  shouldShowYearButtons: boolean
+  todayButtonLabel?: string
+  shouldShowTodayButton?: boolean
+  shouldShowYearButtons?: boolean
   width?: string | number
   dateFormatter?: any
   mobile?: boolean
