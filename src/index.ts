@@ -21,8 +21,6 @@ export {
 export { Dialog } from './dialog'
 export { Suggest } from './suggest'
 export * from './editor'
-// export * from './editor-json-transformer'
-// export * from './editor-plain-transformer'
 export { FilePicker, ImagePicker } from './file-picker'
 export {
   FormField,

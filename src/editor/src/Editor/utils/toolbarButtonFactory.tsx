@@ -71,6 +71,7 @@ export const getBlockButtons = ({
   actions,
   disabled,
   allowImages,
+  openUploadPane,
   linkActivated,
   deactivateLink,
   activateLink
@@ -81,7 +82,7 @@ export const getBlockButtons = ({
     blockButtons.push(
       <Tooltip position="top" content="Add Image" key="contentImage">
         <IconButton
-          onClick={runAction(actions.imageAdd.command)}
+          onClick={openUploadPane}
           appearance="minimal"
           icon={ImageIcon}
           {...buttonProps}

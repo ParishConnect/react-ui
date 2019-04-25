@@ -1,30 +1,23 @@
-import * as React from 'react'
 import {
   Attrs,
   bool,
   Cast,
   CommandFunction,
+  DispatchFunction,
   EditorSchema,
-  NodeExtension,
-  NodeExtensionSpec,
-  SchemaNodeTypeParams,
-  NodeExtensionOptions,
-  updateMark,
-  NodeType,
-  findParentNodeOfType,
-  ExtensionManagerParams,
-  nodeActive,
-  FlexibleConfig,
-  ExtensionBooleanFunction,
   EditorState,
-  DispatchFunction
+  NodeExtension,
+  NodeExtensionOptions,
+  NodeExtensionSpec,
+  NodeType,
+  SchemaNodeTypeParams
 } from '@remirror/core'
 import { ResolvedPos } from 'prosemirror-model'
-import { Plugin, NodeSelection } from 'prosemirror-state'
+import { Plugin } from 'prosemirror-state'
 import {
-  findBlockNodes,
   findChildrenByType,
-  findSelectedNodeOfType
+  findSelectedNodeOfType,
+  ContentNodeWithPos
 } from 'prosemirror-utils'
 
 /**
@@ -38,13 +31,15 @@ const updateNode = (type: NodeType, attrs: Attrs = {}): CommandFunction => (
   dispatch
 ) => {
   const { pos, parent } = state.doc.resolve(state.selection.from)
-  const imageNode = findChildrenByType(parent, state.schema.nodes.image)
+  const imageNode: ContentNodeWithPos | undefined = findSelectedNodeOfType(
+    type
+  )(state.selection)
 
-  if (dispatch) {
+  if (dispatch && imageNode) {
     dispatch(
       state.tr
         .setNodeMarkup(pos, type, {
-          ...imageNode[0].node.attrs,
+          ...imageNode.node.attrs,
           ...attrs
         })
         .setSelection(state.selection)

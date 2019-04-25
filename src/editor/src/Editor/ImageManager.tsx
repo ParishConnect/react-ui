@@ -12,7 +12,9 @@ import {
   AlignCenterIcon,
   AlignRightIcon,
   TerminalIcon,
-  TrashIcon
+  TrashIcon,
+  Minimize2Icon,
+  Maximize2Icon
 } from '../../../icons/index'
 import { Card, Pane } from '../../../layers/index'
 import { Popover } from '../../../popover/index'
@@ -75,16 +77,16 @@ export default withRemirror(
               <IconButton
                 appearance="minimal"
                 onClick={runAction(actions.imageUpdate.command, {
-                  layout: 'wrap-start'
+                  width: '100%'
                 })}
-                icon={TerminalIcon}
+                icon={Maximize2Icon}
               />
               <IconButton
                 appearance="minimal"
                 onClick={runAction(actions.imageUpdate.command, {
-                  layout: 'wrap-end'
+                  width: '50%'
                 })}
-                icon={TerminalIcon}
+                icon={Minimize2Icon}
               />
               <Pane
                 marginRight={minorScale(1)}

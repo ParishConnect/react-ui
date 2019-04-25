@@ -56,24 +56,29 @@ export default function editorStyles(theme: ThemeType) {
       // Images
       '.img-wrapper': {
         maxWidth: '100%',
-        display: 'inline-block',
+        display: 'inline-flex',
+        alignItems: 'center',
         cursor: 'pointer',
-        marginTop: 0,
+        marginBottom: 0,
         position: 'relative',
+        paddingLeft: majorScale(1),
+        paddingRight: majorScale(1),
+        paddingTop: majorScale(1),
+        borderRadius: 2,
         '&.ProseMirror-selectednode': {
           boxShadow: `0 0 0 2px ${theme.getThemeColor(theme)}`
         },
         '&[layout="center"]': {
           margin: '0 auto',
-          display: 'block'
+          display: 'flex'
         },
         '&[layout="align-start"]': {
           marginRight: 'auto',
-          display: 'block'
+          display: 'flex'
         },
         '&[layout="align-end"]': {
           marginLeft: 'auto',
-          display: 'block'
+          display: 'flex'
         },
         '&[layout="wrap-start"] img': {
           float: 'left'
@@ -84,6 +89,12 @@ export default function editorStyles(theme: ThemeType) {
         '&[width="50%"]': {
           maxWidth: '50%',
           width: majorScale(40)
+        },
+        '&[width="100%"]': {
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingBottom: majorScale(1),
+          width: '100%'
         }
       },
 

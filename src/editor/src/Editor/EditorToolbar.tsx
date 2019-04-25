@@ -11,6 +11,8 @@ import {
   hasHeadingButtons
 } from './utils/toolbarButtonFactory'
 import { FormattingOptions } from './types'
+import { Dialog } from '../../../dialog/index'
+import { runAction } from './utils/runAction'
 
 interface EditorToolbarProps {
   formattingOptions: FormattingOptions
@@ -22,9 +24,18 @@ interface EditorToolbarProps {
   disabled: boolean
 }
 
+interface EditorToolbarState {
+  uploadPaneOpen: boolean
+}
+
 class EditorToolbar extends React.Component<
-  EditorToolbarProps & InjectedRemirrorProps
+  EditorToolbarProps & InjectedRemirrorProps,
+  EditorToolbarState
 > {
+  state: EditorToolbarState = { uploadPaneOpen: false }
+  openUploadPane = () => this.setState({ uploadPaneOpen: true })
+  closeUploadPane = () => this.setState({ uploadPaneOpen: false })
+
   render() {
     const {
       formattingOptions,
@@ -72,6 +83,7 @@ class EditorToolbar extends React.Component<
             actions,
             disabled,
             allowImages,
+            openUploadPane: this.openUploadPane,
             linkActivated,
             activateLink,
             deactivateLink
@@ -81,6 +93,16 @@ class EditorToolbar extends React.Component<
           <Pane display="flex" marginLeft="auto">
             {toolbarComponents}
           </Pane>
+        )}
+        {allowImages && (
+          <Dialog
+            onCloseComplete={this.closeUploadPane}
+            onConfirm={close => {
+              runAction(actions.imageAdd.command)
+              close()
+            }}
+            isShown={this.state.uploadPaneOpen}
+          />
         )}
       </Pane>
     )

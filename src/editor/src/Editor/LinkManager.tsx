@@ -109,6 +109,7 @@ class LinkInput extends React.Component<LinkInputProps, LinkInputState> {
               onClick={this.onClickRemoveLink}
               appearance="minimal"
               intent="danger"
+              marginRight={2}
             />
           </Tooltip>
         )}
