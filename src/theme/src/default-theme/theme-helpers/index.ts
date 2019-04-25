@@ -199,11 +199,11 @@ const getFontFamily = (fontFamily: string): string => {
 /**
  * Get the text color. This is used to override the color.
  */
-const getTextColor = (color: string, theme: ThemeType) => {
+const getTextColor = (color: string, theme?: ThemeType) => {
   /**
    * Allow Color to be current theme color
    */
-  if (color === 'theme') {
+  if (theme && color === 'theme') {
     return theme.palette[theme.themeColor].base
   }
   /**

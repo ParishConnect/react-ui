@@ -4,8 +4,6 @@ import { Autocomplete } from '../../autocomplete'
 import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
 import { ChevronDownIcon } from '../../icons/index'
-import { create } from 'domain'
-import { createTable } from 'prosemirror-utils'
 
 export interface ComboboxProps extends BoxProps {
   /**

@@ -11,8 +11,7 @@ import {
   Combobox,
   SideSheet,
   Pane,
-  Popover,
-  ReactRenderer
+  Popover
 } from '../src'
 import DialogManager from './DialogManager'
 import testDocument from './testDocument.json'

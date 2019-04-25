@@ -1,6 +1,6 @@
-import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { ThemeContext } from '../../theme/'
+import * as React from 'react'
+import { ThemeContext } from '../../theme/index'
 import { getIconColor } from '../../theme/src/default-theme/theme-helpers/index'
 
 export interface IconProps extends BoxProps {
@@ -32,7 +32,7 @@ export interface IconProps extends BoxProps {
 }
 
 class Icon extends React.PureComponent<IconProps> {
-  public static contextType = ThemeContext
+  static contextType = ThemeContext
   static SIZE_STANDARD = 16
   static SIZE_LARGE = 20
 
