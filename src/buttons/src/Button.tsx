@@ -59,10 +59,6 @@ export interface ButtonProps extends Omit<TextProps, 'appearance'> {
    * Only use if you know what you are doing.
    */
   className?: string
-  height?: number
-  width?: number
-  paddingRight?: number
-  paddingLeft?: number
 }
 
 class Button extends React.PureComponent<ButtonProps> {

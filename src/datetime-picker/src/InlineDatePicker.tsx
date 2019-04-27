@@ -85,10 +85,10 @@ export default class InlineDatePicker extends React.Component<
   getCurrentMonthTitle = () =>
     new Intl.DateTimeFormat(this.props.locale, {
       month:
-        this.props.localeOptions.month ||
+        this.props.localeOptions!.month ||
         InlineDatePicker.defaultProps.localeOptions.month,
       year:
-        this.props.localeOptions.year ||
+        this.props.localeOptions!.year ||
         InlineDatePicker.defaultProps.localeOptions.year
     }).format(this.state.pivotDate)
 

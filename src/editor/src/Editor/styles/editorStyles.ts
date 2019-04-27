@@ -19,14 +19,14 @@ export default function editorStyles(theme: ThemeType) {
       color: defaultTheme.getTextColor('default', theme),
       fontFamily: defaultTheme.getFontFamily('display'),
       ...defaultTheme.getTextStyle(400),
-      // Heading
-      h1: headings[700],
-      h2: headings[500],
       // Strong
       strong: {
         ...text[400],
         fontWeight: 600
       },
+      // Heading
+      h1: headings[700],
+      h2: headings[500],
       // Paragraph text
       'p, span, div': {
         ...text[400],

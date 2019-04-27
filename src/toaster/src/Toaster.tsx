@@ -5,11 +5,36 @@ import ToastManager from './ToastManager'
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined'
 
+interface ToasterSettings {
+  /**
+   * A description is used as the children of the Alert component. The description can be a React node.
+   */
+  description?: React.ReactChild
+  /**
+   * Passing a unique ID via id property allows Aluminum to close all previous toasts with the same ID, before showing a new one.
+   */
+  id?: string
+  /**
+   * It is possible to add a custom duration when showing a toast. The duration property is in seconds — not milliseconds.
+   * @default 5
+   */
+  duration?: number
+}
+
+interface ToasterProps {
+  getToasts?: () => void
+  closeAll?: () => void
+  notify?: (title: any, settings: ToasterSettings) => void
+  success?: (title: any, settings: ToasterSettings) => void
+  warning?: (title: any, settings: ToasterSettings) => void
+  danger?: (title: any, settings: ToasterSettings) => void
+}
+
 /**
  * The Toaster manages the interactionsb between
  * the ToasterManger and the toast API.
  */
-export default class Toaster {
+export default class Toaster implements ToasterProps {
   notifyHandler: any
   getToastsHandler: any
   closeAllHandler: any
@@ -53,19 +78,19 @@ export default class Toaster {
     return this.closeAllHandler()
   }
 
-  notify = (title: any, settings = {}) => {
+  notify = (title: any, settings: ToasterSettings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'none' })
   }
 
-  success = (title: any, settings = {}) => {
+  success = (title: any, settings: ToasterSettings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'success' })
   }
 
-  warning = (title: any, settings = {}) => {
+  warning = (title: any, settings: ToasterSettings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'warning' })
   }
 
-  danger = (title: any, settings = {}) => {
+  danger = (title: any, settings: ToasterSettings = {}) => {
     return this.notifyHandler(title, { ...settings, intent: 'danger' })
   }
 }

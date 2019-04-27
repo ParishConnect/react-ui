@@ -22,10 +22,8 @@ import { minorScale } from '../../../scales/index'
 import { runAction } from './utils/runAction'
 import { findSelectedNodeOfType } from 'prosemirror-utils'
 
-interface ImageManagerProps extends InjectedRemirrorProps {}
-
 export default withRemirror(
-  class ImageManager extends React.Component<ImageManagerProps> {
+  class ImageManager extends React.Component<InjectedRemirrorProps> {
     render() {
       const { actions, state, view } = this.props // Pull in injected props from context
 

@@ -91,6 +91,7 @@ import {
 export default {
   // Theme Color
   themeColor: 'blue',
+  toasterPosition: 'right',
   // Foundational Styles.
   colors,
   elevations,

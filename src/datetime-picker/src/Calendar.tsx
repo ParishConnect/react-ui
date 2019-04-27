@@ -1,15 +1,14 @@
-import * as React from 'react'
 import Box from '@hennessyevan/aluminum-box'
 import addDays from 'date-fns/add_days'
 import getDay from 'date-fns/get_day'
 import getDaysInMonth from 'date-fns/get_days_in_month'
 import isSameDay from 'date-fns/is_same_day'
 import startOfMonth from 'date-fns/start_of_month'
-
-import { majorScale } from '../../scales'
+import * as React from 'react'
 import { Button } from '../../buttons'
-import { Heading } from '../../typography'
+import { majorScale } from '../../scales'
 import { ThemeConsumer } from '../../theme/index'
+import { Heading } from '../../typography'
 
 const SUN = 0
 const SAT = 6
@@ -50,7 +49,8 @@ const makeDaysArray = (
 function makeCalendarData(
   pivotDate: DateFnsType,
   selectedDate: DateFnsType,
-  disableDates: any
+  disableDates: any,
+  recurrenceRule: any
 ) {
   const today = new Date()
   const totalDays = getDaysInMonth(pivotDate)
@@ -59,10 +59,24 @@ function makeCalendarData(
   const dayOfFirstDay = getDay(firstDay)
   const dayOfLastDay = getDay(lastDay)
 
+  const recurrenceDateArray =
+    recurrenceRule && recurrenceRule.between(firstDay, lastDay, true)
+
   const present = makeDaysArray(addDays(firstDay, -1), totalDays, {
     isCurrentMonth: true,
-    isToday: date => isSameDay(date, today),
-    isSelected: date => isSameDay(date, selectedDate),
+    isToday: (date: Date) => isSameDay(date, today),
+    isSelected: (date: Date) => isSameDay(date, selectedDate),
+    isActive: (date: Date) => {
+      if (recurrenceDateArray) {
+        try {
+          return recurrenceDateArray.some((rDate: Date) =>
+            isSameDay(date, rDate)
+          )
+        } catch (error) {
+          return false
+        }
+      }
+    },
     isDisabled: disableDates
   })
 
@@ -73,7 +87,7 @@ function makeCalendarData(
     {
       increment: -1,
       isCurrentMonth: false,
-      isSelected: date => isSameDay(date, selectedDate),
+      isSelected: (date: Date) => isSameDay(date, selectedDate),
       isDisabled: disableDates
     }
   )
@@ -101,7 +115,7 @@ function makeCalendarData(
   return [...past, ...present, ...future]
 }
 
-function getWeekdayNames(
+export function getWeekdayNames(
   dates: Date[],
   locale: any,
   { weekday }: Intl.DateTimeFormatOptions
@@ -124,13 +138,14 @@ const DEFAULT = {
   }
 }
 
-function DateBox({ children, ...props }) {
+export function DateBox({ children, ...props }) {
   return (
     <Box
       role="gridcell"
       userSelect="none"
-      width={`${100 / 7}%`}
-      height={majorScale(4)}
+      width={`calc(${100 / 7}% )`}
+      height={majorScale(4) + 4}
+      padding={2}
       textAlign="center"
       {...props}
     >
@@ -146,6 +161,9 @@ interface CalendarProps {
   locale?: string | string[]
   localeOptions?: Partial<Intl.DateTimeFormatOptions>
   disabledDates?: (date: Date) => boolean
+  recurrenceRule?: object
+  showTrailingDays?: boolean
+  showWeekdays?: boolean
   [key: string]: any
 }
 
@@ -156,14 +174,24 @@ const Calendar: React.FC<CalendarProps> = ({
   locale = DEFAULT.locale,
   localeOptions = DEFAULT.localeOptions,
   disableDates,
+  recurrenceRule,
+  showWeekdays = true,
+  showTrailingDays = true,
   ...rest
 }) => {
-  const dates = makeCalendarData(pivotDate, selectedDate, disableDates)
-  const weekdays = getWeekdayNames(
-    dates.slice(0, 7).map(({ date }) => date),
-    locale,
-    localeOptions
+  const dates = makeCalendarData(
+    pivotDate,
+    selectedDate,
+    disableDates,
+    recurrenceRule
   )
+  let weekdays = showWeekdays
+    ? getWeekdayNames(
+        dates.slice(0, 7).map(({ date }) => date),
+        locale,
+        localeOptions
+      )
+    : []
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     day: localeOptions.day || DEFAULT.localeOptions.day
   })
@@ -184,20 +212,30 @@ const Calendar: React.FC<CalendarProps> = ({
       ))}
 
       {dates.map(
-        ({ date, isCurrentMonth, isToday, isSelected, isDisabled }) => (
+        ({
+          date,
+          isCurrentMonth,
+          isToday,
+          isSelected,
+          isDisabled,
+          isActive
+        }) => (
           <ThemeConsumer key={date.toString()}>
             {theme => (
-              <DateBox aria-selected={isSelected ? 'true' : 'false'}>
+              <DateBox
+                opacity={!showTrailingDays && !isCurrentMonth ? 0 : 1}
+                aria-selected={isSelected ? 'true' : 'false'}
+              >
                 <Button
                   padding={0}
                   display="block"
-                  //@ts-ignore
                   width="100%"
                   textAlign="center"
                   appearance={isSelected ? 'primary' : 'minimal'}
                   position="relative"
                   onClick={() => onClick && onClick(date)}
                   disabled={isDisabled}
+                  isActive={!isSelected && isActive}
                   css={{
                     color: isSelected
                       ? theme.scales.neutral.N1

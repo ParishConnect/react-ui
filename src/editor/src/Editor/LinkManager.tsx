@@ -12,6 +12,7 @@ import { Card } from '../../../layers/index'
 import { minorScale } from '../../../scales/index'
 import { TextInput } from '../../../text-input/index'
 import { Tooltip } from '../../../tooltip/index'
+import { Popover } from '../../../popover/index'
 
 interface LinkInputProps {
   updateLink(href: string): void
@@ -127,16 +128,14 @@ class LinkInput extends React.Component<LinkInputProps, LinkInputState> {
   }
 }
 
-interface LinkManagerProps {
+interface LinkManagerProps extends InjectedRemirrorProps {
   linkActivated: boolean
   deactivateLink(): void
   activateLink(): void
 }
 
 export default withRemirror(
-  class LinkManager extends React.Component<
-    LinkManagerProps & InjectedRemirrorProps
-  > {
+  class LinkManager extends React.Component<LinkManagerProps> {
     updateLink = (href: string) =>
       this.props.actions.linkUpdate.command({ href })
     removeLink = () => this.props.actions.linkRemove.command()
@@ -145,9 +144,10 @@ export default withRemirror(
     render() {
       const {
         deactivateLink,
-        getPositionerProps,
         linkActivated = false,
-        manager
+        manager,
+        view,
+        state
       } = this.props
 
       const initialValue =
@@ -156,23 +156,12 @@ export default withRemirror(
           manager.getEditorState().schema.marks.link
         ).href || ''
 
-      const { bottom, left, ref } = getPositionerProps({
-        ...bubblePositioner,
-        isActive: () => initialValue || linkActivated,
-        positionerId: 'linkMenu'
-      })
-
       return (
-        <Card
-          appearance="white"
-          elevation={2}
-          position="absolute"
-          bottom={bottom + 5}
-          left={left - 150}
-          innerRef={ref}
-          width={300}
-        >
-          {linkActivated && (
+        <Popover
+          position="top"
+          statelessProps={{ minWidth: 64 }}
+          isShown={initialValue || linkActivated ? true : false}
+          content={
             <LinkInput
               {...{
                 initialValue,
@@ -182,8 +171,13 @@ export default withRemirror(
                 canRemove: this.canRemove
               }}
             />
-          )}
-        </Card>
+          }
+        >
+          {({ getRef }) => {
+            const target = view.nodeDOM(state.newState.selection.anchor)
+            return getRef(target)
+          }}
+        </Popover>
       )
     }
   }

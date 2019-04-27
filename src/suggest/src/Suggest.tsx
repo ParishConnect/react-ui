@@ -1,15 +1,14 @@
+import Box from '@hennessyevan/aluminum-box'
 import * as React from 'react'
-
-import { Utils, Keys } from '../../utils'
 import { Position } from '../../constants'
+import MenuItem from '../../menu/src/MenuItem'
+import { Popover } from '../../popover/index'
+import { PopoverProps } from '../../popover/src/Popover'
+import { TextInputField } from '../../text-input/index'
+import { TextInputProps } from '../../text-input/src/TextInput'
+import { Keys, Utils } from '../../utils'
 import { IListItemsProps } from '../common'
 import { IQueryListRendererProps, QueryList } from './QueryList'
-import { Popover } from '../../popover/index'
-import { TextInput, TextInputField } from '../../text-input/index'
-import { PopoverProps } from '../../popover/src/Popover'
-import { TextInputProps } from '../../text-input/src/TextInput'
-import Box from '@hennessyevan/aluminum-box'
-import MenuItem from '../../menu/src/MenuItem'
 
 const defaultItemRenderer = (props: any) => <MenuItem {...props} />
 

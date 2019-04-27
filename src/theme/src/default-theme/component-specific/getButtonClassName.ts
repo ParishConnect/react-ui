@@ -57,7 +57,7 @@ const getButtonAppearance = (
       const intentTextColor = getTextColorForIntent(intent, themeColor)
 
       return Themer.createButtonAppearance({
-        disabled,
+        disabled: { ...disabled, backgroundColor: 'transparent' },
         base: {
           color: intentTextColor,
           backgroundColor: 'transparent'

@@ -136,7 +136,7 @@ export default class DateTimePicker extends React.Component<
     interval: 5,
     isShown: false,
     width: 'auto',
-    height: 320,
+    height: 348,
     shouldShowTodayButton: true,
     shouldShowYearButtons: true,
     todayButtonLabel: 'Today',
