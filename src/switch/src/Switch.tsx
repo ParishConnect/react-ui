@@ -189,7 +189,7 @@ class Switch extends React.PureComponent<SwitchProps, SwitchState> {
             height={height}
             width={height}
             data-checked={checked}
-            css={iconContainerStyle}
+            css={iconContainerStyle as any}
           >
             {hasCheckIcon && (
               <CheckIcon

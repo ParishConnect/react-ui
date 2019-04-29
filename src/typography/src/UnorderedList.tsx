@@ -9,11 +9,6 @@ export interface UnorderedListProps {
    */
   size?: ListTextSize
   /**
-   * When passed, adds a icon before each list item in the list
-   * You can override this on a individual list item.
-   */
-  icon?: IconName
-  /**
    * The color of the icon in each list item in the list.
    */
   iconColor?: string
