@@ -4,7 +4,6 @@ import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IconButtonProps } from './IconButton'
 import { ChevronDownIcon } from '../../icons/'
-import { IconName } from '@blueprintjs/icons'
 
 class TextDropdownButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext

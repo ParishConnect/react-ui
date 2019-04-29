@@ -139,7 +139,7 @@ class Avatar extends React.PureComponent<AvatarProps, AvatarState> {
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text
-            css={initialsProps}
+            css={initialsProps as any}
             fontSize={initialsFontSize}
             lineHeight={initialsFontSize}
             width={size}

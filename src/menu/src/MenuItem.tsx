@@ -4,7 +4,6 @@ import { Omit } from 'utility-types'
 import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
-import { IconName } from '@blueprintjs/icons'
 import { IntentType } from '../../constants/index'
 
 export interface MenuItemProps extends Omit<PaneProps, 'appearance'> {

@@ -117,6 +117,7 @@ function _filterKeys<T>(
     const keySet = _arrayToObject(keysA.concat(keysB))
 
     // delete blacklisted keys from the key set
+    //@ts-ignore
     keys.exclude.forEach(key => delete keySet[key])
 
     // return the remaining keys as an array

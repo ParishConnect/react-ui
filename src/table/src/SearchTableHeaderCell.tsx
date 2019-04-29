@@ -73,7 +73,7 @@ export default class SearchTableHeaderCell extends React.PureComponent<
           is="input"
           size={300}
           flex="1"
-          css={invisibleInput}
+          css={invisibleInput as any}
           value={value}
           onChange={e => onChange(e.target.value)}
           autoFocus={autoFocus}

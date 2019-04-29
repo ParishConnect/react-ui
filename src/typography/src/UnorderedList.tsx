@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { IconName } from '@blueprintjs/icons'
 import { ListTextSize } from './Shared'
 
 export interface UnorderedListProps {

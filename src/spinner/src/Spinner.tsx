@@ -126,15 +126,17 @@ class Spinner extends React.PureComponent<SpinnerProps, SpinnerState> {
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
           <Box
             is="circle"
-            css={inner(
-              color === 'theme'
-                ? theme.spinnerColor({
-                    color: theme.getThemeColor(theme),
-                    adaptive,
-                    baseColor
-                  })
-                : theme.spinnerColor({ color, adaptive, baseColor })
-            )}
+            css={
+              inner(
+                color === 'theme'
+                  ? theme.spinnerColor({
+                      color: theme.getThemeColor(theme),
+                      adaptive,
+                      baseColor
+                    })
+                  : theme.spinnerColor({ color, adaptive, baseColor })
+              ) as any
+            }
             cx="75"
             cy="75"
             r="60"

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Text from './Text'
 import { PaneProps } from '../../layers'
-import { IconName } from '@blueprintjs/icons'
 
 export declare interface ListItemProps extends PaneProps {
   /**
