@@ -2,9 +2,7 @@ import * as React from 'react'
 import { concat } from 'lodash'
 import fuzzaldrin from 'fuzzaldrin-plus'
 import Downshift, { DownshiftInterface } from 'downshift'
-import VirtualList, {
-  ScrollAlignment
-} from '@hennessyevan/react-tiny-virtual-list'
+import VirtualList from 'react-tiny-virtual-list'
 import { Popover } from '../../popover'
 import { Position, PositionType } from '../../constants'
 import { Heading } from '../../typography'
@@ -193,7 +191,7 @@ export default class Autocomplete extends React.PureComponent<
             itemCount={items.length}
             scrollToIndex={highlightedIndex || 0}
             overscanCount={3}
-            scrollToAlignment={ScrollAlignment.AUTO}
+            scrollToAlignment={'auto' as any}
             renderItem={({ index, style }) => {
               const item = items[index]
               const itemString = itemToString(item)

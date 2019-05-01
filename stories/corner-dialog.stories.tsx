@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import Box from '@hennessyevan/aluminum-box'
 import { CornerDialog, Button } from '../src'
-import { Manager } from '../src/manager'
+import Component from '@reactions/component'
 
 storiesOf('corner-dialog', module).add('CornerDialog', () => (
   <Box padding={40}>
@@ -10,7 +10,7 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
       document.body.style.margin = '0'
       document.body.style.height = '100vh'
     })()}
-    <Manager isShown={false}>
+    <Component initialState={{ isShown: false }}>
       {({ state, setState }) => (
         <Box>
           <CornerDialog
@@ -26,8 +26,8 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           </Button>
         </Box>
       )}
-    </Manager>
-    <Manager isShown={false}>
+    </Component>
+    <Component initialState={{ isShown: false }}>
       {({ state, setState }) => (
         <Box marginTop={24}>
           <CornerDialog
@@ -44,8 +44,8 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
           </Button>
         </Box>
       )}
-    </Manager>
-    <Manager isShown={false}>
+    </Component>
+    <Component initialState={{ isShown: false }}>
       {({ state, setState }) => (
         <Box marginTop={24}>
           <CornerDialog
@@ -60,10 +60,10 @@ storiesOf('corner-dialog', module).add('CornerDialog', () => (
             requirements of the GDPR.
           </CornerDialog>
           <Button onClick={() => setState({ isShown: true })}>
-            Show “GDPR” Corner Dialog
+            Show “GDPR” Corner Dialog {JSON.stringify(state.isShown)}
           </Button>
         </Box>
       )}
-    </Manager>
+    </Component>
   </Box>
 ))

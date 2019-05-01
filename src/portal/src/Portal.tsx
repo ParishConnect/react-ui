@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { canUseDOM } from 'exenv'
 
-let portalContainer: any
+let portalContainer: HTMLElement
 
 export default class Portal extends React.Component {
   el: HTMLElement

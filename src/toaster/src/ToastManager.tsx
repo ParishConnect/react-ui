@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from 'glamor'
+import { css } from 'emotion'
 import { StackingOrder } from '../../constants'
 import Toast, { ToastProps } from './Toast'
 import { ThemeContext } from '../../theme/index'

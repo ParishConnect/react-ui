@@ -1,11 +1,11 @@
-import { css } from 'glamor'
+import { css, ObjectInterpolation } from 'emotion'
 import scales from '../foundational-styles/scales'
 import colors from '../foundational-styles/colors'
 import { IntentType } from '../../../../constants'
 
-const getTrimStyle = (intent: string) => ({
-  '&:before': {
-    content: '""',
+const getTrimStyle = (intent: string): ObjectInterpolation<undefined> => ({
+  '&::before': {
+    content: "''",
     width: 3,
     height: '100%',
     position: 'absolute',

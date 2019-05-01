@@ -1,6 +1,5 @@
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import * as React from 'react'
-import { ThemeContext } from '../../theme/index'
 import { getIconColor } from '../../theme/src/default-theme/theme-helpers/index'
 
 export interface IconProps extends BoxProps {
@@ -32,7 +31,6 @@ export interface IconProps extends BoxProps {
 }
 
 class Icon extends React.PureComponent<IconProps> {
-  static contextType = ThemeContext
   static SIZE_STANDARD = 16
   static SIZE_LARGE = 20
 
@@ -51,7 +49,6 @@ class Icon extends React.PureComponent<IconProps> {
       ...svgProps
     } = this.props
     let { style = {} } = this.props
-    const theme = this.context
 
     const viewBox = `0 0 24 24`
 

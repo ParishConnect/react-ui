@@ -1,5 +1,5 @@
 import * as React from 'react'
-import cx from 'classnames'
+import { cx } from 'emotion'
 import { Pane, PaneProps } from '../../layers'
 import { withTheme, ThemeContext } from '../../theme'
 import safeInvoke from '../../lib/safe-invoke'

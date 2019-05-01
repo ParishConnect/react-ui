@@ -1,5 +1,5 @@
 import * as React from 'react'
-import cx from 'classnames'
+import { cx } from 'emotion'
 import { Omit } from 'utility-types'
 import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
@@ -135,7 +135,7 @@ class Button extends React.PureComponent<ButtonProps> {
         marginTop={0} // Removes weird margins in Safari
         marginBottom={0} // Removes weird margins in Safari
         size={textSize}
-        color={null} // Prevent the Text color overriding the glamor appearanceStyle color
+        color={null} // Prevent the Text color overriding the emotion appearanceStyle color
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}

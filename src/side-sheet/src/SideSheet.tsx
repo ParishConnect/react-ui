@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { noop } from 'lodash'
-import { keyframes } from 'glamor'
+import { keyframes } from 'emotion'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
 import { Position, PositionEnum, PositionType } from '../../constants'

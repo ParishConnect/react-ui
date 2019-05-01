@@ -9,7 +9,7 @@ import * as React from 'react'
 import { IconButton } from '../../../buttons/index'
 import { CheckIcon, TrashIcon } from '../../../icons/index'
 import { Card } from '../../../layers/index'
-import { minorScale } from '../../../scales/index'
+import { minorScale, majorScale } from '../../../scales/index'
 import { TextInput } from '../../../text-input/index'
 import { Tooltip } from '../../../tooltip/index'
 import { Popover } from '../../../popover/index'
@@ -27,6 +27,10 @@ interface LinkInputState {
 }
 
 class LinkInput extends React.Component<LinkInputProps, LinkInputState> {
+  constructor(props: LinkInputProps) {
+    super(props)
+    this.ref = React.createRef()
+  }
   ref: any
   inputRef: any
   state: LinkInputState = { href: this.props.initialValue }
@@ -86,11 +90,7 @@ class LinkInput extends React.Component<LinkInputProps, LinkInputState> {
   render() {
     const { canRemove } = this.props
     return (
-      <Card
-        padding={minorScale(1)}
-        display="flex"
-        innerRef={ref => (this.ref = ref)}
-      >
+      <Card ref={this.ref} padding={minorScale(1)} display="flex">
         <TextInput
           autoFocus
           innerRef={this.inputRef}
@@ -146,8 +146,7 @@ export default withRemirror(
         deactivateLink,
         linkActivated = false,
         manager,
-        view,
-        state
+        getPositionerProps
       } = this.props
 
       const initialValue =
@@ -156,28 +155,35 @@ export default withRemirror(
           manager.getEditorState().schema.marks.link
         ).href || ''
 
+      const { bottom, left, ref } = getPositionerProps({
+        ...bubblePositioner,
+        positionerId: 'link-manager'
+      })
+
       return (
-        <Popover
-          position="top"
-          statelessProps={{ minWidth: 64 }}
-          isShown={initialValue || linkActivated ? true : false}
-          content={
-            <LinkInput
-              {...{
-                initialValue,
-                deactivateLink,
-                updateLink: this.updateLink,
-                removeLink: this.removeLink,
-                canRemove: this.canRemove
-              }}
-            />
+        <Card
+          elevation={2}
+          appearance="white"
+          display="flex"
+          padding={minorScale(1)}
+          position="absolute"
+          transform="translateX(-50%)"
+          innerRef={ref}
+          bottom={
+            initialValue || linkActivated ? bottom + majorScale(1) : -9999
           }
+          left={initialValue || linkActivated ? left : -9999}
         >
-          {({ getRef }) => {
-            const target = view.nodeDOM(state.newState.selection.anchor)
-            return getRef(target)
-          }}
-        </Popover>
+          <LinkInput
+            {...{
+              initialValue,
+              deactivateLink,
+              updateLink: this.updateLink,
+              removeLink: this.removeLink,
+              canRemove: this.canRemove
+            }}
+          />
+        </Card>
       )
     }
   }

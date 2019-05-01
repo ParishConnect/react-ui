@@ -196,7 +196,7 @@ storiesOf('dialog', module)
               title="Dialog with External Scrolling"
               onCloseComplete={hide}
             >
-              <ReactRenderer document={testDocument} />
+              <Box document={testDocument} />
             </Dialog>
             <Button onClick={show}>Show Dialog with External Scrolling</Button>
           </Box>

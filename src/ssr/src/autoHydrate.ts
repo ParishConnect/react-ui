@@ -1,5 +1,5 @@
 import { hydrate as boxHydrate } from '@hennessyevan/aluminum-box'
-import { rehydrate } from 'glamor'
+import { hydrate as rehydrate } from 'emotion'
 
 /**
  * You shouldn't have to manually run this.

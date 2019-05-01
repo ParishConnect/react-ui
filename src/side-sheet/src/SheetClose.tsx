@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { css, keyframes } from 'glamor'
+import { css, keyframes } from 'emotion'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import { Omit } from 'utility-types'
 import { XIcon } from '../../icons/index'

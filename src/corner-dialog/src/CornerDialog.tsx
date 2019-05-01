@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { keyframes } from 'glamor'
+import { keyframes } from 'emotion'
 import Transition from 'react-transition-group/Transition'
 import { noop } from 'lodash'
 import { Pane, Card, PaneProps } from '../../layers'

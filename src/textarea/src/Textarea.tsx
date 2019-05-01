@@ -1,5 +1,5 @@
 import * as React from 'react'
-import cx from 'classnames'
+import { cx } from 'emotion'
 import TextareaAutosize from 'react-autosize-textarea'
 import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'

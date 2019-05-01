@@ -1,6 +1,6 @@
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import cx from 'classnames'
-import { css } from 'glamor'
+import { cx } from 'emotion'
+import { css } from 'emotion'
 import * as React from 'react'
 import { Omit } from 'utility-types'
 import { ThemeContext } from '../../theme'

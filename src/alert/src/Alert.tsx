@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Omit } from 'utility-types'
+import { Omit, Overwrite } from 'utility-types'
 import { Pane, PaneProps } from '../../layers'
 import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
@@ -8,7 +8,7 @@ import { IntentType } from '../../constants'
 import { ThemeContext } from '../../theme'
 import { XIcon } from '../../icons/index'
 
-export interface AlertProps extends Omit<PaneProps, 'apperance'> {
+export interface AlertProps {
   /**
    * The action attached to the alert. Passed as a function (optional)
    */
@@ -43,7 +43,7 @@ export interface AlertProps extends Omit<PaneProps, 'apperance'> {
   onRemove?: Function
 }
 
-class Alert extends React.PureComponent<AlertProps> {
+class Alert extends React.PureComponent<Overwrite<PaneProps, AlertProps>> {
   public static contextType = ThemeContext
   public static defaultProps = {
     intent: 'none',
@@ -63,12 +63,12 @@ class Alert extends React.PureComponent<AlertProps> {
     const {
       action,
       title,
-      intent = 'none',
-      hasTrim = true,
-      hasIcon = true,
+      intent,
+      hasTrim,
+      hasIcon,
       children,
-      appearance = 'default',
-      isRemoveable = false,
+      appearance,
+      isRemoveable,
       onRemove,
       ...props
     } = this.props

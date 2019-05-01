@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { keyframes } from 'glamor'
+import { keyframes } from 'emotion'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'

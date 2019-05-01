@@ -1,5 +1,5 @@
 import * as React from 'react'
-import VirtualList from '@hennessyevan/react-tiny-virtual-list'
+import VirtualList from 'react-tiny-virtual-list'
 import { debounce } from 'lodash'
 import { Pane, PaneProps } from '../../layers'
 

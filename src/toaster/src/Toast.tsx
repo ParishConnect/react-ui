@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css, keyframes } from 'glamor'
+import { css, keyframes } from 'emotion'
 import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
 import { IntentType } from '../../constants/index'

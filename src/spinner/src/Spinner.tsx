@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { keyframes } from 'glamor'
+import { keyframes } from 'emotion'
 import { ThemeContext } from '../../theme'
 
 const loadingKeyframes = keyframes('loading', {
