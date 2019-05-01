@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { css, keyframes } from 'emotion'
+import { css, keyframes, ObjectInterpolation } from 'emotion'
 import { Position, PositionEnum, PositionType } from '../../constants'
-import { Omit } from 'utility-types'
+import { Omit, Overwrite } from 'utility-types'
 import { XIcon } from '../../icons/index'
 
 const animationEasing = {
@@ -12,7 +12,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const sharedStyles = {
+const sharedStyles: ObjectInterpolation<undefined> = {
   padding: 4,
   borderRadius: 9999,
   position: 'absolute',
@@ -115,20 +115,22 @@ const sheetCloseClassNameCache = {}
 
 const getSheetCloseClassName = (position: PositionEnum | PositionType) => {
   if (!sheetCloseClassNameCache[position]) {
-    sheetCloseClassNameCache[position] = css({
-      ...sheetCloseStyles[position],
-      ...sharedStyles
-    }).toString()
+    sheetCloseClassNameCache[position] = css(
+      sheetCloseStyles[position],
+      sharedStyles
+    ).toString()
   }
   return sheetCloseClassNameCache[position]
 }
 
-export interface SheetCloseProps extends Omit<BoxProps, 'appearance'> {
+export interface SheetCloseProps {
   isClosing?: boolean
   position?: PositionEnum | PositionType
 }
 
-export default class SheetClose extends React.PureComponent<SheetCloseProps> {
+export default class SheetClose extends React.PureComponent<
+  Overwrite<BoxProps, SheetCloseProps>
+> {
   render() {
     // tslint:disable-next-line:no-unused
     const { isClosing, position, ...props } = this.props
