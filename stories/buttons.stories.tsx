@@ -515,7 +515,6 @@ buttonsStory.add('Button isLoading', () => (
       {({ state, setState }) => (
         <Button
           marginRight={16}
-          appearance="primary"
           isLoading={state.isLoading}
           onClick={() => {
             setState({

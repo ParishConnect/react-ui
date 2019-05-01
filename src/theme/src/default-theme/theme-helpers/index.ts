@@ -35,7 +35,7 @@ function getThemeColor(theme: ThemeType, lightness?: any): string {
  */
 const getBorderRadiusForControlHeight = (height?: number): number => {
   if (height && height <= 40) {
-    return 5
+    return 6
   }
   return 8
 }

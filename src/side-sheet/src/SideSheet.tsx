@@ -78,11 +78,11 @@ const animationStyles = {
   [Position.LEFT]: {
     transform: `translateX(-100%)`,
     ...withAnimations(
-      keyframes('anchoredLeftSlideInAnimation', {
+      keyframes({
         from: { transform: `translateX(-100%)` },
         to: { transform: `translateX(0)` }
       }),
-      keyframes('anchoredLeftSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateX(0)` },
         to: { transform: `translateX(-100%)` }
       })
@@ -91,11 +91,11 @@ const animationStyles = {
   [Position.RIGHT]: {
     transform: `translateX(100%)`,
     ...withAnimations(
-      keyframes('anchoredRightSlideInAnimation', {
+      keyframes({
         from: { transform: `translateX(100%)` },
         to: { transform: `translateX(0)` }
       }),
-      keyframes('anchoredRightSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateX(0)` },
         to: { transform: `translateX(100%)` }
       })
@@ -104,11 +104,11 @@ const animationStyles = {
   [Position.TOP]: {
     transform: `translateY(-100%)`,
     ...withAnimations(
-      keyframes('anchoredTopSlideInAnimation', {
+      keyframes({
         from: { transform: `translateY(-100%)` },
         to: { transform: `translateY(0)` }
       }),
-      keyframes('anchoredTopSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateY(0)` },
         to: { transform: `translateY(-100%)` }
       })
@@ -117,11 +117,11 @@ const animationStyles = {
   [Position.BOTTOM]: {
     transform: `translateY(100%)`,
     ...withAnimations(
-      keyframes('anchoredBottomSlideInAnimation', {
+      keyframes({
         from: { transform: `translateY(100%)` },
         to: { transform: `translateY(0)` }
       }),
-      keyframes('anchoredBottomSlideOutAnimation', {
+      keyframes({
         from: { transform: `translateY(0)` },
         to: { transform: `translateY(100%)` }
       })

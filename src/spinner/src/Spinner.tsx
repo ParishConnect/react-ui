@@ -3,7 +3,7 @@ import Box, { BoxProps } from '@hennessyevan/aluminum-box'
 import { keyframes } from 'emotion'
 import { ThemeContext } from '../../theme'
 
-const loadingKeyframes = keyframes('loading', {
+const loadingKeyframes = keyframes({
   '0%': {
     transform: 'rotate(0)'
   },
@@ -12,7 +12,7 @@ const loadingKeyframes = keyframes('loading', {
   }
 })
 
-const loadingCircleKeyframes = keyframes('loading-circle', {
+const loadingCircleKeyframes = keyframes({
   '0%': {
     strokeDashoffset: 600
   },

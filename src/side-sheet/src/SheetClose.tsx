@@ -49,11 +49,11 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: `translateX(-100%)`,
     ...withAnimations(
-      keyframes('rotate360InAnimation', {
+      keyframes({
         from: { transform: `translateX(100%) rotate(0deg)` },
         to: { transform: `translateX(-100%) rotate(-360deg)` }
       }),
-      keyframes('rotate360OutAnimation', {
+      keyframes({
         from: { transform: `translateX(-100%) rotate(0deg)` },
         to: { transform: `translateX(100%) rotate(360deg)` }
       })
@@ -65,11 +65,11 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: `translateX(100%)`,
     ...withAnimations(
-      keyframes('leftRotate360InAnimation', {
+      keyframes({
         from: { transform: `translateX(-100%) rotate(0deg)` },
         to: { transform: `translateX(100%), rotate(360deg)` }
       }),
-      keyframes('leftRotate360OutAnimation', {
+      keyframes({
         from: { transform: `translateX(100%) rotate(0deg)` },
         to: { transform: `translateX(-100%), rotate(360deg)` }
       })
@@ -82,11 +82,11 @@ const sheetCloseStyles = {
     marginTop: 12,
     transform: `translateY(0)`,
     ...withAnimations(
-      keyframes('topRotate360InAnimation', {
+      keyframes({
         from: { transform: `translateY(-200%) rotate(0deg)` },
         to: { transform: `translateY(0%), rotate(360deg)` }
       }),
-      keyframes('topRotate360OutAnimation', {
+      keyframes({
         from: { transform: `translateY(0%) rotate(0deg)` },
         to: { transform: `translateY(-200%), rotate(360deg)` }
       })
@@ -99,11 +99,11 @@ const sheetCloseStyles = {
     marginBottom: 12,
     transform: `translateY(0)`,
     ...withAnimations(
-      keyframes('bottomRotate360InAnimation', {
+      keyframes({
         from: { transform: `translateY(200%) rotate(0deg)` },
         to: { transform: `translateY(0%), rotate(360deg)` }
       }),
-      keyframes('bottomRotate360OutAnimation', {
+      keyframes({
         from: { transform: `translateY(0%) rotate(0deg)` },
         to: { transform: `translateY(200%), rotate(360deg)` }
       })

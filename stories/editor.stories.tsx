@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { Editor, Heading, Textarea, Pane, Renderer } from '../src'
 import { majorScale } from '../src/scales'
+import testDocument from './testDocument.json'
 import { EMPTY_OBJECT_NODE } from '@remirror/core'
 
 const content = {
@@ -55,7 +56,7 @@ storiesOf('editor', module)
                 />
               </Box>
             }
-            initialContent={content}
+            initialContent={testDocument}
             width={1000}
             appearance="primary"
             placeholder="Start writing..."

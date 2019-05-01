@@ -17,7 +17,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const openAnimation = keyframes('openAnimation', {
+const openAnimation = keyframes({
   from: {
     transform: 'translateY(100%)'
   },
@@ -26,7 +26,7 @@ const openAnimation = keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = keyframes('closeAnimation', {
+const closeAnimation = keyframes({
   from: {
     transform: 'scale(1)',
     opacity: 1

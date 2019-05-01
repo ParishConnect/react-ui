@@ -141,7 +141,7 @@ class Button extends React.PureComponent<ButtonProps> {
         {...(isActive ? { 'data-active': true } : {})}
         position="relative"
         fontFamily="ui"
-        fontWeight={strong ? 800 : 500}
+        fontWeight={strong ? 600 : 500}
         textTransform={isUppercase ? 'uppercase' : ''}
         display="inline-flex"
         alignItems="center"

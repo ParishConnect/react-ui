@@ -15,7 +15,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 200
 
-const openAnimation = keyframes('openAnimation', {
+const openAnimation = keyframes({
   from: {
     transform: 'scale(0.8)',
     opacity: 0
@@ -26,7 +26,7 @@ const openAnimation = keyframes('openAnimation', {
   }
 })
 
-const closeAnimation = keyframes('closeAnimation', {
+const closeAnimation = keyframes({
   from: {
     transform: 'scale(1)',
     opacity: 1

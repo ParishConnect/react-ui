@@ -20,7 +20,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = keyframes('fadeInAnimation', {
+const fadeInAnimation = keyframes({
   from: {
     opacity: 0
   },
@@ -29,7 +29,7 @@ const fadeInAnimation = keyframes('fadeInAnimation', {
   }
 })
 
-const fadeOutAnimation = keyframes('fadeOutAnimation', {
+const fadeOutAnimation = keyframes({
   from: {
     opacity: 1
   },

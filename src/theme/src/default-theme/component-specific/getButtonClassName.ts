@@ -1,16 +1,12 @@
 import { Themer } from '../../../../themer/'
 import memoizeClassName from '../utils/memoizeClassName'
-import { scales } from '../foundational-styles/'
+import { scales, palette } from '../foundational-styles/'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
 } from '../helpers'
 import { defaultControlStyles } from '../shared'
-
-/**
- * Disabled styles are all the same for all buttons.
- */
-const disabled = defaultControlStyles.disabled
+import tinycolor from 'tinycolor2'
 
 /**
  * Get button appearance.
@@ -20,6 +16,11 @@ const getButtonAppearance = (
   intent: any,
   themeColor: any
 ): object => {
+  const defaultButtonStyles = defaultControlStyles(themeColor)
+  /**
+   * Disabled styles are all the same for all buttons.
+   */
+  const disabled = defaultButtonStyles.disabled
   switch (appearance) {
     case 'primary': {
       const { linearGradient, focusColor } = getPrimaryButtonStylesForIntent(
@@ -63,14 +64,13 @@ const getButtonAppearance = (
           backgroundColor: 'transparent'
         },
         hover: {
-          backgroundColor: scales.neutral.N2A
+          backgroundColor: scales.neutral.N3A
         },
         focus: {
-          boxShadow: `0 0 0 3px ${scales.blue.B5A}`
+          boxShadow: `0 0 0 2px ${tinycolor(intentTextColor).lighten(40)}`
         },
         active: {
-          backgroundImage: 'none',
-          backgroundColor: scales.blue.B3A
+          backgroundColor: scales.neutral.N4A
         },
         focusAndActive: {}
       })
@@ -103,12 +103,12 @@ const getButtonAppearance = (
         disabled,
         base: {
           color: intentTextColor,
-          ...defaultControlStyles.base
+          ...defaultButtonStyles.base
         },
-        hover: defaultControlStyles.hover,
-        focus: defaultControlStyles.focus,
-        active: defaultControlStyles.active,
-        focusAndActive: defaultControlStyles.focusAndActive
+        hover: defaultButtonStyles.hover,
+        focus: defaultButtonStyles.focus,
+        active: defaultButtonStyles.active,
+        focusAndActive: defaultButtonStyles.focusAndActive
       })
     }
   }
