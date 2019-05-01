@@ -106,7 +106,7 @@ class FullEditorLayout extends React.PureComponent<
     } = splitBoxProps(props)
 
     return (
-      <Pane width="100%" maxWidth={1000} {...matchedProps}>
+      <Pane width="100%" {...matchedProps}>
         <RemirrorManager>
           {getExtensions(
             formattingOptions,
