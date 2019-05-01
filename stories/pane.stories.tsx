@@ -7,7 +7,7 @@ import { BackgroundColor } from '../src/constants'
 const cardStyle = {
   float: 'left',
   margin: 32,
-  width: 160,
+  width: [160, 140],
   height: 104,
   display: 'flex',
   justifyContent: 'center',

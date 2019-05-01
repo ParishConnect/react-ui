@@ -1244,20 +1244,24 @@
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-2.1.3.tgz#62cf2a9b624edc795134135fe37fc2ae8ea36be3"
 
-"@storybook/addon-actions@^3.2.17":
-  version "3.4.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-3.4.12.tgz#ff6cbaf563c3cb5d648d6a35f66cfa50ced49bf4"
+"@storybook/addon-actions@^5.0.11":
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.0.11.tgz#7ca6d6ce9400b9b97f2699935edade88905767c3"
   dependencies:
-    "@storybook/components" "3.4.12"
-    babel-runtime "^6.26.0"
-    deep-equal "^1.0.1"
-    glamor "^2.20.40"
-    glamorous "^4.12.1"
+    "@storybook/addons" "5.0.11"
+    "@storybook/components" "5.0.11"
+    "@storybook/core-events" "5.0.11"
+    "@storybook/theming" "5.0.11"
+    core-js "^2.6.5"
+    fast-deep-equal "^2.0.1"
     global "^4.3.2"
-    make-error "^1.3.4"
-    prop-types "^15.6.1"
-    react-inspector "^2.2.2"
-    uuid "^3.2.1"
+    lodash "^4.17.11"
+    make-error "^1.3.5"
+    polished "^2.3.3"
+    prop-types "^15.6.2"
+    react "^16.8.1"
+    react-inspector "^2.3.0"
+    uuid "^3.3.2"
 
 "@storybook/addon-links@^3.2.17":
   version "3.4.12"
@@ -1268,13 +1272,15 @@
     global "^4.3.2"
     prop-types "^15.6.1"
 
-"@storybook/addon-options@^3.2.17":
-  version "3.4.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.4.12.tgz#6d2885a24c9ed7087d560fcedc59affbf6a83f40"
+"@storybook/addon-options@^5.0.11":
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-5.0.11.tgz#fea3b1b92e64c2321efa52fac67772043126cc66"
   dependencies:
-    babel-runtime "^6.26.0"
+    "@storybook/addons" "5.0.11"
+    core-js "^2.6.5"
+    util-deprecate "^1.0.2"
 
-"@storybook/addons@5.0.11":
+"@storybook/addons@5.0.11", "@storybook/addons@^5.0.11":
   version "5.0.11"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.0.11.tgz#86de70747e0a692d9dd8ea431daa1147d8785697"
   dependencies:
@@ -1283,10 +1289,6 @@
     core-js "^2.6.5"
     global "^4.3.2"
     util-deprecate "^1.0.2"
-
-"@storybook/addons@^3.2.17":
-  version "3.4.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-3.4.12.tgz#b973479b9910d60dd5ab087f875e10085ab3a0f9"
 
 "@storybook/channel-postmessage@5.0.11":
   version "5.0.11"
@@ -1656,9 +1658,11 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
 
-"@types/arrify@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@types/arrify/-/arrify-1.0.4.tgz#0b7bc8d80e29db296e8e0c59e009274a03dcf783"
+"@types/arrify@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/arrify/-/arrify-2.0.1.tgz#d50abf903b1019b08c2ee21cf3ded40084201512"
+  dependencies:
+    arrify "*"
 
 "@types/exenv@^1.2.0":
   version "1.2.0"
@@ -1764,9 +1768,9 @@
     "@types/prosemirror-transform" "*"
     "@types/prosemirror-view" "*"
 
-"@types/prosemirror-tables@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@types/prosemirror-tables/-/prosemirror-tables-0.1.3.tgz#7684761966361a2b6b767272903015e943079726"
+"@types/prosemirror-tables@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@types/prosemirror-tables/-/prosemirror-tables-0.7.0.tgz#610a73df9bbaecdd0ce4ea55d3791859817ed89c"
   dependencies:
     "@types/prosemirror-model" "*"
     "@types/prosemirror-state" "*"
@@ -2492,6 +2496,10 @@ array.prototype.flatmap@^1.2.1:
     es-abstract "^1.10.0"
     function-bind "^1.1.1"
 
+arrify@*:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/arrify/-/arrify-2.0.1.tgz#c9655e9331e0abcd588d2a7cad7e9956f66701fa"
+
 arrify@^1.0.0, arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
@@ -2733,9 +2741,9 @@ babel-core@^6.26.0:
     slash "^1.0.0"
     source-map "^0.5.6"
 
-babel-eslint@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-9.0.0.tgz#7d9445f81ed9f60aff38115f838970df9f2b6220"
+babel-eslint@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.1.tgz#919681dc099614cd7d31d45c8908695092a1faed"
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/parser" "^7.0.0"
@@ -3333,6 +3341,10 @@ buffer-from@^1.0.0, buffer-from@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
 
+buffer-json@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/buffer-json/-/buffer-json-2.0.0.tgz#f73e13b1e42f196fe2fd67d001c7d7107edd7c23"
+
 buffer-xor@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/buffer-xor/-/buffer-xor-1.0.3.tgz#26e61ed1422fb70dd42e6e36729ed51d855fe8d9"
@@ -3390,10 +3402,12 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-cache-loader@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/cache-loader/-/cache-loader-2.0.1.tgz#5758f41a62d7c23941e3c3c7016e6faeb03acb07"
+cache-loader@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/cache-loader/-/cache-loader-3.0.0.tgz#041cd9dd1cab1f40c12eda24017fa9988b01f064"
   dependencies:
+    buffer-json "^2.0.0"
+    find-cache-dir "^2.1.0"
     loader-utils "^1.1.0"
     mkdirp "^0.5.1"
     neo-async "^2.6.0"
@@ -4370,7 +4384,7 @@ deep-eql@^3.0.1:
   dependencies:
     type-detect "^4.0.0"
 
-deep-equal@^1.0.0, deep-equal@^1.0.1:
+deep-equal@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -4943,21 +4957,21 @@ eslint-ast-utils@^1.0.0:
     lodash.get "^4.4.2"
     lodash.zip "^4.2.0"
 
-eslint-config-prettier@^2.9.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.10.0.tgz#ec07bc1d01f87d09f61d3840d112dc8a9791e30b"
-  dependencies:
-    get-stdin "^5.0.1"
-
 eslint-config-prettier@^3.0.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-3.3.0.tgz#41afc8d3b852e757f06274ed6c44ca16f939a57d"
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-xo-react@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo-react/-/eslint-config-xo-react-0.17.0.tgz#c6ab39b1212f9cfb2d3f97f486290997d90080cb"
+eslint-config-prettier@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-4.2.0.tgz#70b946b629cd0e3e98233fd9ecde4cb9778de96c"
+  dependencies:
+    get-stdin "^6.0.0"
+
+eslint-config-xo-react@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-react/-/eslint-config-xo-react-0.19.0.tgz#26c452c4729750935fb6b65923e222c4fd42b214"
 
 eslint-config-xo@^0.25.0:
   version "0.25.1"
@@ -5549,7 +5563,7 @@ finalhandler@1.1.1:
     statuses "~1.4.0"
     unpipe "~1.0.0"
 
-find-cache-dir@^2.0.0:
+find-cache-dir@^2.0.0, find-cache-dir@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-2.1.0.tgz#8d0f94cd13fe43c6c7c261a0d86115ca918c05f7"
   dependencies:
@@ -5784,10 +5798,6 @@ get-port@^4.2.0:
 get-set-props@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/get-set-props/-/get-set-props-0.1.0.tgz#998475c178445686d0b32246da5df8dbcfbe8ea3"
-
-get-stdin@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
 
 get-stdin@^6.0.0:
   version "6.0.0"
@@ -7638,7 +7648,7 @@ make-dir@^2.0.0, make-dir@^2.1.0:
     pify "^4.0.1"
     semver "^5.6.0"
 
-make-error@^1.1.1, make-error@^1.3.4:
+make-error@^1.1.1, make-error@^1.3.5:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
 
@@ -9556,7 +9566,7 @@ react-html-attributes@^1.4.2:
   dependencies:
     html-element-attributes "^1.0.0"
 
-react-inspector@^2.2.2, react-inspector@^2.3.0, react-inspector@^2.3.1:
+react-inspector@^2.3.0, react-inspector@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-2.3.1.tgz#f0eb7f520669b545b441af9d38ec6d706e5f649c"
   dependencies:
@@ -11538,7 +11548,7 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuid@^3.1.0, uuid@^3.2.1, uuid@^3.3.2:
+uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
