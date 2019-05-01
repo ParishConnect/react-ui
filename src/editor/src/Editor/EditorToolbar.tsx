@@ -13,6 +13,7 @@ import {
 import { FormattingOptions } from './types'
 import { Dialog } from '../../../dialog/index'
 import { runAction } from './utils/runAction'
+import { splitBoxProps } from '@hennessyevan/aluminum-box'
 
 interface EditorToolbarProps {
   formattingOptions: FormattingOptions
@@ -45,7 +46,8 @@ class EditorToolbar extends React.Component<
       allowImages,
       deactivateLink,
       activateLink,
-      disabled
+      disabled,
+      ...props
     } = this.props
 
     return (
@@ -55,7 +57,7 @@ class EditorToolbar extends React.Component<
         paddingX={majorScale(1)}
         width="100%"
         appearance="white"
-        borderBottom
+        {...props}
       >
         <Pane
           display="flex"

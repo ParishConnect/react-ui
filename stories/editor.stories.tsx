@@ -2,10 +2,9 @@ import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { Editor, Heading, Textarea, Pane, Renderer } from '../src'
+import { Editor, Heading, Textarea, Pane, Renderer, ImagePicker } from '../src'
 import { majorScale } from '../src/scales'
 import testDocument from './testDocument.json'
-import { EMPTY_OBJECT_NODE } from '@remirror/core'
 
 const content = {
   version: 1,
@@ -37,9 +36,19 @@ storiesOf('editor', module)
   .add('Post Editor', () => (
     <Component initialState={{ value: '' }}>
       {({ state, setState }) => (
-        <Pane maxWidth={1000} border margin={majorScale(8)} position="relative">
+        <Pane
+          maxWidth={1000}
+          margin={majorScale(8)}
+          marginX="auto"
+          position="relative"
+        >
+          <ImagePicker borderRadius={8} marginBottom={majorScale(4)} />
           <Editor
             autoFocus={false}
+            toolbarProps={{
+              position: 'sticky',
+              top: 0
+            }}
             contentComponents={
               <Box maxWidth={800} marginTop={majorScale(8)} marginX="auto">
                 <Textarea

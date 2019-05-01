@@ -7,7 +7,7 @@ import {
 import keyCode from 'keycode'
 import * as React from 'react'
 import { IconButton } from '../../../buttons/index'
-import { CheckIcon, TrashIcon } from '../../../icons/index'
+import { CheckIcon, TrashIcon, UnlinkIcon } from '../../../icons/index'
 import { Card } from '../../../layers/index'
 import { minorScale, majorScale } from '../../../scales/index'
 import { TextInput } from '../../../text-input/index'
@@ -103,26 +103,24 @@ class LinkInput extends React.Component<LinkInputProps, LinkInputState> {
           css={{ boxShadow: 'none', '&:focus': { boxShadow: 'none' } }}
         />
         {canRemove && (
-          <Tooltip position="top" content="Unlink">
-            <IconButton
-              disabled={!canRemove || !this.state.href}
-              icon={TrashIcon}
-              onClick={this.onClickRemoveLink}
-              appearance="minimal"
-              intent="danger"
-              marginRight={2}
-            />
-          </Tooltip>
-        )}
-        <Tooltip position="top" content="Accept">
           <IconButton
-            intent="success"
-            disabled={!this.state.href}
-            icon={CheckIcon}
+            title="unlink"
+            disabled={!canRemove || !this.state.href}
+            icon={UnlinkIcon}
+            onClick={this.onClickRemoveLink}
             appearance="minimal"
-            onClick={this.submitLink}
+            intent="danger"
+            marginRight={2}
           />
-        </Tooltip>
+        )}
+        <IconButton
+          title="accept"
+          intent="success"
+          disabled={!this.state.href}
+          icon={CheckIcon}
+          appearance="minimal"
+          onClick={this.submitLink}
+        />
       </Card>
     )
   }

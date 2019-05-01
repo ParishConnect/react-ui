@@ -2,7 +2,7 @@ import { RemirrorProps } from '@remirror/react'
 import * as React from 'react'
 import FullEditorLayout from './FullEditorLayout'
 import { BoxProps } from '@hennessyevan/aluminum-box'
-import { Card } from '../../../layers/index'
+import { Card, PaneProps } from '../../../layers/index'
 import { majorScale } from '../../../scales/index'
 import { Omit } from 'utility-types'
 import { FormattingOptions } from './types'
@@ -13,6 +13,7 @@ export interface EditorProps extends Partial<RemirrorProps> {
   collapsed?: boolean
   autoFocus?: boolean
   onSave?: any
+  toolbarProps?: Partial<PaneProps>
   toolbarComponents?: React.ReactChild
   contentComponents?: React.ReactChild
   formattingOptions?: FormattingOptions

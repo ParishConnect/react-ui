@@ -1,11 +1,11 @@
 import * as React from 'react'
 import Dropzone from 'react-dropzone'
-import { Omit } from 'utility-types'
+import { Omit, Overwrite } from 'utility-types'
 import Box from '@hennessyevan/aluminum-box'
 import { Pane, Card, PaneProps } from '../../layers'
 import { Button } from '../../buttons'
 import { ThemeContext } from '../../theme'
-import { Heading } from '../../typography'
+import { Heading, Text } from '../../typography'
 import { BackgroundColor } from '../../constants/index'
 import {
   PlusIcon,
@@ -15,10 +15,11 @@ import {
   XIcon,
   ImageIcon
 } from '../../icons/index'
+import { majorScale } from '../../scales/index'
 
 export const CLASS_PREFIX = 'evergreen-image-picker'
 
-export interface ImagePickerProps extends Omit<PaneProps, 'background'> {
+export interface ImagePickerProps {
   background?: BackgroundColor | string
   name?: string
   icon?: any
@@ -30,6 +31,7 @@ export interface ImagePickerProps extends Omit<PaneProps, 'background'> {
   width?: string | number
   onChange?: any
   onRepositionComplete?: any
+  title?: string
 }
 
 interface ImagePickerState {
@@ -39,7 +41,10 @@ interface ImagePickerState {
   correctedHeight?: number | string
 }
 
-class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
+class ImagePicker extends React.Component<
+  Overwrite<PaneProps, ImagePickerProps>,
+  ImagePickerState
+> {
   static contextType = ThemeContext
 
   static defaultProps = {
@@ -207,7 +212,7 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
                 <Box position="absolute" bottom={25} right={25}>
                   <Button
                     marginRight={15}
-                    appearance="default"
+                    appearance="overlay"
                     onClick={() => open()}
                     iconAfter={ImageIcon}
                   >
@@ -215,7 +220,7 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
                   </Button>
                   <Button
                     onClick={this.handleRepositioning}
-                    appearance={repositioning ? 'primary' : 'default'}
+                    appearance={repositioning ? 'primary' : 'overlay'}
                     intent={repositioning ? 'success' : 'none'}
                     iconAfter={repositioning ? CheckIcon : MoveIcon}
                   >
@@ -242,33 +247,55 @@ class ImagePicker extends React.Component<ImagePickerProps, ImagePickerState> {
               )}
               {!preview &&
                 (isDragReject ? (
-                  <XIcon
-                    className={`${CLASS_PREFIX}-button`}
-                    background={
-                      isDragActive && !isDragReject
-                        ? theme.palette[theme.themeColor].light
-                        : '#DDDDDD'
-                    }
-                    padding={15}
-                    borderRadius={100}
-                    boxSizing="content-box"
-                    size={32}
-                    color={isDragActive ? theme.getThemeColor(theme) : 'muted'}
-                  />
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                  >
+                    <XIcon
+                      className={`${CLASS_PREFIX}-button`}
+                      background={
+                        isDragActive && !isDragReject
+                          ? theme.palette[theme.themeColor].light
+                          : '#DDDDDD'
+                      }
+                      padding={15}
+                      borderRadius={100}
+                      boxSizing="content-box"
+                      size={32}
+                      color={
+                        isDragActive ? theme.getThemeColor(theme) : 'muted'
+                      }
+                    />
+                    <Text marginTop={majorScale(1)} color="muted">
+                      Unsupported
+                    </Text>
+                  </Box>
                 ) : (
-                  <PlusIcon
-                    className={`${CLASS_PREFIX}-button`}
-                    background={
-                      isDragActive && !isDragReject
-                        ? theme.palette[theme.themeColor].light
-                        : '#DDDDDD'
-                    }
-                    padding={15}
-                    borderRadius={100}
-                    boxSizing="content-box"
-                    size={32}
-                    color={isDragActive ? theme.getThemeColor(theme) : 'muted'}
-                  />
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                  >
+                    <PlusIcon
+                      className={`${CLASS_PREFIX}-button`}
+                      background={
+                        isDragActive && !isDragReject
+                          ? theme.palette[theme.themeColor].light
+                          : '#DDDDDD'
+                      }
+                      padding={15}
+                      borderRadius={100}
+                      boxSizing="content-box"
+                      size={32}
+                      color={
+                        isDragActive ? theme.getThemeColor(theme) : 'muted'
+                      }
+                    />
+                    <Text marginTop={majorScale(1)} color="muted">
+                      Drag or click to add an image
+                    </Text>
+                  </Box>
                 ))}
             </Pane>
           )

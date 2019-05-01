@@ -95,6 +95,7 @@ class FullEditorLayout extends React.PureComponent<
       toolbarComponents,
       contentComponents,
       autoFocus,
+      toolbarProps,
       ...props
     } = this.props
     const theme = this.context
@@ -134,6 +135,7 @@ class FullEditorLayout extends React.PureComponent<
                   linkActivated={this.state.linkActivated}
                   deactivateLink={this.deactivateLink}
                   activateLink={this.activateLink}
+                  {...toolbarProps}
                 />
               )}
               {floatingMenu && <FloatingMenu />}
