@@ -67,7 +67,11 @@ class LinkInput extends React.Component<LinkInputProps, LinkInputState> {
 
   handleClick = (e: MouseEvent) => {
     const { deactivateLink } = this.props
-    if (!this.ref.current || this.ref.current.contains(e.target as Node)) {
+    try {
+      if (!this.ref.current || this.ref.current.contains(e.target as Node)) {
+        return
+      }
+    } catch (error) {
       return
     }
     deactivateLink()
