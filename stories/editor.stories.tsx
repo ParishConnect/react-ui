@@ -2,7 +2,15 @@ import Box from '@hennessyevan/aluminum-box'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { Editor, Heading, Textarea, Pane, Renderer, ImagePicker } from '../src'
+import {
+  Editor,
+  Heading,
+  Textarea,
+  Pane,
+  Renderer,
+  ImagePicker,
+  Button
+} from '../src'
 import { majorScale } from '../src/scales'
 import testDocument from './testDocument.json'
 
@@ -17,6 +25,16 @@ const content = {
           type: 'text',
           text: 'sdfgsdfsdfgsdfgsdfgsdfgsdfgslkjdkfjg;lsjdf;lk',
           marks: []
+        },
+        {
+          type: 'text',
+          marks: [
+            {
+              type: 'link',
+              attrs: { href: 'mailto:support@parishconnect.ca' }
+            }
+          ],
+          text: 'support@parishconnect.ca'
         },
         {
           type: 'image',
@@ -49,6 +67,7 @@ storiesOf('editor', module)
               position: 'sticky',
               top: 0
             }}
+            toolbarComponents={<Button>Save</Button>}
             contentComponents={
               <Box maxWidth={800} marginTop={majorScale(8)} marginX="auto">
                 <Textarea
@@ -65,6 +84,7 @@ storiesOf('editor', module)
                 />
               </Box>
             }
+            onFirstRender={t => console.log(t)}
             initialContent={testDocument}
             width={1000}
             appearance="primary"
@@ -75,7 +95,7 @@ storiesOf('editor', module)
     </Component>
   ))
   .add('Renderer', () => (
-    <Pane maxWidth={1000} border margin={majorScale(8)} position="relative">
+    <Pane maxWidth={1000} margin={majorScale(8)} position="relative">
       <Box maxWidth={800} marginTop={majorScale(8)} marginX="auto">
         <Heading maxWidth={624} size={800}>
           Title

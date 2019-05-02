@@ -78,7 +78,10 @@ class Select extends React.PureComponent<SelectProps> {
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getSelectClassName(appearance)
+    const themedClassName = theme.getSelectClassName(
+      appearance,
+      theme.themeColor
+    )
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
     const iconSize = theme.getIconSizeForSelect(height)

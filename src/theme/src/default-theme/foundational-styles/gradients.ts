@@ -6,52 +6,32 @@ import scales from './scales'
 
 const gradients = {
   neutral: {
-    start: `${tinycolor(scales.neutral.N7)
-      .saturate(8)
-      .spin(-15)}`,
+    start: scales.neutral.N9,
     end: scales.neutral.N10
   },
   green: {
-    start: `${tinycolor(palette.green.base)
-      .lighten(8)
-      .saturate(-10)
-      .spin(-15)}`,
-    end: tinycolor(palette.green.dark).darken(5)
+    start: palette.green.base,
+    end: palette.green.dark
   },
   orange: {
-    start: `${tinycolor(palette.orange.base)
-      .lighten(-2)
-      .saturate(15)
-      .spin(15)}`,
+    start: palette.orange.base,
     end: palette.orange.dark
   },
   red: {
-    start: `${tinycolor(palette.red.base)
-      .lighten(5)
-      .saturate(15)
-      .spin(20)}`,
+    start: palette.red.base,
     end: palette.red.dark
   },
   blue: {
-    start: `${tinycolor(palette.blue.base)
-      .lighten(5)
-      .saturate(30)
-      .spin(-18)}`,
-    end: `${tinycolor(palette.blue.base).lighten(2)}`
+    start: palette.blue.base,
+    end: palette.blue.base
   },
   purple: {
-    start: `${tinycolor(palette.red.base)
-      .lighten(-5)
-      .saturate(-5)
-      .spin(-25)}`,
-    end: tinycolor(palette.purple.dark).lighten(5)
+    start: palette.purple.base,
+    end: palette.purple.dark
   },
   teal: {
-    start: `${tinycolor(palette.teal.base)
-      .lighten(20)
-      .saturate(20)
-      .spin(-40)}`,
-    end: palette.teal.base
+    start: palette.teal.base,
+    end: palette.teal.dark
   }
 }
 

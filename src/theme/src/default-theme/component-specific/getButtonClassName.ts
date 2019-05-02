@@ -33,7 +33,7 @@ const getButtonAppearance = (
           color: 'white',
           backgroundColor: 'white',
           backgroundImage: linearGradient.base,
-          boxShadow: `inset 0 0 0 0px ${focusColor}, 0 1px 3px ${focusColor}`,
+          boxShadow: `inset 0 0 0 0px ${focusColor}, 0 1px 6px -0.5px ${focusColor}`,
           transition: 'box-shadow 125ms, background-image 125ms'
         },
         hover: {
