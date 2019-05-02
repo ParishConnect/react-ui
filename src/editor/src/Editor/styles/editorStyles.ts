@@ -14,7 +14,6 @@ export default function editorStyles(theme: ThemeType) {
     [`${EDITOR_CLASS_SELECTOR}`]: {
       margin: '0 auto',
       outline: 'none',
-      padding: majorScale(4),
       color: defaultTheme.getTextColor('default', theme),
       fontFamily: defaultTheme.getFontFamily('display'),
       ...defaultTheme.getTextStyle(400),
