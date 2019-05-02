@@ -19,7 +19,7 @@ export interface EditorPropsBase extends Partial<RemirrorProps> {
   allowImages?: boolean
 }
 
-type EditorProps = Overwrite<BoxProps, EditorPropsBase>
+export type EditorProps = Overwrite<BoxProps, EditorPropsBase>
 
 class Editor extends React.Component<EditorProps> {
   static defaultProps = {
