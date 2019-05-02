@@ -67,7 +67,7 @@ storiesOf('editor', module)
               position: 'sticky',
               top: 0
             }}
-            toolbarComponents={<Button>Save</Button>}
+            toolbarComponents={<Button appearance="primary">Save</Button>}
             contentComponents={
               <Box maxWidth={800} marginTop={majorScale(8)} marginX="auto">
                 <Textarea
@@ -84,7 +84,6 @@ storiesOf('editor', module)
                 />
               </Box>
             }
-            onFirstRender={t => console.log(t)}
             initialContent={testDocument}
             width={1000}
             appearance="primary"

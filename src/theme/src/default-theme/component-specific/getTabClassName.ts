@@ -3,7 +3,7 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import { scales, colors, palette } from '../foundational-styles/'
 
-const defaultAppearance = (appearance: string): object => {
+const defaultAppearance = (themeColor: string): object => {
   return Themer.createTabAppearance({
     base: {
       borderRadius: 5
@@ -15,14 +15,14 @@ const defaultAppearance = (appearance: string): object => {
       boxShadow: `0 0 0 2px ${scales.blue.B5A}`
     },
     active: {
-      background: colors.background[appearance]
-        ? colors.background[appearance]
+      background: colors.background[themeColor]
+        ? colors.background[themeColor]
         : scales.neutral.N3A,
       boxShadow:
-        typeof appearance !== 'undefined'
-          ? `0 1px 4px -1px ${tinycolor(palette[appearance].base).lighten(20)}`
+        typeof themeColor !== 'undefined'
+          ? `0 1px 4px -1px ${tinycolor(palette[themeColor].base).lighten(20)}`
           : `0 1px 4px -px ${scales.neutral.N4A}`,
-      color: typeof appearance !== 'undefined' ? 'white' : scales.neutral.N9
+      color: typeof themeColor !== 'undefined' ? 'white' : scales.neutral.N9
     },
     current: {}
   })
@@ -31,8 +31,8 @@ const defaultAppearance = (appearance: string): object => {
 /**
  * Get the appearance of a `Tab`.
  */
-const getTabAppearance = (appearance: string): object =>
-  defaultAppearance(appearance)
+const getTabAppearance = (themeColor: string): object =>
+  defaultAppearance(themeColor)
 
 /**
  * Get the className of a `Tab`.

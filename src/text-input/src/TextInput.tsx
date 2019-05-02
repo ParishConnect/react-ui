@@ -67,7 +67,10 @@ class TextInput extends React.PureComponent<TextInputProps> {
       ...props
     } = this.props
     const theme = this.context
-    const themedClassName = theme.getTextInputClassName(appearance)
+    const themedClassName = theme.getTextInputClassName(
+      appearance,
+      theme.themeColor
+    )
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 

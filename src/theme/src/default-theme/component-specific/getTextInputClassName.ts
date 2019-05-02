@@ -3,38 +3,43 @@ import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
 
-const InputAppearances = { default: {}, neutral: {}, editorTitle: {} }
+const InputAppearances = {
+  default: (themeColor: string) => {},
+  neutral: {},
+  editorTitle: {}
+}
 
-InputAppearances.default = Themer.createInputAppearance({
-  base: {
-    backgroundColor: 'white',
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${
-      scales.neutral.N4A
-    }`
-  },
-  invalid: {
-    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
-      scales.neutral.N4A
-    }`
-  },
-  placeholder: {
-    color: scales.neutral.N6A
-  },
-  focus: {
-    outline: 'none',
-    boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${
-      scales.blue.B7
-    }, 0 0 0 3px ${scales.blue.B4A}`
-  },
-  disabled: {
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
-    backgroundColor: scales.neutral.N2
-  }
-})
+InputAppearances.default = (themeColor: string): object =>
+  Themer.createInputAppearance({
+    base: {
+      backgroundColor: scales.neutral.N3,
+      transition: 'box-shadow 100ms, background-color 100ms'
+    },
+    invalid: {
+      boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
+        scales.neutral.N4A
+      }`
+    },
+    placeholder: {
+      color: scales.neutral.N7A
+    },
+    focus: {
+      outline: 'none',
+      backgroundColor: palette[themeColor].lightest,
+      boxShadow: `0 1px 3px ${scales.neutral.N1A}, 0 0 0 1px ${
+        scales.neutral.N2A
+      }, 0 1.5px 4px ${scales.neutral.N3A}`
+    },
+    disabled: {
+      boxShadow: `inset 0 0 0 2px ${scales.neutral.N4A}`,
+      backgroundColor: scales.neutral.N4A
+    }
+  })
 
 InputAppearances.neutral = Themer.createInputAppearance({
   base: {
-    backgroundColor: scales.neutral.N2A
+    backgroundColor: scales.neutral.N2A,
+    transition: 'box-shadow 100ms, background-color 100ms'
   },
   invalid: {
     boxShadow: `inset 0 0 0 1px ${palette.red.base}`
@@ -44,8 +49,10 @@ InputAppearances.neutral = Themer.createInputAppearance({
   },
   focus: {
     outline: 'none',
-    backgroundColor: 'white',
-    boxShadow: `0 0 0 2px ${scales.blue.B6A}`
+
+    boxShadow: `0 1px 3px ${scales.neutral.N1A}, 0 0 0 1px ${
+      scales.neutral.N2A
+    }, 0 1.5px 4px ${scales.neutral.N3A}`
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
@@ -76,7 +83,8 @@ InputAppearances.editorTitle = Themer.createInputAppearance({
  * Get the appearance of a `TextInput`.
  */
 const getTextInputAppearance = (
-  appearance: 'neutral' | 'editor-title' | 'default'
+  appearance: 'neutral' | 'editor-title' | 'default',
+  themeColor: string
 ): object => {
   switch (appearance) {
     case 'neutral':
@@ -84,7 +92,7 @@ const getTextInputAppearance = (
     case 'editor-title':
       return InputAppearances.editorTitle
     default:
-      return InputAppearances.default
+      return InputAppearances.default(themeColor) as any
   }
 }
 

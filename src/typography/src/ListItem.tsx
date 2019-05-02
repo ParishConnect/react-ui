@@ -1,8 +1,9 @@
 import * as React from 'react'
 import Text from './Text'
-import { PaneProps } from '../../layers'
+import { PaneProps } from '../../layers/src/Pane'
+import { Overwrite } from 'utility-types'
 
-export declare interface ListItemProps extends PaneProps {
+export declare interface ListItemProps {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
@@ -15,7 +16,9 @@ export declare interface ListItemProps extends PaneProps {
   iconColor?: string
 }
 
-export default class ListItem extends React.PureComponent<ListItemProps> {
+export default class ListItem extends React.PureComponent<
+  Overwrite<PaneProps, ListItemProps>
+> {
   public static defaultProps = {
     size: 400
   }

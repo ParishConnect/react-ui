@@ -37,7 +37,7 @@ const getBorderRadiusForControlHeight = (height?: number): number => {
   if (height && height <= 40) {
     return 6
   }
-  return 8
+  return 9
 }
 
 /**

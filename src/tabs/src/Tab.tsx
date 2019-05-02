@@ -30,7 +30,7 @@ class Tab extends React.PureComponent<TabProps> {
     onSelect: noop,
     onKeyPress: noop,
     is: 'span',
-    height: 28
+    height: 32
   }
 
   static styles = {
@@ -38,7 +38,7 @@ class Tab extends React.PureComponent<TabProps> {
     fontWeight: 700,
     paddingX: 12,
     marginX: 4,
-    borderRadius: 3,
+    borderRadius: 6,
     lineHeight: '28px',
     alignItems: 'center',
     justifyContent: 'center',
