@@ -15,7 +15,7 @@ import LinkManager from './LinkManager'
 import editorStyles from './styles/editorStyles'
 import { FormattingOptions } from './types'
 import getExtensions from './utils/extensionFactory'
-import { EditorView } from 'prosemirror-view'
+import { EditorView } from '@remirror/core'
 import ImageManager from './ImageManager'
 
 interface EditorLayoutProps
@@ -66,12 +66,12 @@ class FullEditorLayout extends React.PureComponent<
     this.setState({ linkActivated: true })
   }
 
-  private activateImage = () => {
-    this.setState({ imageActivated: true })
-  }
-
   private deactivateLink = () => {
     this.setState({ linkActivated: false })
+  }
+
+  private activateImage = () => {
+    this.setState({ imageActivated: true })
   }
 
   private setFocus = () => {

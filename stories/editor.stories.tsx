@@ -13,6 +13,8 @@ import {
 } from '../src'
 import { majorScale } from '../src/scales'
 import testDocument from './testDocument.json'
+import { InjectedRemirrorProps, useRemirrorContext } from '@remirror/react'
+import { EditorState } from '@remirror/core'
 
 const content = {
   version: 1,
@@ -52,46 +54,50 @@ const content = {
 
 storiesOf('editor', module)
   .add('Post Editor', () => (
-    <Component initialState={{ value: '' }}>
-      {({ state, setState }) => (
-        <Pane
-          maxWidth={1000}
-          margin={majorScale(8)}
-          marginX="auto"
-          position="relative"
-        >
-          <ImagePicker borderRadius={8} marginBottom={majorScale(4)} />
-          <Editor
-            autoFocus={false}
-            toolbarProps={{
-              position: 'sticky',
-              top: 0
-            }}
-            toolbarComponents={<Button appearance="primary">Save</Button>}
-            contentComponents={
-              <Box maxWidth={800} marginTop={majorScale(8)} marginX="auto">
-                <Textarea
-                  autoFocus
-                  appearance="editor-title"
-                  component={Heading}
-                  size={800}
-                  maxLength="120"
-                  maxWidth={624}
-                  rows={1}
-                  overflow="hidden"
-                  autoresize
-                  placeholder="Add a title..."
-                />
-              </Box>
-            }
-            initialContent={testDocument}
-            width={1000}
+    <Pane
+      maxWidth={1000}
+      margin={majorScale(8)}
+      marginX="auto"
+      position="relative"
+    >
+      <ImagePicker borderRadius={8} marginBottom={majorScale(4)} />
+      <Editor
+        allowImages={false}
+        autoFocus={false}
+        toolbarProps={{
+          position: 'sticky',
+          top: 0
+        }}
+        toolbarComponents={({ state }) => (
+          <Button
             appearance="primary"
-            placeholder="Start writing..."
-          />
-        </Pane>
-      )}
-    </Component>
+            onClick={() => console.log(JSON.stringify(state.doc.toJSON()))}
+          >
+            Save
+          </Button>
+        )}
+        contentComponents={
+          <Box maxWidth={800} marginTop={majorScale(8)} marginX="auto">
+            <Textarea
+              autoFocus
+              appearance="editor-title"
+              component={Heading}
+              size={800}
+              maxLength="120"
+              maxWidth={624}
+              rows={1}
+              overflow="hidden"
+              autoresize
+              placeholder="Add a title..."
+            />
+          </Box>
+        }
+        initialContent={testDocument}
+        width={1000}
+        appearance="primary"
+        placeholder="Start writing..."
+      />
+    </Pane>
   ))
   .add('Renderer', () => (
     <Pane maxWidth={1000} margin={majorScale(8)} position="relative">

@@ -1,18 +1,17 @@
-import { RemirrorProps } from '@remirror/react'
-import * as React from 'react'
-import FullEditorLayout from './FullEditorLayout'
 import { BoxProps } from '@hennessyevan/aluminum-box'
+import { InjectedRemirrorProps, RemirrorProps } from '@remirror/react'
+import * as React from 'react'
+import { Overwrite } from 'utility-types'
 import { Card, PaneProps } from '../../../layers/index'
 import { majorScale } from '../../../scales/index'
-import { Omit } from 'utility-types'
+import FullEditorLayout from './FullEditorLayout'
 import { FormattingOptions } from './types'
 import getFormattingOptions from './utils/getFormattingOptions'
 
-export interface EditorProps extends Partial<RemirrorProps> {
+export interface EditorPropsBase extends Partial<RemirrorProps> {
   appearance?: 'primary' | 'minimal'
   collapsed?: boolean
   autoFocus?: boolean
-  onSave?: any
   toolbarProps?: Partial<PaneProps>
   toolbarComponents?: React.ReactChild
   contentComponents?: React.ReactChild
@@ -20,13 +19,14 @@ export interface EditorProps extends Partial<RemirrorProps> {
   allowImages?: boolean
 }
 
-export default class Editor extends React.Component<
-  EditorProps & Omit<BoxProps, 'appearance'>
-> {
+type EditorProps = Overwrite<BoxProps, EditorPropsBase>
+
+class Editor extends React.Component<EditorProps> {
   static defaultProps = {
     collapsed: false,
     appearance: 'minimal',
-    autoFocus: true
+    autoFocus: true,
+    onSave: () => {}
   }
 
   renderEditor = (appearance: any) => {
@@ -41,7 +41,7 @@ export default class Editor extends React.Component<
 
   render() {
     const { collapsed, appearance, formattingOptions, ...props } = this.props
-    const InnerEditor = this.renderEditor(appearance)
+    const InnerEditor = this.renderEditor(appearance) as any
     return collapsed ? (
       <Card background="tint1" border padding={majorScale(2)}>
         Click to Edit
@@ -54,3 +54,5 @@ export default class Editor extends React.Component<
     )
   }
 }
+
+export default Editor

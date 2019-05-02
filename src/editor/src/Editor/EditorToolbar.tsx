@@ -14,10 +14,23 @@ import { FormattingOptions } from './types'
 import { Dialog } from '../../../dialog/index'
 import { runAction } from './utils/runAction'
 import { splitBoxProps } from '@hennessyevan/aluminum-box'
+import { EditorState, EditorView, RemirrorContentType } from '@remirror/core'
+
+interface ToolbarReturnFunctions {
+  state: EditorState
+  view: EditorView
+  setContent(content: RemirrorContentType, triggerOnChange?: boolean): void
+  clearContent(triggerOnChange?: boolean): void
+}
 
 interface EditorToolbarProps {
   formattingOptions: FormattingOptions
-  toolbarComponents?: React.ReactChild
+  toolbarComponents?({
+    state,
+    view,
+    setContent,
+    clearContent
+  }: ToolbarReturnFunctions): React.ReactChild
   allowImages?: boolean
   linkActivated: boolean
   deactivateLink(): void
@@ -47,6 +60,10 @@ class EditorToolbar extends React.Component<
       deactivateLink,
       activateLink,
       disabled,
+      state,
+      clearContent,
+      setContent,
+      view,
       ...props
     } = this.props
 
@@ -95,7 +112,14 @@ class EditorToolbar extends React.Component<
         </Pane>
         {toolbarComponents && (
           <Pane display="flex" marginLeft="auto">
-            {toolbarComponents}
+            {typeof toolbarComponents === 'function'
+              ? toolbarComponents({
+                  state: state.newState,
+                  view,
+                  clearContent,
+                  setContent
+                })
+              : toolbarComponents}
           </Pane>
         )}
         {allowImages && (
