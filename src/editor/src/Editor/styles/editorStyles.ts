@@ -12,7 +12,6 @@ import {
 export default function editorStyles(theme: ThemeType) {
   return css({
     [`${EDITOR_CLASS_SELECTOR}`]: {
-      maxWidth: 800,
       margin: '0 auto',
       outline: 'none',
       padding: majorScale(4),
