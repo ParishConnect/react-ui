@@ -7,17 +7,8 @@
       "content": [
         {
           "type": "text",
-          "text": "Welcome to the community of Nativity of Our Lord Parish in Etobicoke."
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": { "level": 4 },
-      "content": [
-        {
-          "type": "text",
-          "text": "Nativity of Our Lord Parish has a new website!"
+          "text": "The correct answer is not always the right answer. I repeat, the correct answer is not always the right answer.",
+          "marks": [{ "type": "strong" }]
         }
       ]
     },
@@ -26,7 +17,8 @@
       "content": [
         {
           "type": "text",
-          "text": "This website is the early product of a collaboration between Nativity of Our Lord and ParishConnect."
+          "text": "When one considers the events of the last 3 days, the 3 days we call the Holy Triduum, more than a few people might think that more than a few of the things that happened and were said do not appear to be correct.",
+          "marks": [{ "type": "strong" }]
         }
       ]
     },
@@ -35,7 +27,8 @@
       "content": [
         {
           "type": "text",
-          "text": "ParishConnect is a new web-based service for Catholic Parishes designed and built at Nativity of Our Lord Parish."
+          "text": "Take the Last Supper, which we commemorated in our Holy Thursday mass, for starters. Two things that Jesus did at the Last Supper stand out as not being correct, starting with what happened at the meal itself. It was a Passover meal, but it became way more than that. For at that meal, Jesus took some bread and some wine, He blessed them and then said, this is my body, this is my blood. Take and eat my body, take and drink my blood, and do this again and again in memory of me. What? That bread, that wine is now His body and blood? That’s not just incorrect, in fact, that’s crazy. But Jesus shakes His head and says, “No, it’s right, it’s true”. And we believe it. So we keep on doing it again and again in every mass.",
+          "marks": [{ "type": "strong" }]
         }
       ]
     },
@@ -44,7 +37,8 @@
       "content": [
         {
           "type": "text",
-          "text": "Over the coming months you'll notice some new features and changes coming to this website as we work with the parish community to develop a web-experience that is truly meaningful and helps this community grow stronger in faith with one-another."
+          "text": "A bit later Jesus then got down on His knees and washed the feet of his apostles. But He is their Teacher, He is their Lord – He shouldn’t be doing it to them, they should be doing it to Him! And Peter tells Him so. For most people, that sounds correct. When you’re the big shot, people should be catering to you. With great responsibility should come some nice perks. But to that Jesus said, “Wrong answer.” For He reminds them that to be a follower of His – even if you are a Pope or a Bishop or a Priest or in any position of leadership – your role is to serve others – no matter what, no matter who.",
+          "marks": [{ "type": "strong" }]
         }
       ]
     },
@@ -53,17 +47,23 @@
       "content": [
         {
           "type": "text",
-          "text": "If you have any issues or questions please direct them to "
+          "text": "On Good Friday, we heard the story of the Passion and Death of Jesus. If you want to talk about a non-correct story – this is it. That the long- expected Messiah, the Son of God, would be subjected to a death – and not just any death, but one that was so horrible. Not only that, Jesus said he needed to do so! Throughout the gospels He frequently said that had to give his life as a ransom for many, to save us from our sins. What? It’s no surprise what St. Paul said that in his 1st letter to the Corinthians that to most of the Greeks and Jews he encountered, Jesus’ death on the cross was not only incorrect, but sheer foolishness.",
+          "marks": [{ "type": "strong" }]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "For Jews demand signs and Greeks desire wisdom, 23 but we proclaim Christ crucified, a stumbling block to Jews and foolishness to Gentiles, 24 but to those who are the called, both Jews and Greeks, Christ the power of God and the wisdom of God. 25 For God’s foolishness is wiser than human wisdom, and God’s weakness is stronger than human strength. ",
+          "marks": [{ "type": "em" }, { "type": "strong" }]
         },
         {
           "type": "text",
-          "text": "support@parishconnect.ca",
-          "marks": [
-            {
-              "type": "link",
-              "attrs": { "href": "mailto:support@parishconnect.ca" }
-            }
-          ]
+          "text": "1 Cor. 1: 22-25.",
+          "marks": [{ "type": "strong" }]
         }
       ]
     },
@@ -72,18 +72,67 @@
       "content": [
         {
           "type": "text",
-          "text": "We look forward to this journey together and ask for your prayers in this new digital ministry."
+          "text": "But then St. Paul also wrote: ",
+          "marks": [{ "type": "strong" }]
+        },
+        {
+          "type": "text",
+          "text": "For the message about the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God.",
+          "marks": [{ "type": "em" }, { "type": "strong" }]
+        },
+        {
+          "type": "text",
+          "text": " (1 Cor. 1: 18)",
+          "marks": [{ "type": "strong" }]
         }
       ]
     },
-    { "type": "paragraph", "content": [] },
     {
       "type": "paragraph",
-      "content": [{ "type": "text", "text": "God Bless," }]
+      "content": [
+        {
+          "type": "text",
+          "text": "For us who believe, Jesus’ death on the cross was oh so right.",
+          "marks": [{ "type": "strong" }]
+        }
+      ]
     },
     {
       "type": "paragraph",
-      "content": [{ "type": "text", "text": "Evan Hennessy" }]
-    }
+      "content": [
+        {
+          "type": "text",
+          "text": "Finally, the events we celebrate this Easter Sunday – the resurrection of Jesus. Some religions speak of incarnation after one dies – but there is nothing that speaks of someone who will die and in less than 3 days will rise again. And not only would He rise and come back to life, he came back in a new way. He still bore the marks on his hands and feet, but with the horrors of his death, one would think that a major rehab would be needed. But no. He was the same, but also different. That didn’t make sense, it didn’t seem correct. But it was right.",
+          "marks": [{ "type": "strong" }]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Today, let’s also consider what his resurrection means for you and me. For us, the greatest human fear – death – now took on a new dimension. Yes, when you and I die, we are going to be dead a long, long time, but death will not have the final say in our lives. For we believe that Jesus’ death and resurrection is shared with us! Because of what Jesus did, there is now the possibility of eternal life - with God, with our family members and friends, with the saints, with all people of all time – together – forever! No wonder St. Paul provocatively taunted death with his famous line in 1 Corinthians 15:15, “O death where is your victory, O death where is your sting?” For we who believe, the reality of our death is no longer scary – for we believe life changes, it does not end, when we die.",
+          "marks": [{ "type": "strong" }]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Remember what I said at the start? The correct answer is not always the right answer. Fortunately for us, what we have been celebrating these past 3 days - the Passion, Death and Resurrection of Jesus Christ - is always the ",
+          "marks": [{ "type": "strong" }]
+        },
+        {
+          "type": "text",
+          "text": "right",
+          "marks": [{ "type": "strong" }, { "type": "underline" }]
+        },
+        { "type": "text", "text": " answer.", "marks": [{ "type": "strong" }] }
+      ]
+    },
+    { "type": "paragraph", "content": [] }
   ]
 }

@@ -71,7 +71,7 @@ storiesOf('editor', module)
         toolbarComponents={({ state }) => (
           <Button
             appearance="primary"
-            onClick={() => console.log(JSON.stringify(state.doc.toJSON()))}
+            onClick={() => console.log(JSON.stringify(state.doc.textContent))}
           >
             Save
           </Button>
@@ -106,6 +106,6 @@ storiesOf('editor', module)
           Title
         </Heading>
       </Box>
-      <Renderer json={content} width={1000} />
+      <Renderer json={testDocument} width={1000} />
     </Pane>
   ))
