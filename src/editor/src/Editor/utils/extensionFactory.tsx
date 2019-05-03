@@ -9,14 +9,12 @@ import {
 } from '@remirror/core-extensions'
 import { RemirrorExtension } from '@remirror/react'
 import * as React from 'react'
-import { FormattingOptions } from '../types'
 import { Image } from '../plugins/Image'
-import { MediaWrapper, MediaWrapperOptions } from '../plugins/MediaWrapper'
+import { FormattingOptions } from '../types'
 
 export default (
   formattingOptions: FormattingOptions,
-  activateLink: () => void,
-  activateImage: () => void
+  activateLink: () => void
 ) => {
   const {
     bold,

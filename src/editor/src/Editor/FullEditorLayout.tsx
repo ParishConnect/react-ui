@@ -109,11 +109,7 @@ class FullEditorLayout extends React.PureComponent<
     return (
       <Pane width="100%" {...matchedProps}>
         <RemirrorManager>
-          {getExtensions(
-            formattingOptions,
-            this.activateLink,
-            this.activateImage
-          )}
+          {getExtensions(formattingOptions, this.activateLink)}
           <Pane className={editorStyles(theme)} {...matchedInnerProps}>
             <ManagedRemirrorEditor
               attributes={{
