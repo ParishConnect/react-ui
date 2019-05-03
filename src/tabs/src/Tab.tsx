@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+import { ThemeContext } from '../../theme'
 import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
-import { ThemeContext } from '../../theme'
+import warning from '../../lib/warning'
 
 export interface TabProps extends TextProps {
   /**
@@ -20,26 +20,31 @@ export interface TabProps extends TextProps {
    * The default theme only comes with a default style.
    */
   appearance?: string
+
+  /**
+   * Optionally disable the tab
+   */
+  disabled?: boolean
 }
 
 class Tab extends React.PureComponent<TabProps> {
   static contextType = ThemeContext
 
   static defaultProps = {
-    onClick: noop,
-    onSelect: noop,
-    onKeyPress: noop,
+    onSelect: () => {},
+    onKeyPress: () => {},
     is: 'span',
-    height: 32
+    height: 32,
+    disabled: false
   }
 
   static styles = {
     display: 'inline-flex',
-    fontWeight: 700,
+    fontWeight: 500,
     paddingX: 12,
     marginX: 4,
-    borderRadius: 6,
-    lineHeight: '28px',
+    borderRadius: 8,
+    lineHeight: '30px',
     alignItems: 'center',
     justifyContent: 'center',
     textDecoration: 'none',
@@ -47,7 +52,9 @@ class Tab extends React.PureComponent<TabProps> {
   }
 
   handleClick = (e: any) => {
-    this.props.onClick(e)
+    if (typeof this.props.onClick === 'function') {
+      this.props.onClick(e)
+    }
     this.props.onSelect()
   }
 
@@ -66,17 +73,31 @@ class Tab extends React.PureComponent<TabProps> {
       onSelect,
       isSelected,
       appearance,
+      disabled,
       ...props
     } = this.props
     const theme = this.context
 
-    const textSize = theme.getTextSizeForControlHeight(height) * 1.3
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        typeof this.props.onClick === 'function',
+        '<Tab> expects `onSelect` prop, but you passed `onClick`.'
+      )
+    }
+
+    const textSize = theme.getTextSizeForControlHeight(height) + 100
 
     let elementBasedProps: any
+    if (disabled) {
+      elementBasedProps = {
+        'aria-disabled': true
+      }
+    }
     if (is === 'a') {
       // Use aria-current when it's a link https://tink.uk/using-the-aria-current-attribute/
       elementBasedProps = isSelected
         ? {
+            ...elementBasedProps,
             'aria-current': 'page'
           }
         : {}
@@ -84,6 +105,7 @@ class Tab extends React.PureComponent<TabProps> {
       // Use a role="tablist" around the tabs
       // Also pass down a aria-controls="panelId" https://www.stefanjudis.com/blog/aria-selected-and-when-to-use-it/
       elementBasedProps = {
+        ...elementBasedProps,
         'aria-selected': isSelected,
         role: 'tab'
       }

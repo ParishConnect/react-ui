@@ -78,7 +78,7 @@ storiesOf('tabs', module)
                     key={tab}
                     id={tab}
                     onSelect={() => onSelect(index)}
-                    isSelected={index === selectedIndex}
+                    isSelected={index === selectedIndex ? true : false}
                     aria-controls={`panel-${tab}`}
                   >
                     {tab}
@@ -156,7 +156,7 @@ storiesOf('tabs', module)
                     key={tab}
                     id={tab}
                     onSelect={() => onSelect(index)}
-                    isSelected={index === selectedIndex}
+                    isSelected={index === selectedIndex ? true : false}
                     appearance="blue"
                     aria-controls={`panel-${tab}`}
                   >
