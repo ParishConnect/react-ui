@@ -3,7 +3,6 @@ import { noop } from 'lodash'
 import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
 import { ThemeContext } from '../../theme'
-import { splitBoxProps } from '@hennessyevan/aluminum-box'
 
 export interface TabProps extends TextProps {
   /**
@@ -61,7 +60,6 @@ class Tab extends React.PureComponent<TabProps> {
   }
 
   render() {
-    // tslint:disable:no-unused
     const {
       is,
       height,
@@ -71,7 +69,6 @@ class Tab extends React.PureComponent<TabProps> {
       ...props
     } = this.props
     const theme = this.context
-    // tslint:enable:no-unused
 
     const textSize = theme.getTextSizeForControlHeight(height) * 1.3
 
@@ -92,8 +89,6 @@ class Tab extends React.PureComponent<TabProps> {
       }
     }
 
-    const { matchedProps } = splitBoxProps(props)
-
     return (
       <Text
         className={theme.getTabClassName(theme.themeColor)}
@@ -101,7 +96,7 @@ class Tab extends React.PureComponent<TabProps> {
         size={textSize}
         height={height}
         {...Tab.styles}
-        {...matchedProps}
+        {...props}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         {...elementBasedProps}
