@@ -1,8 +1,7 @@
 import Box, { BoxProps } from '@hennessyevan/aluminum-box'
-import { cx } from 'emotion'
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
 import * as React from 'react'
-import { Omit } from 'utility-types'
+import { Overwrite } from 'utility-types'
 import { ThemeContext } from '../../theme'
 import { Text } from '../../typography'
 
@@ -19,12 +18,11 @@ const wrapperClass = css({
   display: 'flex',
   flex: 1,
   cursor: 'pointer',
-  marginLeft: '-1px',
-  [`:first-child`]: {
+  ':first-of-type': {
     borderTopLeftRadius: 999,
     borderBottomLeftRadius: 999
   },
-  [`:last-child`]: {
+  ':last-of-type': {
     borderTopRightRadius: 999,
     borderBottomRightRadius: 999
   }
@@ -36,13 +34,11 @@ const offscreenCss = css({
   height: '1px',
   width: '1px',
   padding: 0,
-  margin: '-1px',
   border: 0,
   clip: 'rect(0 0 0 0)'
 })
 
-export interface SegmentedControlRadioProps
-  extends Omit<BoxProps, 'appearance'> {
+export interface SegmentedControlRadioProps {
   /**
    * The name attribute of the radio input.
    */
@@ -95,7 +91,7 @@ export interface SegmentedControlRadioProps
 }
 
 class SegmentedControlRadio extends React.PureComponent<
-  SegmentedControlRadioProps
+  Overwrite<BoxProps, SegmentedControlRadioProps>
 > {
   public static contextType = ThemeContext
 
@@ -118,7 +114,6 @@ class SegmentedControlRadio extends React.PureComponent<
       theme.themeColor || appearance
     )
     const textSize = theme.getTextSizeForControlHeight(height)
-    const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
       <Box
@@ -126,14 +121,12 @@ class SegmentedControlRadio extends React.PureComponent<
         data-active={checked}
         {...(isFirstItem
           ? {
-              borderTopLeftRadius: borderRadius,
-              borderBottomLeftRadius: borderRadius
+              marginLeft: -10
             }
           : {})}
         {...(isLastItem
           ? {
-              borderTopRightRadius: borderRadius,
-              borderBottomRightRadius: borderRadius
+              marginRight: -10
             }
           : {})}
       >

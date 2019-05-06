@@ -299,7 +299,7 @@ export default class InlineTimePicker extends React.Component<
         cursor="pointer"
         css={{
           width: width,
-          ':not(:first-child)': {
+          ':not(:first-of-type)': {
             marginLeft: 4
           }
         }}
