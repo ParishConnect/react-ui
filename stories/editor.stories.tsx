@@ -1,20 +1,18 @@
 import Box from '@hennessyevan/aluminum-box'
-import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import {
+  Button,
+  Card,
   Editor,
   Heading,
-  Textarea,
+  ImagePicker,
   Pane,
   Renderer,
-  ImagePicker,
-  Button
+  Textarea
 } from '../src'
 import { majorScale } from '../src/scales'
 import testDocument from './testDocument.json'
-import { InjectedRemirrorProps, useRemirrorContext } from '@remirror/react'
-import { EditorState } from '@remirror/core'
 
 const content = {
   version: 1,
@@ -54,11 +52,16 @@ const content = {
 
 storiesOf('editor', module)
   .add('Post Editor', () => (
-    <Pane
-      maxWidth={1000}
-      margin={majorScale(8)}
+    <Card
+      marginTop={32}
       marginX="auto"
-      position="relative"
+      width="100%"
+      maxWidth={1000}
+      css={{
+        '.remirror-editor': {
+          maxWidth: 800
+        }
+      }}
     >
       <ImagePicker borderRadius={8} marginBottom={majorScale(4)} />
       <Editor
@@ -96,6 +99,25 @@ storiesOf('editor', module)
         width={1000}
         appearance="primary"
         placeholder="Start writing..."
+      />
+    </Card>
+  ))
+  .add('Default Editor', () => (
+    <Pane maxWidth={500} margin={majorScale(8)} position="relative">
+      <Editor
+        allowImages={false}
+        extraStyles={{ maxWidth: 450 }}
+        placeholder="This is the default appearance..."
+      />
+    </Pane>
+  ))
+  .add('Minimal Editor', () => (
+    <Pane maxWidth={500} margin={majorScale(8)} position="relative">
+      <Editor
+        appearance="minimal"
+        allowImages={false}
+        extraStyles={{ maxWidth: 450 }}
+        placeholder="This is the default appearance..."
       />
     </Pane>
   ))

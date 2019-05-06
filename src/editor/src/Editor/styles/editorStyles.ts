@@ -9,7 +9,7 @@ import {
   text
 } from '../../../../theme/src/default-theme/typography/index'
 
-export default function editorStyles(theme: ThemeType) {
+export default function editorStyles(theme: ThemeType, altEditorStyles?: any) {
   return css({
     [`${EDITOR_CLASS_SELECTOR}`]: {
       margin: '0 auto',
@@ -17,6 +17,7 @@ export default function editorStyles(theme: ThemeType) {
       color: defaultTheme.getTextColor('default', theme),
       fontFamily: defaultTheme.getFontFamily('display'),
       ...defaultTheme.getTextStyle(400),
+      ...altEditorStyles,
       // Strong
       strong: {
         ...text[400],

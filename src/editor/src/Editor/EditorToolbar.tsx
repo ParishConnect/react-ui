@@ -16,7 +16,7 @@ import { runAction } from './utils/runAction'
 import { splitBoxProps } from '@hennessyevan/aluminum-box'
 import { EditorState, EditorView, RemirrorContentType } from '@remirror/core'
 
-interface ToolbarReturnFunctions {
+export interface ToolbarReturnFunctions {
   state: EditorState
   view: EditorView
   setContent(content: RemirrorContentType, triggerOnChange?: boolean): void
