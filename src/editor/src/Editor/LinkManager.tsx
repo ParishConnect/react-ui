@@ -171,10 +171,8 @@ export default withRemirror(
           position="absolute"
           transform="translateX(-50%)"
           innerRef={ref}
-          bottom={
-            initialValue || linkActivated ? bottom + majorScale(1) : -9999
-          }
-          left={initialValue || linkActivated ? left : -9999}
+          bottom={initialValue || linkActivated ? bottom + majorScale(1) : 0}
+          left={initialValue || linkActivated ? left : -1500}
         >
           <LinkInput
             {...{
