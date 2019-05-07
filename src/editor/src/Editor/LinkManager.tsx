@@ -13,6 +13,8 @@ import { minorScale, majorScale } from '../../../scales/index'
 import { TextInput } from '../../../text-input/index'
 import { Tooltip } from '../../../tooltip/index'
 import { Popover } from '../../../popover/index'
+import { Stack } from '../../../stack/index'
+import { StackingOrder } from '../../../constants/index'
 
 interface LinkInputProps {
   updateLink(href: string): void
@@ -163,27 +165,34 @@ export default withRemirror(
       })
 
       return (
-        <Card
-          elevation={2}
-          appearance="white"
-          display="flex"
-          padding={minorScale(1)}
-          position="absolute"
-          transform="translateX(-50%)"
-          innerRef={ref}
-          bottom={initialValue || linkActivated ? bottom + majorScale(1) : 0}
-          left={initialValue || linkActivated ? left : -1500}
-        >
-          <LinkInput
-            {...{
-              initialValue,
-              deactivateLink,
-              updateLink: this.updateLink,
-              removeLink: this.removeLink,
-              canRemove: this.canRemove
-            }}
-          />
-        </Card>
+        <Stack value={StackingOrder.POSITIONER}>
+          {zIndex => (
+            <Card
+              elevation={2}
+              appearance="white"
+              display="flex"
+              padding={minorScale(1)}
+              position="absolute"
+              transform="translateX(-50%)"
+              innerRef={ref}
+              zIndex={zIndex}
+              bottom={
+                initialValue || linkActivated ? bottom + majorScale(1) : 0
+              }
+              left={initialValue || linkActivated ? left : -1500}
+            >
+              <LinkInput
+                {...{
+                  initialValue,
+                  deactivateLink,
+                  updateLink: this.updateLink,
+                  removeLink: this.removeLink,
+                  canRemove: this.canRemove
+                }}
+              />
+            </Card>
+          )}
+        </Stack>
       )
     }
   }
