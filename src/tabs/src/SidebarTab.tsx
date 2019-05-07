@@ -10,7 +10,7 @@ export default class SidebarTab extends React.PureComponent<TabProps> {
   static styles = {
     width: '100%',
     paddingX: 0,
-    paddingLeft: 10,
+    paddingLeft: 16,
     marginX: 0,
     marginBottom: 4,
     justifyContent: 'auto'

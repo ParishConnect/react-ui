@@ -9,8 +9,8 @@ export default {
   },
 
   blue: {
-    lightest: scales.blue.B1,
-    light: scales.blue.B4,
+    lightest: scales.blue.B3,
+    light: scales.blue.B5,
     base: scales.blue.B8,
     dark: scales.blue.B9
   },
@@ -47,7 +47,7 @@ export default {
     lightest: '#f1fbfc',
     light: '#d2eef3',
     base: '#14b5d0',
-    dark: '#007489'
+    dark: '#007490'
   },
 
   purple: {
