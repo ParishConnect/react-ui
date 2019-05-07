@@ -261,8 +261,11 @@ buttonsStory.add('Button types', () => (
             <Button height={state.value} marginRight={16} intent="warning">
               Warning
             </Button>
-            <Button height={state.value} intent="danger">
+            <Button height={state.value} marginRight={16} intent="danger">
               Danger
+            </Button>
+            <Button disabled height={state.value}>
+              Disabled
             </Button>
           </Box>
           <Heading marginTop="default">Primary Appearance</Heading>
@@ -286,8 +289,16 @@ buttonsStory.add('Button types', () => (
             >
               Warning
             </Button>
-            <Button height={state.value} appearance="primary" intent="danger">
+            <Button
+              height={state.value}
+              appearance="primary"
+              intent="danger"
+              marginRight={16}
+            >
               Danger
+            </Button>
+            <Button disabled appearance="primary" height={state.value}>
+              Disabled
             </Button>
           </Box>
           <Heading marginTop="default">Minimal Appearance</Heading>
@@ -311,14 +322,22 @@ buttonsStory.add('Button types', () => (
             >
               Warning
             </Button>
-            <Button height={state.value} appearance="minimal" intent="danger">
+            <Button
+              height={state.value}
+              marginRight={16}
+              appearance="minimal"
+              intent="danger"
+            >
               Danger
+            </Button>
+            <Button disabled height={state.value} appearance="minimal">
+              Disabled
             </Button>
           </Box>
           <Heading marginTop="default">Overlay Appearance</Heading>
           <Box
             background="url(https://picsum.photos/1200/300)"
-            paddingY={32}
+            padding={32}
             marginTop={12}
             display="inline-block"
           >
@@ -341,8 +360,16 @@ buttonsStory.add('Button types', () => (
             >
               Warning
             </Button>
-            <Button height={state.value} appearance="overlay" intent="danger">
+            <Button
+              height={state.value}
+              marginRight={16}
+              appearance="overlay"
+              intent="danger"
+            >
               Danger
+            </Button>
+            <Button disabled height={state.value} appearance="overlay">
+              Disabled
             </Button>
           </Box>
         </React.Fragment>

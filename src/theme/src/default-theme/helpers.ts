@@ -81,7 +81,7 @@ const getPrimaryButtonStylesForIntent = (
       return {
         linearGradient: getLinearGradientWithStates(startColor, endColor),
         focusColor: tinycolor(startColor)
-          .setAlpha(1)
+          .setAlpha(0.4)
           .toString()
       }
     }

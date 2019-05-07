@@ -11,8 +11,8 @@ export default {
   blue: {
     lightest: scales.blue.B1,
     light: scales.blue.B4,
-    base: scales.blue.B9,
-    dark: scales.blue.B10
+    base: scales.blue.B8,
+    dark: scales.blue.B9
   },
 
   red: {

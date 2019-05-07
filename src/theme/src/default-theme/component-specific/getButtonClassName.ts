@@ -28,7 +28,12 @@ const getButtonAppearance = (
         themeColor
       )
       return Themer.createButtonAppearance({
-        disabled,
+        disabled: {
+          ...disabled,
+          backgroundColor: focusColor,
+          backgroundImage: 'none',
+          color: 'rgba(0,0,0,0.5)'
+        },
         base: {
           color: 'white',
           backgroundColor: 'white',
@@ -41,13 +46,11 @@ const getButtonAppearance = (
           boxShadow: `inset 0 0 0 1px ${focusColor}, 0 2px 5px ${focusColor}`
         },
         focus: {
-          boxShadow: `inset 0 0 0 1px ${focusColor}, 0 2px 5px ${focusColor}`
+          boxShadow: `0 0 0 2px ${focusColor}, 0 1px 1px 0 ${focusColor}`
         },
         active: {
           backgroundImage: linearGradient.active,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${focusColor}, inset 0 1px 1px 0 ${focusColor}`
         },
         focusAndActive: {
           boxShadow: `inset 0 0 0 1px ${focusColor}, 0 2px 5px ${focusColor}`
@@ -77,7 +80,11 @@ const getButtonAppearance = (
     }
     case 'overlay': {
       return Themer.createButtonAppearance({
-        disabled,
+        disabled: {
+          ...disabled,
+          backgroundColor: 'black',
+          color: 'gray'
+        },
         base: {
           color: 'white',
           fill: 'white',
@@ -105,7 +112,9 @@ const getButtonAppearance = (
           color: intentTextColor,
           ...defaultButtonStyles.base
         },
-        hover: defaultButtonStyles.hover,
+        hover: {
+          boxShadow: `0 0 0 2px ${tinycolor(intentTextColor).lighten(40)}`
+        },
         focus: defaultButtonStyles.focus,
         active: defaultButtonStyles.active,
         focusAndActive: defaultButtonStyles.focusAndActive

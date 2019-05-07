@@ -6,8 +6,8 @@ import scales from './scales'
 
 const gradients = {
   neutral: {
-    start: scales.neutral.N9,
-    end: scales.neutral.N10
+    start: palette.neutral.base,
+    end: palette.neutral.dark
   },
   green: {
     start: palette.green.base,
@@ -23,7 +23,7 @@ const gradients = {
   },
   blue: {
     start: palette.blue.base,
-    end: palette.blue.base
+    end: palette.blue.dark
   },
   purple: {
     start: palette.purple.base,

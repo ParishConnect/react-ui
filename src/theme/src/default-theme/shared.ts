@@ -6,7 +6,7 @@ const defaultControlStyles = (themeColor: string = 'blue') => ({
     opacity: 0.8,
     backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
-    color: scales.neutral.N7A
+    color: scales.neutral.N8A
   },
   base: {
     backgroundColor: scales.neutral.N3A,
@@ -16,7 +16,7 @@ const defaultControlStyles = (themeColor: string = 'blue') => ({
     backgroundColor: scales.neutral.N4A
   },
   focus: {
-    boxShadow: `0 0 0 3px ${palette[themeColor].light}, inset 0 0 0 1px ${
+    boxShadow: `0 0 0 2px ${palette[themeColor].light}, inset 0 0 0 1px ${
       scales.neutral.N5A
     }, inset 0 -1px 1px 0 ${scales.neutral.N4A}`
   },
