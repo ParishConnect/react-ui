@@ -1,16 +1,16 @@
+import { BoxProps } from '@hennessyevan/aluminum-box'
 import { RemirrorProps } from '@remirror/react'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'
-import { Card, PaneProps } from '../../../layers/index'
+import { PaneProps } from '../../../layers/index'
 import { majorScale } from '../../../scales/index'
+import { TextInput } from '../../../text-input/index'
 import DefaultEditorLayout from './DefaultEditor'
 import { ToolbarReturnFunctions } from './EditorToolbar'
 import FullEditorLayout from './FullEditorLayout'
+import MinimalEditorLayout from './MinimalEditor'
 import { FormattingOptions } from './types'
 import getFormattingOptions from './utils/getFormattingOptions'
-import { Text } from '../../../typography/index'
-import { BoxProps } from '@hennessyevan/aluminum-box'
-import MinimalEditorLayout from './MinimalEditor'
 
 export interface EditorPropsBase extends Partial<RemirrorProps> {
   /**
@@ -67,11 +67,27 @@ export interface EditorPropsBase extends Partial<RemirrorProps> {
 
 export type EditorProps = Overwrite<PaneProps, EditorPropsBase>
 
+const defaultCollapsedComponent = ({ onExpand, placeholder }) => (
+  <TextInput
+    readOnly
+    cursor="pointer"
+    background="tint1"
+    onClick={e => {
+      e.preventDefault()
+      onExpand(e)
+    }}
+    border="muted"
+    padding={majorScale(2)}
+    value={placeholder || 'Click to Edit'}
+  />
+)
+
 class Editor extends React.Component<EditorProps> {
   static defaultProps = {
     collapsed: false,
     appearance: 'default',
     autoFocus: true,
+    collapsedComponent: defaultCollapsedComponent,
     onExpand: () => {},
     onSave: () => {}
   }
@@ -93,21 +109,17 @@ class Editor extends React.Component<EditorProps> {
       collapsed,
       appearance,
       formattingOptions,
+      collapsedComponent: CollapsedComponent,
       onExpand,
       toolbar,
       ...props
     } = this.props
     const InnerEditor = this.renderEditor(appearance)
     return collapsed ? (
-      <Card
-        cursor="pointer"
-        background="tint1"
-        onClick={onExpand}
-        border="muted"
-        padding={majorScale(2)}
-      >
-        <Text>Click to Edit</Text>
-      </Card>
+      <CollapsedComponent
+        placeholder={this.props.placeholder}
+        onExpand={onExpand}
+      />
     ) : (
       <InnerEditor
         toolbar={appearance !== 'minimal' && toolbar}

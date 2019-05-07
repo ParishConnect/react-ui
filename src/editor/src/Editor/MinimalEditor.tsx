@@ -7,7 +7,7 @@ import {
 } from '@remirror/react'
 import * as React from 'react'
 import { v1 } from 'uuid'
-import { Pane } from '../../../layers/index'
+import { Pane, Card } from '../../../layers/index'
 import { ThemeContext } from '../../../theme/index'
 import { EditorProps } from './Editor'
 import LinkManager from './LinkManager'
@@ -41,9 +41,7 @@ class MinimalEditorLayout extends React.PureComponent<
   static defaultProps = {
     floatingMenu: false,
     toolbar: false,
-    containerProps: {
-      border: true
-    },
+    containerProps: {},
     formattingOptions: {
       bold: true,
       italic: true,
@@ -103,7 +101,7 @@ class MinimalEditorLayout extends React.PureComponent<
     } = splitBoxProps(props)
 
     return (
-      <Pane width="100%" {...matchedProps}>
+      <Card width="100%" {...matchedProps}>
         <RemirrorManager>
           {getExtensions(formattingOptions, this.activateLink)}
           <Pane
@@ -130,7 +128,7 @@ class MinimalEditorLayout extends React.PureComponent<
             </ManagedRemirrorEditor>
           </Pane>
         </RemirrorManager>
-      </Pane>
+      </Card>
     )
   }
 }

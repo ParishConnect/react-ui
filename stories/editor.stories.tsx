@@ -1,4 +1,5 @@
 import Box from '@hennessyevan/aluminum-box'
+import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import {
@@ -103,13 +104,30 @@ storiesOf('editor', module)
     </Card>
   ))
   .add('Default Editor', () => (
-    <Pane maxWidth={500} margin={majorScale(8)} position="relative">
-      <Editor
-        allowImages={false}
-        extraStyles={{ maxWidth: 450 }}
-        placeholder="This is the default appearance..."
-      />
-    </Pane>
+    <Box margin={majorScale(8)}>
+      <Heading marginTop={majorScale(8)}>Collapsed</Heading>
+      <Component initialState={{ isCollapsed: true }}>
+        {({ state, setState }) => (
+          <Pane maxWidth={500} position="relative">
+            <Editor
+              collapsed={state.isCollapsed}
+              onExpand={() => setState({ isCollapsed: false })}
+              allowImages={false}
+              extraStyles={{ maxWidth: 450 }}
+              placeholder="This is the default appearance..."
+            />
+          </Pane>
+        )}
+      </Component>
+      <Heading marginTop={majorScale(8)}>Default</Heading>
+      <Pane maxWidth={500} position="relative">
+        <Editor
+          allowImages={false}
+          extraStyles={{ maxWidth: 450 }}
+          placeholder="This is the default appearance..."
+        />
+      </Pane>
+    </Box>
   ))
   .add('Minimal Editor', () => (
     <Pane maxWidth={500} margin={majorScale(8)} position="relative">
