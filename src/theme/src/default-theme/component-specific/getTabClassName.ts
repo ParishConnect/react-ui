@@ -6,7 +6,7 @@ import { scales, colors, palette } from '../foundational-styles/'
 const defaultAppearance = (themeColor: string): object => {
   return Themer.createTabAppearance({
     base: {
-      borderRadius: 999
+      borderRadius: 8
     },
     hover: {
       backgroundColor: scales.neutral.N2A
