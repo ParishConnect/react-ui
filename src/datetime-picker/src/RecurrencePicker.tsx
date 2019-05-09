@@ -4,7 +4,10 @@ import {
   addYears,
   differenceInCalendarMonths,
   isSameDay,
-  startOfDay
+  startOfDay,
+  isDate,
+  setHours,
+  setMinutes
 } from 'date-fns'
 import addDays from 'date-fns/add_days'
 import addWeeks from 'date-fns/add_weeks'
@@ -144,7 +147,17 @@ export default class RecurrencePicker extends React.Component<
     pivotDate: this.props.value
   }
 
-  changePivotDate = (pivotDate: DateType) => this.setState({ pivotDate })
+  changePivotDate = (pivotDate: DateType) => {
+    if (this.props.value && isDate(this.props.value)) {
+      pivotDate = setHours(
+        setMinutes(pivotDate, this.props.value.getMinutes()),
+        this.props.value.getHours()
+      )
+    }
+    console.log(pivotDate)
+
+    this.setState({ pivotDate })
+  }
 
   getCurrentMonthTitle = (offset: number) =>
     new Intl.DateTimeFormat(this.props.locale, {

@@ -27,7 +27,7 @@ const rule = new RRule({
   byweekday: RRule.FR,
   interval: 1,
   bysetpos: [1, 3, 5],
-  dtstart: new Date()
+  dtstart: new Date(2019, 3, 15, 11, 25)
 })
 
 storiesOf('datetime-picker', module)
@@ -122,7 +122,7 @@ storiesOf('datetime-picker', module)
                   <Text>
                     The active date is{' '}
                     {DateTime.fromJSDate(selectedDate).toLocaleString(
-                      DateTime.DATE_FULL
+                      DateTime.DATETIME_FULL
                     )}
                   </Text>
                   <Heading marginTop={12}>Actions</Heading>
