@@ -147,15 +147,17 @@ export default class RecurrencePicker extends React.Component<
     pivotDate: this.props.value
   }
 
-  changePivotDate = (pivotDate: DateType) => {
+  formatPivotDate = (rawDate: Date): Date => {
     if (this.props.value && isDate(this.props.value)) {
-      pivotDate = setHours(
-        setMinutes(pivotDate, this.props.value.getMinutes()),
+      return setHours(
+        setMinutes(rawDate, this.props.value.getMinutes()),
         this.props.value.getHours()
       )
     }
-    console.log(pivotDate)
+    return rawDate
+  }
 
+  changePivotDate = (pivotDate: DateType) => {
     this.setState({ pivotDate })
   }
 
@@ -171,6 +173,7 @@ export default class RecurrencePicker extends React.Component<
 
   doCalendarClick = (date: Date) => {
     if (this.recurrenceDates.some((rdate: Date) => isSameDay(rdate, date))) {
+      date = this.formatPivotDate(date)
       this.changePivotDate(date)
       return this.props.onChange && this.props.onChange(date)
     }

@@ -113,6 +113,7 @@ storiesOf('datetime-picker', module)
               recurrenceRule={rule}
               yearsToCompute={1}
               value={rule.after(new Date(), true)}
+              onChange={console.log}
               onClose={() => setState({ isShown: false })}
               noResults={<Text>Click a date to see options</Text>}
               dateComponents={(selectedDate, deselect, close) => (
