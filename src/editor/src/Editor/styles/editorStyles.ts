@@ -13,6 +13,7 @@ export default function editorStyles(theme: ThemeType, altEditorStyles?: any) {
   return css({
     [`${EDITOR_CLASS_SELECTOR}`]: {
       margin: '0 auto',
+      marginBottom: 12,
       outline: 'none',
       color: defaultTheme.getTextColor('default', theme),
       fontFamily: defaultTheme.getFontFamily('display'),

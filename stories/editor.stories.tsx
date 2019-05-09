@@ -10,7 +10,11 @@ import {
   ImagePicker,
   Pane,
   Renderer,
-  Textarea
+  Textarea,
+  Edit2Icon,
+  IconButton,
+  CheckIcon,
+  XIcon
 } from '../src'
 import { majorScale } from '../src/scales'
 import testDocument from './testDocument.json'
@@ -45,6 +49,24 @@ const content = {
             width: '50%',
             layout: 'center'
           }
+        }
+      ]
+    }
+  ]
+}
+
+const inlineContent = {
+  version: 1,
+  type: 'doc',
+  content: [
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          marks: []
         }
       ]
     }
@@ -110,6 +132,7 @@ storiesOf('editor', module)
         {({ state, setState }) => (
           <Pane maxWidth={500} position="relative">
             <Editor
+              containerProps={{ border: true }}
               collapsed={state.isCollapsed}
               onExpand={() => setState({ isCollapsed: false })}
               allowImages={false}
@@ -122,6 +145,7 @@ storiesOf('editor', module)
       <Heading marginTop={majorScale(8)}>Default</Heading>
       <Pane maxWidth={500} position="relative">
         <Editor
+          containerProps={{ border: true }}
           allowImages={false}
           extraStyles={{ maxWidth: 450 }}
           placeholder="This is the default appearance..."
@@ -148,4 +172,54 @@ storiesOf('editor', module)
       </Box>
       <Renderer json={testDocument} width={1000} />
     </Pane>
+  ))
+  .add('Inline Editor', () => (
+    <Component initialState={{ editing: false }}>
+      {({ state, setState }) => (
+        <Pane maxWidth={500} margin={majorScale(8)} position="relative">
+          {state.editing ? (
+            <Box>
+              <Editor
+                paddingY={8}
+                paddingX={16}
+                border
+                initialContent={inlineContent}
+                appearance="minimal"
+                allowImages={false}
+                placeholder="This is the default appearance..."
+              />
+              <Card display="flex" float="right">
+                <Button
+                  iconBefore={XIcon}
+                  intent="danger"
+                  marginRight={8}
+                  onClick={() => setState({ editing: false })}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  iconBefore={CheckIcon}
+                  intent="success"
+                  appearance="primary"
+                >
+                  Save
+                </Button>
+              </Card>
+            </Box>
+          ) : (
+            <Box>
+              <Renderer paddingY={8} paddingX={16} json={inlineContent} />
+              <Box float="right">
+                <Button
+                  iconBefore={Edit2Icon}
+                  onClick={() => setState({ editing: true })}
+                >
+                  Edit
+                </Button>
+              </Box>
+            </Box>
+          )}
+        </Pane>
+      )}
+    </Component>
   ))

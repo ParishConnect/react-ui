@@ -8,11 +8,10 @@ import { TextInput } from '../../../text-input/index'
 import DefaultEditorLayout from './DefaultEditor'
 import { ToolbarReturnFunctions } from './EditorToolbar'
 import FullEditorLayout from './FullEditorLayout'
-import MinimalEditorLayout from './MinimalEditor'
 import { FormattingOptions } from './types'
 import getFormattingOptions from './utils/getFormattingOptions'
 
-export interface EditorPropsBase extends Partial<RemirrorProps> {
+export interface EditorPropsBase extends RemirrorProps {
   /**
    * The appearance of the editor
    * @variation `primary` - Use this when the editor is the main focus of the page. i.e. Post Editor
@@ -20,6 +19,12 @@ export interface EditorPropsBase extends Partial<RemirrorProps> {
    * @variation `default` - Used as RTF field.
    */
   appearance?: 'primary' | 'default' | 'minimal'
+  /**
+   * Shows floating save/cancel buttons.
+   * @note Should be paired with `default` or `minimal` editor layouts
+   * @default false
+   */
+  showInlineActions?: boolean
   /**
    * Sets a collapsed placeholder for the editor
    */
@@ -87,6 +92,7 @@ class Editor extends React.Component<EditorProps> {
     collapsed: false,
     appearance: 'default',
     autoFocus: true,
+    showInlineActions: false,
     collapsedComponent: defaultCollapsedComponent,
     onExpand: () => {},
     onSave: () => {}
@@ -97,7 +103,6 @@ class Editor extends React.Component<EditorProps> {
       case 'primary':
         return FullEditorLayout
       case 'minimal':
-        return MinimalEditorLayout
       case 'default':
       default:
         return DefaultEditorLayout
@@ -122,9 +127,9 @@ class Editor extends React.Component<EditorProps> {
       />
     ) : (
       <InnerEditor
-        toolbar={appearance !== 'minimal' && toolbar}
         formattingOptions={getFormattingOptions(formattingOptions)}
         {...props}
+        toolbar={appearance !== 'minimal' ? toolbar : false}
       />
     )
   }

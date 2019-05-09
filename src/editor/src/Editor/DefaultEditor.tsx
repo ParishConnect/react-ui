@@ -46,7 +46,6 @@ class DefaultEditorLayout extends React.PureComponent<
     floatingMenu: false,
     toolbar: true,
     containerProps: {
-      border: true,
       paddingBottom: majorScale(1)
     },
     formattingOptions: {
@@ -100,6 +99,7 @@ class DefaultEditorLayout extends React.PureComponent<
       contentComponents,
       autoFocus,
       toolbarProps,
+      toolbar,
       extraStyles: altEditorStyles,
       ...props
     } = this.props
