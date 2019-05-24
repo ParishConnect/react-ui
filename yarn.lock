@@ -1800,6 +1800,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-filepond@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-filepond/-/react-filepond-5.0.3.tgz#2e4b68433e38154317b887712d745cc9fae57512"
+  integrity sha512-hxo3BPZeeG+0E7zOmyvm5q4Sk9dOhbiAQ/0BT9YlLgU16t9Hjf+/iT+mGwFz27QU2yW+7DXj+ZvuoL1b+PBxLw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-loadable@^5.4.1":
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/@types/react-loadable/-/react-loadable-5.5.1.tgz#f04a262f16e9f088098ddad1aa50682ad0984aa7"
@@ -5537,6 +5544,36 @@ file-system-cache@^1.0.5:
     bluebird "^3.3.5"
     fs-extra "^0.30.0"
     ramda "^0.21.0"
+
+filepond-plugin-file-validate-size@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-file-validate-size/-/filepond-plugin-file-validate-size-2.1.3.tgz#fc5b64b979efc6f68e3a9869a66e399eea995906"
+  integrity sha512-5l2SVDuUQlOzO0aEKQAduVA3zJVIZAhKULmyTqSoUCJikQGJhUUqcHE32EjFhK8nkBXfUc8XSEb6Sr+fES65LA==
+
+filepond-plugin-file-validate-type@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-file-validate-type/-/filepond-plugin-file-validate-type-1.2.4.tgz#ce7f5f469dbc7ce0da12fdef7b0f24e4c263c410"
+  integrity sha512-K1qD8mfahJoz2zRlWWvYoHuy4k/8tHggsoGbm/blpTp63OyahOdJBzMN3VK7USYn5OZ58uOFdMTMyi8ibFpW/Q==
+
+filepond-plugin-image-crop@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-image-crop/-/filepond-plugin-image-crop-2.0.3.tgz#4be354a10a85d86946abc9ce738c6bda44e21a8c"
+  integrity sha512-+XV09yBoMHwNgww75zgMmA8imckNiOCvtAYTgtDE5sMcZ/lWTrK339SxwuLLxqV66tFAWO8pAL/nrYKKY1Ixpw==
+
+filepond-plugin-image-preview@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.1.1.tgz#7294332e9e9ee9592b0ccd96da4eb90b8ca683ec"
+  integrity sha512-cQZPWJ0iltLTmJ5iKCEBX6DShk9GDjpUhKjByaw7QuzAa3RnoU0E7K/W0Zod1+ZLch+tbNZ6ySBEjm9RrNy+6Q==
+
+filepond-plugin-image-transform@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-image-transform/-/filepond-plugin-image-transform-3.2.4.tgz#92d48f02eb9b0990d11359475b89348bafb6f797"
+  integrity sha512-ycGbaGdMaAkLu26A/9AYqLqQ9wsqSwJ3EwJQ/wVQ/cwW28Drw3EjSDR04qSnTWHWGDli0303K/+BsRXsg3UJLg==
+
+filepond@^4.4.6:
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.4.6.tgz#92c7367cc713a4e5270a58791c4727dda70c6360"
+  integrity sha512-XqCCi+UvHbbWYnj3wtsFBpHYUe2l3kHcSdYpYzz7iuie4UQ2af/rykiqbesNTGi3CYke2glKygwLeNrlTsU/tA==
 
 filesize@3.6.1, filesize@^3.6.1:
   version "3.6.1"
@@ -9535,6 +9572,11 @@ react-event-listener@^0.5.1:
 react-fast-compare@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+
+react-filepond@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-filepond/-/react-filepond-7.0.1.tgz#caf96526287140884a31a1476b8328d9d6ecdee2"
+  integrity sha512-PitNM44JP0K5hXnkSYV3HRlkObsWbhqaJRWizMrdHpS3pPz9/iyiOGmRpc+4T4ST3vblmiUTLRYq/+1bDcSqQw==
 
 react-focus-lock@^1.17.7:
   version "1.19.1"

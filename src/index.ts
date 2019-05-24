@@ -19,7 +19,6 @@ export {
   TimePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
-export { Suggest } from './suggest'
 export * from './editor'
 export { FilePicker, ImagePicker } from './file-picker'
 export {
@@ -334,6 +333,7 @@ export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'
+export { Suggest } from './suggest'
 export { Switch } from './switch'
 export {
   SearchTableHeaderCell,
@@ -375,3 +375,4 @@ export {
   Ul,
   UnorderedList
 } from './typography'
+export { Upload } from './upload'
