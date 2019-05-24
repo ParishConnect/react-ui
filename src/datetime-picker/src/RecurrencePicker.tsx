@@ -1,4 +1,4 @@
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import {
   addMonths,
   addYears,

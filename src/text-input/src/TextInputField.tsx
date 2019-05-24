@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { splitBoxProps } from '@hennessyevan/aluminum-box'
+import { splitBoxProps } from '@parishconnect/box'
 import { FormField } from '../../form-field'
 import TextInput, { TextInputProps } from './TextInput'
 import { FormFieldProps } from '../../form-field/src/FormField'

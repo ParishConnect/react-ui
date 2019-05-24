@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 
 export default class Tablist extends React.PureComponent<BoxProps> {
   render() {

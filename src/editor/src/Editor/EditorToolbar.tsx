@@ -13,7 +13,7 @@ import {
 import { FormattingOptions } from './types'
 import { Dialog } from '../../../dialog/index'
 import { runAction } from './utils/runAction'
-import { splitBoxProps } from '@hennessyevan/aluminum-box'
+import { splitBoxProps } from '@parishconnect/box'
 import { EditorState, EditorView, RemirrorContentType } from '@remirror/core'
 
 export interface ToolbarReturnFunctions {

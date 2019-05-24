@@ -1,4 +1,4 @@
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import { getIconColor } from '../../theme/src/default-theme/theme-helpers/index'
 

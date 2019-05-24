@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import { css, keyframes, ObjectInterpolation } from 'emotion'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import { Omit, Overwrite } from 'utility-types'

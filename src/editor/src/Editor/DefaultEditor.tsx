@@ -1,4 +1,4 @@
-import { BoxProps, splitBoxProps } from '@hennessyevan/aluminum-box'
+import { BoxProps, splitBoxProps } from '@parishconnect/box'
 import { EditorView } from '@remirror/core'
 import {
   InjectedRemirrorProps,

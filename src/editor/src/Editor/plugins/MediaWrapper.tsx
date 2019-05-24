@@ -9,7 +9,7 @@ import {
 import { Plugin } from 'prosemirror-state'
 import { isMediaSelected } from '../utils/mediaUtils'
 import { ReactNodeView, NodeViewComponentProps } from '@remirror/react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import * as React from 'react'
 import { get } from 'lodash'
 import {

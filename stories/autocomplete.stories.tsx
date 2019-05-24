@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import { concat } from 'lodash'
 import * as React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import starWarsNames from 'starwars-names'
 import {
   Autocomplete,

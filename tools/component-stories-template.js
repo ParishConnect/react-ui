@@ -17,7 +17,7 @@ module.exports = ({ packageName, componentNames = [] }) => {
   return `
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { ${componentNames.join(', ')} } from '../../${packageName}'
 
 storiesOf('${packageName}', module)${componentNames

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import { ThemeContext } from '../../theme'
 
 export type ParagraphSize = 300 | 400 | 500

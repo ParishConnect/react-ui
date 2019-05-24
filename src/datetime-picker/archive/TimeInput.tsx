@@ -1,4 +1,4 @@
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { differenceInSeconds, startOfToday } from 'date-fns'
 import { memoize } from 'lodash'
 import * as React from 'react'

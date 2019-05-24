@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import {
   Tab,
   SidebarTab,

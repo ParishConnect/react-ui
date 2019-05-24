@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { Textarea, Label, Text, Heading } from '../src'
 
 const Description = props => (

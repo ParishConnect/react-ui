@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { noop } from 'lodash'
 import Transition from 'react-transition-group/Transition'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { keyframes } from 'emotion'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'

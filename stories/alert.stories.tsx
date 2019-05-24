@@ -1,4 +1,4 @@
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { Alert, Heading, InlineAlert } from '../src/'

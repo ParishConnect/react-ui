@@ -1,6 +1,6 @@
 import * as React from 'react'
 import tinycolor from 'tinycolor2'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import Pane, { PaneProps } from '../../layers/src/Pane'
 import Text from '../../typography/src/Text'
 import Small from '../../typography/src/Small'

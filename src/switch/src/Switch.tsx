@@ -3,7 +3,7 @@ import { Omit } from 'utility-types'
 import { noop } from 'lodash'
 import tinycolor from 'tinycolor2'
 import PropTypes from 'prop-types'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import { ThemeContext } from '../../theme'
 
 const animationEasing = {

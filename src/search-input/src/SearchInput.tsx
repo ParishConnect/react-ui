@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
+import Box, { splitBoxProps } from '@parishconnect/box'
 import { TextInput } from '../../text-input'
 import { ThemeContext } from '../../theme'
 import { StackingOrder } from '../../constants'

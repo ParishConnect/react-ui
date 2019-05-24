@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { Suggest, majorScale, minorScale } from '../src'
 import MenuItem from '../src/menu/src/MenuItem'
 import Component from '@reactions/component'

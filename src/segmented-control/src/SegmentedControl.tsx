@@ -1,4 +1,4 @@
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import safeInvoke from '../../lib/safe-invoke'
 import { scales } from '../../theme/src/default-theme/foundational-styles'

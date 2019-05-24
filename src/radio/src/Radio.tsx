@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { noop } from 'lodash'
 import { Omit } from 'utility-types'
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 

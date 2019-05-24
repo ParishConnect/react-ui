@@ -1,4 +1,4 @@
-import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
+import Box, { splitBoxProps } from '@parishconnect/box'
 import { format, startOfMinute } from 'date-fns'
 import { DateTime } from 'luxon'
 import * as React from 'react'

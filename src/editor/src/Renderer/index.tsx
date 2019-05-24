@@ -1,4 +1,4 @@
-import { splitBoxProps } from '@hennessyevan/aluminum-box'
+import { splitBoxProps } from '@parishconnect/box'
 import { EMPTY_OBJECT_NODE } from '@remirror/core'
 import { RenderTree } from '@remirror/renderer-react'
 import * as React from 'react'

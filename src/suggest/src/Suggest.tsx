@@ -1,4 +1,4 @@
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import * as React from 'react'
 import { Position } from '../../constants'
 import MenuItem from '../../menu/src/MenuItem'

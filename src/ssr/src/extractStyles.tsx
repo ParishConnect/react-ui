@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { extractStyles as boxExtractStyles } from '@hennessyevan/aluminum-box'
+import { extractStyles as boxExtractStyles } from '@parishconnect/box'
 import { renderStatic } from 'glamor/server'
 
 export default function extractStyles() {

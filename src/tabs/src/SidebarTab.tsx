@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import Tab, { TabProps } from './Tab'
 
 export default class SidebarTab extends React.PureComponent<TabProps> {

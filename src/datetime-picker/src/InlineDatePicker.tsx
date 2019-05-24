@@ -1,4 +1,4 @@
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import addDays from 'date-fns/add_days'
 import addMonths from 'date-fns/add_months'
 import addWeeks from 'date-fns/add_weeks'

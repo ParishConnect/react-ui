@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import Component from '@reactions/component'
 import { Radio, RadioGroup } from '../../radio'
 import { Heading } from '../../typography'

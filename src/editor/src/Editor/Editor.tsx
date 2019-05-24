@@ -1,4 +1,4 @@
-import { BoxProps } from '@hennessyevan/aluminum-box'
+import { BoxProps } from '@parishconnect/box'
 import { RemirrorProps } from '@remirror/react'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'

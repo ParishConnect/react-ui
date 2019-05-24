@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Dropzone from 'react-dropzone'
 import { Omit, Overwrite } from 'utility-types'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import { Pane, Card, PaneProps } from '../../layers'
 import { Button } from '../../buttons'
 import { ThemeContext } from '../../theme'

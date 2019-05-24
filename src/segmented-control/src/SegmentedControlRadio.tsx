@@ -1,4 +1,4 @@
-import Box, { BoxProps } from '@hennessyevan/aluminum-box'
+import Box, { BoxProps } from '@parishconnect/box'
 import { css, cx } from 'emotion'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'

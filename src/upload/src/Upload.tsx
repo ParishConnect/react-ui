@@ -16,7 +16,7 @@ import 'filepond/dist/filepond.min.css'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'
 import { generateStyles } from '../utils/generateStyles'
 import { UploadIcon, XCircleIcon, XIcon } from '../../icons/index'
-import { splitBoxProps } from '@hennessyevan/aluminum-box'
+import { splitBoxProps } from '@parishconnect/box'
 
 export interface UploadProps extends Overwrite<PaneProps, FilePond> {}
 

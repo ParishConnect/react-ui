@@ -1,4 +1,4 @@
-import { hydrate as boxHydrate } from '@hennessyevan/aluminum-box'
+import { hydrate as boxHydrate } from '@parishconnect/box'
 import { hydrate as rehydrate } from 'emotion'
 
 /**

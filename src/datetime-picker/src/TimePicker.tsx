@@ -1,4 +1,4 @@
-import Box, { splitBoxProps } from '@hennessyevan/aluminum-box'
+import Box, { splitBoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import { IconButton } from '../../buttons/index'
 import { FormField } from '../../form-field/index'

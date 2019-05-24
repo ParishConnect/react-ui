@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import Component from '@reactions/component'
-import Box from '@hennessyevan/aluminum-box'
+import Box from '@parishconnect/box'
 import {
   Button,
   UnorderedList,
