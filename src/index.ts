@@ -16,7 +16,8 @@ export {
   DatePicker,
   DateTimePicker,
   InlineDatePicker,
-  TimePicker
+  TimePicker,
+  RecurrencePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
 export * from './editor'
