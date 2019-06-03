@@ -12,10 +12,7 @@ import { Pane, PaneProps } from '../../layers/index'
 import { ThemeContext } from '../../theme/index'
 import { Text } from '../../typography/index'
 
-import 'filepond/dist/filepond.min.css'
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'
 import { generateStyles } from '../utils/generateStyles'
-import { UploadIcon, XCircleIcon, XIcon } from '../../icons/index'
 import { splitBoxProps } from '@parishconnect/box'
 
 export interface UploadProps extends Overwrite<PaneProps, FilePond> {}
@@ -44,19 +41,18 @@ export default class Upload extends React.Component<UploadProps> {
     imageTransformOutputMimeType: 'image/jpeg',
     imageTransformOutputQuality: 70,
     name: 'parishconnect-upload',
-    className: 'aluminum-upload'
+    className: 'parishconnect-upload'
   }
 
   render() {
     const { matchedProps, remainingProps } = splitBoxProps(this.props)
     return (
-      <Pane {...matchedProps}>
+      <Pane className={generateStyles(this.context)} {...matchedProps}>
         <FilePond
           {...remainingProps}
           allowMultiple
           maxFiles={3}
           ref={ref => (this.filePondRef = ref)}
-          className={generateStyles(this.context)}
           labelIdle={ReactDOMServer.renderToString(
             <Text>
               Drag & Drop your files or
