@@ -40,16 +40,16 @@ const content = {
             }
           ],
           text: 'support@parishconnect.ca'
-        },
-        {
-          type: 'image',
-          attrs: {
-            src:
-              'https://res.cloudinary.com/parishconnect/image/upload/v1555431640/posts/palm_sunday.jpg',
-            width: '50%',
-            layout: 'center'
-          }
         }
+        // {
+        //   type: 'image',
+        //   attrs: {
+        //     src:
+        //       'https://res.cloudinary.com/parishconnect/image/upload/v1555431640/posts/palm_sunday.jpg',
+        //     width: '50%',
+        //     layout: 'center'
+        //   }
+        // }
       ]
     }
   ]

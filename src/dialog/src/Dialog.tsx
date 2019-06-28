@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { keyframes } from 'emotion'
+import { keyframes } from '@emotion/core'
 import { Pane } from '../../layers'
 import { Paragraph, Heading } from '../../typography'
 import { Overlay } from '../../overlay'
@@ -271,7 +271,7 @@ class Dialog extends React.Component<DialogProps> {
           justifyContent: 'center',
           overflowY: scrollBehavior === 'inside' ? '' : 'scroll'
         }}
-        css={{ '-webkit-overflow-scrolling': 'touch' }}
+        css={{ WebkitOverflowScrolling: 'touch' } as any}
         preventBodyScrolling={preventBodyScrolling}
       >
         {({ state, close }: any) => (

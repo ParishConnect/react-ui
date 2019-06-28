@@ -2,7 +2,6 @@ import { Themer } from '../../../../themer'
 import memoizeClassName from '../utils/memoizeClassName'
 import scales from '../foundational-styles/scales'
 import palette from '../foundational-styles/palette'
-import { headings } from '../typography/index'
 
 const Appearances = {
   default: {},

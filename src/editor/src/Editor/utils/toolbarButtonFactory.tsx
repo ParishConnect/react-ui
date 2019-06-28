@@ -21,7 +21,7 @@ export const getTextButtons = ({
   const textButtons: JSX.Element[] = []
   const buttonProps = { marginX: 2, disabled }
 
-  if (bold) {
+  if (actions.bold && bold) {
     textButtons.push(
       <Tooltip position="top" content="Bold" key="Bold">
         <IconButton
@@ -35,7 +35,7 @@ export const getTextButtons = ({
       </Tooltip>
     )
   }
-  if (italic) {
+  if (actions.italic && italic) {
     textButtons.push(
       <Tooltip position="top" content="Italic" key="Italic">
         <IconButton
@@ -49,7 +49,7 @@ export const getTextButtons = ({
       </Tooltip>
     )
   }
-  if (underline) {
+  if (actions.underline && underline) {
     textButtons.push(
       <Tooltip position="top" content="Underline" key="Underline">
         <IconButton
@@ -90,7 +90,8 @@ export const getBlockButtons = ({
       </Tooltip>
     )
   }
-  if (blockquote) {
+
+  if (actions.blockquote && blockquote) {
     blockButtons.push(
       <Tooltip position="top" content="Blockquote" key="Blockquote">
         <IconButton
@@ -104,7 +105,8 @@ export const getBlockButtons = ({
       </Tooltip>
     )
   }
-  if (link) {
+
+  if (actions.linkRemove && link) {
     blockButtons.push(
       <Tooltip position="top" content="Hyperlink" key="Hyperlink">
         <IconButton
@@ -129,7 +131,7 @@ export const getHeadingButtons = ({
 }) => {
   const blockButtons: JSX.Element[] = []
   const buttonProps = { marginX: 2, disabled }
-  if (heading) {
+  if (actions.heading && heading) {
     blockButtons.push(
       <Tooltip key="heading" position="top" content="Heading">
         <IconButton

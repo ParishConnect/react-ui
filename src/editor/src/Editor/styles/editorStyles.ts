@@ -1,5 +1,5 @@
 import { EDITOR_CLASS_SELECTOR } from '@remirror/core'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import tinycolor from 'tinycolor2'
 import { ThemeType } from '../../../../constants/index'
 import { majorScale } from '../../../../scales/index'

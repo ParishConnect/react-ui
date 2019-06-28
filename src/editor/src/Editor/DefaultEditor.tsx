@@ -1,9 +1,9 @@
-import { BoxProps, splitBoxProps } from '@parishconnect/box'
-import { EditorView } from '@remirror/core'
+import Box, { splitBoxProps } from '@parishconnect/box'
 import {
   InjectedRemirrorProps,
-  ManagedRemirrorEditor,
-  RemirrorManager
+  ManagedRemirrorProvider,
+  RemirrorManager,
+  useRemirror
 } from '@remirror/react'
 import * as React from 'react'
 import { v1 } from 'uuid'
@@ -13,7 +13,6 @@ import { ThemeContext } from '../../../theme/index'
 import { EditorProps } from './Editor'
 import EditorToolbar from './EditorToolbar'
 import FloatingMenu from './FloatingMenu'
-import ImageManager from './ImageManager'
 import LinkManager from './LinkManager'
 import editorStyles from './styles/editorStyles'
 import { FormattingOptions } from './types'
@@ -23,7 +22,7 @@ interface EditorLayoutProps
   extends Partial<EditorProps & InjectedRemirrorProps> {
   floatingMenu?: boolean
   toolbar?: boolean
-  containerProps?: BoxProps
+  containerProps?: any
   formattingOptions: FormattingOptions
 }
 
@@ -84,7 +83,7 @@ class DefaultEditorLayout extends React.PureComponent<
     this.setState({ hasFocus: false })
   }
 
-  public onSave = (view: EditorView) => {
+  public onSave = (view: any) => {
     this.props.onSave(view)
   }
 
@@ -109,53 +108,82 @@ class DefaultEditorLayout extends React.PureComponent<
     const {
       matchedProps: matchedInnerProps,
       remainingProps: remainingInnerProps
-    } = splitBoxProps(props)
+    } = splitBoxProps(props as any)
 
     return (
       <Card width="100%" {...matchedProps}>
-        <RemirrorManager>
+        <RemirrorManager placeholder={placeholder}>
           {getExtensions(formattingOptions, this.activateLink)}
           <Pane
-            className={editorStyles(theme, altEditorStyles)}
+            css={editorStyles(theme, altEditorStyles)}
             {...matchedInnerProps}
           >
-            <ManagedRemirrorEditor
+            <ManagedRemirrorProvider
               attributes={{
                 'data-editor-id': `parishconnect-${createEditorInstance()}`
               }}
               onFocus={this.setFocus}
               onBlur={this.unSetFocus}
-              placeholder={placeholder}
               autoFocus={autoFocus}
               {...remainingProps}
               {...remainingInnerProps}
             >
-              {toolbar && (
-                <EditorToolbar
-                  disabled={false}
-                  toolbarComponents={toolbarComponents}
-                  formattingOptions={formattingOptions}
-                  allowImages={allowImages}
-                  linkActivated={this.state.linkActivated}
-                  deactivateLink={this.deactivateLink}
-                  activateLink={this.activateLink}
-                  {...toolbarProps}
-                />
-              )}
-              {floatingMenu && <FloatingMenu />}
-              <LinkManager
+              <InnerEditor
+                formattingOptions={formattingOptions}
+                toolbarComponents={toolbarComponents}
+                disabled={false}
                 linkActivated={this.state.linkActivated}
                 deactivateLink={this.deactivateLink}
                 activateLink={this.activateLink}
+                toolbarProps={toolbarProps}
+                contentComponents={contentComponents || null}
+                showFloatingMenu={floatingMenu}
+                toolbar={toolbar}
               />
-              {allowImages && <ImageManager />}
-              {contentComponents && contentComponents}
-            </ManagedRemirrorEditor>
+            </ManagedRemirrorProvider>
           </Pane>
         </RemirrorManager>
       </Card>
     )
   }
+}
+
+const InnerEditor = ({
+  formattingOptions,
+  toolbarComponents,
+  disabled,
+  linkActivated,
+  deactivateLink,
+  activateLink,
+  toolbarProps,
+  contentComponents,
+  showFloatingMenu,
+  toolbar
+}) => {
+  const { getRootProps } = useRemirror()
+  return (
+    <Box>
+      {toolbar && (
+        <EditorToolbar
+          disabled={disabled}
+          toolbarComponents={toolbarComponents}
+          formattingOptions={formattingOptions}
+          linkActivated={linkActivated}
+          deactivateLink={deactivateLink}
+          activateLink={activateLink}
+          {...toolbarProps}
+        />
+      )}
+      {showFloatingMenu && <FloatingMenu />}
+      <LinkManager
+        linkActivated={linkActivated}
+        deactivateLink={deactivateLink}
+        activateLink={activateLink}
+      />
+      {contentComponents && contentComponents}
+      <div {...getRootProps()} />
+    </Box>
+  )
 }
 
 export default DefaultEditorLayout

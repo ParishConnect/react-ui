@@ -194,8 +194,8 @@ class SideSheet extends React.Component<SideSheetProps> {
         {({ state, close }: any) => (
           <Pane
             width={width}
-            {...paneProps[position]}
-            css={animationStyles[position]}
+            // {...paneProps[position]}
+            // css={animationStyles[position]}
             data-state={state}
           >
             <SheetClose
@@ -211,8 +211,8 @@ class SideSheet extends React.Component<SideSheetProps> {
               maxHeight="100vh"
               data-state={state}
               width={width}
-              {...subpaneProps[position]}
-              {...containerProps}
+              // {...subpaneProps[position]}
+              // {...containerProps}
             >
               {typeof children === 'function' ? children({ close }) : children}
             </Pane>

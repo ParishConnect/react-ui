@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { cx } from 'emotion'
 import TextareaAutosize from 'react-autosize-textarea'
 import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
@@ -115,7 +114,7 @@ class Textarea extends React.PureComponent<TextareaProps> {
     return (
       <RenderComponent
         is={autoresize ? TextareaAutosize : 'textarea'}
-        className={cx(themedClassName, className)}
+        className={`${className} ${themedClassName}`}
         size={400}
         width={width}
         height={height}

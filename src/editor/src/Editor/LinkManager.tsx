@@ -7,14 +7,12 @@ import {
 import keyCode from 'keycode'
 import * as React from 'react'
 import { IconButton } from '../../../buttons/index'
-import { CheckIcon, TrashIcon, UnlinkIcon } from '../../../icons/index'
-import { Card } from '../../../layers/index'
-import { minorScale, majorScale } from '../../../scales/index'
-import { TextInput } from '../../../text-input/index'
-import { Tooltip } from '../../../tooltip/index'
-import { Popover } from '../../../popover/index'
-import { Stack } from '../../../stack/index'
 import { StackingOrder } from '../../../constants/index'
+import { CheckIcon, UnlinkIcon } from '../../../icons/index'
+import { Card } from '../../../layers/index'
+import { majorScale, minorScale } from '../../../scales/index'
+import { Stack } from '../../../stack/index'
+import { TextInput } from '../../../text-input/index'
 
 interface LinkInputProps {
   updateLink(href: string): void

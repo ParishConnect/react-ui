@@ -67,7 +67,7 @@ class EditorToolbar extends React.Component<
       ...props
     } = this.props
 
-    const { matchedProps } = splitBoxProps(props)
+    const { matchedProps } = splitBoxProps(props as any)
 
     return (
       <Pane

@@ -1,4 +1,3 @@
-import { BoxProps } from '@parishconnect/box'
 import { RemirrorProps } from '@remirror/react'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'
@@ -67,7 +66,7 @@ export interface EditorPropsBase extends RemirrorProps {
    * Extra styles to pass to the default editor styles.
    * @format in CSS Object format
    */
-  extraStyles?: BoxProps
+  extraStyles?: any
 }
 
 export type EditorProps = Overwrite<PaneProps, EditorPropsBase>

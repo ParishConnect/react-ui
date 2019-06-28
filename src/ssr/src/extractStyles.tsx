@@ -8,22 +8,22 @@ export default function extractStyles() {
     () => 'let glamor believe there is some html here'
   )
 
-  const evergreenCache = {
+  const parishconnectCache = {
     uiBoxCache: cache,
     glamorIds: ids
   }
 
   const scriptProps = {
     type: 'application/json',
-    id: 'evergreen-hydrate',
+    id: 'parishconnect-hydrate',
     // tslint:disable-next-line:react-no-dangerous-html
-    dangerouslySetInnerHTML: { __html: JSON.stringify(evergreenCache) }
+    dangerouslySetInnerHTML: { __html: JSON.stringify(parishconnectCache) }
   }
 
   return {
     // tslint:disable-next-line:prefer-template
     css: styles + '\n' + css,
-    cache: evergreenCache,
+    cache: parishconnectCache,
     hydrationScript: React.createElement('script', [scriptProps])
   }
 }

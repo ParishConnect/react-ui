@@ -330,7 +330,7 @@ export {
   SelectMenu,
   SelectMenuContent
 } from './select-menu'
-export { SideSheet } from './side-sheet'
+// export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'
