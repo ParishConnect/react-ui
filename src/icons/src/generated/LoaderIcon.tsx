@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class LoaderIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="loader" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="loader" viewBox="0 0 24 24" {...this.props as any}>
         <line x1="12" y1="2" x2="12" y2="6" />
         <line x1="12" y1="18" x2="12" y2="22" />
         <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />

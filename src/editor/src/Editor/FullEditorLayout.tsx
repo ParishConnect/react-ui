@@ -5,7 +5,6 @@ import {
   RemirrorManager,
   useRemirror
 } from '@remirror/react'
-import getExtensions from './utils/extensionFactory'
 import * as React from 'react'
 import { v1 } from 'uuid'
 import { Pane } from '../../../layers/index'
@@ -16,25 +15,7 @@ import FloatingMenu from './FloatingMenu'
 import LinkManager from './LinkManager'
 import editorStyles from './styles/editorStyles'
 import { FormattingOptions } from './types'
-import {
-  BlockquoteExtension,
-  BoldExtension,
-  BulletListExtension,
-  CodeBlockExtension,
-  CodeExtension,
-  HardBreakExtension,
-  HeadingExtension,
-  HorizontalRuleExtension,
-  ImageExtension,
-  ItalicExtension,
-  LinkExtension,
-  LinkExtensionOptions,
-  ListItemExtension,
-  OrderedListExtension,
-  SSRHelperExtension,
-  StrikeExtension,
-  UnderlineExtension
-} from '@remirror/core-extensions'
+import getExtensions from './utils/extensionFactory'
 
 interface EditorLayoutProps
   extends Partial<EditorProps & InjectedRemirrorProps> {
@@ -42,6 +23,12 @@ interface EditorLayoutProps
   toolbar?: boolean
   containerProps?: any
   formattingOptions: FormattingOptions
+  toolbarProps?: any
+  allowImages?: boolean
+  toolbarComponents?: React.ReactChild
+  contentComponents?: React.ReactChild
+  autoFocus?: boolean
+  onSave?: any
 }
 
 interface EditorLayoutState {

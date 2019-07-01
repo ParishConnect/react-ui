@@ -45,7 +45,7 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
         display="inline-flex"
         alignItems="center"
         flexWrap="nowrap"
-        {...props}
+        {...props as any}
         disabled={disabled}
       >
         {isLoading && (

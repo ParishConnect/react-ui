@@ -30,13 +30,13 @@ export default class TextTableCell extends React.PureComponent<
     const { children, textProps, isNumber, ...props } = this.props
 
     return (
-      <TableCell {...props}>
+      <TableCell {...(props as any)}>
         <Text
           size={300}
           flex="1"
           {...ellipsis}
           {...(isNumber ? { fontFamily: 'mono' } : {})}
-          {...textProps}
+          {...(textProps as any)}
         >
           {children}
         </Text>

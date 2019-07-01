@@ -37,7 +37,7 @@ class Badge extends React.PureComponent<TextProps> {
         {...Badge.styles}
         color={color}
         backgroundColor={backgroundColor}
-        {...props}
+        {...props as any}
       />
     )
   }

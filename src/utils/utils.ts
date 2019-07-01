@@ -90,8 +90,8 @@ function _arrayToObject(arr: any[]) {
  * Partial shallow comparison between objects using the given list of keys.
  */
 function _shallowCompareKeys<T>(
-  objA: T,
-  objB: T,
+  objA: any,
+  objB: any,
   keys: IKeyBlacklist<T> | IKeyWhitelist<T>
 ) {
   return _filterKeys(objA, objB, keys).every(key => {

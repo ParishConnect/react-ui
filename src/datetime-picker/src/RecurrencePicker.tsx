@@ -312,7 +312,7 @@ export default class RecurrencePicker extends React.Component<
                 onKeyDown={(e: KeyboardEvent) => e.preventDefault()}
                 role="presentation"
                 {...style}
-                {...props}
+                {...props as any}
                 css={{ outline: 'none', scrollSnapAlign: 'start end' }}
               >
                 <Box

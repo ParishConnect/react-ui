@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class ApertureIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="aperture" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="aperture" viewBox="0 0 24 24" {...this.props as any}>
         <circle cx="12" cy="12" r="10" />
         <line x1="14.31" y1="8" x2="20.05" y2="17.94" />
         <line x1="9.69" y1="8" x2="21.17" y2="8" />

@@ -184,7 +184,7 @@ export default class EditableCellField extends React.PureComponent<
           minWidth: Math.max(width, minWidth),
           zIndex
         }}
-        height={null}
+        height={null as any}
         width={undefined}
         minHeight={null}
         position="fixed"

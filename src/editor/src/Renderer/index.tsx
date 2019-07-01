@@ -1,5 +1,5 @@
 import { splitBoxProps } from '@parishconnect/box'
-import { EMPTY_OBJECT_NODE } from '@remirror/core'
+import { EMPTY_PARAGRAPH_NODE } from '@remirror/core'
 import { RenderTree } from '@remirror/renderer-react'
 import * as React from 'react'
 import { Pane } from '../../../layers/index'
@@ -26,7 +26,9 @@ const TYPE_MAP = {
   heading: HeadingHandler
 }
 
-export default class Renderer extends React.PureComponent<PaneProps> {
+export default class Renderer extends React.PureComponent<
+  PaneProps & { json: any }
+> {
   static contextType = ThemeContext
   render() {
     const { matchedProps } = splitBoxProps(this.props)
@@ -38,7 +40,7 @@ export default class Renderer extends React.PureComponent<PaneProps> {
             skipUnknownMarks
             typeMap={TYPE_MAP}
             markMap={MARK_MAP}
-            json={this.props.json || EMPTY_OBJECT_NODE}
+            json={this.props.json || EMPTY_PARAGRAPH_NODE}
           />
         </div>
       </Pane>

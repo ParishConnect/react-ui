@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class ChromeIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="chrome" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="chrome" viewBox="0 0 24 24" {...this.props as any}>
         <circle cx="12" cy="12" r="10" />
         <circle cx="12" cy="12" r="4" />
         <line x1="21.17" y1="8" x2="12" y2="8" />

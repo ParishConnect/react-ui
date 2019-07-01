@@ -10,7 +10,7 @@ class FormFieldValidationMessage extends React.PureComponent<PaneProps> {
     const { children, ...props } = this.props
     const theme = this.context
     return (
-      <Pane display="flex" {...props} theme={theme}>
+      <Pane display="flex" {...props as any} theme={theme}>
         <AlertCircleIcon
           color="danger"
           marginTop={1}

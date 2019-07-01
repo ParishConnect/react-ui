@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@parishconnect/box'
 import { ThemeContext } from '../../theme/index'
 
 export type TextSize = 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
-export interface TextProps extends Omit<BoxProps, 'apperance'> {
+export interface TextProps extends BoxProps<any> {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500, 600.
@@ -16,6 +15,7 @@ export interface TextProps extends Omit<BoxProps, 'apperance'> {
    * Can be: `ui`, `display` or `mono` or a custom font family.
    */
   fontFamily?: 'ui' | 'display' | 'mono' | string
+  disabled?: boolean
 }
 
 class Text extends React.PureComponent<TextProps> {
@@ -43,7 +43,7 @@ class Text extends React.PureComponent<TextProps> {
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop}
         {...textStyle}
-        {...props}
+        {...(props as any)}
       />
     )
   }

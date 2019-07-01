@@ -5,8 +5,9 @@ import { Tooltip } from '../../tooltip'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import { PaneProps } from '../../layers'
 import PopoverStateless from './PopoverStateless'
+import { Overwrite } from 'utility-types'
 
-export interface PopoverProps extends PaneProps {
+export interface PopoverProps {
   /**
    * The position the Popover is on. Smart positioning might override this.
    */
@@ -75,7 +76,7 @@ interface PopoverState {
 }
 
 export default class Popover extends React.Component<
-  PopoverProps,
+  Overwrite<PopoverProps, PaneProps>,
   PopoverState
 > {
   static defaultProps = {
@@ -345,7 +346,7 @@ export default class Popover extends React.Component<
             display={display}
             minWidth={minWidth}
             minHeight={minHeight}
-            {...statelessProps}
+            {...(statelessProps as any)}
           >
             {typeof content === 'function'
               ? content({ close: this.close })

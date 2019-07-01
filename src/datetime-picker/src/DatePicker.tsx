@@ -52,7 +52,7 @@ export default class DatePicker extends React.Component<InlineDatePickerProps> {
           />
         }
       >
-        <TextInput value={dateFormatter(selected)} {...props} />
+        <TextInput value={dateFormatter(selected)} {...props as any} />
       </Popover>
     )
   }

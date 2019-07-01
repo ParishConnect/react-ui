@@ -21,7 +21,7 @@ export interface EditableCellProps extends TableCellProps {
   /**
    * Optional placeholder when children is falsy.
    */
-  placeholder?: React.ReactNode
+  placeholder?: string
 
   /**
    * The size used for the TextTableCell and Textarea.
@@ -37,6 +37,7 @@ export interface EditableCellProps extends TableCellProps {
    * Function called when value changes. (value: string) => void.
    */
   onChange?: any
+  textProps?: any
 }
 
 interface EditableCellState {
@@ -161,7 +162,7 @@ class EditableCell extends React.PureComponent<
             opacity: disabled || (!children && placeholder) ? 0.5 : 1,
             ...textProps
           }}
-          {...props}
+          {...(props as any)}
         >
           {children ? children : placeholder}
         </TextTableCell>

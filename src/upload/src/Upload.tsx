@@ -45,7 +45,7 @@ export default class Upload extends React.Component<UploadProps> {
   }
 
   render() {
-    const { matchedProps, remainingProps } = splitBoxProps(this.props)
+    const { matchedProps, remainingProps } = splitBoxProps(this.props as any)
     return (
       <Pane className={generateStyles(this.context)} {...matchedProps}>
         <FilePond

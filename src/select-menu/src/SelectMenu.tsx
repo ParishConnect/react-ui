@@ -175,7 +175,7 @@ export default class SelectMenu extends React.PureComponent<SelectMenuProps> {
             {...this.getEmptyView(close, emptyView)}
           />
         )}
-        {...props}
+        {...props as any}
       />
     )
   }

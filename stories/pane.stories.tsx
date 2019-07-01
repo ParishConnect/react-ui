@@ -5,9 +5,9 @@ import { defaultTheme as theme } from '../src/theme'
 import { BackgroundColor } from '../src/constants'
 
 const cardStyle = {
-  float: 'left',
+  float: 'left' as any,
   margin: 32,
-  width: [160, 140],
+  width: [160, 140, 104],
   height: 104,
   display: 'flex',
   justifyContent: 'center',
@@ -15,6 +15,14 @@ const cardStyle = {
 }
 
 storiesOf('layers', module)
+  .add('Responsive', () => (
+    <Pane
+      {...cardStyle}
+      background={['tint1', 'tint2', 'blue', 'purple']}
+      borderRadius={[0, 0, 10, 100]}
+      transition="225ms"
+    />
+  ))
   .add('Pane', () => (
     <div>
       <Pane overflow="auto">

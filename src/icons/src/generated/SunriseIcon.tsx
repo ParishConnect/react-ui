@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class SunriseIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="sunrise" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="sunrise" viewBox="0 0 24 24" {...this.props as any}>
         <path d="M17 18a5 5 0 0 0-10 0" />
         <line x1="12" y1="2" x2="12" y2="9" />
         <line x1="4.22" y1="10.22" x2="5.64" y2="11.64" />

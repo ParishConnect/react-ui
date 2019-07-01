@@ -34,7 +34,7 @@ function previewTextComponent(
     <Box>
       {sizes.map(size => (
         <Box key={String(size)}>
-          <Comp size={size} {...props}>
+          <Comp size={size} {...props as any}>
             {size}: {dummyText}
           </Comp>
         </Box>

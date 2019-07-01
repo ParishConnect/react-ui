@@ -11,13 +11,13 @@ import {
   Paragraph
 } from '../src'
 
-const StorySection = props => <Box marginBottom={40} {...props} />
+const StorySection = props => <Box marginBottom={40} {...props as any} />
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
+const StoryHeader = props => <Box marginBottom={16} {...props as any} />
 
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
+const StoryHeading = props => <Heading size={600} marginBottom={0} {...props as any} />
 const StoryDescription = props => (
-  <Paragraph size={400} color="muted" {...props} />
+  <Paragraph size={400} color="muted" {...props as any} />
 )
 
 class TabManager extends React.PureComponent<

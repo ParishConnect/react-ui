@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class AlignCenterIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="align-center" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="align-center" viewBox="0 0 24 24" {...this.props as any}>
         <line x1="18" y1="10" x2="6" y2="10" />
         <line x1="21" y1="6" x2="3" y2="6" />
         <line x1="21" y1="14" x2="3" y2="14" />

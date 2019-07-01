@@ -26,11 +26,11 @@ const colors = [
   'purple'
 ]
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
+const StoryHeader = props => <Box marginBottom={16} {...props as any} />
 
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
+const StoryHeading = props => <Heading size={600} marginBottom={0} {...props as any} />
 const StoryDescription = props => (
-  <Paragraph size={400} color="muted" {...props} />
+  <Paragraph size={400} color="muted" {...props as any} />
 )
 
 storiesOf('avatar', module).add('Avatar', () => (

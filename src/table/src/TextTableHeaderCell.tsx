@@ -14,7 +14,7 @@ export default class TextTableHeaderCell extends React.PureComponent<
   render() {
     const { children, textProps, ...props } = this.props
     return (
-      <TableHeaderCell {...props}>
+      <TableHeaderCell {...(props as any)}>
         <Text fontWeight={500} size={300} flex="1" {...textProps}>
           {children}{' '}
         </Text>

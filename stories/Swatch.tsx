@@ -39,7 +39,7 @@ export default class Swatch extends React.Component<SwatchProps> {
         paddingY={16}
         alignItems="center"
         borderBottom="muted"
-        {...props}
+        {...props as any}
       >
         <Popover content={this.renderContent}>
           <Pane

@@ -17,6 +17,7 @@ import {
   wrapTimeAtUnit
 } from './common/timeUnit'
 import * as Utils from '../../utils/utils'
+import { EnhancerProps } from '@parishconnect/box/dist/types/enhancers'
 
 const Keys = {
   BACKSPACE: 8,
@@ -198,7 +199,7 @@ export default class InlineTimePicker extends React.Component<
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps } = splitBoxProps(props)
+    const { matchedProps } = splitBoxProps(props as EnhancerProps)
     const theme = this.context
     const themedClassName = theme.getTextInputClassName(
       appearance,
@@ -216,7 +217,7 @@ export default class InlineTimePicker extends React.Component<
         description={description}
         validationMessage={validationMessage}
         labelFor={id}
-        {...matchedProps}
+        {...(matchedProps as any)}
       >
         <Box>
           {this.maybeRenderArrowButton(true, hourUnit)}

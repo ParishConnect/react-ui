@@ -8,7 +8,7 @@ export const Doc: React.FC<SubRenderTreeProps> = ({ node, ...props }) => {
   }
 
   const children = content.map((child, ii) => {
-    return <RenderTree json={child} {...props} key={ii} />
+    return <RenderTree json={child} {...props as any} key={ii} />
   })
 
   return <div {...node.attrs || {}}>{children}</div>

@@ -11,7 +11,7 @@ interface ControlOptions {
   value?: number | string | boolean
 }
 
-export interface SegmentedControlProps extends BoxProps {
+export interface SegmentedControlProps extends BoxProps<any> {
   /**
    * The options for the radios of the Segmented Control.
    */
@@ -105,7 +105,7 @@ export default class SegmentedControl extends React.PureComponent<
         borderRadius={999}
         marginRight={-1}
         height={height}
-        {...props}
+        {...(props as any)}
       >
         {options.map((option, index) => {
           return (

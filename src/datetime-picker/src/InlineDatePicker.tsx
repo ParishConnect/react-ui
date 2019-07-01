@@ -165,7 +165,7 @@ export default class InlineDatePicker extends React.Component<
         tabIndex={0}
         onKeyDown={this.onKeyDown}
         role="presentation"
-        {...props}
+        {...props as any}
         css={{ outline: 'none' }}
       >
         <Box

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Omit } from 'utility-types'
-import { Pane, PaneProps } from '../../layers'
+import { Pane } from '../../layers'
 import { Paragraph } from '../../typography'
 import { ThemeContext } from '../../theme'
+import { BoxProps } from '@parishconnect/box'
 
-export interface TooltipStatelessProps extends Omit<PaneProps, 'appearance'> {
+export interface TooltipStatelessProps extends BoxProps<any> {
   /**
    * The appearance of the tooltip.
    */
@@ -37,7 +37,7 @@ class TooltipStateless extends React.PureComponent<TooltipStatelessProps> {
         paddingY={4}
         maxWidth={240}
         {...themedProps}
-        {...props}
+        {...(props as any)}
       >
         {child}
       </Pane>

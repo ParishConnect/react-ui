@@ -13,6 +13,6 @@ export default class BackButton extends React.PureComponent<ButtonProps> {
   }
 
   render() {
-    return <Button iconBefore={ArrowLeftCircleIcon} {...this.props} />
+    return <Button iconBefore={ArrowLeftCircleIcon} {...this.props as any} />
   }
 }

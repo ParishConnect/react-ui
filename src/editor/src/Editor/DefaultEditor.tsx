@@ -36,10 +36,7 @@ function createEditorInstance() {
   return v1()
 }
 
-class DefaultEditorLayout extends React.PureComponent<
-  EditorLayoutProps,
-  EditorLayoutState
-> {
+class DefaultEditorLayout extends React.PureComponent<any, EditorLayoutState> {
   static contextType = ThemeContext
   static defaultProps = {
     floatingMenu: false,

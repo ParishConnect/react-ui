@@ -1,17 +1,18 @@
 import * as React from 'react'
 import { cx } from 'emotion'
-import { Omit } from 'utility-types'
 import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
+import { splitBoxProps } from '@parishconnect/box'
 
-export interface ButtonProps extends Omit<TextProps, 'appearance'> {
+export interface ButtonProps extends TextProps {
   /**
    * The intent of the button.
    */
   intent?: IntentType
+  height?: number
   /**
    * The appearance of the button.
    */
@@ -59,6 +60,8 @@ export interface ButtonProps extends Omit<TextProps, 'appearance'> {
    * Only use if you know what you are doing.
    */
   className?: string
+  paddingLeft?: number
+  paddingRight?: number
 }
 
 class Button extends React.PureComponent<ButtonProps> {
@@ -135,18 +138,18 @@ class Button extends React.PureComponent<ButtonProps> {
         marginTop={0} // Removes weird margins in Safari
         marginBottom={0} // Removes weird margins in Safari
         size={textSize}
-        color={null} // Prevent the Text color overriding the emotion appearanceStyle color
+        color={''} // Prevent the Text color overriding the emotion appearanceStyle color
         height={height}
         lineHeight={`${height}px`}
         {...(isActive ? { 'data-active': true } : {})}
         position="relative"
         fontFamily="ui"
         fontWeight={strong ? 600 : 500}
-        textTransform={isUppercase ? 'uppercase' : ''}
+        textTransform={isUppercase && 'uppercase'}
         display="inline-flex"
         alignItems="center"
         flexWrap="nowrap"
-        {...props}
+        {...(props as any)}
         disabled={disabled || isLoading}
       >
         {isLoading && (

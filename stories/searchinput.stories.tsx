@@ -3,12 +3,12 @@ import * as React from 'react'
 import Box from '@parishconnect/box'
 import { SearchInput, Heading, Paragraph } from '../src'
 
-const StoryHeader = props => <Box marginBottom={16} {...props} />
-const StoryHeading = props => <Heading size={600} marginBottom={0} {...props} />
+const StoryHeader = props => <Box marginBottom={16} {...props as any} />
+const StoryHeading = props => <Heading size={600} marginBottom={0} {...props as any} />
 const StoryDescription = props => (
-  <Paragraph size={400} color="muted" {...props} />
+  <Paragraph size={400} color="muted" {...props as any} />
 )
-const StorySection = props => <Box marginBottom={40} {...props} />
+const StorySection = props => <Box marginBottom={40} {...props as any} />
 
 storiesOf('search-input', module).add('SearchInput', () => (
   <Box padding={40}>

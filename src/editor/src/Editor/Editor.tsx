@@ -86,7 +86,7 @@ const defaultCollapsedComponent = ({ onExpand, placeholder }) => (
   />
 )
 
-class Editor extends React.Component<EditorProps> {
+class Editor extends React.Component<any> {
   static defaultProps = {
     collapsed: false,
     appearance: 'default',
@@ -118,7 +118,7 @@ class Editor extends React.Component<EditorProps> {
       toolbar,
       ...props
     } = this.props
-    const InnerEditor = this.renderEditor(appearance)
+    const InnerEditor = this.renderEditor(appearance as any)
     return collapsed ? (
       <CollapsedComponent
         placeholder={this.props.placeholder}
@@ -127,7 +127,7 @@ class Editor extends React.Component<EditorProps> {
     ) : (
       <InnerEditor
         formattingOptions={getFormattingOptions(formattingOptions)}
-        {...props}
+        {...(props as any)}
         toolbar={appearance !== 'minimal' ? toolbar : false}
       />
     )

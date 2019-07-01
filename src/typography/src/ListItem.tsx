@@ -1,9 +1,8 @@
+import { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import Text from './Text'
-import { PaneProps } from '../../layers/src/Pane'
-import { Overwrite } from 'utility-types'
 
-export declare interface ListItemProps {
+export declare interface ListItemProps extends BoxProps<'li'> {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.
@@ -16,9 +15,7 @@ export declare interface ListItemProps {
   iconColor?: string
 }
 
-export default class ListItem extends React.PureComponent<
-  Overwrite<PaneProps, ListItemProps>
-> {
+export default class ListItem extends React.PureComponent<ListItemProps> {
   public static defaultProps = {
     size: 400
   }
@@ -65,7 +62,7 @@ export default class ListItem extends React.PureComponent<
         size={size}
         listStyleType={Icon ? 'none' : undefined}
         paddingLeft={Icon ? paddingLeft : undefined}
-        {...props}
+        {...(props as any)}
       >
         {Icon && (
           <Icon

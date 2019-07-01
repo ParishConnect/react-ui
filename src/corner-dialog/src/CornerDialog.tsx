@@ -39,9 +39,7 @@ const closeAnimation = keyframes({
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
@@ -223,7 +221,7 @@ export default class CornerDialog extends React.PureComponent<
               bottom={16}
               right={16}
               padding={32}
-              {...containerProps}
+              {...(containerProps as any)}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>
                 <Heading is="h4" size={600} flex="1">

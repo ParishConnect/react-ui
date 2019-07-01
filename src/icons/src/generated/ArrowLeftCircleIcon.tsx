@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class ArrowLeftCircleIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="arrow-left-circle" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="arrow-left-circle" viewBox="0 0 24 24" {...this.props as any}>
         <circle cx="12" cy="12" r="10" />
         <polyline points="12 8 8 12 12 16" />
         <line x1="16" y1="12" x2="8" y2="12" />

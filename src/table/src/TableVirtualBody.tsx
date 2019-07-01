@@ -76,7 +76,7 @@ export default class TableVirtualBody extends React.PureComponent<
   ) {
     if (props.height !== state.calculatedHeight) {
       return {
-        isIntegerHeight: Number.isInteger(props.height)
+        isIntegerHeight: Number.isInteger(props.height as any)
       }
     }
 
@@ -273,10 +273,10 @@ export default class TableVirtualBody extends React.PureComponent<
         height={paneHeight}
         flex="1"
         overflow="hidden"
-        {...props}
+        {...(props as any)}
       >
         <VirtualList
-          height={isIntegerHeight ? paneHeight : calculatedHeight}
+          height={isIntegerHeight ? paneHeight : (calculatedHeight as any)}
           width="100%"
           estimatedItemSize={
             allowAutoHeight && useAverageAutoHeightEstimation

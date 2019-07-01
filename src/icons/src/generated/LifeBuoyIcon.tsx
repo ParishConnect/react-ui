@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class LifeBuoyIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="life-buoy" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="life-buoy" viewBox="0 0 24 24" {...this.props as any}>
         <circle cx="12" cy="12" r="10" />
         <circle cx="12" cy="12" r="4" />
         <line x1="4.93" y1="4.93" x2="9.17" y2="9.17" />

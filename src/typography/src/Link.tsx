@@ -50,7 +50,7 @@ class Link extends React.PureComponent<TextProps & LinkProps> {
         className={cx(className, themedClassName)}
         textDecoration={noUnderline ? 'none' : 'underline'}
         color={undefined}
-        {...props}
+        {...(props as any)}
       />
     )
   }

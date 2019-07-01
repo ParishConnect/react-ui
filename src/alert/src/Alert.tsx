@@ -43,7 +43,7 @@ export interface AlertProps {
   onRemove?: Function
 }
 
-class Alert extends React.PureComponent<Overwrite<PaneProps, AlertProps>> {
+class Alert extends React.PureComponent<any> {
   public static contextType = ThemeContext
   public static defaultProps = {
     intent: 'none',
@@ -102,7 +102,7 @@ class Alert extends React.PureComponent<Overwrite<PaneProps, AlertProps>> {
         paddingY={12}
         paddingX={16}
         {...themeProps}
-        {...props}
+        {...(props as any)}
       >
         {hasIcon && (
           <Pane

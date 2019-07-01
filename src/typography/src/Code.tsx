@@ -36,7 +36,7 @@ class Code extends React.PureComponent<CodeProps> {
         className={cx(className, themedClassName)}
         fontFamily="mono"
         {...themeProps}
-        {...props}
+        {...(props as any)}
       />
     )
   }

@@ -27,6 +27,6 @@ export default class Table extends React.PureComponent<PaneProps> {
 
   render() {
     const { children, ...props } = this.props
-    return <Pane {...props}>{children}</Pane>
+    return <Pane {...(props as any)}>{children}</Pane>
   }
 }

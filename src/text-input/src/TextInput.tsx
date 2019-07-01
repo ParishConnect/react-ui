@@ -33,6 +33,7 @@ export interface TextInputProps extends TextProps {
    * The width of the TextInput.
    */
   width?: string | number
+  height?: number
   /**
    * Class name passed to the button.
    * Only use if you know what you are doing.
@@ -92,7 +93,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
         aria-invalid={isInvalid}
         {...(disabled ? { color: 'muted' } : {})}
         css={css}
-        {...props}
+        {...(props as any)}
       />
     )
   }

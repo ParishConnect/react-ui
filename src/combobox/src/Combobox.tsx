@@ -5,7 +5,7 @@ import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
 import { ChevronDownIcon } from '../../icons/index'
 
-export interface ComboboxProps extends BoxProps {
+export interface ComboboxProps extends BoxProps<'div'> {
   /**
    * The options to show in the menu.
    */
@@ -122,7 +122,7 @@ export default class Combobox extends React.PureComponent<
         onItemCreated={onItemCreated}
         onStateChange={this.handleStateChange}
         isFilterDisabled={this.state.isOpenedByButton}
-        {...autocompleteProps}
+        {...(autocompleteProps as any)}
       >
         {({
           getRef,
@@ -137,7 +137,7 @@ export default class Combobox extends React.PureComponent<
             innerRef={ref => getRef(ref)}
             display="inline-flex"
             width={width}
-            {...props}
+            {...(props as any)}
           >
             <TextInput
               width={0}

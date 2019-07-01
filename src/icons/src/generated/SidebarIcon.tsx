@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class SidebarIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="sidebar" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="sidebar" viewBox="0 0 24 24" {...this.props as any}>
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
         <line x1="9" y1="3" x2="9" y2="21" />
       </Icon>

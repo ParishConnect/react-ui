@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
 import { ListTextSize } from './Shared'
 
-export declare interface OrderedListProps extends BoxProps {
+export declare interface OrderedListProps extends BoxProps<'ol'> {
   size?: ListTextSize
 }
 
@@ -33,7 +33,7 @@ export default class OrderedList extends React.PureComponent<OrderedListProps> {
         padding={0}
         listStylePosition="inside"
         listStyle="decimal"
-        {...props}
+        {...(props as any)}
       >
         {finalChildren}
       </Box>

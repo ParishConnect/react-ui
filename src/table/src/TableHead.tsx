@@ -53,7 +53,7 @@ export default class TableHead extends React.PureComponent<
         borderBottom="default"
         background="tint2"
         height={height}
-        {...props}
+        {...(props as any)}
       >
         {children}{' '}
         {accountForScrollbar && (

@@ -11,7 +11,7 @@ export default class ColorExamples extends React.Component {
     return (
       <ThemeConsumer>
         {theme => (
-          <Pane {...this.props}>
+          <Pane {...this.props as any}>
             <Pane clearfix>
               <Heading size={800}>Palette</Heading>
               {Object.keys(theme.palette).map(key => {

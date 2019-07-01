@@ -8,7 +8,7 @@ import { ChevronDownIcon } from '../../icons/index'
 
 const MIN_SELECT_MENU_WIDTH = 240
 
-export interface SelectMenuCellProps extends TableCellProps {
+export interface SelectMenuCellProps {
   /*
    * Makes the TableCell focusable.
    * Will add tabIndex={-1 || this.props.tabIndex}.
@@ -31,6 +31,7 @@ export interface SelectMenuCellProps extends TableCellProps {
   size?: 300 | 400 | number
 
   selectMenuProps?: object
+  textProps?: any
 }
 
 interface SelectMenuCellState {
@@ -191,7 +192,7 @@ class SelectMenuCell extends React.PureComponent<
               }}
               onKeyDown={this.handleKeyDown.bind(null, toggle, isShown)}
               onDoubleClick={this.handleDoubleClick.bind(null, toggle, isShown)}
-              {...props}
+              {...(props as any)}
             >
               {children ? children : placeholder}
             </TextTableCell>

@@ -1158,10 +1158,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@parishconnect/box@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@parishconnect/box/-/box-1.1.0.tgz#f22c3517b908ab1ef03177c9125855e9f38c26b1"
-  integrity sha512-A5gbpuRbAhpFDSz026c+uCdOS6qTMB5En3NAMjOp6ZxfNkfVn55CcHLTxCz8nmEDl2CVAd38KYd78iMuPyIwpg==
+"@parishconnect/box@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@parishconnect/box/-/box-1.1.1.tgz#db6c03a6b648da37dd6a0c99a001438d4548086b"
+  integrity sha512-9pTGnyxiR3D2JLS3wU8qPj38JYdFT6GGfprlT1EheBrwKx30/mI8bvAbW4XaRClRuH6d5f1McVkRRTA9LkLyAQ==
   dependencies:
     "@emotion/hash" "^0.7.1"
     facepaint "^1.2.1"
@@ -1402,6 +1402,22 @@
   dependencies:
     "@storybook/addons" "5.1.9"
     core-js "^3.0.1"
+    util-deprecate "^1.0.2"
+
+"@storybook/addon-viewport@^5.1.9":
+  version "5.1.9"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-5.1.9.tgz#509819730ae99a9e08d1e1f71e8e567b068da01c"
+  integrity sha512-0EEsZ7rWTj3q3M8AFjm6dXjQPS0w4gto8clMzGzdLHXA6D6KG3w10t9XsVr4mxve7PrEpiFXc6mhqsg7wbTDnQ==
+  dependencies:
+    "@storybook/addons" "5.1.9"
+    "@storybook/client-logger" "5.1.9"
+    "@storybook/components" "5.1.9"
+    "@storybook/core-events" "5.1.9"
+    "@storybook/theming" "5.1.9"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    prop-types "^15.7.2"
     util-deprecate "^1.0.2"
 
 "@storybook/addons@5.1.9", "@storybook/addons@^5.1.1":
@@ -2005,13 +2021,6 @@
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.4.tgz#7fb7ba368857c7aa0f4e4511c4710ca2c5a12a88"
   integrity sha512-eIRpEW73DCzPIMaNBDP5pPIpK1KXyZwNgfxiVagb5iGiz6da+9A5hslSX6GAQKdO7SayVCS/Fr2kjqprgAvkfA==
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-filepond@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@types/react-filepond/-/react-filepond-5.0.3.tgz#2e4b68433e38154317b887712d745cc9fae57512"
-  integrity sha512-hxo3BPZeeG+0E7zOmyvm5q4Sk9dOhbiAQ/0BT9YlLgU16t9Hjf+/iT+mGwFz27QU2yW+7DXj+ZvuoL1b+PBxLw==
   dependencies:
     "@types/react" "*"
 
@@ -6098,10 +6107,20 @@ filepond-plugin-image-crop@^2.0.3:
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-crop/-/filepond-plugin-image-crop-2.0.3.tgz#4be354a10a85d86946abc9ce738c6bda44e21a8c"
   integrity sha512-+XV09yBoMHwNgww75zgMmA8imckNiOCvtAYTgtDE5sMcZ/lWTrK339SxwuLLxqV66tFAWO8pAL/nrYKKY1Ixpw==
 
+filepond-plugin-image-edit@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-image-edit/-/filepond-plugin-image-edit-1.3.1.tgz#570fcd5c046dd6a3aaa0a1c12f9597db04714339"
+  integrity sha512-4ussDl9Jv0itN5hCzOsGTSYdcKaVH03IOYkzsy77IsIIJcPFWGJoWDJBy10dkxtxLoS8/VSx9NJUbeg/T0W9ZQ==
+
 filepond-plugin-image-preview@^4.1.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.2.1.tgz#549df8a3fcb9743244ffeb17813b96ec5c547a6f"
   integrity sha512-byZM7ZS7RjYUUz6PP1T0eRZjjPW0VTNJKvQn+vtP0TRTbJvWAh3V41vy4TW5cc4n9ltgiTj6rbOu0enej2+w7Q==
+
+filepond-plugin-image-resize@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-image-resize/-/filepond-plugin-image-resize-2.0.4.tgz#1f1c77ec692f37d789a9a5600920dd9fc5f26015"
+  integrity sha512-4qDB6cGqO/9sxAHnmlI5iJ1sXWgqzusKeTFCLEEba9JiX6eaY+w5BQjkO5zrhF7OuYAvqFAziunIhkZet6BpiQ==
 
 filepond-plugin-image-transform@^3.2.4:
   version "3.3.2"

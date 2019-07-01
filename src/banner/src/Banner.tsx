@@ -104,7 +104,7 @@ class Banner extends React.PureComponent<BannerProps> {
         justifyContent="flex-start"
         alignItems="center"
         borderRadius={5}
-        {...this.props}
+        {...(this.props as any)}
       >
         <Box display="flex" paddingX={25} flexGrow={1} flexDirection="column">
           <Text
@@ -132,7 +132,7 @@ class Banner extends React.PureComponent<BannerProps> {
             css={{ ...css, ...hoverBackground }}
           >
             <Box borderLeft="1px solid #efefef" height="65%" />
-            {this.getActionDescriptor(action, color)}
+            {this.getActionDescriptor(action, color as any)}
           </Pane>
         )}
       </Pane>

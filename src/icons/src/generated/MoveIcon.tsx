@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class MoveIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="move" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="move" viewBox="0 0 24 24" {...this.props as any}>
         <polyline points="5 9 2 12 5 15" />
         <polyline points="9 5 12 2 15 5" />
         <polyline points="15 19 12 22 9 19" />

@@ -2,7 +2,7 @@ import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import { getIconColor } from '../../theme/src/default-theme/theme-helpers/index'
 
-export interface IconProps extends BoxProps {
+export interface IconProps extends BoxProps<'svg'> {
   /**
    * Color of icon. Equivalent to setting CSS `stroke|fill` property.
    */
@@ -28,6 +28,7 @@ export interface IconProps extends BoxProps {
    * CSS style properties.
    */
   style?: object
+  isSolid?: boolean
 }
 
 class Icon extends React.PureComponent<IconProps> {

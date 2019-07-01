@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme'
 import { TextProps } from '../../typography/src/Text'
 
 export interface TextareaProps extends TextProps {
+  height?: number
   /**
    * Makes the textarea element required.
    */
@@ -91,7 +92,7 @@ class Textarea extends React.PureComponent<TextareaProps> {
 
       css,
       width,
-      height,
+      height = 0,
       disabled,
       required,
       isInvalid,
@@ -130,7 +131,7 @@ class Textarea extends React.PureComponent<TextareaProps> {
         {...(disabled ? { color: 'muted' } : {})}
         css={{ ...css, resize: autoresize ? 'none' : '' }}
         {...renderStyles}
-        {...props}
+        {...(props as any)}
       />
     )
   }

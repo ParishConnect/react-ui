@@ -25,16 +25,15 @@ const whitelist = [
 
 function createAppearance(obj = {}) {
   const result = {}
+  const keys = Object.keys(obj)
 
-  Object.keys(obj).forEach(key => {
+  keys.forEach(key => {
     if (whitelist.includes(key)) {
       if (typeof obj[key] === 'string' || typeof obj[key] === 'number') {
         result[key] = obj[key]
       } else if (isDev) {
         console.error(
-          `createAppearance() only accepts strings as properties, key '${key}' with value '${
-            obj[key]
-          }' is not a string`
+          `createAppearance() only accepts strings as properties, key '${key}' with value '${obj[key]}' is not a string`
         )
       }
     } else if (isDev) {

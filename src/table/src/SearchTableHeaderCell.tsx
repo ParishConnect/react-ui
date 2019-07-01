@@ -48,7 +48,7 @@ export interface SearchTableHeaderCellProps extends TableCellProps {
 }
 
 export default class SearchTableHeaderCell extends React.PureComponent<
-  SearchTableHeaderCellProps
+  SearchTableHeaderCellProps & any
 > {
   static defaultProps = {
     onChange: noop,
@@ -67,7 +67,7 @@ export default class SearchTableHeaderCell extends React.PureComponent<
     } = this.props
 
     return (
-      <TableHeaderCell {...props}>
+      <TableHeaderCell {...(props as any)}>
         <SearchIcon color="muted" marginLeft={2} marginRight={10} size={12} />
         <Text
           is="input"

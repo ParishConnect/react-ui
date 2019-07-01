@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme'
 
 export type ParagraphSize = 300 | 400 | 500
 
-export interface ParagraphProps extends BoxProps {
+export interface ParagraphProps extends BoxProps<'p'> {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500.
@@ -44,7 +44,7 @@ class Paragraph extends React.PureComponent<ParagraphProps> {
         marginTop={finalMarginTop || 0}
         marginBottom={0}
         {...textStyle}
-        {...props}
+        {...(props as any)}
       />
     )
   }

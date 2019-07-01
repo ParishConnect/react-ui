@@ -12,6 +12,7 @@ import { TextInput } from '../../text-input'
 import { Heading } from '../../typography/index'
 import { TimePicker } from '../index'
 import InlineDatePicker from './InlineDatePicker'
+import { EnhancerProps } from '@parishconnect/box/dist/types/enhancers'
 
 const DEFAULT_FORMAT_STRING = 'MMMM Do, YYYY h:mm A'
 
@@ -206,12 +207,14 @@ export default class DateTimePicker extends React.Component<
       ...props
     } = this.props
     const { isShown } = this.state
-    const { matchedProps, remainingProps } = splitBoxProps(props)
+    const { matchedProps, remainingProps } = splitBoxProps(
+      props as EnhancerProps
+    )
 
     return (
       <Popover
         isShown={isShown}
-        position={position}
+        position={position as any}
         bringFocusInside
         content={({ close }) => (
           <Box width={width} display="flex">
@@ -260,7 +263,7 @@ export default class DateTimePicker extends React.Component<
           description={description}
           validationMessage={validationMessage}
           labelFor={id}
-          {...matchedProps}
+          {...(matchedProps as any)}
         >
           <TextInput
             id={id}

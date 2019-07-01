@@ -56,7 +56,7 @@ export default class Option extends React.PureComponent<OptionProps> {
         display="flex"
         alignItems="center"
         borderBottom={false}
-        {...props}
+        {...(props as any)}
       >
         {hasIcon && (
           <Pane
@@ -78,7 +78,7 @@ export default class Option extends React.PureComponent<OptionProps> {
           // borderBottom="muted"
           textProps={textProps}
           paddingLeft={0}
-          borderRight={null}
+          borderRight={'none'}
           flex={1}
           alignSelf="stretch"
           cursor={disabled ? 'default' : 'pointer'}

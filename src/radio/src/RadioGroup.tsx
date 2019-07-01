@@ -106,7 +106,7 @@ export default class RadioGroup extends React.PureComponent<
     const selected = value || this.state.value
 
     return (
-      <Pane role="group" aria-label={label} {...props}>
+      <Pane role="group" aria-label={label} {...props as any}>
         {label && (
           <Text color="muted" fontWeight={500}>
             {label}

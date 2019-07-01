@@ -5,7 +5,7 @@ import FormFieldDescription from './FormFieldDescription'
 import FormFieldValidationMessage from './FormFieldValidationMessage'
 import FormFieldHint from './FormFieldHint'
 
-export interface FormFieldProps extends BoxProps {
+export interface FormFieldProps extends BoxProps<'div'> {
   /**
    * The label used above the input element.
    */
@@ -31,6 +31,10 @@ export interface FormFieldProps extends BoxProps {
    * and above the hint.
    */
   validationMessage?: React.ReactNode
+  /**
+   * Props passed to the field label
+   */
+  labelProps?: Partial<BoxProps<'label'>>
 }
 
 export default class FormField extends React.PureComponent<FormFieldProps> {
@@ -54,12 +58,12 @@ export default class FormField extends React.PureComponent<FormFieldProps> {
     } = this.props
 
     return (
-      <Box {...props}>
+      <Box {...(props as any)}>
         <FormFieldLabel
           htmlFor={labelFor}
           isAstrixShown={isRequired}
           marginBottom={description ? 0 : 4}
-          {...labelProps}
+          {...(labelProps as any)}
         >
           {label}
         </FormFieldLabel>

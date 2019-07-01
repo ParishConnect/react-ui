@@ -10,7 +10,7 @@ import { Keys, Utils } from '../../utils'
 import { IListItemsProps } from '../common'
 import { IQueryListRendererProps, QueryList } from './QueryList'
 
-const defaultItemRenderer = (props: any) => <MenuItem {...props} />
+const defaultItemRenderer = (props: any) => <MenuItem {...props as any} />
 
 export interface SuggestProps<T> extends IListItemsProps<T> {
   /**

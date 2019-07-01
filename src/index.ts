@@ -21,7 +21,7 @@ export {
 } from './datetime-picker'
 export { Dialog } from './dialog'
 export * from './editor'
-export { FilePicker, ImagePicker } from './file-picker'
+export { FilePicker } from './file-picker'
 export {
   FormField,
   FormFieldDescription,
@@ -376,4 +376,4 @@ export {
   Ul,
   UnorderedList
 } from './typography'
-export { Upload } from './upload'
+export { Upload, FeaturedImageUpload } from './upload'

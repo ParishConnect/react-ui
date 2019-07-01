@@ -153,7 +153,7 @@ class TableRow extends React.PureComponent<TableRowProps> {
           onKeyDown={this.handleKeyDown}
           height={height}
           borderBottom="muted"
-          {...props}
+          {...(props as any)}
         >
           {children}
         </Pane>

@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class ScissorsIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="scissors" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="scissors" viewBox="0 0 24 24" {...this.props as any}>
         <circle cx="6" cy="6" r="3" />
         <circle cx="6" cy="18" r="3" />
         <line x1="20" y1="4" x2="8.12" y2="15.88" />

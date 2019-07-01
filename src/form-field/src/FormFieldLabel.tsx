@@ -15,7 +15,7 @@ export default class FormFieldLabel extends React.PureComponent<
   render() {
     const { children, isAstrixShown, ...props } = this.props
     return (
-      <Label display="block" {...props}>
+      <Label display="block" {...props as any}>
         {children}{' '}
         {isAstrixShown && <span title="This field is required.">*</span>}
       </Label>

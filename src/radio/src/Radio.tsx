@@ -13,12 +13,12 @@ const CircleIcon = ({
   size?: number
   fill?: string
 }) => (
-  <svg width={size} height={size} viewBox="0 0 10 10" {...props}>
+  <svg width={size} height={size} viewBox="0 0 10 10" {...(props as any)}>
     <circle fill={fill} cx="5" cy="5" r="5" />
   </svg>
 )
 
-export interface RadioProps extends Omit<BoxProps, 'appearance'> {
+export interface RadioProps extends Omit<BoxProps<any>, 'appearance'> {
   /**
    * The id attribute of the radio.
    */
@@ -113,7 +113,7 @@ class Radio extends React.PureComponent<RadioProps> {
         position="relative"
         display="flex"
         marginY={size === 12 ? 8 : 12}
-        {...props}
+        {...(props as any)}
       >
         <Box
           is="input"

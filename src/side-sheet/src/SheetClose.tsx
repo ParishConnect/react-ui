@@ -30,14 +30,10 @@ const sharedStyles: ObjectInterpolation<undefined> = {
 const withAnimations = (animateIn: any, animateOut: any) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${
-        animationEasing.deceleration
-      } both`
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
     },
     '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${
-        animationEasing.acceleration
-      } both`
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
     }
   }
 }
@@ -129,10 +125,9 @@ export interface SheetCloseProps {
 }
 
 export default class SheetClose extends React.PureComponent<
-  Overwrite<BoxProps, SheetCloseProps>
+  BoxProps<'div'> & any
 > {
   render() {
-    // tslint:disable-next-line:no-unused
     const { isClosing, position, ...props } = this.props
     return (
       <Box
@@ -142,7 +137,7 @@ export default class SheetClose extends React.PureComponent<
         alignItems="center"
         justifyContent="center"
         className={getSheetCloseClassName(position as PositionType)}
-        {...props}
+        {...(props as any)}
       >
         <XIcon color="#fff" />
       </Box>

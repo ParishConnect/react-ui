@@ -162,7 +162,7 @@ export const generateStyles = (theme: ThemeType) => {
 
     .filepond--file-info {
       position: static;
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: flex-start;
       flex: 1;
@@ -599,7 +599,6 @@ export const generateStyles = (theme: ThemeType) => {
     .filepond--root[data-style-panel-layout~='circle'] .filepond--panel-root,
     .filepond--root[data-style-panel-layout~='integrated']
       .filepond--panel-root {
-      border-radius: 0;
     }
     .filepond--root[data-style-panel-layout~='circle']
       .filepond--panel-root
@@ -881,6 +880,7 @@ export const generateStyles = (theme: ThemeType) => {
     }
 
     .filepond--image-preview-overlay-idle {
+      display: none;
       mix-blend-mode: multiply;
       color: rgba(40, 40, 40, 0.85);
     }
@@ -954,7 +954,6 @@ export const generateStyles = (theme: ThemeType) => {
 
     .filepond--root[data-style-panel-layout~='integrated']
       .filepond--image-preview-wrapper {
-      border-radius: 0;
     }
 
     .filepond--root[data-style-panel-layout~='integrated']
@@ -1008,6 +1007,24 @@ export const generateStyles = (theme: ThemeType) => {
       margin-top: 0;
       margin-bottom: 0.1875em;
       margin-left: 0.1875em;
+    }
+
+    .filepond--action-edit-item.filepond--action-edit-item {
+      width: 2em;
+      height: 2em;
+      padding: 0.1875em;
+    }
+    .filepond--action-edit-item.filepond--action-edit-item[data-align*='center'] {
+      margin-left: -0.1875em;
+    }
+    .filepond--action-edit-item.filepond--action-edit-item[data-align*='bottom'] {
+      margin-bottom: -0.1875em;
+    }
+
+    .filepond--root[data-style-panel-layout~='circle']
+      .filepond--action-edit-item {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
   `
 }

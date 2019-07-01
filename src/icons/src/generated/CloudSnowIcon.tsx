@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class CloudSnowIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="cloud-snow" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="cloud-snow" viewBox="0 0 24 24" {...this.props as any}>
         <path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25" />
         <line x1="8" y1="16" x2="8" y2="16" />
         <line x1="8" y1="20" x2="8" y2="20" />

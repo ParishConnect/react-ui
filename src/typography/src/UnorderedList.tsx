@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
 import { ListTextSize } from './Shared'
 
-export interface UnorderedListProps {
+export interface UnorderedListProps extends BoxProps<'ul'> {
   /**
    * Size of the text used in a list item.
    * Can be: 300, 400, 500, 600.
@@ -12,10 +12,12 @@ export interface UnorderedListProps {
    * The color of the icon in each list item in the list.
    */
   iconColor?: string
+
+  icon?: React.ReactChild
 }
 
 export default class UnorderedList extends React.PureComponent<
-  BoxProps & UnorderedListProps
+  UnorderedListProps
 > {
   static defaultProps = {
     size: 400
@@ -47,7 +49,7 @@ export default class UnorderedList extends React.PureComponent<
         padding={0}
         listStylePosition="inside"
         listStyle="disc"
-        {...props}
+        {...(props as any)}
       >
         {finalChildren}
       </Box>

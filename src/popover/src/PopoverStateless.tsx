@@ -13,7 +13,7 @@ export default class PopoverStateless extends React.PureComponent<PaneProps> {
         position="fixed"
         minWidth={200}
         backgroundColor="white"
-        {...props}
+        {...(props as any)}
       >
         {children}
       </Card>

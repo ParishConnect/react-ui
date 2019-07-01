@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class Share2Icon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="share-2" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="share-2" viewBox="0 0 24 24" {...this.props as any}>
         <circle cx="18" cy="5" r="3" />
         <circle cx="6" cy="12" r="3" />
         <circle cx="18" cy="19" r="3" />

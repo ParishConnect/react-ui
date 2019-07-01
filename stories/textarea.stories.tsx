@@ -4,7 +4,7 @@ import Box from '@parishconnect/box'
 import { Textarea, Label, Text, Heading } from '../src'
 
 const Description = props => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props as any} />
 )
 
 storiesOf('textarea', module)

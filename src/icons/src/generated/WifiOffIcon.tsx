@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class WifiOffIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="wifi-off" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="wifi-off" viewBox="0 0 24 24" {...this.props as any}>
         <line x1="1" y1="1" x2="23" y2="23" />
         <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
         <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />

@@ -14,7 +14,7 @@ import {
 import { Manager } from '../src/manager'
 
 const Description = (props: any) => (
-  <Text is="p" marginTop={0} size={300} color="muted" {...props} />
+  <Text is="p" marginTop={0} size={300} color="muted" {...props as any} />
 )
 
 storiesOf('text-input', module)

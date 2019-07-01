@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class CodeIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="code" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="code" viewBox="0 0 24 24" {...this.props as any}>
         <polyline points="16 18 22 12 16 6" />
         <polyline points="8 6 2 12 8 18" />
       </Icon>

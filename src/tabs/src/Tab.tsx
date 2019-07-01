@@ -118,7 +118,7 @@ class Tab extends React.PureComponent<TabProps> {
         size={textSize}
         height={height}
         {...Tab.styles}
-        {...props}
+        {...(props as any)}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         {...elementBasedProps}

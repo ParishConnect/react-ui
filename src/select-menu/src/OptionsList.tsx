@@ -18,7 +18,7 @@ const fuzzyFilter = (options, input) => fuzzaldrin.filter(options, input)
  * This is the default item renderer of options
  * you can pass custom renderers as long as they work the same as the Option
  */
-const itemRenderer = props => <Option {...props} />
+const itemRenderer = props => <Option {...(props as any)} />
 
 export interface OptionsListProps {
   options: OptionShapePropType[]
@@ -245,14 +245,14 @@ export default class OptionsList extends React.PureComponent<
         width={width}
         display="flex"
         flexDirection="column"
-        {...props}
+        {...(props as any)}
       >
         {hasFilter && (
           <TableHead>
             <SearchTableHeaderCell
               onChange={this.handleChange}
               innerRef={this.assignSearchRef}
-              borderRight={null}
+              borderRight="none"
               height={32}
               placeholder={filterPlaceholder}
               icon={filterIcon}

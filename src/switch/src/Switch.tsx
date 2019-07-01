@@ -39,7 +39,7 @@ const handleContainerStyle = {
 }
 
 const CheckIcon = ({ size, fill = 'currentColor', ...props }) => (
-  <svg width={10} height={size} viewBox="0 0 10 7" {...props}>
+  <svg width={10} height={size} viewBox="0 0 10 7" {...(props as any)}>
     <path
       fill={fill}
       fillRule="evenodd"
@@ -57,7 +57,7 @@ const isControlled = component => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-export interface SwitchProps extends Omit<BoxProps, 'appearance'> {
+export interface SwitchProps extends Omit<BoxProps<'input'>, 'appearance'> {
   /**
    * The id attribute of the radio.
    */
@@ -172,7 +172,7 @@ class Switch extends React.PureComponent<SwitchProps, SwitchState> {
     const themedClassName = theme.getSwitchClassName(theme.themeColor)
 
     return (
-      <Box is="label" display="block" width={height * 2} {...props}>
+      <Box is="label" display="block" width={height * 2} {...(props as any)}>
         <Box
           is="input"
           className={themedClassName}

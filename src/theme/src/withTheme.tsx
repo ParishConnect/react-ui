@@ -13,7 +13,7 @@ export interface WithThemeProps {
 //   return function ThemedComponent(props: P) {
 //     return (
 //       <ThemeConsumer>
-//         {theme => <Component {...props} theme={theme} />}
+//         {theme => <Component {...props as any} theme={theme} />}
 //       </ThemeConsumer>
 //     )
 //   }
@@ -57,7 +57,7 @@ export default function withTheme<T extends WithThemeProps = WithThemeProps>(
       const themeProps = this.context
 
       // this.props comes afterwards so the can override the default ones.
-      return <WrappedComponent {...themeProps} {...this.props} />
+      return <WrappedComponent {...themeProps} {...(this.props as any)} />
     }
   }
 }

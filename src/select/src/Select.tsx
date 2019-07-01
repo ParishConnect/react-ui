@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 import { ChevronDownIcon } from '../../icons/index'
 
-export interface SelectProps extends Omit<BoxProps, 'appearance'> {
+export interface SelectProps extends Omit<BoxProps<'div'>, 'appearance'> {
   /**
    * The id attribute for the select.
    */
@@ -50,6 +50,8 @@ export interface SelectProps extends Omit<BoxProps, 'appearance'> {
    * The appearance of the select. The default theme only supports default.
    */
   appearance?: string
+  disabled?: boolean
+  height?: number
 }
 
 class Select extends React.PureComponent<SelectProps> {
@@ -94,7 +96,7 @@ class Select extends React.PureComponent<SelectProps> {
         position="relative"
         width="auto"
         height={height}
-        {...props}
+        {...(props as any)}
       >
         <Text
           is="select"
@@ -110,7 +112,7 @@ class Select extends React.PureComponent<SelectProps> {
           aria-invalid={isInvalid}
           size={textSize}
           borderRadius={borderRadius}
-          textTransform="default"
+          textTransform="initial"
           paddingLeft={Math.round(height / 3.2)}
           // Provide enough space for auto-sizing select including the icon
           paddingRight={iconMargin * 2 + iconSize}

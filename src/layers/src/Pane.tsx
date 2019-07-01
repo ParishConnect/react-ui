@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@parishconnect/box'
 import { BackgroundColor, Elevation } from '../../constants'
 import { ThemeContext } from '../../theme'
 
 type StringAndBooleanType = string | boolean | undefined
 
-export interface PaneProps extends Omit<BoxProps, 'appearance'> {
+export interface PaneProps extends BoxProps<'div'> {
   /**
    * Values: 'gradient', 'solid', 'white'
    * --- Uses themeColor property
@@ -69,7 +68,7 @@ export interface PaneProps extends Omit<BoxProps, 'appearance'> {
   css?: any
 }
 
-class Pane extends React.PureComponent<PaneProps> {
+class Pane extends React.PureComponent<any> {
   public static contextType = ThemeContext
 
   getHoverElevationStyle = (hoverElevation: number, css: object): object => {
@@ -214,6 +213,7 @@ class Pane extends React.PureComponent<PaneProps> {
 
   getBackgroundAppearance = (appearance: string, background: string) => {
     const theme = this.context
+
     switch (appearance) {
       case 'gradient':
         return theme.colors.background[theme.themeColor]
@@ -222,7 +222,7 @@ class Pane extends React.PureComponent<PaneProps> {
       case 'white':
         return 'white'
       default:
-        return background
+        return theme.getBackground(background)
     }
   }
 
@@ -284,9 +284,17 @@ class Pane extends React.PureComponent<PaneProps> {
       this.getBorderSideProperty({ borderSideProperty, border })
     )
 
-    const themedBackground = this.getBackgroundAppearance(
-      appearance || '',
-      background || ''
+    const themedBackground = Array.isArray(background)
+      ? background.map(b =>
+          this.getBackgroundAppearance(appearance || '', b || '')
+        )
+      : this.getBackgroundAppearance(appearance || '', background || '')
+
+    console.log(
+      Array.isArray(background) &&
+        background.map(b =>
+          this.getBackgroundAppearance(appearance || '', b || '')
+        )
     )
 
     return (
@@ -297,9 +305,7 @@ class Pane extends React.PureComponent<PaneProps> {
         borderBottom={_borderBottom}
         borderLeft={_borderLeft}
         boxShadow={elevationStyle}
-        background={
-          appearance ? themedBackground : theme.getBackground(background)
-        }
+        background={themedBackground}
         overflow={identifier ? 'hidden' : ''}
         css={{
           ...css,
@@ -307,7 +313,7 @@ class Pane extends React.PureComponent<PaneProps> {
           ...activeElevationStyle,
           ...identifierStyle
         }}
-        {...props}
+        {...(props as any)}
       />
     )
   }

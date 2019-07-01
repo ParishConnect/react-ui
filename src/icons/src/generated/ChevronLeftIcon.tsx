@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class ChevronLeftIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="chevron-left" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="chevron-left" viewBox="0 0 24 24" {...this.props as any}>
         <polyline points="15 18 9 12 15 6" />
       </Icon>
     )

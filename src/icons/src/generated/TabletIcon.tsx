@@ -3,7 +3,7 @@ import Icon, { IconProps } from '../Icon'
 export default class TabletIcon extends PureComponent<IconProps> {
   render() {
     return (
-      <Icon name="tablet" viewBox="0 0 24 24" {...this.props}>
+      <Icon name="tablet" viewBox="0 0 24 24" {...this.props as any}>
         <rect
           x="4"
           y="2"

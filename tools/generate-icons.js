@@ -33,7 +33,7 @@ async function main() {
            return (
              <Icon ${isFilledRegex.test(icon.name) ? 'isSolid' : ''} name="${
         icon.name
-      }" viewBox="${icon.attrs.viewBox}" {...this.props}>${iconContents}</Icon>
+      }" viewBox="${icon.attrs.viewBox}" {...this.props as any}>${iconContents}</Icon>
              )
            }
          }

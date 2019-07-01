@@ -100,7 +100,7 @@ export default class TextInputField extends React.PureComponent<
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps, remainingProps } = splitBoxProps(props)
+    const { matchedProps, remainingProps } = splitBoxProps(props as any)
 
     return (
       <FormField

@@ -88,7 +88,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
         paddingRight={0}
         display="flex"
         justifyContent="center"
-        {...props}
+        {...props as any}
       >
         <Icon
           size={size}

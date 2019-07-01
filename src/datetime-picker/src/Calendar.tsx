@@ -25,6 +25,7 @@ const makeDaysArray = (
   length: number,
   { increment = 1, ...rest }: DateFnsOptions = {}
 ) => {
+  //@ts-ignore
   return Array.from({ length }).reduce(
     ({ acc, pivot }) => {
       const date = addDays(pivot, increment)
@@ -147,7 +148,7 @@ export function DateBox({ children, ...props }) {
       height={majorScale(4) + 4}
       padding={2}
       textAlign="center"
-      {...props}
+      {...(props as any)}
     >
       {children}
     </Box>

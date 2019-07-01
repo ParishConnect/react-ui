@@ -41,7 +41,7 @@ class InlineAlert extends React.PureComponent<InlineAlertProps> {
     const Icon = hasIcon ? this.getIconForIntent(intent).icon : ''
 
     return (
-      <Pane alignItems="center" display="flex" {...props}>
+      <Pane alignItems="center" display="flex" {...(props as any)}>
         {hasIcon && (
           <Pane display="inline" marginRight={8}>
             <Icon

@@ -12,7 +12,7 @@ export default class ${componentName} extends PureComponent {
   render() {
     const { ...props } = this.props
 
-    return <Box {...props}>${componentName}</Box>
+    return <Box {...props as any}>${componentName}</Box>
   }
 }
 `.trim()

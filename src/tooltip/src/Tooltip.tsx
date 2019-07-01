@@ -47,7 +47,7 @@ export interface TooltipProps {
    * When a Tooltip is used within a Popover, the Popover passes
    * its props to the Tooltip in a `popoverProps` object.
    */
-  popoverProps?: PopoverProps
+  popoverProps?: any
 }
 
 interface TooltipState {

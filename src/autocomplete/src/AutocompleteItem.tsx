@@ -27,7 +27,7 @@ export default class AutocompleteItem extends React.PureComponent<
         isSelected={isSelected}
         label={children}
         style={style}
-        {...props}
+        {...props as any}
       />
     )
   }

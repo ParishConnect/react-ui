@@ -62,7 +62,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
     }
 
     if (typeof this.props.onKeyPress === 'function') {
-      this.props.onKeyPress(event)
+      this.props.onKeyPress(event as any)
     }
   }
 
@@ -92,7 +92,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
         data-isselectable="true"
         display="flex"
         alignItems="center"
-        {...passthroughProps}
+        {...(passthroughProps as any)}
       >
         {Icon && (
           <Icon

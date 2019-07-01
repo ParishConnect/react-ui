@@ -74,7 +74,7 @@ class TableCell extends React.PureComponent<TableCellProps> {
     }
 
     if (typeof this.props.onKeyDown === 'function') {
-      this.props.onKeyDown(e)
+      this.props.onKeyDown(e as any)
     }
   }
 
@@ -82,13 +82,13 @@ class TableCell extends React.PureComponent<TableCellProps> {
     this.mainRef = ref
 
     if (typeof this.props.innerRef === 'function') {
-      this.props.innerRef(ref)
+      this.props.innerRef(ref as any)
     }
   }
 
   handleClick = (e: MouseEvent) => {
     if (typeof this.props.onClick === 'function') {
-      this.props.onClick(e)
+      this.props.onClick(e as any)
     }
   }
 
@@ -119,7 +119,7 @@ class TableCell extends React.PureComponent<TableCellProps> {
               onClick={this.handleClick}
               onKeyDown={this.handleKeyDown}
               {...TableCell.styles}
-              {...props}
+              {...(props as any)}
             >
               {children}
               {rightView ? rightView : null}

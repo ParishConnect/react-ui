@@ -1,14 +1,13 @@
-import * as React from 'react'
-import { concat } from 'lodash'
+import Downshift from 'downshift'
 import fuzzaldrin from 'fuzzaldrin-plus'
-import Downshift, { DownshiftInterface } from 'downshift'
+import { concat } from 'lodash'
+import * as React from 'react'
 import VirtualList from 'react-tiny-virtual-list'
-import { Popover } from '../../popover'
 import { Position, PositionType } from '../../constants'
+import { Pane } from '../../layers'
+import { Popover } from '../../popover'
 import { Heading } from '../../typography'
-import { Pane, PaneProps } from '../../layers'
 import AutocompleteItem from './AutocompleteItem'
-import { Assign } from 'utility-types'
 
 const fuzzyFilter = (itemToString: any) => {
   if (itemToString) {
@@ -27,16 +26,17 @@ const fuzzyFilter = (itemToString: any) => {
   return (items: any, input: string) => fuzzaldrin.filter(items, input)
 }
 
-const autocompleteItemRenderer = (props: any) => <AutocompleteItem {...props} />
+const autocompleteItemRenderer = (props: any) => (
+  <AutocompleteItem {...(props as any)} />
+)
 
-export interface AutocompleteProps
-  extends Assign<PaneProps, DownshiftInterface> {
+export interface AutocompleteProps {
   children?: any
   position?: PositionType
   /**
    * Allows an item to be created on the fly
    */
-  creatable?: boolean
+  createable?: boolean
   /**
    * This prop can be either a string or a Node.
    * It will provide a title for the items
@@ -242,7 +242,7 @@ export default class Autocomplete extends React.PureComponent<
     } = this.props
 
     return (
-      <Downshift defaultSelectedItem={defaultSelectedItem} {...props}>
+      <Downshift defaultSelectedItem={defaultSelectedItem} {...(props as any)}>
         {({
           isOpen: isShown,
           inputValue,
@@ -260,9 +260,9 @@ export default class Autocomplete extends React.PureComponent<
               minWidth={popoverMinWidth}
               position={
                 position ||
-                (this.state.targetWidth < popoverMinWidth
+                ((this.state.targetWidth < popoverMinWidth
                   ? Position.BOTTOM_LEFT
-                  : Position.BOTTOM)
+                  : Position.BOTTOM) as any)
               }
               content={() => {
                 return this.renderResults({

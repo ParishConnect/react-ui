@@ -23,7 +23,7 @@ export default class SidebarTab extends React.PureComponent<TabProps> {
         isSelected={isSelected}
         height={height}
         {...SidebarTab.styles}
-        {...props}
+        {...(props as any)}
       >
         <Box is="span" flex="1">
           {children}
