@@ -5,7 +5,6 @@ import { TextProps } from '../../typography/src/Text'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
-import { splitBoxProps } from '@parishconnect/box'
 
 export interface ButtonProps extends TextProps {
   /**

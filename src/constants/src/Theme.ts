@@ -29,7 +29,6 @@ export type BackgroundColor =
   | 'purple'
   | 'teal'
   | string
-  | string[]
 
 export interface BorderColor {
   default: 'default'

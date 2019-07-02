@@ -93,7 +93,7 @@ class Banner extends React.PureComponent<BannerProps> {
     } = this.props
     const theme = this.context
 
-    const hoverBackground = this.getHoverBackgroundStyle(hoverTint, css)
+    const hoverBackground = this.getHoverBackgroundStyle(hoverTint, css as any)
 
     return (
       <Pane
@@ -129,7 +129,7 @@ class Banner extends React.PureComponent<BannerProps> {
             alignItems="center"
             justifyContent="flex-end"
             height="100%"
-            css={{ ...css, ...hoverBackground }}
+            css={{ ...(css as any), ...hoverBackground }}
           >
             <Box borderLeft="1px solid #efefef" height="65%" />
             {this.getActionDescriptor(action, color as any)}

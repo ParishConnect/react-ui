@@ -65,7 +65,6 @@ export interface PaneProps extends BoxProps<'div'> {
    * Sets the position of the identifier.
    */
   identifierPosition?: 'top' | 'right' | 'bottom' | 'left'
-  css?: any
 }
 
 class Pane extends React.PureComponent<any> {
