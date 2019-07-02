@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme'
 
 type StringAndBooleanType = string | boolean | undefined
 
-export interface PaneProps extends BoxProps<'div'> {
+export interface PaneProps extends Omit<BoxProps, 'appearance'> {
   /**
    * Values: 'gradient', 'solid', 'white'
    * --- Uses themeColor property
@@ -273,7 +273,6 @@ class Pane extends React.PureComponent<any> {
       ? this.getIdentifierStyle(identifier, css)
       : {}
 
-    // tslint:disable-next-line variable-name
     const [_borderTop, _borderRight, _borderBottom, _borderLeft] = [
       borderTop,
       borderRight,
@@ -288,13 +287,6 @@ class Pane extends React.PureComponent<any> {
           this.getBackgroundAppearance(appearance || '', b || '')
         )
       : this.getBackgroundAppearance(appearance || '', background || '')
-
-    console.log(
-      Array.isArray(background) &&
-        background.map(b =>
-          this.getBackgroundAppearance(appearance || '', b || '')
-        )
-    )
 
     return (
       <Box
@@ -312,7 +304,7 @@ class Pane extends React.PureComponent<any> {
           ...activeElevationStyle,
           ...identifierStyle
         }}
-        {...(props as any)}
+        {...props}
       />
     )
   }

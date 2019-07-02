@@ -22,8 +22,8 @@ class SearchInput extends React.PureComponent<TextInputProps> {
       ...props
     } = this.props
     const theme = this.context
-    const { matchedProps, remainingProps } = splitBoxProps(props)
-    const { width } = matchedProps
+    const { matched, remaining } = splitBoxProps(props)
+    const { width } = matched
     const iconSize = theme.getIconSizeForInput(height)
 
     return (
@@ -31,7 +31,7 @@ class SearchInput extends React.PureComponent<TextInputProps> {
         position="relative"
         display="inline-flex"
         height={height}
-        {...matchedProps}
+        {...matched}
       >
         <Box
           height={height}
@@ -55,7 +55,7 @@ class SearchInput extends React.PureComponent<TextInputProps> {
           appearance={appearance}
           disable={disabled}
           width={width}
-          {...remainingProps}
+          {...remaining}
         />
       </Box>
     )

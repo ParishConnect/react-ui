@@ -91,7 +91,7 @@ export interface SegmentedControlRadioProps {
 }
 
 class SegmentedControlRadio extends React.PureComponent<
-  Overwrite<BoxProps<any>, SegmentedControlRadioProps>
+  Overwrite<BoxProps, SegmentedControlRadioProps>
 > {
   public static contextType = ThemeContext
 

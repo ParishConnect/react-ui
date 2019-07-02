@@ -2,7 +2,7 @@ import { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import Text from './Text'
 
-export declare interface ListItemProps extends BoxProps<'li'> {
+export declare interface ListItemProps extends BoxProps {
   /**
    * When passed, adds a icon before the list item.
    * See Evergreen `Icon` for documentation.

@@ -2,8 +2,7 @@ import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
 import { ThemeContext } from '../../theme/index'
 
-export declare interface HeadingProps
-  extends BoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'> {
+export declare interface HeadingProps extends BoxProps {
   /**
    * The size of the heading.
    */
@@ -12,12 +11,7 @@ export declare interface HeadingProps
    * The color of the heading. Use 'theme' to set as theme color
    */
   color?: string
-  /**
-   * Pass `default` to use the default margin top for that size.
-   */
-  marginTop?: boolean | number | string
 
-  marginBottom?: boolean | number | string
   isUppercase?: boolean
 }
 

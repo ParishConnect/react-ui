@@ -17,7 +17,6 @@ import {
   wrapTimeAtUnit
 } from './common/timeUnit'
 import * as Utils from '../../utils/utils'
-import { EnhancerProps } from '@parishconnect/box/dist/types/enhancers'
 
 const Keys = {
   BACKSPACE: 8,
@@ -199,7 +198,7 @@ export default class InlineTimePicker extends React.Component<
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps } = splitBoxProps(props as EnhancerProps)
+    const { matched } = splitBoxProps(props)
     const theme = this.context
     const themedClassName = theme.getTextInputClassName(
       appearance,
@@ -217,7 +216,7 @@ export default class InlineTimePicker extends React.Component<
         description={description}
         validationMessage={validationMessage}
         labelFor={id}
-        {...(matchedProps as any)}
+        {...matched}
       >
         <Box>
           {this.maybeRenderArrowButton(true, hourUnit)}
@@ -230,7 +229,7 @@ export default class InlineTimePicker extends React.Component<
         <Box
           borderRadius={borderRadius}
           display="inline-block"
-          background="white"
+          background="tint1"
           className={themedClassName}
         >
           {this.renderInput(hourUnit, this.state.hourText!)}
@@ -294,16 +293,17 @@ export default class InlineTimePicker extends React.Component<
         type="button"
         appearance="minimal"
         display="inline-block"
-        height={24}
+        height={22}
         textAlign="center"
         onClick={onClick}
         cursor="pointer"
+        width={width}
         css={{
-          width: width,
           ':not(:first-of-type)': {
             marginLeft: 4
           }
         }}
+        marginY={1}
         icon={isDirectionUp ? ChevronUpIcon : ChevronDownIcon}
       />
     )

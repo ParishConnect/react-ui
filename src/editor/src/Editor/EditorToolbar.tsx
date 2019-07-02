@@ -67,7 +67,7 @@ class EditorToolbar extends React.Component<
       ...props
     } = this.props
 
-    const { matchedProps } = splitBoxProps(props as any)
+    const { matched } = splitBoxProps(props as any)
 
     return (
       <Pane
@@ -76,7 +76,7 @@ class EditorToolbar extends React.Component<
         paddingX={majorScale(1)}
         width="100%"
         appearance="white"
-        {...matchedProps}
+        {...matched}
       >
         <Pane
           display="flex"

@@ -57,7 +57,7 @@ const isControlled = component => {
   return {}.hasOwnProperty.call(component.props, 'checked')
 }
 
-export interface SwitchProps extends Omit<BoxProps<'input'>, 'appearance'> {
+export interface SwitchProps extends Omit<BoxProps, 'appearance'> {
   /**
    * The id attribute of the radio.
    */

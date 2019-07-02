@@ -5,9 +5,8 @@ import { Tooltip } from '../../tooltip'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import { PaneProps } from '../../layers'
 import PopoverStateless from './PopoverStateless'
-import { Overwrite } from 'utility-types'
 
-export interface PopoverProps {
+export interface PopoverProps extends Omit<PaneProps, 'appearance'> {
   /**
    * The position the Popover is on. Smart positioning might override this.
    */
@@ -76,7 +75,7 @@ interface PopoverState {
 }
 
 export default class Popover extends React.Component<
-  Overwrite<PopoverProps, PaneProps>,
+  PopoverProps,
   PopoverState
 > {
   static defaultProps = {

@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/index'
 
 export type TextSize = 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 
-export interface TextProps extends BoxProps<any> {
+export interface TextProps extends BoxProps {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500, 600.
@@ -43,7 +43,7 @@ class Text extends React.PureComponent<TextProps> {
         fontFamily={theme.getFontFamily(fontFamily)}
         marginTop={finalMarginTop}
         {...textStyle}
-        {...(props as any)}
+        {...props}
       />
     )
   }

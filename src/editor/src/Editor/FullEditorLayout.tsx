@@ -105,14 +105,14 @@ class FullEditorLayout extends React.PureComponent<
     } = this.props
     const theme = this.context
 
-    const { matchedProps, remainingProps } = splitBoxProps(containerProps!)
+    const { matched, remaining } = splitBoxProps(containerProps!)
     const {
-      matchedProps: matchedInnerProps,
-      remainingProps: remainingInnerProps
+      matched: matchedInnerProps,
+      remaining: remainingInnerProps
     } = splitBoxProps(props as any)
 
     return (
-      <Pane width="100%" {...matchedProps}>
+      <Pane width="100%" {...matched}>
         <RemirrorManager placeholder={placeholder}>
           {getExtensions(formattingOptions, this.activateLink)}
           <Pane css={editorStyles(theme)} {...matchedInnerProps}>
@@ -123,7 +123,7 @@ class FullEditorLayout extends React.PureComponent<
               onFocus={this.setFocus}
               onBlur={this.unSetFocus}
               autoFocus={autoFocus}
-              {...remainingProps}
+              {...remaining}
               {...remainingInnerProps}
             >
               <InnerEditor

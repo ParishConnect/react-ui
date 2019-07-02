@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
-  <svg width={10} height={7} viewBox="0 0 10 7" {...props as any}>
+  <svg width={10} height={7} viewBox="0 0 10 7" {...(props as any)}>
     <path
       fill={fill}
       fillRule="evenodd"
@@ -15,7 +15,7 @@ const CheckIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
 )
 
 const MinusIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
-  <svg width={16} height={16} viewBox="0 0 16 16" {...props as any}>
+  <svg width={16} height={16} viewBox="0 0 16 16" {...(props as any)}>
     <path
       fill={fill}
       fillRule="evenodd"
@@ -24,7 +24,7 @@ const MinusIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
   </svg>
 )
 
-export interface CheckboxProps extends BoxProps<'label'> {
+export interface CheckboxProps extends BoxProps {
   /**
    * The id attribute of the checkbox.
    */
@@ -105,7 +105,7 @@ class Checkbox extends React.PureComponent<CheckboxProps> {
         position="relative"
         display="flex"
         marginY={16}
-        {...props as any}
+        {...props}
       >
         <Box
           className={themedClassName}

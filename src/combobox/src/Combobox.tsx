@@ -5,7 +5,7 @@ import { TextInput } from '../../text-input'
 import { IconButton } from '../../buttons'
 import { ChevronDownIcon } from '../../icons/index'
 
-export interface ComboboxProps extends BoxProps<'div'> {
+export interface ComboboxProps extends BoxProps {
   /**
    * The options to show in the menu.
    */

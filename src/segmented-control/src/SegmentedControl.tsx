@@ -11,7 +11,7 @@ interface ControlOptions {
   value?: number | string | boolean
 }
 
-export interface SegmentedControlProps extends BoxProps<any> {
+export interface SegmentedControlProps extends BoxProps {
   /**
    * The options for the radios of the Segmented Control.
    */

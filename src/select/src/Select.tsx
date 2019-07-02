@@ -5,7 +5,7 @@ import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 import { ChevronDownIcon } from '../../icons/index'
 
-export interface SelectProps extends Omit<BoxProps<'div'>, 'appearance'> {
+export interface SelectProps extends Omit<BoxProps, 'appearance'> {
   /**
    * The id attribute for the select.
    */

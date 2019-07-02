@@ -101,14 +101,14 @@ class DefaultEditorLayout extends React.PureComponent<any, EditorLayoutState> {
     } = this.props
     const theme = this.context
 
-    const { matchedProps, remainingProps } = splitBoxProps(containerProps!)
+    const { matched, remaining } = splitBoxProps(containerProps!)
     const {
-      matchedProps: matchedInnerProps,
-      remainingProps: remainingInnerProps
+      matched: matchedInnerProps,
+      remaining: remainingInnerProps
     } = splitBoxProps(props as any)
 
     return (
-      <Card width="100%" {...matchedProps}>
+      <Card width="100%" {...matched}>
         <RemirrorManager placeholder={placeholder}>
           {getExtensions(formattingOptions, this.activateLink)}
           <Pane
@@ -122,7 +122,7 @@ class DefaultEditorLayout extends React.PureComponent<any, EditorLayoutState> {
               onFocus={this.setFocus}
               onBlur={this.unSetFocus}
               autoFocus={autoFocus}
-              {...remainingProps}
+              {...remaining}
               {...remainingInnerProps}
             >
               <InnerEditor

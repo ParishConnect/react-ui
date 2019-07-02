@@ -6,12 +6,11 @@ import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
 
-export interface ButtonProps extends TextProps {
+export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
    * The intent of the button.
    */
   intent?: IntentType
-  height?: number
   /**
    * The appearance of the button.
    */
@@ -53,14 +52,6 @@ export interface ButtonProps extends TextProps {
    * When true, text is uppercase
    */
   isUppercase?: boolean
-
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className?: string
-  paddingLeft?: number
-  paddingRight?: number
 }
 
 class Button extends React.PureComponent<ButtonProps> {
@@ -144,11 +135,11 @@ class Button extends React.PureComponent<ButtonProps> {
         position="relative"
         fontFamily="ui"
         fontWeight={strong ? 600 : 500}
-        textTransform={isUppercase && 'uppercase'}
+        textTransform={isUppercase ? 'uppercase' : 'none'}
         display="inline-flex"
         alignItems="center"
         flexWrap="nowrap"
-        {...(props as any)}
+        {...props}
         disabled={disabled || isLoading}
       >
         {isLoading && (

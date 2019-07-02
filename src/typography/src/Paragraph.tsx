@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme'
 
 export type ParagraphSize = 300 | 400 | 500
 
-export interface ParagraphProps extends BoxProps<'p'> {
+export interface ParagraphProps extends BoxProps {
   /**
    * Size of the text style.
    * Can be: 300, 400, 500.

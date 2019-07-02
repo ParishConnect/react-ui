@@ -18,7 +18,7 @@ const CircleIcon = ({
   </svg>
 )
 
-export interface RadioProps extends Omit<BoxProps<any>, 'appearance'> {
+export interface RadioProps extends Omit<BoxProps, 'appearance'> {
   /**
    * The id attribute of the radio.
    */

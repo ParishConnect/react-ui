@@ -73,7 +73,7 @@ class FeaturedImageUpload extends React.Component<any> {
       name,
       className
     } = this.props
-    const { matchedProps, remainingProps } = splitBoxProps(this.props as any)
+    const { matched, remaining } = splitBoxProps(this.props as any)
     return (
       <Pane
         cursor={this.state.imageLoaded && 'ns-resize'}
@@ -82,7 +82,7 @@ class FeaturedImageUpload extends React.Component<any> {
         onMouseOver={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
         className={generateStyles(this.context)}
-        {...matchedProps}
+        {...matched}
       >
         <FilePond
           onaddfile={(error, file: any) => {
@@ -110,7 +110,7 @@ class FeaturedImageUpload extends React.Component<any> {
           ref={ref => (this.filePondRef = ref)}
           imagePreviewMaxFileSize="2MB"
           instantUpload={false}
-          {...remainingProps}
+          {...remaining}
           labelIdle={ReactDOMServer.renderToString(
             <Text>
               Drag & Drop an image or

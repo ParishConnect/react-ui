@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { keyframes } from 'emotion'
+import { keyframes } from '@emotion/core'
 import Transition from 'react-transition-group/Transition'
 import { noop } from 'lodash'
 import { Pane, Card, PaneProps } from '../../layers'
@@ -221,7 +221,7 @@ export default class CornerDialog extends React.PureComponent<
               bottom={16}
               right={16}
               padding={32}
-              {...(containerProps as any)}
+              {...containerProps}
             >
               <Pane display="flex" alignItems="center" marginBottom={12}>
                 <Heading is="h4" size={600} flex="1">

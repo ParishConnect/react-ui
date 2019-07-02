@@ -90,7 +90,7 @@ export default class TextInputField extends React.PureComponent<
     /**
      * Split the wrapper props from the input props.
      */
-    const { matchedProps, remainingProps } = splitBoxProps(props as any)
+    const { matched, remaining } = splitBoxProps(props as any)
 
     return (
       <FormField
@@ -101,7 +101,7 @@ export default class TextInputField extends React.PureComponent<
         description={description}
         validationMessage={validationMessage}
         labelFor={id}
-        {...matchedProps}
+        {...matched}
       >
         <TextInput
           id={id}
@@ -113,7 +113,7 @@ export default class TextInputField extends React.PureComponent<
           appearance={appearance}
           placeholder={placeholder}
           spellCheck={spellCheck}
-          {...remainingProps}
+          {...remaining}
         />
       </FormField>
     )

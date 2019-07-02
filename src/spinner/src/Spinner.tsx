@@ -36,7 +36,7 @@ const inner = (color: string) => ({
   fill: 'transparent'
 })
 
-export interface SpinnerProps extends BoxProps<'div'> {
+export interface SpinnerProps extends BoxProps {
   /**
    * The size of the spinner.
    * @default 40
@@ -122,7 +122,7 @@ class Spinner extends React.PureComponent<SpinnerProps, SpinnerState> {
     } = this.props
 
     return (
-      <Box width={size} height={size} lineHeight={0} {...props as any}>
+      <Box width={size} height={size} lineHeight={0} {...(props as any)}>
         <Box is="svg" css={outer} x="0px" y="0px" viewBox="0 0 150 150">
           <Box
             is="circle"

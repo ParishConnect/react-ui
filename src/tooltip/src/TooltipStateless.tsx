@@ -4,7 +4,7 @@ import { Paragraph } from '../../typography'
 import { ThemeContext } from '../../theme'
 import { BoxProps } from '@parishconnect/box'
 
-export interface TooltipStatelessProps extends BoxProps<any> {
+export interface TooltipStatelessProps extends Omit<BoxProps, 'appearance'> {
   /**
    * The appearance of the tooltip.
    */

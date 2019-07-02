@@ -5,7 +5,7 @@ import { TextInput } from '../../text-input'
 
 export const CLASS_PREFIX = 'evergreen-file-picker'
 
-export interface FilePickerProps extends BoxProps<'div'> {
+export interface FilePickerProps extends BoxProps {
   name?: string
   accept?: string | string[]
   required?: boolean
@@ -64,7 +64,11 @@ export default class FilePicker extends React.PureComponent<
     }
 
     return (
-      <Box display="flex" className={`${CLASS_PREFIX}-root`} {...props as any}>
+      <Box
+        display="flex"
+        className={`${CLASS_PREFIX}-root`}
+        {...(props as any)}
+      >
         <Box
           innerRef={this.fileInputRef}
           className={`${CLASS_PREFIX}-file-input`}

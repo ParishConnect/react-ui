@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
 import { ListTextSize } from './Shared'
 
-export interface UnorderedListProps extends BoxProps<'ul'> {
+export interface UnorderedListProps extends BoxProps {
   /**
    * Size of the text used in a list item.
    * Can be: 300, 400, 500, 600.

@@ -4,7 +4,7 @@ import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 import { TextProps } from '../../typography/src/Text'
 
-export interface TextareaProps extends TextProps {
+export interface TextareaProps extends Omit<TextProps, 'apperance'> {
   height?: number
   /**
    * Makes the textarea element required.

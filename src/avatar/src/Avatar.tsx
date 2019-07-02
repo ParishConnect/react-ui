@@ -15,7 +15,7 @@ const initialsProps = {
   lineHeight: 1
 }
 
-export interface AvatarProps extends BoxProps<'div'> {
+export interface AvatarProps extends BoxProps {
   /**
    * The src attribute of the image.
    * When it's not available, render initials instead.
@@ -135,7 +135,7 @@ class Avatar extends React.PureComponent<AvatarProps, AvatarState> {
         justifyContent="center"
         backgroundColor={colorProps.backgroundColor}
         title={name}
-        {...props as any}
+        {...(props as any)}
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { noop } from 'lodash'
 import Transition from 'react-transition-group/Transition'
 import Box from '@parishconnect/box'
-import { keyframes } from 'emotion'
+import { keyframes } from '@emotion/core'
 import { Portal } from '../../portal'
 import { Stack } from '../../stack'
 import { StackingOrder } from '../../constants'
@@ -50,14 +50,10 @@ const animationStyles = backgroundColor => ({
     content: '" "'
   },
   '&[data-state="entering"]::before, &[data-state="entered"]::before': {
-    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
+    animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
   },
   '&[data-state="exiting"]::before, &[data-state="exited"]::before': {
-    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+    animation: `${fadeOutAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
   }
 })
 

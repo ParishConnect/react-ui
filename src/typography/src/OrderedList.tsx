@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
 import { ListTextSize } from './Shared'
 
-export declare interface OrderedListProps extends BoxProps<'ol'> {
+export declare interface OrderedListProps extends BoxProps {
   size?: ListTextSize
 }
 

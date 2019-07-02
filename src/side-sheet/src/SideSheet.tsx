@@ -62,14 +62,10 @@ const ANIMATION_DURATION = 240
 const withAnimations = (animateIn: any, animateOut: any) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
-      animation: `${animateIn} ${ANIMATION_DURATION}ms ${
-        animationEasing.deceleration
-      } both`
+      animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
     },
     '&[data-state="exiting"]': {
-      animation: `${animateOut} ${ANIMATION_DURATION}ms ${
-        animationEasing.acceleration
-      } both`
+      animation: `${animateOut} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
     }
   }
 }
@@ -194,12 +190,12 @@ class SideSheet extends React.Component<SideSheetProps> {
         {({ state, close }: any) => (
           <Pane
             width={width}
-            // {...paneProps[position]}
-            // css={animationStyles[position]}
+            {...paneProps[position]}
+            css={animationStyles[position]}
             data-state={state}
           >
             <SheetClose
-              position={position}
+              position={position as any}
               data-state={state}
               isClosing={false}
               onClick={close}

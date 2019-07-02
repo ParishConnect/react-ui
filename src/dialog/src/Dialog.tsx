@@ -39,14 +39,10 @@ const closeAnimation = keyframes({
 
 const animationStyles = {
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.deceleration
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
   },
   '&[data-state="exiting"]': {
-    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.acceleration
-    } both`
+    animation: `${closeAnimation} ${ANIMATION_DURATION}ms ${animationEasing.acceleration} both`
   }
 }
 

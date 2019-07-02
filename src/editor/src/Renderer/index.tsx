@@ -31,9 +31,9 @@ export default class Renderer extends React.PureComponent<
 > {
   static contextType = ThemeContext
   render() {
-    const { matchedProps } = splitBoxProps(this.props as any)
+    const { matched } = splitBoxProps(this.props)
     return (
-      <Pane css={editorStyles(this.context)} {...matchedProps}>
+      <Pane css={editorStyles(this.context)} {...matched}>
         <div className="remirror-editor">
           <RenderTree
             skipUnknownTypes={false}

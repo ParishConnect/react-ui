@@ -2,7 +2,7 @@ import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import { getIconColor } from '../../theme/src/default-theme/theme-helpers/index'
 
-export interface IconProps extends BoxProps<'svg'> {
+export interface IconProps extends BoxProps {
   /**
    * Color of icon. Equivalent to setting CSS `stroke|fill` property.
    */
@@ -62,14 +62,18 @@ class Icon extends React.PureComponent<IconProps> {
     return (
       <Box
         is="svg"
-        viewBox={viewBox}
+        props={
+          {
+            viewBox,
+            'data-icon': name
+          } as any
+        }
         fill="none"
         {...svgProps}
         style={style}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        data-icon={name}
         width={size}
         height={size}
       >

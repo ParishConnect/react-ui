@@ -4,7 +4,7 @@ import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
 import warning from '../../lib/warning'
 
-export interface TabProps extends TextProps {
+export interface TabProps extends Omit<TextProps, 'appearance'> {
   /**
    * Function triggered when tab is selected.
    */

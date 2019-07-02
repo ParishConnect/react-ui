@@ -45,11 +45,11 @@ export default class Upload extends React.Component<UploadProps> {
   }
 
   render() {
-    const { matchedProps, remainingProps } = splitBoxProps(this.props as any)
+    const { matched, remaining } = splitBoxProps(this.props as any)
     return (
-      <Pane className={generateStyles(this.context)} {...matchedProps}>
+      <Pane className={generateStyles(this.context)} {...matched}>
         <FilePond
-          {...remainingProps}
+          {...remaining}
           allowMultiple
           maxFiles={3}
           ref={ref => (this.filePondRef = ref)}

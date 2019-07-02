@@ -124,9 +124,7 @@ export interface SheetCloseProps {
   position?: PositionEnum | PositionType
 }
 
-export default class SheetClose extends React.PureComponent<
-  BoxProps<'div'> & any
-> {
+export default class SheetClose extends React.PureComponent<BoxProps> {
   render() {
     const { isClosing, position, ...props } = this.props
     return (

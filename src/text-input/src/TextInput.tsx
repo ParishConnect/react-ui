@@ -4,7 +4,7 @@ import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
 import { TextProps } from '../../typography/src/Text'
 
-export interface TextInputProps extends TextProps {
+export interface TextInputProps extends Omit<TextProps, 'appearance'> {
   /**
    * Makes the input element required.
    */
