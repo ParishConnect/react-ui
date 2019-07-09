@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
 import Radio from './Radio'
@@ -59,7 +59,7 @@ export default class RadioGroup extends React.PureComponent<
 > {
   static defaultProps = {
     options: [],
-    onChange: noop,
+    onChange: () => {},
     size: 12,
     isRequired: false
   }
@@ -106,7 +106,7 @@ export default class RadioGroup extends React.PureComponent<
     const selected = value || this.state.value
 
     return (
-      <Pane role="group" aria-label={label} {...props as any}>
+      <Pane role="group" aria-label={label} {...(props as any)}>
         {label && (
           <Text color="muted" fontWeight={500}>
             {label}

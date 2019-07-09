@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import Transition from 'react-transition-group/Transition'
 import Box from '@parishconnect/box'
 import { keyframes } from '@emotion/core'
@@ -158,16 +158,16 @@ interface OverlayState {
 class Overlay extends React.Component<OverlayProps, OverlayState> {
   static contextType = ThemeContext
   static defaultProps = {
-    onHide: noop,
+    onHide: () => {},
     shouldCloseOnClick: true,
     shouldCloseOnEscapePress: true,
     preventBodyScrolling: false,
-    onExit: noop,
-    onExiting: noop,
-    onExited: noop,
-    onEnter: noop,
-    onEntering: noop,
-    onEntered: noop
+    onExit: () => {},
+    onExiting: () => {},
+    onExited: () => {},
+    onEnter: () => {},
+    onEntering: () => {},
+    onEntered: () => {}
   }
 
   containerElement: any

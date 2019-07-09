@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { Pane } from '../../layers'
 import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
@@ -45,9 +45,9 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
   static defaultProps = {
     appearance: 'default',
     isSelected: false,
-    onClick: noop,
-    onSelect: noop,
-    onKeyPress: noop
+    onClick: () => {},
+    onSelect: () => {},
+    onKeyPress: () => {}
   }
 
   handleClick = e => {

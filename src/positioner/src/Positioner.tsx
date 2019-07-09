@@ -9,7 +9,6 @@ import {
   PositionType
 } from '../../constants'
 import getPosition from './getPosition'
-import { noop } from 'lodash'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -114,9 +113,9 @@ export default class Positioner extends React.PureComponent<
     targetOffset: 6,
     initialScale: 0.9,
     animationDuration: 300,
-    innerRef: noop,
-    onOpenComplete: noop,
-    onCloseComplete: noop
+    innerRef: () => {},
+    onOpenComplete: () => {},
+    onCloseComplete: () => {}
   }
 
   latestAnimationFrame: any

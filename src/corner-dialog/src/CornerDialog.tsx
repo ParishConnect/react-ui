@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { keyframes } from '@emotion/core'
 import Transition from 'react-transition-group/Transition'
-import { noop } from 'lodash'
+
 import { Pane, Card, PaneProps } from '../../layers'
 import { Portal } from '../../portal'
 import { Paragraph, Heading } from '../../typography'
@@ -148,12 +148,12 @@ export default class CornerDialog extends React.PureComponent<
 
   handleExited = () => {
     this.setState({ exiting: false, exited: true })
-    const { onCloseComplete = noop } = this.props
+    const { onCloseComplete = () => {} } = this.props
     onCloseComplete()
   }
 
   handleCancel = () => {
-    const { onCancel = noop } = this.props
+    const { onCancel = () => {} } = this.props
     onCancel(this.handleClose)
   }
 
@@ -162,7 +162,7 @@ export default class CornerDialog extends React.PureComponent<
   }
 
   handleConfirm = () => {
-    const { onConfirm = noop } = this.props
+    const { onConfirm = () => {} } = this.props
     onConfirm(this.handleClose)
   }
 

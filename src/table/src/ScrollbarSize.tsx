@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { noop } from 'lodash'
 
 export interface ScrollbarSizeProps {
   /**
@@ -18,7 +17,7 @@ export default class ScrollbarSize extends React.PureComponent<
   ScrollbarSizeState
 > {
   static defaultProps = {
-    handleScrollbarSize: noop
+    handleScrollbarSize: () => {}
   }
 
   innerRef: any

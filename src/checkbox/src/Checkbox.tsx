@@ -1,8 +1,7 @@
-import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
-import { noop } from 'lodash'
-import { Text } from '../../typography'
+import * as React from 'react'
 import { ThemeContext } from '../../theme'
+import { Text } from '../../typography'
 
 const CheckIcon = ({ fill = 'currentColor', ...props }: { fill?: string }) => (
   <svg width={10} height={7} viewBox="0 0 10 7" {...(props as any)}>
@@ -71,7 +70,7 @@ class Checkbox extends React.PureComponent<CheckboxProps> {
   static defaultProps = {
     checked: false,
     indeterminate: false,
-    onChange: noop()
+    onChange: () => {}
   }
 
   setIndeterminate = (el: any) => {

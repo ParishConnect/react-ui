@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { Text } from '../../typography'
 import TableHeaderCell from './TableHeaderCell'
 import { TableCellProps } from './TableCell'
@@ -51,7 +51,7 @@ export default class SearchTableHeaderCell extends React.PureComponent<
   SearchTableHeaderCellProps & any
 > {
   static defaultProps = {
-    onChange: noop,
+    onChange: () => {},
     spellCheck: true,
     placeholder: 'Filter...'
   }
@@ -59,7 +59,7 @@ export default class SearchTableHeaderCell extends React.PureComponent<
   render() {
     const {
       value,
-      onChange = noop,
+      onChange = () => {},
       autoFocus,
       spellCheck = true,
       placeholder = 'Filter...',

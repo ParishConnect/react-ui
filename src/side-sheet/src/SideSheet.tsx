@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { keyframes } from '@emotion/core'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
@@ -165,8 +165,8 @@ export interface SideSheetProps {
 class SideSheet extends React.Component<SideSheetProps> {
   static defaultProps = {
     width: 620,
-    onCloseComplete: noop,
-    onOpenComplete: noop,
+    onCloseComplete: () => {},
+    onOpenComplete: () => {},
     position: Position.RIGHT
   }
 

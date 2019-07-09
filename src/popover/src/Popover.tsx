@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { Positioner } from '../../positioner'
 import { Tooltip } from '../../tooltip'
 import { Position, PositionEnum, PositionType } from '../../constants'
@@ -209,7 +209,7 @@ export default class Popover extends React.Component<
     document.body.addEventListener('click', this.onBodyClick, false)
     document.body.addEventListener('keydown', this.onEsc, false)
 
-    const { onOpen = noop } = this.props
+    const { onOpen = () => {} } = this.props
     onOpen()
   }
 
@@ -230,12 +230,12 @@ export default class Popover extends React.Component<
 
   handleOpenComplete = () => {
     if (this.props.bringFocusInside) this.bringFocusInside()
-    const { onOpenComplete = noop } = this.props
+    const { onOpenComplete = () => {} } = this.props
     onOpenComplete()
   }
 
   handleCloseComplete = () => {
-    const { onCloseComplete = noop } = this.props
+    const { onCloseComplete = () => {} } = this.props
     onCloseComplete()
   }
 

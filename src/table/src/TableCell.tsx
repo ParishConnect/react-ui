@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme'
 import { Pane, PaneProps } from '../../layers'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
-import { noop } from 'lodash'
+
 import { ClassNames } from '@emotion/core'
 
 export interface TableCellProps extends Omit<PaneProps, 'appearance'> {
@@ -37,8 +37,8 @@ class TableCell extends React.PureComponent<TableCellProps> {
   static contextType = ThemeContext
   static defaultProps = {
     appearance: 'default',
-    onSelect: noop,
-    onDeselect: noop
+    onSelect: () => {},
+    onDeselect: () => {}
   }
 
   static styles = {

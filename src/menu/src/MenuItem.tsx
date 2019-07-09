@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { Omit } from 'utility-types'
 import { Pane, PaneProps } from '../../layers'
 import { Text } from '../../typography'
@@ -44,7 +44,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
     is: 'div',
     intent: 'none',
     appearance: 'default',
-    onSelect: noop
+    onSelect: () => {}
   }
 
   handleClick = (event: any) => {

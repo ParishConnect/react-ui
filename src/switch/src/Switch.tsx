@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Omit } from 'utility-types'
-import { noop } from 'lodash'
+
 import tinycolor from 'tinycolor2'
 import PropTypes from 'prop-types'
 import Box, { BoxProps } from '@parishconnect/box'
@@ -130,7 +130,7 @@ class Switch extends React.PureComponent<SwitchProps, SwitchState> {
 
   static defaultProps = {
     height: 16,
-    onChange: noop,
+    onChange: () => {},
     appearance: 'default',
     hasCheckIcon: true,
     disabled: false
@@ -158,7 +158,7 @@ class Switch extends React.PureComponent<SwitchProps, SwitchState> {
       name,
       height = 16,
       checked: checkedProps,
-      onChange = noop,
+      onChange = () => {},
       disabled = false,
       appearance = 'default',
       hasCheckIcon = true,

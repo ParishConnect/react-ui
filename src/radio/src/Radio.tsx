@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { noop } from 'lodash'
+
 import { Omit } from 'utility-types'
 import Box, { BoxProps } from '@parishconnect/box'
 import { Text } from '../../typography'
@@ -81,7 +81,7 @@ class Radio extends React.PureComponent<RadioProps> {
   static contextType = ThemeContext
   static defaultProps = {
     appearance: 'default',
-    onChange: noop,
+    onChange: () => {},
     size: 12,
     isRequired: false,
     isInvalid: false
