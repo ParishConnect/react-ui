@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { cx } from 'emotion'
 import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
 import { IntentType } from '../../constants'
+import { ClassNames } from '@emotion/core'
 
 export interface ButtonProps extends Omit<TextProps, 'appearance'> {
   /**
@@ -91,6 +91,8 @@ class Button extends React.PureComponent<ButtonProps> {
       iconBefore: IconBefore = () => <></>,
       iconAfter: IconAfter = () => <></>,
 
+      color,
+
       ...props
     } = this.props
     const theme = this.context
@@ -112,63 +114,67 @@ class Button extends React.PureComponent<ButtonProps> {
     const pl = paddingLeft !== undefined ? paddingLeft : Math.round(height / 2)
 
     return (
-      <Text
-        is="button"
-        className={cx(themedClassName, className)}
-        borderTopRightRadius={borderRadius}
-        borderBottomRightRadius={borderRadius}
-        borderTopLeftRadius={borderRadius}
-        borderBottomLeftRadius={borderRadius}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingRight={pr}
-        paddingLeft={pl}
-        marginLeft={0} // Removes weird margins in Safari
-        marginRight={0} // Removes weird margins in Safari
-        marginTop={0} // Removes weird margins in Safari
-        marginBottom={0} // Removes weird margins in Safari
-        size={textSize}
-        color={''} // Prevent the Text color overriding the emotion appearanceStyle color
-        height={height}
-        lineHeight={`${height}px`}
-        {...(isActive ? { 'data-active': true } : {})}
-        position="relative"
-        fontFamily="ui"
-        fontWeight={strong ? 600 : 500}
-        textTransform={isUppercase ? 'uppercase' : 'none'}
-        display="inline-flex"
-        alignItems="center"
-        flexWrap="nowrap"
-        {...props}
-        disabled={disabled || isLoading}
-      >
-        {isLoading && (
-          <Spinner
-            marginLeft={-Math.round(height / 8)}
-            marginRight={Math.round(height / 4)}
-            size={Math.round(height / 2)}
-          />
+      <ClassNames>
+        {({ cx }) => (
+          <Text
+            is="button"
+            className={cx(themedClassName, className)}
+            borderTopRightRadius={borderRadius}
+            borderBottomRightRadius={borderRadius}
+            borderTopLeftRadius={borderRadius}
+            borderBottomLeftRadius={borderRadius}
+            paddingTop={paddingTop}
+            paddingBottom={paddingBottom}
+            paddingRight={pr}
+            paddingLeft={pl}
+            marginLeft={0} // Removes weird margins in Safari
+            marginRight={0} // Removes weird margins in Safari
+            marginTop={0} // Removes weird margins in Safari
+            marginBottom={0} // Removes weird margins in Safari
+            size={textSize}
+            color={color || ''} // Prevent the Text color overriding the emotion appearanceStyle color
+            height={height}
+            lineHeight={`${height}px`}
+            {...(isActive ? { 'data-active': true } : {})}
+            position="relative"
+            fontFamily="ui"
+            fontWeight={strong ? 600 : 500}
+            textTransform={isUppercase ? 'uppercase' : 'none'}
+            display="inline-flex"
+            alignItems="center"
+            flexWrap="nowrap"
+            {...props}
+            disabled={disabled || isLoading}
+          >
+            {isLoading && (
+              <Spinner
+                marginLeft={-Math.round(height / 8)}
+                marginRight={Math.round(height / 4)}
+                size={Math.round(height / 2)}
+              />
+            )}
+            {typeof IconBefore === 'object'
+              ? IconBefore
+              : (
+                  <IconBefore
+                    size={iconSize}
+                    marginLeft={-Math.round(pl * 0.2)}
+                    marginRight={Math.round(iconSize * 0.7)}
+                  />
+                ) || null}
+            {children}
+            {typeof IconAfter === 'object'
+              ? IconAfter
+              : (
+                  <IconAfter
+                    size={iconSize}
+                    marginRight={-Math.round(pl * 0.2)}
+                    marginLeft={Math.round(iconSize * 0.7)}
+                  />
+                ) || null}
+          </Text>
         )}
-        {typeof IconBefore === 'object'
-          ? IconBefore
-          : (
-              <IconBefore
-                size={iconSize}
-                marginLeft={-Math.round(pl * 0.2)}
-                marginRight={Math.round(iconSize * 0.7)}
-              />
-            ) || null}
-        {children}
-        {typeof IconAfter === 'object'
-          ? IconAfter
-          : (
-              <IconAfter
-                size={iconSize}
-                marginRight={-Math.round(pl * 0.2)}
-                marginLeft={Math.round(iconSize * 0.7)}
-              />
-            ) || null}
-      </Text>
+      </ClassNames>
     )
   }
 }
