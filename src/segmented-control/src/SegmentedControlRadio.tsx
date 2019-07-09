@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Overwrite } from 'utility-types'
 import { ThemeContext } from '../../theme'
 import { Text } from '../../typography'
-import { ClassNames, css } from '@emotion/core'
+import { css } from '@emotion/core'
 
 const labelClass = css({
   display: 'flex',
@@ -150,7 +150,7 @@ class SegmentedControlRadio extends React.PureComponent<
           htmlFor={id}
           fontWeight={700}
           size={textSize}
-          css={labelClass}
+          css={labelClass as any}
         >
           {label}
         </Text>
