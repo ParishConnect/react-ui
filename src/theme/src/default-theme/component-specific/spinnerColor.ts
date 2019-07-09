@@ -14,7 +14,6 @@ const spinnerColor = ({
   const defaultColor = scales.neutral.N6
   if (adaptive) {
     if (!baseColor) {
-      console.log('Base Color is required for adaptive')
       return defaultColor
     }
 

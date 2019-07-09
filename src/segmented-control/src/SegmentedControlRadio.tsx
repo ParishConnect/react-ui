@@ -1,9 +1,9 @@
 import Box, { BoxProps } from '@parishconnect/box'
-import { css, cx } from 'emotion'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'
 import { ThemeContext } from '../../theme'
 import { Text } from '../../typography'
+import { ClassNames, css } from '@emotion/core'
 
 const labelClass = css({
   display: 'flex',
@@ -106,7 +106,9 @@ class SegmentedControlRadio extends React.PureComponent<
       onChange,
       appearance,
       isFirstItem,
-      isLastItem
+      isLastItem,
+      className,
+      css
     } = this.props
     const theme = this.context
 
@@ -117,7 +119,8 @@ class SegmentedControlRadio extends React.PureComponent<
 
     return (
       <Box
-        className={cx(wrapperClass.toString(), themedClassName)}
+        css={[wrapperClass, css]}
+        className={themedClassName}
         data-active={checked}
         {...(isFirstItem
           ? {
@@ -130,22 +133,24 @@ class SegmentedControlRadio extends React.PureComponent<
             }
           : {})}
       >
-        <input
+        <Box
+          is="input"
           type="radio"
           id={id}
-          className={`${offscreenCss}`}
+          css={offscreenCss}
           name={name}
           value={value}
           checked={checked}
           onChange={e => onChange(e.target.value)}
         />
         <Text
+          borderRadius={50}
           is="label"
           cursor="pointer"
           htmlFor={id}
           fontWeight={700}
           size={textSize}
-          className={`${labelClass}`}
+          css={labelClass}
         >
           {label}
         </Text>

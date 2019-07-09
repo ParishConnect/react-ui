@@ -33,7 +33,7 @@ const memoizeClassName = (fn: Function): string | any => {
     }
 
     // Create a new entry in the memo with the generated className.
-    memo[key] = css(fn(...args)).toString()
+    memo[key] = css(fn(...args))
 
     // Return the newly generated className.
     return memo[key]

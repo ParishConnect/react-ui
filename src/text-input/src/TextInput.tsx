@@ -1,7 +1,7 @@
+import { ClassNames } from '@emotion/core'
 import * as React from 'react'
-import { cx } from 'emotion'
-import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
+import { Text } from '../../typography'
 import { TextProps } from '../../typography/src/Text'
 
 export interface TextInputProps extends Omit<TextProps, 'appearance'> {
@@ -76,25 +76,29 @@ class TextInput extends React.PureComponent<TextInputProps> {
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
-      <Text
-        is="input"
-        className={cx(themedClassName, className)}
-        type="text"
-        size={textSize}
-        width={width}
-        height={height}
-        required={required}
-        disabled={disabled}
-        placeholder={placeholder}
-        paddingLeft={Math.round(height / 3.2)}
-        paddingRight={Math.round(height / 3.2)}
-        borderRadius={borderRadius}
-        spellCheck={spellCheck}
-        aria-invalid={isInvalid}
-        {...(disabled ? { color: 'muted' } : {})}
-        css={css}
-        {...(props as any)}
-      />
+      <ClassNames>
+        {({ cx }) => (
+          <Text
+            is="input"
+            className={cx(themedClassName, className)}
+            type="text"
+            size={textSize}
+            width={width}
+            height={height}
+            required={required}
+            disabled={disabled}
+            placeholder={placeholder}
+            paddingLeft={Math.round(height / 3.2)}
+            paddingRight={Math.round(height / 3.2)}
+            borderRadius={borderRadius}
+            spellCheck={spellCheck}
+            aria-invalid={isInvalid}
+            {...(disabled ? { color: 'muted' } : {})}
+            css={css}
+            {...(props as any)}
+          />
+        )}
+      </ClassNames>
     )
   }
 }

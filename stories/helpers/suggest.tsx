@@ -25,11 +25,7 @@ export const renderFilm = (film, { handleClick, modifiers, query }) => {
       isSelected={film.id !== '' && modifiers.active}
       // disabled={modifiers.disabled}
       key={film.id}
-      onSelect={e => {
-        console.log(e)
-
-        handleClick()
-      }}
+      onSelect={() => handleClick()}
     >
       {highlightText(film.name, query)}
     </MenuOption>

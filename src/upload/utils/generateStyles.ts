@@ -1,4 +1,4 @@
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import { ThemeType } from '../../constants/index'
 import { colors } from '../../theme/src/default-theme/foundational-styles/index'
 

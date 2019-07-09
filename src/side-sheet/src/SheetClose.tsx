@@ -1,9 +1,8 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
-import { css, keyframes, ObjectInterpolation } from 'emotion'
 import { Position, PositionEnum, PositionType } from '../../constants'
-import { Omit, Overwrite } from 'utility-types'
 import { XIcon } from '../../icons/index'
+import { css, keyframes } from '@emotion/core'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -12,7 +11,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const sharedStyles: ObjectInterpolation<undefined> = {
+const sharedStyles = {
   padding: 4,
   borderRadius: 9999,
   position: 'absolute',
@@ -113,7 +112,7 @@ const getSheetCloseClassName = (position: PositionEnum | PositionType) => {
   if (!sheetCloseClassNameCache[position]) {
     sheetCloseClassNameCache[position] = css(
       sheetCloseStyles[position],
-      sharedStyles
+      sharedStyles as any
     ).toString()
   }
   return sheetCloseClassNameCache[position]

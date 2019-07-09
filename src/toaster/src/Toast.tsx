@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { css, keyframes } from 'emotion'
+import { css, keyframes } from '@emotion/core'
 import Transition from 'react-transition-group/Transition'
 import Alert from '../../alert/src/Alert'
 import { IntentType } from '../../constants/index'
+import Box from '@parishconnect/box'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
@@ -40,9 +41,7 @@ const animationStyles = css({
   height: 0,
   transition: `all ${ANIMATION_DURATION}ms ${animationEasing.deceleration}`,
   '&[data-state="entering"], &[data-state="entered"]': {
-    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${
-      animationEasing.spring
-    } both`
+    animation: `${openAnimation} ${ANIMATION_DURATION}ms ${animationEasing.spring} both`
   },
   '&[data-state="exiting"]': {
     animation: `${closeAnimation} 120ms ${animationEasing.acceleration} both`
@@ -176,9 +175,9 @@ export default class Toast extends React.PureComponent<ToastProps, ToastState> {
         onExited={this.props.onRemove}
       >
         {state => (
-          <div
+          <Box
             data-state={state}
-            className={animationStyles as any}
+            css={animationStyles}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             style={{
@@ -201,7 +200,7 @@ export default class Toast extends React.PureComponent<ToastProps, ToastState> {
                 {this.props.children}
               </Alert>
             </div>
-          </div>
+          </Box>
         )}
       </Transition>
     )

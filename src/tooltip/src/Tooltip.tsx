@@ -3,7 +3,6 @@ import { debounce } from 'lodash'
 import { Positioner } from '../../positioner'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import TooltipStateless, { TooltipStatelessProps } from './TooltipStateless'
-import { PopoverProps } from '../../popover/src/Popover'
 
 let idCounter = 0
 
@@ -185,7 +184,7 @@ export default class Tooltip extends React.PureComponent<
         target={({ getRef }: any) => {
           return this.renderTarget({ getRef })
         }}
-        isShown={shown as boolean}
+        isShown={shown}
         position={position}
         animationDuration={160}
       >

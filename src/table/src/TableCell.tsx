@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { cx } from 'emotion'
 import { toaster } from '../../toaster'
 import { Omit } from 'utility-types'
 import { ThemeContext } from '../../theme'
@@ -7,6 +6,7 @@ import { Pane, PaneProps } from '../../layers'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 import { noop } from 'lodash'
+import { ClassNames } from '@emotion/core'
 
 export interface TableCellProps extends Omit<PaneProps, 'appearance'> {
   /*
@@ -110,20 +110,24 @@ class TableCell extends React.PureComponent<TableCellProps> {
       <TableRowConsumer>
         {(height: any) => {
           return (
-            <Pane
-              innerRef={this.onRef}
-              height={height}
-              className={cx(themedClassName, className)}
-              tabIndex={isSelectable ? tabIndex : undefined}
-              data-isselectable={isSelectable}
-              onClick={this.handleClick}
-              onKeyDown={this.handleKeyDown}
-              {...TableCell.styles}
-              {...(props as any)}
-            >
-              {children}
-              {rightView ? rightView : null}
-            </Pane>
+            <ClassNames>
+              {({ cx }) => (
+                <Pane
+                  innerRef={this.onRef}
+                  height={height}
+                  className={cx(themedClassName, className)}
+                  tabIndex={isSelectable ? tabIndex : undefined}
+                  data-isselectable={isSelectable}
+                  onClick={this.handleClick}
+                  onKeyDown={this.handleKeyDown}
+                  {...TableCell.styles}
+                  {...(props as any)}
+                >
+                  {children}
+                  {rightView ? rightView : null}
+                </Pane>
+              )}
+            </ClassNames>
           )
         }}
       </TableRowConsumer>

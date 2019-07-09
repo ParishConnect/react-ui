@@ -16,9 +16,7 @@ InputAppearances.default = (themeColor: string): object =>
       transition: 'box-shadow 100ms, background-color 100ms'
     },
     invalid: {
-      boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
-        scales.neutral.N4A
-      }`
+      boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
     },
     placeholder: {
       color: scales.neutral.N7A
@@ -26,9 +24,7 @@ InputAppearances.default = (themeColor: string): object =>
     focus: {
       outline: 'none',
       backgroundColor: palette[themeColor].lightest,
-      boxShadow: `0 1px 3px ${scales.neutral.N1A}, 0 0 0 1px ${
-        scales.neutral.N2A
-      }, 0 1.5px 4px ${scales.neutral.N3A}`
+      boxShadow: `0 1px 3px ${scales.neutral.N1A}, 0 0 0 1px ${scales.neutral.N2A}, 0 1.5px 4px ${scales.neutral.N3A}`
     },
     disabled: {
       boxShadow: `inset 0 0 0 2px ${scales.neutral.N4A}`,
@@ -50,9 +46,7 @@ InputAppearances.neutral = Themer.createInputAppearance({
   focus: {
     outline: 'none',
 
-    boxShadow: `0 1px 3px ${scales.neutral.N1A}, 0 0 0 1px ${
-      scales.neutral.N2A
-    }, 0 1.5px 4px ${scales.neutral.N3A}`
+    boxShadow: `0 1px 3px ${scales.neutral.N1A}, 0 0 0 1px ${scales.neutral.N2A}, 0 1.5px 4px ${scales.neutral.N3A}`
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,

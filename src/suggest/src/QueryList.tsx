@@ -339,8 +339,6 @@ export class QueryList<T> extends React.Component<
     }
     const isActive = isCreateNewItem(activeItem)
 
-    console.log({ activeItem, isActive })
-
     return Utils.safeInvoke(
       this.props.createNewItemRenderer,
       query,

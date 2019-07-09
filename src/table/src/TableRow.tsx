@@ -1,13 +1,13 @@
+import { ClassNames } from '@emotion/core'
 import * as React from 'react'
-import { cx } from 'emotion'
-import { Pane, PaneProps } from '../../layers'
-import { withTheme, ThemeContext } from '../../theme'
-import safeInvoke from '../../lib/safe-invoke'
-import warning from '../../lib/warning'
-import { TableRowProvider } from './TableRowContext'
-import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
 import { Omit } from 'utility-types'
 import { IntentType } from '../../constants/index'
+import { Pane, PaneProps } from '../../layers'
+import safeInvoke from '../../lib/safe-invoke'
+import warning from '../../lib/warning'
+import { ThemeContext } from '../../theme'
+import manageTableRowFocusInteraction from './manageTableRowFocusInteraction'
+import { TableRowProvider } from './TableRowContext'
 
 export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
   /**
@@ -141,22 +141,26 @@ class TableRow extends React.PureComponent<TableRowProps> {
 
     return (
       <TableRowProvider height={height}>
-        <Pane
-          innerRef={this.onRef}
-          className={cx(themedClassName, className)}
-          display="flex"
-          aria-selected={isHighlighted}
-          aria-current={isSelected}
-          data-isselectable={isSelectable}
-          tabIndex={isSelectable ? tabIndex : undefined}
-          onClick={this.handleClick}
-          onKeyDown={this.handleKeyDown}
-          height={height}
-          borderBottom="muted"
-          {...(props as any)}
-        >
-          {children}
-        </Pane>
+        <ClassNames>
+          {({ cx }) => (
+            <Pane
+              innerRef={this.onRef}
+              className={cx(themedClassName, className)}
+              display="flex"
+              aria-selected={isHighlighted}
+              aria-current={isSelected}
+              data-isselectable={isSelectable}
+              tabIndex={isSelectable ? tabIndex : undefined}
+              onClick={this.handleClick}
+              onKeyDown={this.handleKeyDown}
+              height={height}
+              borderBottom="muted"
+              {...(props as any)}
+            >
+              {children}
+            </Pane>
+          )}
+        </ClassNames>
       </TableRowProvider>
     )
   }

@@ -1,19 +1,20 @@
-import { css, ObjectInterpolation } from 'emotion'
 import scales from '../foundational-styles/scales'
+import { css } from '@emotion/core'
 import colors from '../foundational-styles/colors'
 import { IntentType } from '../../../../constants'
 
-const getTrimStyle = (intent: string): ObjectInterpolation<undefined> => ({
-  '&::before': {
-    content: "''",
-    width: 3,
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    backgroundColor: colors.intent[intent]
-  }
-})
+const getTrimStyle = (intent: string) =>
+  css({
+    '&::before': {
+      content: "''",
+      width: 3,
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      backgroundColor: colors.intent[intent]
+    }
+  })
 
 /**
  * Get the themed props for the Alert component.
@@ -24,16 +25,16 @@ export interface AlertProps {
   hasTrim: boolean
 }
 const getAlertProps = ({ appearance, intent, hasTrim }: AlertProps): object => {
-  const trimClassName = hasTrim ? css(getTrimStyle(intent)).toString() : ''
+  const trimCSS = hasTrim ? getTrimStyle(intent) : ''
 
   switch (appearance) {
     case 'card':
-      return { elevation: 1, borderRadius: 3, className: trimClassName }
+      return { elevation: 1, borderRadius: 3, css: trimCSS }
     case 'default':
     default:
       return {
         boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
-        className: trimClassName
+        css: trimCSS
       }
   }
 }

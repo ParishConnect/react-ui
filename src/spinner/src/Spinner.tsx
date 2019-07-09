@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
-import { keyframes } from 'emotion'
+import { keyframes } from '@emotion/core'
 import { ThemeContext } from '../../theme'
 
 const loadingKeyframes = keyframes({

@@ -12,8 +12,6 @@ export const HeadingHandler: React.FC<{
     return null
   }
 
-  console.log(props.node.attrs)
-
   const level = props.node.attrs ? props.node.attrs['level'] : 1
 
   return React.createElement(

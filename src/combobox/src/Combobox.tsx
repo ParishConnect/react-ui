@@ -60,7 +60,7 @@ export interface ComboboxProps extends BoxProps {
   /**
    * Properties forwarded to the autocomplete component. Use with caution.
    */
-  autocompleteProps?: object
+  autocompleteProps?: any
 
   onItemCreated?: any
 }
@@ -82,6 +82,8 @@ export default class Combobox extends React.PureComponent<
   state: ComboboxState = {
     isOpenedByButton: false
   }
+
+  ref: any
 
   handleStateChange = (changes: any) => {
     if (
@@ -122,7 +124,7 @@ export default class Combobox extends React.PureComponent<
         onItemCreated={onItemCreated}
         onStateChange={this.handleStateChange}
         isFilterDisabled={this.state.isOpenedByButton}
-        {...(autocompleteProps as any)}
+        {...autocompleteProps}
       >
         {({
           getRef,
@@ -137,7 +139,7 @@ export default class Combobox extends React.PureComponent<
             innerRef={ref => getRef(ref)}
             display="inline-flex"
             width={width}
-            {...(props as any)}
+            {...props}
           >
             <TextInput
               width={0}

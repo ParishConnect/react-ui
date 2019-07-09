@@ -57,8 +57,6 @@ class FeaturedImageUpload extends React.Component<any> {
         if (this.cropCenterY <= 0.15) this.cropCenterY = 0.15
         if (this.cropCenterY >= 0.85) this.cropCenterY = 0.85
 
-        console.log(this.cropCenterY)
-
         this.setImageCropCenter({ x: 0.5, y: this.cropCenterY })
       }
     }
@@ -81,7 +79,7 @@ class FeaturedImageUpload extends React.Component<any> {
         onMouseMove={this.handleReposition}
         onMouseOver={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
-        className={generateStyles(this.context)}
+        css={generateStyles(this.context)}
         {...matched}
       >
         <FilePond
@@ -92,6 +90,7 @@ class FeaturedImageUpload extends React.Component<any> {
             this.cropCenterY = 0.5
             this.setImageCropCenter = file.setImageCropCenter
           }}
+          onremovefile={() => this.setState({ imageLoaded: false })}
           acceptedFileTypes={acceptedFileTypes}
           fileValidateTypeLabelExpectedTypesMap={
             fileValidateTypeLabelExpectedTypesMap
@@ -119,7 +118,7 @@ class FeaturedImageUpload extends React.Component<any> {
                 marginLeft={8}
                 fontSize="12px !important"
                 appearance="primary"
-                onClick={() => this.filePondRef && this.filePondRef.browse()}
+                onClick={() => this.filePondRef.browse()}
               >
                 Browse
               </Button>
@@ -134,7 +133,7 @@ class FeaturedImageUpload extends React.Component<any> {
           left="50%"
           transform="translateX(-50%) translateY(-50%)"
           background="rgba(0,0,0,0.5)"
-          padding={majorScale(1)}
+          padding={majorScale(2)}
           transition="300ms"
           color="white"
         >

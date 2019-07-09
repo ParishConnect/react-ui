@@ -1,8 +1,8 @@
+import { ClassNames } from '@emotion/core'
 import * as React from 'react'
-import { cx } from 'emotion'
-import Text, { TextProps } from './Text'
-import { ThemeContext } from '../../theme'
 import { Omit } from 'utility-types'
+import { ThemeContext } from '../../theme'
+import Text, { TextProps } from './Text'
 
 export interface CodeProps extends Omit<TextProps, 'appearance'> {
   /**
@@ -31,13 +31,17 @@ class Code extends React.PureComponent<CodeProps> {
     } = theme.getCodeProps(appearance)
 
     return (
-      <Text
-        is="code"
-        className={cx(className, themedClassName)}
-        fontFamily="mono"
-        {...themeProps}
-        {...(props as any)}
-      />
+      <ClassNames>
+        {({ cx }) => (
+          <Text
+            is="code"
+            className={cx(className, themedClassName)}
+            fontFamily="mono"
+            {...themeProps}
+            {...props}
+          />
+        )}
+      </ClassNames>
     )
   }
 }

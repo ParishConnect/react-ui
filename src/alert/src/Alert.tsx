@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Omit, Overwrite } from 'utility-types'
-import { Pane, PaneProps } from '../../layers'
-import { Heading, Paragraph } from '../../typography'
 import { IconButton } from '../../buttons'
-import { getTextColorForIntent } from '../../theme/src/default-theme/helpers'
 import { IntentType } from '../../constants'
-import { ThemeContext } from '../../theme'
 import { XIcon } from '../../icons/index'
+import { Pane } from '../../layers'
+import { ThemeContext } from '../../theme'
+import { getTextColorForIntent } from '../../theme/src/default-theme/helpers'
+import { Heading, Paragraph } from '../../typography'
 
 export interface AlertProps {
   /**
@@ -70,6 +69,7 @@ class Alert extends React.PureComponent<any> {
       appearance,
       isRemoveable,
       onRemove,
+      css,
       ...props
     } = this.props
     const theme = this.context
@@ -77,7 +77,7 @@ class Alert extends React.PureComponent<any> {
     /**
      * Note that Alert return a className and additional properties.
      */
-    const { className, ...themeProps } = theme.getAlertProps({
+    const themeProps = theme.getAlertProps({
       appearance,
       intent,
       hasTrim
@@ -93,7 +93,6 @@ class Alert extends React.PureComponent<any> {
 
     return (
       <Pane
-        className={className}
         role="alert"
         backgroundColor="white"
         overflow="hidden"
@@ -102,7 +101,7 @@ class Alert extends React.PureComponent<any> {
         paddingY={12}
         paddingX={16}
         {...themeProps}
-        {...(props as any)}
+        {...props}
       >
         {hasIcon && (
           <Pane

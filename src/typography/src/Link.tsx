@@ -1,7 +1,7 @@
+import { ClassNames } from '@emotion/core'
 import * as React from 'react'
-import { cx } from 'emotion'
-import Text, { TextProps } from './Text'
 import { ThemeContext } from '../../theme/index'
+import Text, { TextProps } from './Text'
 
 export declare interface LinkProps {
   /**
@@ -45,13 +45,17 @@ class Link extends React.PureComponent<TextProps & LinkProps> {
     const themedClassName = theme.getLinkClassName(color || theme.themeColor)
 
     return (
-      <Text
-        is="a"
-        className={cx(className, themedClassName)}
-        textDecoration={noUnderline ? 'none' : 'underline'}
-        color={undefined}
-        {...(props as any)}
-      />
+      <ClassNames>
+        {({ cx }) => (
+          <Text
+            is="a"
+            className={cx(className, themedClassName)}
+            textDecoration={noUnderline ? 'none' : 'underline'}
+            color={undefined}
+            {...props}
+          />
+        )}
+      </ClassNames>
     )
   }
 }

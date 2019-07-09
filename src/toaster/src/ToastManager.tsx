@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import { StackingOrder } from '../../constants'
 import Toast, { ToastProps } from './Toast'
 import { ThemeContext } from '../../theme/index'
+import Box from '@parishconnect/box'
 
 const wrapperClass = ({ position = 'center' }) =>
   css({
@@ -149,19 +150,22 @@ export default class ToastManager extends React.PureComponent<
 
   render() {
     return (
-      <span
-        className={
-          wrapperClass({ position: this.context.toasterPosition }) as any
-        }
+      <Box
+        is="span"
+        css={wrapperClass({ position: this.context.toasterPosition }) as any}
       >
         {this.state.toasts.map(({ id, description, ...props }) => {
           return (
-            <Toast key={id} onRemove={() => this.removeToast(id)} {...props as any}>
+            <Toast
+              key={id}
+              onRemove={() => this.removeToast(id)}
+              {...(props as any)}
+            >
               {description}
             </Toast>
           )
         })}
-      </span>
+      </Box>
     )
   }
 }

@@ -42,7 +42,7 @@
   "dependencies": {
     "@braintree/sanitize-url": "^3.1.0",
     "@emotion/core": "^10.0.10",
-    "@parishconnect/box": "^2.2.5",
+    "@parishconnect/box": "^2.2.8",
     "@remirror/core": "^0.2.0",
     "@remirror/core-extensions": "^0.2.0",
     "@remirror/extension-enhanced-link": "^0.2.0",
