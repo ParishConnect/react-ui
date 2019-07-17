@@ -1,2 +1,2 @@
-export * from './src/Editor'
+// export * from './src/Editor'
 export { default as Renderer } from './src/Renderer'

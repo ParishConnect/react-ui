@@ -1380,15 +1380,15 @@
   resolved "https://registry.yarnpkg.com/@reactions/component/-/component-2.0.2.tgz#40f8c1c2c37baabe57a0c944edb9310dc1ec6642"
   integrity sha1-QPjBwsN7qr5XoMlE7bkxDcHsZkI=
 
-"@remirror/core-extensions@0.2.0", "@remirror/core-extensions@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/core-extensions/-/core-extensions-0.2.0.tgz#554dca7d0f0e4ef8fd9e42b3d17ba33d10cb86ec"
-  integrity sha512-wwsPmqfWiK9gLEHNyqWE1Tmx3OKf7NzMJfFoJsRNwywhh09J4LlhCxl2y59MnQpLstjhpPT8BLl7egetzX2LOw==
+"@remirror/core-extensions@0.3.0", "@remirror/core-extensions@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/core-extensions/-/core-extensions-0.3.0.tgz#b658fa1832b44c956f21a527166a626e3306fd7c"
+  integrity sha512-fRE4d26L1dcmptSPtPrqE/nvH5XRbm8E+Mq0P0GEzTfU3Yunws2Ga7/e2huka3RPxJfsZUhUG+HfYOQUVOKfxA==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@emotion/core" "^10"
-    "@remirror/core" "0.2.0"
-    "@remirror/react-utils" "0.2.0"
+    "@remirror/core" "0.3.0"
+    "@remirror/react-utils" "0.3.0"
     "@types/prosemirror-commands" "^1.0.1"
     "@types/prosemirror-history" "^1.0.1"
     "@types/prosemirror-inputrules" "^1.0.2"
@@ -1404,10 +1404,10 @@
     prosemirror-state "^1.2.3"
     prosemirror-view "^1.9.10"
 
-"@remirror/core@0.2.0", "@remirror/core@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/core/-/core-0.2.0.tgz#c59aff7777991da9add89ae0fe18a86c2a129bde"
-  integrity sha512-wXyTCTQCExChupBKSAzENO+Az2C5Yekcsq/UgFfrWwUoXPleYs9wET7ohW7AWzVRRafVm7lYxKFPgbGhFaGjJw==
+"@remirror/core@0.3.0", "@remirror/core@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/core/-/core-0.3.0.tgz#63c3a45ba913f0ef1c6e5c6688c87f29c397e3ce"
+  integrity sha512-P8MLiDc4og+YXI7+m0k4O1MYpiLjM45efC8Fgp2Lm8/8n0mDTap/7eal167p8+GT+/1G7ty9OjJTmROXB7sCMA==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@emotion/core" "^10.0.7"
@@ -1425,7 +1425,7 @@
     "@types/prosemirror-schema-list" "^1.0.1"
     "@types/prosemirror-state" "^1.2.3"
     "@types/prosemirror-transform" "^1.1.0"
-    deepmerge "^3.2.1"
+    deepmerge "^3.3.0"
     emotion "^10.0.7"
     fast-deep-equal "^2.0.1"
     memoize-one "5.0.4"
@@ -1443,53 +1443,53 @@
     prosemirror-transform "^1.1.3"
     prosemirror-view "^1.9.10"
 
-"@remirror/extension-enhanced-link@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/extension-enhanced-link/-/extension-enhanced-link-0.2.0.tgz#b07a0803d9d58ca8fe14b751ca0bfd7d315a3c2d"
-  integrity sha512-x+3CTWfwcIvwoIXLta94QTquXPhGIjNe9uPWmRHXH0yM2fuFoaXfuSVWF73ellA3m40E9SA0Bdvk8+itHZnCOQ==
+"@remirror/extension-enhanced-link@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/extension-enhanced-link/-/extension-enhanced-link-0.3.0.tgz#e06a03300c52f771e3b7bbac54d96f0f914ca2f6"
+  integrity sha512-ppTq77UI6nbYih5jWGDUh2FYyHTv2bofw3kz/eL9hGacbA+ik+90NEOZ1Ln5reKSH9IDvy8L5MBXm/m7DUE2CQ==
   dependencies:
     "@babel/runtime" "^7.4.5"
-    "@remirror/core" "0.2.0"
+    "@remirror/core" "0.3.0"
     "@types/prosemirror-state" "^1.2.3"
     "@types/prosemirror-transform" "^1.1.0"
     prosemirror-state "^1.2.3"
     prosemirror-transform "^1.1.3"
 
-"@remirror/react-ssr@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/react-ssr/-/react-ssr-0.2.0.tgz#92f3557b2d7097c417e3ad4fa9f96966e8e30855"
-  integrity sha512-Wq7V2K4wRkWWgd1eJsfRRdf8lO0HGIYl9O37TgZxIb5x8uuWxlJiGkBwwh7DeCFCH/wZxRVmNespoUKIedKDQw==
+"@remirror/react-ssr@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/react-ssr/-/react-ssr-0.3.0.tgz#2d14807d8bd67fb69c7e0d800163c2fd9dcd7e45"
+  integrity sha512-1vRacFnkl7kgtHfgchq+2ower/hEPJqliUM+o2vvjl4YIKvCjTU9yMKU0DNfYSf35Zs6/A0glJIaLQIl4jp/hg==
   dependencies:
     "@babel/runtime" "^7.4.5"
-    "@remirror/core" "0.2.0"
-    "@remirror/renderer-react" "0.2.0"
+    "@remirror/core" "0.3.0"
+    "@remirror/renderer-react" "0.3.0"
     "@types/min-document" "^2.19.0"
     "@types/prosemirror-view" "1.3.2"
     min-document "^2.19.0"
     prosemirror-state "^1.2.3"
     prosemirror-view "^1.9.10"
 
-"@remirror/react-utils@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/react-utils/-/react-utils-0.2.0.tgz#a7746e3feb5ac49b9f680373415993a76f97631b"
-  integrity sha512-s4T9G6JZtCCrXxLg/B9XvrkPzs1FrcBh2ZuGBkkgmT3oamWNID8u9Mslrd4jiIaINa0rC5kVAwCMEZ70eqTRUw==
+"@remirror/react-utils@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/react-utils/-/react-utils-0.3.0.tgz#ee3260d26b83c10ce593d059a66aa04695a12dfc"
+  integrity sha512-cBWVZUoYqHLtYjs2XMjSNz+RCAUDSG/pAdZuIj3ZPqSSgN6d4aARwfAXCdG5wbnM/IAmF8AMxcKoCCNuHpt0Jg==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@emotion/core" "^10.0.7"
-    "@remirror/core" "0.2.0"
+    "@remirror/core" "0.3.0"
 
-"@remirror/react@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/react/-/react-0.2.0.tgz#230faefdcd853f8e642b8f48e814db27ddeea17b"
-  integrity sha512-M1xu5DZ7a7jg6QZKdClThMM2NZarxcgQFbM+34E2bLlf/N9z/xtA9EFIuLN+FC8hg+3QxAbYimIVQj34bCgH6Q==
+"@remirror/react@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/react/-/react-0.3.0.tgz#246fd78c7726f9c44e128fa23e1f02c149d057ec"
+  integrity sha512-0HCvNHS8Jr+M7AH4Lo6AU3ZtP1JDcsVZmcKz83UEXTZcJAL5+QBZ+0VQhNauBz1gpbK4iDWDPSTkAznzzN68sQ==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@emotion/core" "^10"
-    "@remirror/core" "0.2.0"
-    "@remirror/core-extensions" "0.2.0"
-    "@remirror/react-ssr" "0.2.0"
-    "@remirror/react-utils" "0.2.0"
-    "@remirror/renderer-react" "0.2.0"
+    "@remirror/core" "0.3.0"
+    "@remirror/core-extensions" "0.3.0"
+    "@remirror/react-ssr" "0.3.0"
+    "@remirror/react-utils" "0.3.0"
+    "@remirror/renderer-react" "0.3.0"
     "@types/hoist-non-react-statics" "^3.3.0"
     "@types/prosemirror-commands" "^1.0.1"
     "@types/prosemirror-model" "^1.7.1"
@@ -1502,14 +1502,14 @@
     prosemirror-state "^1.2.3"
     prosemirror-view "^1.9.10"
 
-"@remirror/renderer-react@0.2.0", "@remirror/renderer-react@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@remirror/renderer-react/-/renderer-react-0.2.0.tgz#f1580ee96505c144a1bd9f1dec250f941022310c"
-  integrity sha512-3yoFGND1fDpgObesOu1IEe3ZABrDMz/kyh9SCMBRT1PnJU9nloCeTmEq/L+lGCjdVZmQOBtW9o3wzLk38+rwYg==
+"@remirror/renderer-react@0.3.0", "@remirror/renderer-react@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@remirror/renderer-react/-/renderer-react-0.3.0.tgz#5bd3e49aee9179cedd70582a64ae9ce9d1292455"
+  integrity sha512-38f8P4j4WfOiNA0kE6QEYPFhVwPxorO39cXmXIQ6Lw3y4DPb7HD6qZocawmDT+woZUa2odzooN/E1drZGMIwag==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@emotion/core" "^10"
-    "@remirror/core" "0.2.0"
+    "@remirror/core" "0.3.0"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -2190,10 +2190,10 @@
     "@types/prosemirror-transform" "*"
     "@types/prosemirror-view" "*"
 
-"@types/prosemirror-tables@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@types/prosemirror-tables/-/prosemirror-tables-0.7.0.tgz#610a73df9bbaecdd0ce4ea55d3791859817ed89c"
-  integrity sha512-v9fu35tJzJJOH+2VucSM+AUsJ3rBNaxuxLi+hl49cd+KRsuv9xNMvCIXebyOZOVA7lxv8lrJmwHe/PtVm0rqwQ==
+"@types/prosemirror-tables@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.npmjs.org/@types/prosemirror-tables/-/prosemirror-tables-0.8.0.tgz#b31de2f928024608cf20880b9e133f01daa5035a"
+  integrity sha512-CZ1t19P8zYK1uc3fI6OYc0vUccZbvZlCtT3i1Jt0pga/UQbk1xMiXrdxX1ANDV/7ytzLxI+zT50tPASZtl8FXA==
   dependencies:
     "@types/prosemirror-model" "*"
     "@types/prosemirror-state" "*"
@@ -2206,10 +2206,19 @@
   dependencies:
     "@types/prosemirror-model" "*"
 
-"@types/prosemirror-view@*", "@types/prosemirror-view@1.3.2", "@types/prosemirror-view@^1.3.0", "@types/prosemirror-view@^1.3.2":
+"@types/prosemirror-view@*", "@types/prosemirror-view@1.3.2", "@types/prosemirror-view@^1.3.2":
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@types/prosemirror-view/-/prosemirror-view-1.3.2.tgz#68d2296ac48c21d59f1a09f91991b69a36d50a81"
   integrity sha512-H2T4n/G1UPcEjSWarMcjvGmEiAPXawFOAqxugTPYmApALreTEU5psh7OV+h0RSZ/dZxeOyxSBQ+PJRhUBRQgwQ==
+  dependencies:
+    "@types/prosemirror-model" "*"
+    "@types/prosemirror-state" "*"
+    "@types/prosemirror-transform" "*"
+
+"@types/prosemirror-view@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.npmjs.org/@types/prosemirror-view/-/prosemirror-view-1.9.0.tgz#3c7d40c4efb1d2685f97820d23f4e1bdf62c5213"
+  integrity sha512-57Z7VoQxGdlazRPnRmNqpl9jD8HoNhWu9hpAIyPAvF/4u2Mte0S/LJQQgb9zNmmzug5cbnEk1dBY6gjwDGDeeQ==
   dependencies:
     "@types/prosemirror-model" "*"
     "@types/prosemirror-state" "*"
@@ -5079,9 +5088,9 @@ deep-strict-equal@^0.2.0:
   dependencies:
     core-assert "^0.2.0"
 
-deepmerge@^3.2.1:
+deepmerge@^3.3.0:
   version "3.3.0"
-  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
+  resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
   integrity sha512-GRQOafGHwMHpjPx9iCvTgpu9NojZ49q794EEL94JVEw6VaeA8XTUyBKvAkOOjBX9oJNiV6G3P+T+tihFjo2TqA==
 
 default-require-extensions@^2.0.0:
@@ -6354,10 +6363,10 @@ file-system-cache@^1.0.5:
     fs-extra "^0.30.0"
     ramda "^0.21.0"
 
-filepond-plugin-file-validate-size@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/filepond-plugin-file-validate-size/-/filepond-plugin-file-validate-size-2.1.3.tgz#fc5b64b979efc6f68e3a9869a66e399eea995906"
-  integrity sha512-5l2SVDuUQlOzO0aEKQAduVA3zJVIZAhKULmyTqSoUCJikQGJhUUqcHE32EjFhK8nkBXfUc8XSEb6Sr+fES65LA==
+filepond-plugin-file-validate-size@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/filepond-plugin-file-validate-size/-/filepond-plugin-file-validate-size-2.2.0.tgz#89e393e4c757c38467b8b2f7049760682d036716"
+  integrity sha512-Czlj4JLrxWRXBm50QO4rzvEVZVGfB4Gst0denBAGTKTZtuj566KB7vwDQy/daZoYtXOQdoVvfJgrJGifZ5n9KA==
 
 filepond-plugin-file-validate-type@^1.2.4:
   version "1.2.4"
@@ -6389,10 +6398,10 @@ filepond-plugin-image-transform@^3.2.4:
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-transform/-/filepond-plugin-image-transform-3.3.2.tgz#6eeb39c1c58e5d6e694adceec33ed633d99185a9"
   integrity sha512-S17wqS566OyX/ejvfyPOzt7jbk+3zNzXT2mK79dLxFznasAUyB8FXSV4VqDpwjeCIrGlf6ZEEALKlsblyfCkRQ==
 
-filepond@^4.4.6:
-  version "4.4.10"
-  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.4.10.tgz#cadcf5ec42cfc0883321427f3dd28b774d0fd10a"
-  integrity sha512-4C0znTPUnh1QycuRfu3bj5C5mbK/ktuD4ONgXE80jNoHAN6tcaqe2mvyIx8x0eFMNbuIOHpxG90YAQBSfDQ+5Q==
+filepond@^4.4.11:
+  version "4.4.11"
+  resolved "https://registry.npmjs.org/filepond/-/filepond-4.4.11.tgz#8b3e370164c39a5e299bde591d26060240ba2871"
+  integrity sha512-eQPJiqKYQQNccjZ9jTZfqHeKvWXJ7Wq2fuicSQDCiG/bfEWmksaTeaQ51Vce5cNVTjXKfXuWhS4mNE6gzLwGhQ==
 
 filesize@3.6.1, filesize@^3.6.1:
   version "3.6.1"
@@ -8718,6 +8727,11 @@ lodash@^4.17.11:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.12.tgz#a712c74fdc31f7ecb20fe44f157d802d208097ef"
   integrity sha512-+CiwtLnsJhX03p20mwXuvhoebatoh5B3tt+VvYlrPgZC1g36y+RRbkufX95Xa+X4I59aWEacDFYwnJZiyBh9gA==
 
+lodash@^4.17.14:
+  version "4.17.14"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
+
 log-symbols@2.2.0, log-symbols@^2.0.0, log-symbols@^2.1.0, log-symbols@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -8812,10 +8826,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-luxon@^1.11.4:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.16.1.tgz#62568d483989fa108f5c87178a05bcc707f7698b"
-  integrity sha512-3aYYMFpIRdEQJl00ki+NDr2zx/Ulf7ZgohBUb6ifZQuVkP8/KCYJluISl0YNbvZXBdzCbVhpQnS4M6Svjpn7EA==
+luxon@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.npmjs.org/luxon/-/luxon-1.17.1.tgz#7261aae6f7a2cc3cf83cbe24c62335cf3a48caad"
+  integrity sha512-+xo7Pj54xwyEzlMdXzDqm60Ewqbn0QqACwfIo6so9M1idUtYQrD7/PHjEFQQmLCBu8wUe2IDC2jrcJJ3Buk4Pw==
 
 luxon@^1.3.3:
   version "1.16.0"
