@@ -16,7 +16,7 @@ export {
   RecurrencePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
-// export * from './editor'
+export * from './editor'
 export { FilePicker } from './file-picker'
 export {
   FormField,
@@ -326,9 +326,7 @@ export {
   SelectMenu,
   SelectMenuContent
 } from './select-menu'
-// export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
-// export { extractStyles } from './ssr'
 export { Stack, StackingContext } from './stack'
 export { Suggest } from './suggest'
 export { Switch } from './switch'

@@ -7,7 +7,7 @@ import {
   Card,
   Editor,
   Heading,
-  ImagePicker,
+  FeaturedImageUpload,
   Pane,
   Renderer,
   Textarea,
@@ -86,7 +86,7 @@ storiesOf('editor', module)
         }
       }}
     >
-      <ImagePicker borderRadius={8} marginBottom={majorScale(4)} />
+      <FeaturedImageUpload borderRadius={8} marginBottom={majorScale(4)} />
       <Editor
         allowImages={false}
         autoFocus={false}
@@ -97,7 +97,7 @@ storiesOf('editor', module)
         toolbarComponents={({ state }) => (
           <Button
             appearance="primary"
-            onClick={() => console.log(JSON.stringify(state.doc.textContent))}
+            onClick={() => console.log(JSON.stringify(state.doc))}
           >
             Save
           </Button>
@@ -174,7 +174,7 @@ storiesOf('editor', module)
     </Pane>
   ))
   .add('Inline Editor', () => (
-    <Component initialState={{ editing: false }}>
+    <Component initialState={{ editing: false, content: inlineContent }}>
       {({ state, setState }) => (
         <Pane maxWidth={500} margin={majorScale(8)} position="relative">
           {state.editing ? (
@@ -183,7 +183,7 @@ storiesOf('editor', module)
                 paddingY={8}
                 paddingX={16}
                 border
-                initialContent={inlineContent}
+                initialContent={state.content}
                 appearance="minimal"
                 allowImages={false}
                 placeholder="This is the default appearance..."
@@ -208,7 +208,7 @@ storiesOf('editor', module)
             </Box>
           ) : (
             <Box>
-              <Renderer paddingY={8} paddingX={16} json={inlineContent} />
+              <Renderer paddingY={8} paddingX={16} json={state.content} />
               <Box float="right">
                 <Button
                   iconBefore={Edit2Icon}

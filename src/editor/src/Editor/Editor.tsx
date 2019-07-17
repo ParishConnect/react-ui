@@ -118,7 +118,7 @@ class Editor extends React.Component<any> {
       toolbar,
       ...props
     } = this.props
-    const InnerEditor = this.renderEditor(appearance as any)
+    const InnerEditor = this.renderEditor(appearance)
     if (typeof document !== 'undefined') {
       return collapsed ? (
         <CollapsedComponent
