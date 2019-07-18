@@ -1,7 +1,6 @@
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
+import { Themer } from '../../../../themer/index'
 import palette from '../foundational-styles/palette'
+import scales from '../foundational-styles/scales'
 
 const Appearances = {
   default: {},
@@ -13,23 +12,17 @@ const Appearances = {
 Appearances.default = Themer.createInputAppearance({
   base: {
     backgroundColor: 'white',
-    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${
-      scales.neutral.N4A
-    }`
+    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`
   },
   invalid: {
-    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
-      scales.neutral.N4A
-    }`
+    boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
   },
   placeholder: {
     color: scales.neutral.N6A
   },
   focus: {
     outline: 'none',
-    boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${
-      scales.blue.B7
-    }, 0 0 0 3px ${scales.blue.B4A}`
+    boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`
   },
   disabled: {
     boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
@@ -42,9 +35,7 @@ Appearances.editorTitle = Themer.createInputAppearance({
     backgroundColor: 'transparent'
   },
   invalid: {
-    boxShadow: `inset 0 0 0 1px ${palette.red.light}, inset 0 1px 2px ${
-      palette.red.lightest
-    }`,
+    boxShadow: `inset 0 0 0 1px ${palette.red.light}, inset 0 1px 2px ${palette.red.lightest}`,
     backgroundColor: palette.red.lightest
   },
   placeholder: {
@@ -118,7 +109,4 @@ const getTextareaAppearance = (
   }
 }
 
-/**
- * Get the className of a `TextInput`.
- */
-export default memoizeClassName(getTextareaAppearance)
+export default getTextareaAppearance

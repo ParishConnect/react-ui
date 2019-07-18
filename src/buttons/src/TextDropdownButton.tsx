@@ -19,6 +19,7 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
       children,
       disabled,
       isLoading,
+      css,
 
       // Icons
       icon: Icon,
@@ -27,12 +28,11 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getTextDropdownButtonClassName()
+    const themedCSS = theme.getTextDropdownButtonCSS()
 
     return (
       <Text
         is="button"
-        className={themedClassName}
         paddingX={4}
         marginX={-4}
         paddingY={2}
@@ -45,7 +45,8 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
         display="inline-flex"
         alignItems="center"
         flexWrap="nowrap"
-        {...props as any}
+        css={{ ...themedCSS, ...css }}
+        {...props}
         disabled={disabled}
       >
         {isLoading && (

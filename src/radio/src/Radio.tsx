@@ -104,7 +104,7 @@ class Radio extends React.PureComponent<RadioProps> {
       ...props
     } = this.props
     const theme = this.context
-    const themedClassName = theme.getRadioClassName(theme.themeColor)
+    const themedCSS = theme.getRadioCSS(theme.themeColor)
 
     return (
       <Box
@@ -117,7 +117,7 @@ class Radio extends React.PureComponent<RadioProps> {
       >
         <Box
           is="input"
-          className={themedClassName}
+          css={themedCSS}
           id={id}
           type="radio"
           name={name}

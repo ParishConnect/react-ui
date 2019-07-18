@@ -34,11 +34,6 @@ export interface IconButtonProps extends ButtonProps {
    * Overrides the fill color for the icon
    */
   fillColor?: string
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  classname?: boolean
 }
 
 class IconButton extends React.PureComponent<IconButtonProps> {
@@ -88,7 +83,7 @@ class IconButton extends React.PureComponent<IconButtonProps> {
         paddingRight={0}
         display="flex"
         justifyContent="center"
-        {...props as any}
+        {...props}
       >
         <Icon
           size={size}

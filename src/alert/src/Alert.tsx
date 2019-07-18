@@ -74,9 +74,6 @@ class Alert extends React.PureComponent<any> {
     } = this.props
     const theme = this.context
 
-    /**
-     * Note that Alert return a className and additional properties.
-     */
     const themeProps = theme.getAlertProps({
       appearance,
       intent,

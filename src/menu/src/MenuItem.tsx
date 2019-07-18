@@ -73,18 +73,19 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
       appearance,
       secondaryText,
       intent,
+      css,
       icon: Icon,
       ...passthroughProps
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+    const themedCSS = theme.getMenuItemCSS(appearance, 'none')
 
     return (
       <Pane
         is={is}
         role="menuitem"
-        className={themedClassName}
+        css={{ ...themedCSS, ...css }}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         height={Icon ? 40 : 32}
@@ -92,7 +93,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
         data-isselectable="true"
         display="flex"
         alignItems="center"
-        {...(passthroughProps as any)}
+        {...passthroughProps}
       >
         {Icon && (
           <Icon

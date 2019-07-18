@@ -169,13 +169,13 @@ class Switch extends React.PureComponent<SwitchProps, SwitchState> {
     const theme = this.context
 
     const checked = isControlled(this) ? checkedProps : this.state.checked
-    const themedClassName = theme.getSwitchClassName(theme.themeColor)
+    const themedCSS = theme.getSwitchCSS(theme.themeColor)
 
     return (
       <Box is="label" display="block" width={height * 2} {...(props as any)}>
         <Box
           is="input"
-          className={themedClassName}
+          css={themedCSS}
           id={id}
           name={name}
           type="checkbox"

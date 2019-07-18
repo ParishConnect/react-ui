@@ -1,7 +1,6 @@
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
+import { Themer } from '../../../../themer/index'
 import palette from '../foundational-styles/palette'
+import scales from '../foundational-styles/scales'
 
 const InputAppearances = {
   default: (themeColor: string) => {},
@@ -90,7 +89,4 @@ const getTextInputAppearance = (
   }
 }
 
-/**
- * Get the className of a `TextInput`.
- */
-export default memoizeClassName(getTextInputAppearance)
+export default getTextInputAppearance

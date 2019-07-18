@@ -74,6 +74,7 @@ class Tab extends React.PureComponent<TabProps> {
       isSelected,
       appearance,
       disabled,
+      css,
       ...props
     } = this.props
     const theme = this.context
@@ -113,12 +114,12 @@ class Tab extends React.PureComponent<TabProps> {
 
     return (
       <Text
-        className={theme.getTabClassName(theme.themeColor)}
+        css={[theme.getTabCSS(theme.themeColor), css]}
         is={is}
         size={textSize}
         height={height}
         {...Tab.styles}
-        {...(props as any)}
+        {...props}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         {...elementBasedProps}

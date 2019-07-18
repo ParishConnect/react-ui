@@ -1,11 +1,10 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
-import palette from '../foundational-styles/palette'
-import gradients from '../foundational-styles/gradients'
-import { getPrimaryButtonStylesForIntent } from '../helpers'
 import { ThemeColor } from '../../../../constants/src/Theme'
+import { Themer } from '../../../../themer/index'
+import gradients from '../foundational-styles/gradients'
+import palette from '../foundational-styles/palette'
+import scales from '../foundational-styles/scales'
+import { getPrimaryButtonStylesForIntent } from '../helpers'
 
 const primaryStyle = (themeColor: ThemeColor) =>
   getPrimaryButtonStylesForIntent(null, themeColor)
@@ -15,12 +14,8 @@ const defaultAppearance = (themeColor: ThemeColor) => {
     base: {
       color: 'white',
       backgroundColor: 'white',
-      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
-        scales.neutral.N3A
-      })`,
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N1A}, inset 0 -1px 1px 0 ${
-        scales.neutral.N3A
-      }`
+      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${scales.neutral.N3A})`,
+      boxShadow: `inset 0 0 0 1px ${scales.neutral.N1A}, inset 0 -1px 1px 0 ${scales.neutral.N3A}`
     },
     disabled: {
       cursor: 'not-allowed',
@@ -28,12 +23,8 @@ const defaultAppearance = (themeColor: ThemeColor) => {
       backgroundImage: 'none'
     },
     hover: {
-      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${
-        scales.neutral.N1A
-      })`,
-      boxShadow: `inset 0 0 0 1px ${scales.neutral.N3A}, inset 0 -1px 1px 0 ${
-        scales.neutral.N2A
-      }`
+      backgroundImage: `linear-gradient(to top, ${scales.neutral.N2A}, ${scales.neutral.N1A})`,
+      boxShadow: `inset 0 0 0 1px ${scales.neutral.N3A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`
     },
     focus: {
       boxShadow: `0 0 0 2px ${tinycolor(palette[themeColor].base).setAlpha(
@@ -51,9 +42,7 @@ const defaultAppearance = (themeColor: ThemeColor) => {
     },
     checked: {
       color: 'white',
-      backgroundImage: `linear-gradient(-145deg, ${
-        gradients[themeColor].start
-      }, ${gradients[themeColor].end})`,
+      backgroundImage: `linear-gradient(-145deg, ${gradients[themeColor].start}, ${gradients[themeColor].end})`,
       boxShadow: `0 0 1px ${tinycolor(palette[themeColor].base).darken() ||
         scales.blue.B5A}`
     },
@@ -78,9 +67,7 @@ const defaultAppearance = (themeColor: ThemeColor) => {
     checkedActive: {
       color: 'white',
       backgroundImage: primaryStyle(themeColor).linearGradient.active,
-      boxShadow: `inset 0 0 0 1px ${scales.blue.B4A}, inset 0 -1px 1px 0 ${
-        scales.blue.B2A
-      }`
+      boxShadow: `inset 0 0 0 1px ${scales.blue.B4A}, inset 0 -1px 1px 0 ${scales.blue.B2A}`
     }
   })
 }
@@ -92,9 +79,4 @@ const getCheckboxAppearance = (themeColor: ThemeColor) => {
   return defaultAppearance(themeColor)
 }
 
-/**
- * Get the className of a `Checkbox`.
- * @param {string} themeColor
- * @return {string} the appearance class name.
- */
-export default memoizeClassName(getCheckboxAppearance)
+export default getCheckboxAppearance

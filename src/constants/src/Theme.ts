@@ -62,21 +62,21 @@ export interface ThemeType {
   badgeColors: object
   spinnerColor: string | undefined
   overlayBackgroundColor: string
-  getButtonClassName: Function
-  getLinkClassName: Function
-  getCheckboxClassName: Function
-  getRadioClassName: Function
-  getTextInputClassName: Function
-  getTextareaClassName: Function
-  getTextDropdownButtonClassName: Function
-  getTabClassName: Function
-  getTableCellClassName: Function
+  getButtonCSS: Function
+  getLinkCSS: Function
+  getCheckboxCSS: Function
+  getRadioCSS: Function
+  getTextInputCSS: Function
+  getTextareaCSS: Function
+  getTextDropdownButtonCSS: Function
+  getTabCSS: Function
+  getTableCellCSS: Function
   getTooltipProps: Function
-  getRowClassName: Function
-  getMenuItemClassName: Function
-  getSelectClassName: Function
-  getSegmentedControlRadioClassName: Function
-  getSwitchClassName: Function
+  getRowCSS: Function
+  getMenuItemCSS: Function
+  getSelectCSS: Function
+  getSegmentedControlRadioCSS: Function
+  getSwitchCSS: Function
   getAlertProps: Function
   getCodeProps: Function
   getAvatarProps: Function

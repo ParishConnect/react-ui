@@ -1,5 +1,4 @@
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
+import { Themer } from '../../../../themer/index'
 import scales from '../foundational-styles/scales'
 
 const Appearances = { default: {} }
@@ -19,7 +18,4 @@ const getAppearance = () => {
   return Appearances.default
 }
 
-/**
- * Get the className of a `Table.EditableCell`.
- */
-export default memoizeClassName(getAppearance)
+export default getAppearance

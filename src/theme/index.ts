@@ -4,4 +4,3 @@ export {
   ThemeConsumer,
   default as ThemeContext
 } from './src/ThemeContext'
-export { default as withTheme } from './src/withTheme'

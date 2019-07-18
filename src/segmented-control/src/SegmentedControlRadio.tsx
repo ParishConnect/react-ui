@@ -107,20 +107,18 @@ class SegmentedControlRadio extends React.PureComponent<
       appearance,
       isFirstItem,
       isLastItem,
-      className,
       css
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getSegmentedControlRadioClassName(
+    const themedCSS = theme.getSegmentedControlRadioCSS(
       theme.themeColor || appearance
     )
     const textSize = theme.getTextSizeForControlHeight(height)
 
     return (
       <Box
-        css={[wrapperClass, css]}
-        className={themedClassName}
+        css={[wrapperClass, themedCSS, css]}
         data-active={checked}
         {...(isFirstItem
           ? {

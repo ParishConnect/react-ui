@@ -181,10 +181,8 @@ export default class Tooltip extends React.PureComponent<
 
     return (
       <Positioner
-        target={({ getRef }: any) => {
-          return this.renderTarget({ getRef })
-        }}
-        isShown={shown as boolean}
+        target={({ getRef }) => this.renderTarget({ getRef })}
+        isShown={!!shown}
         position={position}
         animationDuration={160}
       >

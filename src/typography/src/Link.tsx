@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/core'
 import * as React from 'react'
 import { ThemeContext } from '../../theme/index'
 import Text, { TextProps } from './Text'
@@ -25,11 +24,6 @@ export declare interface LinkProps {
    * The color (and styling) of the Link. Can be default, blue, green or neutral.
    */
   color?: string
-  /**
-   * Class name passed to the link.
-   * Only use if you know what you are doing.
-   */
-  className?: string
 }
 
 class Link extends React.PureComponent<TextProps & LinkProps> {
@@ -39,23 +33,19 @@ class Link extends React.PureComponent<TextProps & LinkProps> {
   }
 
   render() {
-    const { className, color, noUnderline = false, ...props } = this.props
+    const { color, noUnderline = false, css, ...props } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getLinkClassName(color || theme.themeColor)
+    const themedCSS = theme.getLinkCSS(color || theme.themeColor)
 
     return (
-      <ClassNames>
-        {({ cx }) => (
-          <Text
-            is="a"
-            className={cx(className, themedClassName)}
-            textDecoration={noUnderline ? 'none' : 'underline'}
-            color={undefined}
-            {...props}
-          />
-        )}
-      </ClassNames>
+      <Text
+        is="a"
+        textDecoration={noUnderline ? 'none' : 'underline'}
+        color={undefined}
+        css={{ ...themedCSS, ...css }}
+        {...props}
+      />
     )
   }
 }

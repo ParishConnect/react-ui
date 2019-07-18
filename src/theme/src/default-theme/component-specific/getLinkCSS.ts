@@ -1,6 +1,5 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../../themer/'
-import memoizeClassName from '../utils/memoizeClassName'
+import { Themer } from '../../../../themer/index'
 import palette from '../foundational-styles/palette'
 
 /**
@@ -97,7 +96,4 @@ const getLinkAppearance = (color = 'blue'): object => {
   }
 }
 
-/**
- * Get the className of a `Link` component.
- */
-export default memoizeClassName(getLinkAppearance)
+export default getLinkAppearance

@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/core'
 import * as React from 'react'
 import { ThemeContext } from '../../theme'
 import { Text } from '../../typography'
@@ -34,11 +33,6 @@ export interface TextInputProps extends Omit<TextProps, 'appearance'> {
    */
   width?: string | number
   height?: number
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className?: string
 }
 
 class TextInput extends React.PureComponent<TextInputProps> {
@@ -54,8 +48,6 @@ class TextInput extends React.PureComponent<TextInputProps> {
 
   render() {
     const {
-      className,
-
       css,
       width,
       height = 32,
@@ -68,37 +60,29 @@ class TextInput extends React.PureComponent<TextInputProps> {
       ...props
     } = this.props
     const theme = this.context
-    const themedClassName = theme.getTextInputClassName(
-      appearance,
-      theme.themeColor
-    )
+    const themedCSS = theme.getTextInputCSS(appearance, theme.themeColor)
     const textSize = theme.getTextSizeForControlHeight(height)
     const borderRadius = theme.getBorderRadiusForControlHeight(height)
 
     return (
-      <ClassNames>
-        {({ cx }) => (
-          <Text
-            is="input"
-            className={cx(themedClassName, className)}
-            type="text"
-            size={textSize}
-            width={width}
-            height={height}
-            required={required}
-            disabled={disabled}
-            placeholder={placeholder}
-            paddingLeft={Math.round(height / 3.2)}
-            paddingRight={Math.round(height / 3.2)}
-            borderRadius={borderRadius}
-            spellCheck={spellCheck}
-            aria-invalid={isInvalid}
-            {...(disabled ? { color: 'muted' } : {})}
-            css={css}
-            {...(props as any)}
-          />
-        )}
-      </ClassNames>
+      <Text
+        is="input"
+        type="text"
+        size={textSize}
+        width={width}
+        height={height}
+        required={required}
+        disabled={disabled}
+        placeholder={placeholder}
+        paddingLeft={Math.round(height / 3.2)}
+        paddingRight={Math.round(height / 3.2)}
+        borderRadius={borderRadius}
+        spellCheck={spellCheck}
+        aria-invalid={isInvalid}
+        {...(disabled ? { color: 'muted' } : {})}
+        css={{ ...themedCSS, ...css }}
+        {...props}
+      />
     )
   }
 }

@@ -1,6 +1,5 @@
-import { Themer } from '../../../../themer/'
-import memoizeClassName from '../utils/memoizeClassName'
-import { scales, palette } from '../foundational-styles/'
+import { Themer } from '../../../../themer/index'
+import { scales } from '../foundational-styles/index'
 import {
   getTextColorForIntent,
   getPrimaryButtonStylesForIntent
@@ -123,7 +122,4 @@ const getButtonAppearance = (
   }
 }
 
-/**
- * Get the className of a `Button`|`IconButton`.
- */
-export default memoizeClassName(getButtonAppearance)
+export default getButtonAppearance

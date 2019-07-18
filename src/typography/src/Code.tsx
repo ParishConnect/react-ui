@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/core'
 import * as React from 'react'
 import { Omit } from 'utility-types'
 import { ThemeContext } from '../../theme'
@@ -9,11 +8,6 @@ export interface CodeProps extends Omit<TextProps, 'appearance'> {
    * The appearance of the code.
    */
   appearance?: 'default' | 'minimal'
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className?: string
 }
 
 class Code extends React.PureComponent<CodeProps> {
@@ -22,26 +16,21 @@ class Code extends React.PureComponent<CodeProps> {
     appearance: 'default'
   }
   render() {
-    const { className, appearance = 'default', ...props } = this.props
+    const { css, appearance = 'default', ...props } = this.props
     const theme = this.context
 
-    const {
-      className: themedClassName = '',
-      ...themeProps
-    } = theme.getCodeProps(appearance)
+    const { css: themedCSS = null, ...themeProps } = theme.getCodeProps(
+      appearance
+    )
 
     return (
-      <ClassNames>
-        {({ cx }) => (
-          <Text
-            is="code"
-            className={cx(className, themedClassName)}
-            fontFamily="mono"
-            {...themeProps}
-            {...props}
-          />
-        )}
-      </ClassNames>
+      <Text
+        is="code"
+        css={{ ...themedCSS, ...css }}
+        fontFamily="mono"
+        {...themeProps}
+        {...props}
+      />
     )
   }
 }

@@ -1,7 +1,6 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import { scales, colors, palette } from '../foundational-styles/'
+import { Themer } from '../../../../themer/index'
+import { colors, palette, scales } from '../foundational-styles/index'
 
 const defaultAppearance = (themeColor: string): object => {
   return Themer.createTabAppearance({
@@ -34,7 +33,4 @@ const defaultAppearance = (themeColor: string): object => {
 const getTabAppearance = (themeColor: string): object =>
   defaultAppearance(themeColor)
 
-/**
- * Get the className of a `Tab`.
- */
-export default memoizeClassName(getTabAppearance)
+export default getTabAppearance

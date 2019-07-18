@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/core'
 import * as React from 'react'
 import { Omit } from 'utility-types'
 import { IntentType } from '../../constants/index'
@@ -34,11 +33,6 @@ export interface TableRowProps extends Omit<PaneProps, 'appearance'> {
    * The appearance of the table row. Default theme only support default.
    */
   appearance?: string
-  /**
-   * Class name passed to the table row.
-   * Only use if you know what you are doing.
-   */
-  className?: string
   tabIndex?: number
   style?: React.CSSProperties
   /**
@@ -110,12 +104,13 @@ class TableRow extends React.PureComponent<TableRowProps> {
   render() {
     const {
       innerRef,
-      className,
       height,
       children,
       intent,
       appearance,
       tabIndex = -1,
+
+      css,
 
       // Filter out
       onClick,
@@ -137,30 +132,26 @@ class TableRow extends React.PureComponent<TableRowProps> {
       )
     }
 
-    const themedClassName = theme.getRowClassName(appearance, intent)
+    const themedCSS = theme.getRowCSS(appearance, intent)
 
     return (
       <TableRowProvider height={height}>
-        <ClassNames>
-          {({ cx }) => (
-            <Pane
-              innerRef={this.onRef}
-              className={cx(themedClassName, className)}
-              display="flex"
-              aria-selected={isHighlighted}
-              aria-current={isSelected}
-              data-isselectable={isSelectable}
-              tabIndex={isSelectable ? tabIndex : undefined}
-              onClick={this.handleClick}
-              onKeyDown={this.handleKeyDown}
-              height={height}
-              borderBottom="muted"
-              {...(props as any)}
-            >
-              {children}
-            </Pane>
-          )}
-        </ClassNames>
+        <Pane
+          innerRef={this.onRef}
+          display="flex"
+          aria-selected={isHighlighted}
+          aria-current={isSelected}
+          data-isselectable={isSelectable}
+          tabIndex={isSelectable ? tabIndex : undefined}
+          onClick={this.handleClick}
+          onKeyDown={this.handleKeyDown}
+          height={height}
+          borderBottom="muted"
+          css={{ ...themedCSS, ...css }}
+          {...props}
+        >
+          {children}
+        </Pane>
       </TableRowProvider>
     )
   }

@@ -200,10 +200,7 @@ export default class InlineTimePicker extends React.Component<
      */
     const { matched } = splitBoxProps(props)
     const theme = this.context
-    const themedClassName = theme.getTextInputClassName(
-      appearance,
-      theme.themeColor
-    )
+    const themedCSS = theme.getTextInputCSS(appearance, theme.themeColor)
     const borderRadius = theme.getBorderRadiusForControlHeight(32)
 
     /* tslint:disable:max-line-length */
@@ -230,7 +227,7 @@ export default class InlineTimePicker extends React.Component<
           borderRadius={borderRadius}
           display="inline-block"
           background="tint1"
-          className={themedClassName}
+          css={themedCSS}
         >
           {this.renderInput(hourUnit, this.state.hourText!)}
           {this.renderDivider()}

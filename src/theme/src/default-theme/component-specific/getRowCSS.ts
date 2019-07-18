@@ -1,9 +1,8 @@
 import tinycolor from 'tinycolor2'
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
-import scales from '../foundational-styles/scales'
+import { IntentType } from '../../../../constants/index'
+import { Themer } from '../../../../themer/index'
 import palette from '../foundational-styles/palette'
-import { IntentType } from '../../../../constants'
+import scales from '../foundational-styles/scales'
 
 const Appearances = { default: {}, danger: {}, warning: {}, success: {} }
 
@@ -120,7 +119,4 @@ const getRowAppearance = (intent: IntentType) => {
   }
 }
 
-/**
- * Get the className of a `Row`.
- */
-export default memoizeClassName(getRowAppearance)
+export default getRowAppearance

@@ -72,7 +72,7 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getMenuItemClassName(appearance, 'none')
+    const themedCSS = theme.getMenuItemCSS(appearance, 'none')
 
     const textProps =
       isSelected || icon
@@ -90,7 +90,6 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
         id={id}
         role="menuitemradio"
         tabIndex={0}
-        className={themedClassName}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
         data-isselectable="true"
@@ -98,6 +97,7 @@ class MenuOption extends React.PureComponent<MenuOptionProps> {
         height={40}
         display="flex"
         alignItems="center"
+        css={themedCSS}
       >
         {Icon && (
           <Icon

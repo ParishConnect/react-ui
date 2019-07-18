@@ -1,7 +1,6 @@
-import { Themer } from '../../../../themer'
-import { elevations, palette, scales } from '../foundational-styles'
+import { Themer } from '../../../../themer/index'
+import { elevations, palette, scales } from '../foundational-styles/index'
 import { defaultControlStyles } from '../shared'
-import memoizeClassName from '../utils/memoizeClassName'
 
 const defaultAppearance = (themeColor: string = 'blue') => {
   return Themer.createSegmentedControlRadioAppearance({
@@ -31,7 +30,4 @@ const getSegmentedControlRadioAppearance = (themeColor: string) => {
   return defaultAppearance(themeColor)
 }
 
-/**
- * Get the className of a `SegmentedControlRadio`.
- */
-export default memoizeClassName(getSegmentedControlRadioAppearance)
+export default getSegmentedControlRadioAppearance

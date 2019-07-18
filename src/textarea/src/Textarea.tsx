@@ -56,12 +56,6 @@ export interface TextareaProps extends Omit<TextProps, 'apperance'> {
    * @default Text
    */
   component?: any
-
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className?: string
 }
 
 class Textarea extends React.PureComponent<TextareaProps> {
@@ -88,8 +82,6 @@ class Textarea extends React.PureComponent<TextareaProps> {
 
   render() {
     const {
-      className,
-
       css,
       width,
       height = 0,
@@ -107,7 +99,7 @@ class Textarea extends React.PureComponent<TextareaProps> {
       ...props
     } = this.props
     const theme = this.context
-    const themedClassName = theme.getTextareaClassName(appearance)
+    const themedCSS = theme.getTextareaCSS(appearance)
 
     const renderStyles =
       appearance === 'editor-title' ? Textarea.editorStyles : Textarea.styles
@@ -115,7 +107,6 @@ class Textarea extends React.PureComponent<TextareaProps> {
     return (
       <RenderComponent
         is={autoresize ? TextareaAutosize : 'textarea'}
-        className={`${className} ${themedClassName}`}
         size={400}
         width={width}
         height={height}
@@ -129,9 +120,9 @@ class Textarea extends React.PureComponent<TextareaProps> {
         aria-invalid={isInvalid}
         data-gramm_editor={grammarly}
         {...(disabled ? { color: 'muted' } : {})}
-        css={{ ...css, resize: autoresize ? 'none' : '' }}
+        css={{ ...themedCSS, ...css, resize: autoresize ? 'none' : '' }}
         {...renderStyles}
-        {...(props as any)}
+        {...props}
       />
     )
   }

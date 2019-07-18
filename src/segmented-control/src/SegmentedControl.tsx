@@ -105,7 +105,7 @@ export default class SegmentedControl extends React.PureComponent<
         borderRadius={999}
         marginRight={-1}
         height={height}
-        {...(props as any)}
+        {...props}
       >
         {options.map((option, index) => {
           return (

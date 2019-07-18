@@ -6,8 +6,6 @@ import { Pane, PaneProps } from '../../layers'
 import { TableRowConsumer } from './TableRowContext'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
 
-import { ClassNames } from '@emotion/core'
-
 export interface TableCellProps extends Omit<PaneProps, 'appearance'> {
   /*
    * Makes the TableCell focusable. Used by EditableCell.
@@ -25,12 +23,6 @@ export interface TableCellProps extends Omit<PaneProps, 'appearance'> {
    * Useful for icons and icon buttons.
    */
   rightView?: React.ReactNode
-
-  /**
-   * Class name passed to the table cell.
-   * Only use if you know what you are doing.
-   */
-  className?: string
 }
 
 class TableCell extends React.PureComponent<TableCellProps> {
@@ -98,38 +90,32 @@ class TableCell extends React.PureComponent<TableCellProps> {
       appearance,
       isSelectable,
       tabIndex = -1,
-      className,
       rightView,
+      css,
       ...props
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getTableCellClassName(appearance)
+    const themedCSS = theme.getTableCellCSS(appearance)
 
     return (
       <TableRowConsumer>
-        {(height: any) => {
-          return (
-            <ClassNames>
-              {({ cx }) => (
-                <Pane
-                  innerRef={this.onRef}
-                  height={height}
-                  className={cx(themedClassName, className)}
-                  tabIndex={isSelectable ? tabIndex : undefined}
-                  data-isselectable={isSelectable}
-                  onClick={this.handleClick}
-                  onKeyDown={this.handleKeyDown}
-                  {...TableCell.styles}
-                  {...(props as any)}
-                >
-                  {children}
-                  {rightView ? rightView : null}
-                </Pane>
-              )}
-            </ClassNames>
-          )
-        }}
+        {(height: any) => (
+          <Pane
+            innerRef={this.onRef}
+            height={height}
+            tabIndex={isSelectable ? tabIndex : undefined}
+            data-isselectable={isSelectable}
+            onClick={this.handleClick}
+            onKeyDown={this.handleKeyDown}
+            css={{ ...themedCSS, ...css }}
+            {...TableCell.styles}
+            {...props}
+          >
+            {children}
+            {rightView ? rightView : null}
+          </Pane>
+        )}
       </TableRowConsumer>
     )
   }

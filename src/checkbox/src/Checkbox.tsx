@@ -93,9 +93,7 @@ class Checkbox extends React.PureComponent<CheckboxProps> {
     } = this.props
     const theme = this.context
 
-    const themedClassName = theme.getCheckboxClassName(
-      theme.themeColor || 'blue'
-    )
+    const themedCSS = theme.getCheckboxCSS(theme.themeColor || 'blue')
 
     return (
       <Box
@@ -107,7 +105,7 @@ class Checkbox extends React.PureComponent<CheckboxProps> {
         {...props}
       >
         <Box
-          className={themedClassName}
+          css={themedCSS}
           is="input"
           id={id}
           type="checkbox"

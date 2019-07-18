@@ -57,11 +57,6 @@ interface DateTimePickerProps {
    */
   appearance?: string
   /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className?: string
-  /**
    * Passed on the label as a htmlFor prop.
    */
   labelFor?: string

@@ -1,5 +1,4 @@
-import { Themer } from '../../../../themer'
-import memoizeClassName from '../utils/memoizeClassName'
+import { Themer } from '../../../../themer/index'
 import scales from '../foundational-styles/scales'
 
 const defaultAppearance = Themer.createTextDropdownButtonAppearance({
@@ -23,7 +22,4 @@ const getTextDropdownButtonAppearance = () => {
   return defaultAppearance
 }
 
-/**
- * Get the className of a `TextDropdownButton`.
- */
-export default memoizeClassName(getTextDropdownButtonAppearance)
+export default getTextDropdownButtonAppearance

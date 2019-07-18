@@ -5,25 +5,23 @@ export { default as badgeColors } from './badgeColors'
 export { default as spinnerColor } from './spinnerColor'
 
 // Class Name Getters.
-export { default as getButtonClassName } from './getButtonClassName'
-export { default as getLinkClassName } from './getLinkClassName'
-export { default as getCheckboxClassName } from './getCheckboxClassName'
-export { default as getRadioClassName } from './getRadioClassName'
-export { default as getTextInputClassName } from './getTextInputClassName'
-export { default as getTextareaClassName } from './getTextareaClassName'
-export {
-  default as getTextDropdownButtonClassName
-} from './getTextDropdownButtonClassName'
-export { default as getTabClassName } from './getTabClassName'
-export { default as getRowClassName } from './getRowClassName'
-export { default as getMenuItemClassName } from './getMenuItemClassName'
-export { default as getSelectClassName } from './getSelectClassName'
+export { default as getButtonCSS } from './getButtonCSS'
+export { default as getLinkCSS } from './getLinkCSS'
+export { default as getCheckboxCSS } from './getCheckboxCSS'
+export { default as getRadioCSS } from './getRadioCSS'
+export { default as getTextInputCSS } from './getTextInputCSS'
+export { default as getTextareaCSS } from './getTextareaCSS'
+export { default as getTextDropdownButtonCSS } from './getTextDropdownButtonCSS'
+export { default as getTabCSS } from './getTabCSS'
+export { default as getRowCSS } from './getRowCSS'
+export { default as getMenuItemCSS } from './getMenuItemCSS'
+export { default as getSelectCSS } from './getSelectCSS'
 export { default as getTooltipProps } from './getTooltipProps'
 export {
-  default as getSegmentedControlRadioClassName
-} from './getSegmentedControlRadioClassName'
-export { default as getSwitchClassName } from './getSwitchClassName'
-export { default as getTableCellClassName } from './getTableCellClassName'
+  default as getSegmentedControlRadioCSS
+} from './getSegmentedControlRadioCSS'
+export { default as getSwitchCSS } from './getSwitchCSS'
+export { default as getTableCellCSS } from './getTableCSS'
 
 // Props Getters.
 export { default as getAlertProps } from './getAlertProps'
