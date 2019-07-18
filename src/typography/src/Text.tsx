@@ -1,5 +1,5 @@
-import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
+import * as React from 'react'
 import { ThemeContext } from '../../theme/index'
 
 export type TextSize = 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900

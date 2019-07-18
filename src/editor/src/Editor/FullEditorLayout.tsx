@@ -6,7 +6,6 @@ import {
   useRemirror
 } from '@remirror/react'
 import * as React from 'react'
-import { v1 } from 'uuid'
 import { Pane } from '../../../layers/index'
 import { ThemeContext } from '../../../theme/index'
 import { EditorProps } from './Editor'
@@ -35,10 +34,6 @@ interface EditorLayoutState {
   linkActivated: boolean
   imageActivated: boolean
   hasFocus: boolean
-}
-
-function createEditorInstance() {
-  return v1()
 }
 
 class FullEditorLayout extends React.PureComponent<
@@ -105,11 +100,12 @@ class FullEditorLayout extends React.PureComponent<
     } = this.props
     const theme = this.context
 
-    const { matched, remaining } = splitBoxProps(containerProps!)
+    const { matched, remaining } = splitBoxProps(containerProps)
+
     const {
       matched: matchedInnerProps,
       remaining: remainingInnerProps
-    } = splitBoxProps(props as any)
+    } = splitBoxProps(props)
 
     return (
       <Pane width="100%" {...matched}>
@@ -117,9 +113,6 @@ class FullEditorLayout extends React.PureComponent<
           {getExtensions(formattingOptions, this.activateLink)}
           <Pane css={editorStyles(theme)} {...matchedInnerProps}>
             <ManagedRemirrorProvider
-              attributes={{
-                'data-editor-id': `parishconnect-${createEditorInstance()}`
-              }}
               onFocus={this.setFocus}
               onBlur={this.unSetFocus}
               autoFocus={autoFocus}

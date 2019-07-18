@@ -1,5 +1,5 @@
-import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
+import * as React from 'react'
 import { ThemeContext } from '../../theme'
 
 export type ParagraphSize = 300 | 400 | 500
@@ -44,7 +44,7 @@ class Paragraph extends React.PureComponent<ParagraphProps> {
         marginTop={finalMarginTop || 0}
         marginBottom={0}
         {...textStyle}
-        {...(props as any)}
+        {...props}
       />
     )
   }

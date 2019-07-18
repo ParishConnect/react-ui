@@ -119,22 +119,18 @@ class Editor extends React.Component<any> {
       ...props
     } = this.props
     const InnerEditor = this.renderEditor(appearance)
-    if (typeof document !== 'undefined') {
-      return collapsed ? (
-        <CollapsedComponent
-          placeholder={this.props.placeholder}
-          onExpand={onExpand}
-        />
-      ) : (
-        <InnerEditor
-          formattingOptions={getFormattingOptions(formattingOptions)}
-          {...(props as any)}
-          toolbar={appearance !== 'minimal' ? toolbar : false}
-        />
-      )
-    } else {
-      return ''
-    }
+    return collapsed ? (
+      <CollapsedComponent
+        placeholder={this.props.placeholder}
+        onExpand={onExpand}
+      />
+    ) : (
+      <InnerEditor
+        formattingOptions={getFormattingOptions(formattingOptions)}
+        {...props}
+        toolbar={appearance !== 'minimal' ? toolbar : false}
+      />
+    )
   }
 }
 

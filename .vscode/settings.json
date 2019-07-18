@@ -1,14 +1,12 @@
 {
   "eslint.enable": false,
-  "tslint.exclude": "**/node_modules/**",
   "editor.codeActionsOnSave": {
-    "source.organizeImports": false
+    "source.organizeImports": true
   },
   "files.associations": {
     "*.js": "javascriptreact"
   },
   "editor.fontSize": 12.5,
   "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace",
-  "search.usePCRE2": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "search.usePCRE2": true
 }
