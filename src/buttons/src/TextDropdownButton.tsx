@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Text } from '../../typography'
+import { ChevronDownIcon } from '../../icons/'
 import { Spinner } from '../../spinner'
 import { ThemeContext } from '../../theme'
+import { Text } from '../../typography'
 import { IconButtonProps } from './IconButton'
-import { ChevronDownIcon } from '../../icons/'
 
 class TextDropdownButton extends React.PureComponent<IconButtonProps> {
   public static contextType = ThemeContext
@@ -46,7 +46,7 @@ class TextDropdownButton extends React.PureComponent<IconButtonProps> {
         alignItems="center"
         flexWrap="nowrap"
         css={{ ...themedCSS, ...css }}
-        {...props}
+        {...(props as any)}
         disabled={disabled}
       >
         {isLoading && (

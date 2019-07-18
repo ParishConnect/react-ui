@@ -12,8 +12,8 @@ export {
   DatePicker,
   DateTimePicker,
   InlineDatePicker,
-  TimePicker,
-  RecurrencePicker
+  RecurrencePicker,
+  TimePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
 export * from './editor'
@@ -348,8 +348,7 @@ export {
   defaultTheme,
   ThemeConsumer,
   ThemeContext,
-  ThemeProvider,
-  withTheme
+  ThemeProvider
 } from './theme'
 export { toaster } from './toaster'
 export { Tooltip } from './tooltip'
@@ -370,4 +369,4 @@ export {
   Ul,
   UnorderedList
 } from './typography'
-export { Upload, FeaturedImageUpload } from './upload'
+export { FeaturedImageUpload, Upload } from './upload'
