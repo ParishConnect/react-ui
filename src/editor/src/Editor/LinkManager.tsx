@@ -138,9 +138,8 @@ interface LinkManagerProps extends InjectedRemirrorProps {
 
 export default withRemirror(
   class LinkManager extends React.Component<LinkManagerProps> {
-    updateLink = (href: string) =>
-      this.props.actions.linkUpdate.command({ href })
-    removeLink = () => this.props.actions.linkRemove.command()
+    updateLink = (href: string) => this.props.actions.linkUpdate({ href })
+    removeLink = () => this.props.actions.linkRemove()
     canRemove = () => this.props.actions.linkRemove.isActive()
 
     render() {
@@ -152,10 +151,8 @@ export default withRemirror(
       } = this.props
 
       const initialValue =
-        getMarkAttrs(
-          manager.getEditorState(),
-          manager.getEditorState().schema.marks.link
-        ).href || ''
+        getMarkAttrs(manager.getState(), manager.getState().schema.marks.link)
+          .href || ''
 
       const { bottom, left, ref } = getPositionerProps({
         ...bubblePositioner,

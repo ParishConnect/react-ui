@@ -6,7 +6,6 @@ import {
   useRemirror
 } from '@remirror/react'
 import * as React from 'react'
-import { v1 } from 'uuid'
 import { Card, Pane } from '../../../layers/index'
 import { majorScale } from '../../../scales/index'
 import { ThemeContext } from '../../../theme/index'
@@ -30,10 +29,6 @@ interface EditorLayoutState {
   linkActivated: boolean
   imageActivated: boolean
   hasFocus: boolean
-}
-
-function createEditorInstance() {
-  return v1()
 }
 
 class DefaultEditorLayout extends React.PureComponent<any, EditorLayoutState> {
@@ -116,9 +111,6 @@ class DefaultEditorLayout extends React.PureComponent<any, EditorLayoutState> {
             {...matchedInnerProps}
           >
             <ManagedRemirrorProvider
-              attributes={{
-                'data-editor-id': `parishconnect-${createEditorInstance()}`
-              }}
               onFocus={this.setFocus}
               onBlur={this.unSetFocus}
               autoFocus={autoFocus}

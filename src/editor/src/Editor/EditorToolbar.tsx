@@ -1,20 +1,20 @@
+import { splitBoxProps } from '@parishconnect/box'
+import { EditorState, EditorView, RemirrorContentType } from '@remirror/core'
 import { InjectedRemirrorProps, withRemirror } from '@remirror/react'
 import * as React from 'react'
+import { Dialog } from '../../../dialog/index'
 import { Pane } from '../../../layers/index'
 import { majorScale } from '../../../scales/index'
+import { FormattingOptions } from './types'
+import { runAction } from './utils/runAction'
 import {
   getBlockButtons,
   getHeadingButtons,
   getTextButtons,
   hasBlockButtons,
-  hasTextButtons,
-  hasHeadingButtons
+  hasHeadingButtons,
+  hasTextButtons
 } from './utils/toolbarButtonFactory'
-import { FormattingOptions } from './types'
-import { Dialog } from '../../../dialog/index'
-import { runAction } from './utils/runAction'
-import { splitBoxProps } from '@parishconnect/box'
-import { EditorState, EditorView, RemirrorContentType } from '@remirror/core'
 
 export interface ToolbarReturnFunctions {
   state: EditorState
@@ -67,7 +67,7 @@ class EditorToolbar extends React.Component<
       ...props
     } = this.props
 
-    const { matched } = splitBoxProps(props as any)
+    const { matched } = splitBoxProps(props)
 
     return (
       <Pane
@@ -126,7 +126,7 @@ class EditorToolbar extends React.Component<
           <Dialog
             onCloseComplete={this.closeUploadPane}
             onConfirm={close => {
-              runAction(actions.imageAdd.command)
+              runAction(actions.imageAdd)
               close()
             }}
             isShown={this.state.uploadPaneOpen}

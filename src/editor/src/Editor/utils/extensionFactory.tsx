@@ -4,9 +4,8 @@ import {
   HeadingExtension,
   ItalicExtension,
   LinkExtension,
-  LinkExtensionOptions,
-  UnderlineExtension,
-  SSRHelperExtension
+  SSRHelperExtension,
+  UnderlineExtension
 } from '@remirror/core-extensions'
 import { RemirrorExtension } from '@remirror/react'
 import * as React from 'react'
@@ -72,7 +71,7 @@ export default (
   }
   if (link) {
     formattingExtensions.push(
-      <RemirrorExtension<LinkExtensionOptions>
+      <RemirrorExtension
         key={LinkExtension.name}
         Constructor={LinkExtension}
         activationHandler={activateLink}

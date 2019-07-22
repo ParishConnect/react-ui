@@ -13,6 +13,7 @@ module.exports = ({ config }) => {
       }
     ]
   })
+
   config.resolve.extensions.push('.ts', '.tsx', '.json')
   return config
 }

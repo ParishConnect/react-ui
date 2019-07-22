@@ -7,7 +7,7 @@ import * as React from 'react'
 import { IconButton } from '../../../buttons/index'
 import { BoldIcon, ItalicIcon, UnderlineIcon } from '../../../icons/index'
 import { Card } from '../../../layers/index'
-import { minorScale, majorScale } from '../../../scales/index'
+import { majorScale, minorScale } from '../../../scales/index'
 import { runAction } from './utils/runAction'
 
 class FloatingMenu extends React.Component<InjectedRemirrorProps> {
@@ -35,7 +35,7 @@ class FloatingMenu extends React.Component<InjectedRemirrorProps> {
           appearance="minimal"
           isActive={actions.bold.isActive()}
           disabled={!actions.bold.isEnabled()}
-          onClick={runAction(actions.bold.command)}
+          onClick={runAction(actions.bold)}
           icon={BoldIcon}
         />
         <IconButton
@@ -43,14 +43,14 @@ class FloatingMenu extends React.Component<InjectedRemirrorProps> {
           appearance="minimal"
           isActive={actions.italic.isActive()}
           disabled={!actions.italic.isEnabled()}
-          onClick={runAction(actions.italic.command)}
+          onClick={runAction(actions.italic)}
           icon={ItalicIcon}
         />
         <IconButton
           appearance="minimal"
           isActive={actions.underline.isActive()}
           disabled={!actions.underline.isEnabled()}
-          onClick={runAction(actions.underline.command)}
+          onClick={runAction(actions.underline)}
           icon={UnderlineIcon}
         />
       </Card>

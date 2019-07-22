@@ -16,7 +16,7 @@ export {
   TimePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
-export * from './editor'
+export { Editor, Renderer } from './editor'
 export { FilePicker } from './file-picker'
 export {
   FormField,

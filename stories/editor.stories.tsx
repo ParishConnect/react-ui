@@ -3,5 +3,5 @@ import React from 'react'
 import { Editor } from '../src'
 
 storiesOf('editor', module).add('Editor', () => (
-  <Editor placeholder="Full Editor..." appearance="primary" border />
+  <Editor placeholder="Full Editor..." appearance="primary" showFloatingMenu />
 ))

@@ -23,6 +23,7 @@ export const getTextButtons = ({
   if (actions.bold && bold) {
     textButtons.push(
       <IconButton
+        key="bold"
         appearance="minimal"
         isActive={actions.bold.isActive()}
         icon={BoldIcon}
@@ -35,6 +36,7 @@ export const getTextButtons = ({
   if (actions.italic && italic) {
     textButtons.push(
       <IconButton
+        key="italic"
         appearance="minimal"
         isActive={actions.italic.isActive()}
         icon={ItalicIcon}
@@ -47,6 +49,7 @@ export const getTextButtons = ({
   if (actions.underline && underline) {
     textButtons.push(
       <IconButton
+        key="underline"
         appearance="minimal"
         isActive={actions.underline.isActive()}
         icon={UnderlineIcon}
@@ -74,6 +77,7 @@ export const getBlockButtons = ({
   if (allowImages) {
     blockButtons.push(
       <IconButton
+        key="upload"
         onClick={openUploadPane}
         appearance="minimal"
         icon={ImageIcon}
@@ -85,6 +89,7 @@ export const getBlockButtons = ({
   if (actions.blockquote && blockquote) {
     blockButtons.push(
       <IconButton
+        key="blockquote"
         appearance="minimal"
         isActive={actions.blockquote.isActive()}
         icon={QuoteIcon}
@@ -98,6 +103,7 @@ export const getBlockButtons = ({
   if (actions.linkRemove && link) {
     blockButtons.push(
       <IconButton
+        key="link"
         appearance="minimal"
         isActive={linkActivated}
         icon={LinkIcon}
@@ -121,6 +127,7 @@ export const getHeadingButtons = ({
   if (actions.heading && heading) {
     blockButtons.push(
       <IconButton
+        key="heading1"
         appearance="minimal"
         isActive={actions.heading.isActive({ level: 1 })}
         icon={HeadingOneIcon}
@@ -131,11 +138,12 @@ export const getHeadingButtons = ({
     )
     blockButtons.push(
       <IconButton
+        key="heading2"
         appearance="minimal"
         isActive={actions.heading.isActive({ level: 2 })}
         icon={HeadingTwoIcon}
         disabled={!actions.heading.isEnabled}
-        onClick={runAction(actions.heading.command, { level: 2 })}
+        onClick={runAction(actions.toggleHeading, { level: 2 })}
         {...buttonProps}
       />
     )
