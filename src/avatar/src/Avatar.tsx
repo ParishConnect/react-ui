@@ -1,8 +1,8 @@
-import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
+import * as React from 'react'
 import { Image } from '../../image'
-import { Text } from '../../typography'
 import { ThemeContext } from '../../theme'
+import { Text } from '../../typography'
 import globalGetInitials from './utils/getInitials'
 import globalHash from './utils/hash'
 
@@ -102,6 +102,7 @@ class Avatar extends React.PureComponent<AvatarProps, AvatarState> {
   render() {
     const {
       src,
+      isSolid,
       size,
       name,
       getInitials = globalGetInitials,
@@ -135,7 +136,7 @@ class Avatar extends React.PureComponent<AvatarProps, AvatarState> {
         justifyContent="center"
         backgroundColor={colorProps.backgroundColor}
         title={name}
-        {...(props as any)}
+        {...props}
       >
         {(imageUnavailable || forceShowInitials) && (
           <Text

@@ -172,7 +172,7 @@ const InnerEditor = ({
         activateLink={activateLink}
       />
       {contentComponents && contentComponents}
-      <div {...getRootProps()} />
+      <Box {...getRootProps()} />
     </Box>
   )
 }
