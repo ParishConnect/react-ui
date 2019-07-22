@@ -100,14 +100,14 @@ export const getBlockButtons = ({
     )
   }
 
-  if (actions.linkRemove && link) {
+  if (actions.removeLink && link) {
     blockButtons.push(
       <IconButton
         key="link"
         appearance="minimal"
         isActive={linkActivated}
         icon={LinkIcon}
-        disabled={!actions.linkRemove.isActive}
+        disabled={!actions.removeLink.isActive}
         onClick={linkActivated ? deactivateLink : activateLink}
         {...buttonProps}
       />
@@ -124,15 +124,15 @@ export const getHeadingButtons = ({
 }) => {
   const blockButtons: JSX.Element[] = []
   const buttonProps = { marginX: 2, disabled }
-  if (actions.heading && heading) {
+  if (actions.toggleHeading && heading) {
     blockButtons.push(
       <IconButton
         key="heading1"
         appearance="minimal"
-        isActive={actions.heading.isActive({ level: 1 })}
+        isActive={actions.toggleHeading.isActive({ level: 1 })}
         icon={HeadingOneIcon}
-        disabled={!actions.heading.isEnabled}
-        onClick={runAction(actions.heading.command, { level: 1 })}
+        disabled={!actions.toggleHeading.isEnabled}
+        onClick={runAction(actions.toggleHeading, { level: 1 })}
         {...buttonProps}
       />
     )
@@ -140,9 +140,9 @@ export const getHeadingButtons = ({
       <IconButton
         key="heading2"
         appearance="minimal"
-        isActive={actions.heading.isActive({ level: 2 })}
+        isActive={actions.toggleHeading.isActive({ level: 2 })}
         icon={HeadingTwoIcon}
-        disabled={!actions.heading.isEnabled}
+        disabled={!actions.toggleHeading.isEnabled}
         onClick={runAction(actions.toggleHeading, { level: 2 })}
         {...buttonProps}
       />

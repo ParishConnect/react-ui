@@ -138,9 +138,9 @@ interface LinkManagerProps extends InjectedRemirrorProps {
 
 export default withRemirror(
   class LinkManager extends React.Component<LinkManagerProps> {
-    updateLink = (href: string) => this.props.actions.linkUpdate({ href })
-    removeLink = () => this.props.actions.linkRemove()
-    canRemove = () => this.props.actions.linkRemove.isActive()
+    updateLink = (href: string) => this.props.actions.updateLink({ href })
+    removeLink = () => this.props.actions.removeLink()
+    canRemove = () => this.props.actions.removeLink.isActive()
 
     render() {
       const {
