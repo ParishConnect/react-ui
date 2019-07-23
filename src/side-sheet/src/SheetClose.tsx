@@ -1,8 +1,9 @@
-import * as React from 'react'
+import { css, keyframes } from '@emotion/core'
+import { Keyframes } from '@emotion/serialize'
 import Box, { BoxProps } from '@parishconnect/box'
+import * as React from 'react'
 import { Position, PositionEnum, PositionType } from '../../constants'
 import { XIcon } from '../../icons/index'
-import { css, keyframes } from '@emotion/core'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -11,7 +12,7 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const sharedStyles = {
+const sharedStyles: any = {
   padding: 4,
   borderRadius: 9999,
   position: 'absolute',
@@ -26,7 +27,7 @@ const sharedStyles = {
   }
 }
 
-const withAnimations = (animateIn: any, animateOut: any) => {
+const withAnimations = (animateIn: Keyframes, animateOut: Keyframes) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
       animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
@@ -106,16 +107,16 @@ const sheetCloseStyles = {
   }
 }
 
-const sheetCloseClassNameCache = {}
+const sheetCloseCSSCache = {}
 
-const getSheetCloseClassName = (position: PositionEnum | PositionType) => {
-  if (!sheetCloseClassNameCache[position]) {
-    sheetCloseClassNameCache[position] = css(
-      sheetCloseStyles[position],
-      sharedStyles as any
-    ).toString()
+const getSheetCloseCSS = (position: PositionEnum | PositionType) => {
+  if (!sheetCloseCSSCache[position]) {
+    sheetCloseCSSCache[position] = css({
+      ...sheetCloseStyles[position],
+      ...sharedStyles
+    })
   }
-  return sheetCloseClassNameCache[position]
+  return sheetCloseCSSCache[position]
 }
 
 export interface SheetCloseProps {
@@ -123,7 +124,9 @@ export interface SheetCloseProps {
   position?: PositionEnum | PositionType
 }
 
-export default class SheetClose extends React.PureComponent<BoxProps> {
+export default class SheetClose extends React.PureComponent<
+  Omit<BoxProps, 'postition'> & { position: PositionType }
+> {
   render() {
     const { isClosing, position, ...props } = this.props
     return (
@@ -133,8 +136,8 @@ export default class SheetClose extends React.PureComponent<BoxProps> {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        className={getSheetCloseClassName(position as PositionType)}
-        {...(props as any)}
+        css={getSheetCloseCSS(position as PositionType)}
+        {...props}
       >
         <XIcon color="#fff" />
       </Box>

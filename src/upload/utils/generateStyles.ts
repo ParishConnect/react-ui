@@ -90,15 +90,6 @@ export const generateStyles = (theme: ThemeType) => {
       line-height: 1.5;
     }
 
-    .filepond--label-action {
-      text-decoration: underline;
-      -webkit-text-decoration-skip: ink;
-      text-decoration-skip-ink: auto;
-      -webkit-text-decoration-color: #a7a4a4;
-      text-decoration-color: #a7a4a4;
-      cursor: pointer;
-    }
-
     .filepond--root[data-disabled] .filepond--drop-label label {
       opacity: 0.5;
     }

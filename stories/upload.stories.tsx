@@ -1,8 +1,10 @@
+import Box from '@parishconnect/box'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import Box from '@parishconnect/box'
-import { Upload, Heading, FeaturedImageUpload } from '../src'
+import { FeaturedImageUpload, Heading, Upload } from '../src'
 import { createS3 } from './helpers/createS3Config'
+
+const testServer = {}
 
 storiesOf('upload', module)
   .add('Upload', () => (
@@ -26,6 +28,9 @@ storiesOf('upload', module)
   ))
   .add('Featured Image', () => (
     <Box padding={40}>
-      <FeaturedImageUpload width={1200} height={350} marginX="auto" />
+      <FeaturedImageUpload
+        server={testServer}
+        containerProps={{ width: 1200, height: 350, marginX: 'auto' }}
+      />
     </Box>
   ))

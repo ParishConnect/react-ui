@@ -326,6 +326,7 @@ export {
   SelectMenu,
   SelectMenuContent
 } from './select-menu'
+export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Stack, StackingContext } from './stack'
 export { Suggest } from './suggest'

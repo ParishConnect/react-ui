@@ -1,9 +1,8 @@
-import * as React from 'react'
-
 import { keyframes } from '@emotion/core'
+import * as React from 'react'
+import { Position, PositionEnum, PositionType } from '../../constants'
 import { Pane } from '../../layers'
 import { Overlay } from '../../overlay'
-import { Position, PositionEnum, PositionType } from '../../constants'
 import SheetClose from './SheetClose'
 
 const paneProps = {
@@ -195,7 +194,7 @@ class SideSheet extends React.Component<SideSheetProps> {
             data-state={state}
           >
             <SheetClose
-              position={position as any}
+              position={position}
               data-state={state}
               isClosing={false}
               onClick={close}
@@ -207,8 +206,8 @@ class SideSheet extends React.Component<SideSheetProps> {
               maxHeight="100vh"
               data-state={state}
               width={width}
-              // {...subpaneProps[position]}
-              // {...containerProps}
+              {...subpaneProps[position]}
+              {...containerProps}
             >
               {typeof children === 'function' ? children({ close }) : children}
             </Pane>

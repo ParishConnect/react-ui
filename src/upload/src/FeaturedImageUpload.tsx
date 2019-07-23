@@ -1,34 +1,32 @@
-import * as React from 'react'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
-import FilePondPluginImageResize from 'filepond-plugin-image-resize'
 import FilePondPluginImageCrop from 'filepond-plugin-image-crop'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import FilePondPluginImageResize from 'filepond-plugin-image-resize'
 import FilePluginImageTransform from 'filepond-plugin-image-transform'
-import { Pane, Text, Button, ThemeContext, Card } from '../../index'
-import { generateStyles } from '../utils/generateStyles'
-import { FilePond, registerPlugin } from 'react-filepond'
+import * as React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { splitBoxProps } from '@parishconnect/box'
-import { majorScale } from '../../scales/index'
+import { FilePond, FilePondProps, registerPlugin } from 'react-filepond'
+import { Button, Pane, Text, ThemeContext } from '../../index'
+import { PaneProps } from '../../layers/index'
+import { generateStyles } from '../utils/generateStyles'
 
-class FeaturedImageUpload extends React.Component<any> {
+type FeaturedImageUploadProps = FilePondProps & {
+  containerProps?: PaneProps
+  fileValidateTypeLabelExpectedTypesMap?: object
+  imageTransformOutputMimeType?: MimeType
+  /**
+   * @min 1
+   * @max 100
+   */
+  imageTransformOutputQuality?: number
+  height?: number
+  width?: number
+  [key: string]: any
+}
+
+class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
   filePondRef: FilePond | null
-  setImageCropCenter: any
-  startingY: any
-  cropCenterY: any
-
-  constructor(props) {
-    super(props)
-    registerPlugin(
-      FilePondPluginFileValidateSize,
-      FilePondPluginImagePreview,
-      FilePondPluginImageCrop,
-      FilePluginImageTransform,
-      FilePondPluginFileValidateType,
-      FilePondPluginImageResize
-    )
-  }
 
   state = { imageLoaded: false, hover: false }
 
@@ -43,23 +41,20 @@ class FeaturedImageUpload extends React.Component<any> {
     imageTransformOutputMimeType: 'image/jpeg',
     imageTransformOutputQuality: 70,
     name: 'parishconnect-upload',
-    className: 'parishconnect-upload'
+    className: 'parishconnect-upload',
+    height: 350,
+    width: 1200
   }
 
-  handleReposition = e => {
-    if (this.state.imageLoaded) {
-      const leftMouseButtonOnlyDown =
-        e.buttons === undefined ? e.which === 1 : e.buttons === 1
-
-      if (leftMouseButtonOnlyDown) {
-        this.cropCenterY = this.cropCenterY + -e.movementY / 900
-
-        if (this.cropCenterY <= 0.15) this.cropCenterY = 0.15
-        if (this.cropCenterY >= 0.85) this.cropCenterY = 0.85
-
-        this.setImageCropCenter({ x: 0.5, y: this.cropCenterY })
-      }
-    }
+  componentWillMount() {
+    registerPlugin(
+      FilePondPluginFileValidateSize,
+      FilePondPluginImagePreview,
+      FilePondPluginImageCrop,
+      FilePluginImageTransform,
+      FilePondPluginFileValidateType,
+      FilePondPluginImageResize
+    )
   }
 
   render() {
@@ -69,76 +64,59 @@ class FeaturedImageUpload extends React.Component<any> {
       imageTransformOutputMimeType,
       imageTransformOutputQuality,
       name,
-      className
+      className,
+      server,
+      containerProps,
+      height,
+      width,
+      ...rest
     } = this.props
-    const { matched, remaining } = splitBoxProps(this.props as any)
+
     return (
       <Pane
-        cursor={this.state.imageLoaded && 'ns-resize'}
-        onClick={e => (this.startingY = e.clientY)}
-        onMouseMove={this.handleReposition}
-        onMouseOver={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
+        cursor={this.state.imageLoaded ? 'ns-resize' : 'pointer'}
         css={generateStyles(this.context)}
-        {...matched}
+        {...containerProps}
       >
         <FilePond
-          onaddfile={(error, file: any) => {
+          server={server}
+          onaddfile={error => {
             if (error) return
-
             this.setState({ imageLoaded: true })
-            this.cropCenterY = 0.5
-            this.setImageCropCenter = file.setImageCropCenter
           }}
           onremovefile={() => this.setState({ imageLoaded: false })}
           acceptedFileTypes={acceptedFileTypes}
-          fileValidateTypeLabelExpectedTypesMap={
-            fileValidateTypeLabelExpectedTypesMap
-          }
-          imageTransformOutputMimeType={imageTransformOutputMimeType}
-          imageTransformOutputQuality={imageTransformOutputQuality}
+          {...fileValidateTypeLabelExpectedTypesMap}
+          {...imageTransformOutputMimeType}
+          {...imageTransformOutputQuality}
           name={name}
           className={className}
           imageResizeMode="force"
           stylePanelLayout="integrated"
-          stylePanelAspectRatio="1200:350"
-          imageCropAspectRatio="1200:350"
-          imageResizeTargetWidth={1200}
-          imagePreviewHeight={350}
-          imageResizeTargetHeight={350}
+          stylePanelAspectRatio={`${width}:${height}`}
+          imageCropAspectRatio={`${width}:${height}`}
+          imageResizeTargetWidth={width}
+          imagePreviewHeight={height}
+          imageResizeTargetHeight={height}
           ref={ref => (this.filePondRef = ref)}
           imagePreviewMaxFileSize="2MB"
           instantUpload={false}
-          {...remaining}
+          {...(rest as FilePondProps)}
           labelIdle={ReactDOMServer.renderToString(
             <Text>
-              Drag & Drop an image or
+              Drag & Drop your files or
               <Button
                 is="span"
                 marginLeft={8}
                 fontSize="12px !important"
                 appearance="primary"
-                onClick={() => this.filePondRef.browse()}
+                onClick={() => this.filePondRef && this.filePondRef.browse()}
               >
                 Browse
               </Button>
             </Text>
           )}
         />
-        <Card
-          opacity={this.state.hover && this.state.imageLoaded ? 1 : 0}
-          pointerEvents="none"
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translateX(-50%) translateY(-50%)"
-          background="rgba(0,0,0,0.5)"
-          padding={majorScale(2)}
-          transition="300ms"
-          color="white"
-        >
-          Drag to Reposition
-        </Card>
       </Pane>
     )
   }

@@ -1,11 +1,11 @@
-import * as React from 'react'
 import Box, { BoxProps } from '@parishconnect/box'
+import * as React from 'react'
 import { BackgroundColor, Elevation } from '../../constants'
 import { ThemeContext } from '../../theme'
 
 type StringAndBooleanType = string | boolean | undefined
 
-export interface PaneProps extends Omit<BoxProps, 'appearance'> {
+export type PaneProps = {
   /**
    * Values: 'gradient', 'solid', 'white'
    * --- Uses themeColor property
@@ -65,7 +65,7 @@ export interface PaneProps extends Omit<BoxProps, 'appearance'> {
    * Sets the position of the identifier.
    */
   identifierPosition?: 'top' | 'right' | 'bottom' | 'left'
-}
+} & Partial<BoxProps>
 
 class Pane extends React.PureComponent<any> {
   public static contextType = ThemeContext

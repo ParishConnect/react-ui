@@ -1,28 +1,50 @@
 const plugin = ({ addFilter, utils }) => {
-  const { Type, isFile } = utils
+  const { Type } = utils
 
-  const updateCrop = (item, obj) =>
-    item.setMetadata('crop', Object.assign({}, item.getMetadata('crop'), obj))
+  let cropCenterY: number
+
+  function mouseMoveWhilstDown(
+    target: HTMLElement | null,
+    whileMove: EventListenerOrEventListenerObject
+  ) {
+    var endMove = function() {
+      window.removeEventListener('mousemove', whileMove)
+      window.removeEventListener('mouseup', endMove)
+    }
+
+    if (target) {
+      target.addEventListener('mousedown', function(event: MouseEvent) {
+        event.stopPropagation() // remove if you do want it to propagate ..
+        window.addEventListener('mousemove', whileMove)
+        window.addEventListener('mouseup', endMove)
+      })
+    }
+  }
+
+  const moveImage = (e: MouseEvent, item: any) => {
+    // Only left mouse button drag
+    const initCrop = item.getMetadata('crop')
+
+    const { x, y } = initCrop.center
+
+    cropCenterY = y + -e.movementY / 900
+
+    if (cropCenterY <= 0.25) cropCenterY = 0.25
+    if (cropCenterY >= 0.75) cropCenterY = 0.75
+
+    window.requestAnimationFrame(() => {
+      item.setImageCropCenter({ x, y: cropCenterY })
+    })
+  }
 
   addFilter(
-    'DID_LOAD_ITEM',
-    (item, { query }) =>
+    'DID_CREATE_ITEM',
+    (item: any) =>
       new Promise((resolve, reject) => {
-        const file = item.file
-
-        if (!isFile(file)) {
-          return resolve(item)
-        }
-
-        const crop = item.getMetadata('crop')
-
-        item.setMetadata('crop', {
-          ...crop,
-          center: {
-            ...crop.center,
-            y: 0
-          }
-        })
+        mouseMoveWhilstDown(
+          document.querySelector('.filepond--wrapper'),
+          (e: MouseEvent) => moveImage(e, item)
+        )
 
         resolve(item)
       })
@@ -30,8 +52,7 @@ const plugin = ({ addFilter, utils }) => {
 
   return {
     options: {
-      // enable or disable image cropping
-      allowImageResize: [true, Type.BOOLEAN]
+      allowImageReposition: [true, Type.BOOLEAN]
     }
   }
 }
