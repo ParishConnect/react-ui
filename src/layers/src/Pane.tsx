@@ -65,7 +65,7 @@ export type PaneProps = {
    * Sets the position of the identifier.
    */
   identifierPosition?: 'top' | 'right' | 'bottom' | 'left'
-} & Partial<BoxProps>
+} & Omit<BoxProps, 'appearance'>
 
 class Pane extends React.PureComponent<any> {
   public static contextType = ThemeContext
