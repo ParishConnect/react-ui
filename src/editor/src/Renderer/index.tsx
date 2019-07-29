@@ -5,7 +5,7 @@ import * as React from 'react'
 import { Pane } from '../../../layers/index'
 import { PaneProps } from '../../../layers/src/Pane'
 import { ThemeContext } from '../../../theme/index'
-// import editorStyles from '../Editor/styles/editorStyles'
+import editorStyles from '../Editor/styles/editorStyles'
 import { Doc, HeadingHandler, TextHandler } from './components'
 
 const MARK_MAP = {
@@ -33,11 +33,11 @@ export default class Renderer extends React.PureComponent<
   render() {
     const { matched } = splitBoxProps(this.props)
     return (
-      <Pane {...matched}>
+      <Pane css={editorStyles(this.context)} {...matched}>
         <div className="remirror-editor">
           <RenderTree
-            skipUnknownTypes={false}
-            skipUnknownMarks
+            skipUnknownTypes={true}
+            skipUnknownMarks={true}
             typeMap={TYPE_MAP}
             markMap={MARK_MAP}
             json={this.props.json || EMPTY_PARAGRAPH_NODE}
