@@ -1,3 +1,4 @@
+import { StringHandlerParams } from '@remirror/core'
 import { RemirrorProps } from '@remirror/react'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'
@@ -67,6 +68,8 @@ export interface EditorPropsBase extends RemirrorProps {
    * @format in CSS Object format
    */
   extraStyles?: any
+
+  stringHandler?: StringHandlerParams
 }
 
 export type EditorProps = Overwrite<PaneProps, EditorPropsBase>
