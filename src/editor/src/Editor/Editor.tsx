@@ -1,3 +1,4 @@
+import { StringHandlerParams } from '@remirror/core'
 import { RemirrorProps } from '@remirror/react'
 import * as React from 'react'
 import { Overwrite } from 'utility-types'
@@ -67,6 +68,8 @@ export interface EditorPropsBase extends RemirrorProps {
    * @format in CSS Object format
    */
   extraStyles?: any
+
+  stringHandler?: StringHandlerParams
 }
 
 export type EditorProps = Overwrite<PaneProps, EditorPropsBase>
@@ -86,13 +89,18 @@ const defaultCollapsedComponent = ({ onExpand, placeholder }) => (
   />
 )
 
-class Editor extends React.Component<any> {
-  static defaultProps = {
+class Editor extends React.Component<EditorProps> {
+  static defaultProps: Partial<EditorProps> = {
     collapsed: false,
     appearance: 'default',
     autoFocus: true,
     showInlineActions: false,
     collapsedComponent: defaultCollapsedComponent,
+    stringHandler: ({ content, schema }) =>
+      schema.nodes.doc.create(
+        {},
+        schema.nodes.paragraph.create({}, schema.text(content))
+      ),
     onExpand: () => {},
     onSave: () => {}
   }
