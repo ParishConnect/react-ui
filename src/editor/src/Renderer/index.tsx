@@ -1,6 +1,6 @@
 import { splitBoxProps } from '@parishconnect/box'
 import { EMPTY_PARAGRAPH_NODE } from '@remirror/core'
-import { RenderTree } from '@remirror/renderer-react'
+import { RenderTree, RenderTreeProps } from '@remirror/renderer-react'
 import * as React from 'react'
 import { Pane } from '../../../layers/index'
 import { PaneProps } from '../../../layers/src/Pane'
@@ -27,11 +27,11 @@ const TYPE_MAP = {
 }
 
 export default class Renderer extends React.PureComponent<
-  PaneProps & { json: any }
+  RenderTreeProps & PaneProps
 > {
   static contextType = ThemeContext
   render() {
-    const { matched } = splitBoxProps(this.props)
+    const { matched, remaining } = splitBoxProps(this.props)
     return (
       <Pane css={editorStyles(this.context)} {...matched}>
         <div className="remirror-editor">
@@ -41,6 +41,7 @@ export default class Renderer extends React.PureComponent<
             typeMap={TYPE_MAP}
             markMap={MARK_MAP}
             json={this.props.json || EMPTY_PARAGRAPH_NODE}
+            {...remaining}
           />
         </div>
       </Pane>
