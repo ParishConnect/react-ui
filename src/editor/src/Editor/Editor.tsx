@@ -86,13 +86,18 @@ const defaultCollapsedComponent = ({ onExpand, placeholder }) => (
   />
 )
 
-class Editor extends React.Component<any> {
-  static defaultProps = {
+class Editor extends React.Component<EditorProps> {
+  static defaultProps: Partial<EditorProps> = {
     collapsed: false,
     appearance: 'default',
     autoFocus: true,
     showInlineActions: false,
     collapsedComponent: defaultCollapsedComponent,
+    stringHandler: ({ content, schema }) =>
+      schema.nodes.doc.create(
+        {},
+        schema.nodes.paragraph.create({}, schema.text(content))
+      ),
     onExpand: () => {},
     onSave: () => {}
   }
