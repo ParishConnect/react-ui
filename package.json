@@ -10,7 +10,7 @@
     "ui",
     "react"
   ],
-  "repository": "hennessyevan/aluminum-ui",
+  "repository": "hennessyevan/ui",
   "license": "UNLICENSED",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
