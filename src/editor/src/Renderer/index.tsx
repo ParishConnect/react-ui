@@ -1,5 +1,5 @@
 import { splitBoxProps } from '@parishconnect/box'
-import { EMPTY_PARAGRAPH_NODE, isObject, ObjectNode } from '@remirror/core'
+import { EMPTY_PARAGRAPH_NODE, isObjectNode, ObjectNode } from '@remirror/core'
 import { RenderTree, RenderTreeProps } from '@remirror/renderer-react'
 import * as React from 'react'
 import { Pane } from '../../../layers/index'
@@ -14,8 +14,7 @@ const MARK_MAP = {
   code: 'code',
   link: 'a',
   underline: 'u',
-  heading: 'h1',
-  undefined: 'p'
+  heading: 'h1'
 }
 
 const TYPE_MAP = {
@@ -24,8 +23,7 @@ const TYPE_MAP = {
   image: 'img',
   hard_break: 'br',
   text: TextHandler,
-  heading: HeadingHandler,
-  undefined: 'p'
+  heading: HeadingHandler
 }
 
 function serializeString(string: string) {
@@ -53,7 +51,9 @@ export default class Renderer extends React.PureComponent<
     const { matched, remaining } = splitBoxProps(this.props)
     const { document = EMPTY_PARAGRAPH_NODE, ...rest } = remaining
 
-    const _document = isObject(document) ? document : serializeString(document)
+    const _document = isObjectNode(document)
+      ? document
+      : serializeString(document)
 
     return (
       <Pane css={editorStyles(this.context)} {...matched}>
