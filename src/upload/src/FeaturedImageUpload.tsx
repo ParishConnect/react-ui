@@ -101,9 +101,8 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
           ref={ref => (this.filePondRef = ref)}
           imagePreviewMaxFileSize="2MB"
           instantUpload={false}
-          {...(rest as FilePondProps)}
           labelIdle={ReactDOMServer.renderToString(
-            <Text>
+           <Text>
               Drag & Drop your files or
               <Button
                 is="span"
@@ -111,11 +110,12 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
                 fontSize="12px !important"
                 appearance="primary"
                 onClick={() => this.filePondRef && this.filePondRef.browse()}
-              >
+                >
                 Browse
               </Button>
             </Text>
           )}
+          {...(rest as FilePondProps)}
         />
       </Pane>
     )
