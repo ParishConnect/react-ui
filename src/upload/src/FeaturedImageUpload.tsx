@@ -22,13 +22,14 @@ type FeaturedImageUploadProps = FilePondProps & {
   imageTransformOutputQuality?: number
   height?: number
   width?: number
+  onClick?: (filePond?: FilePond | null) => void
   [key: string]: any
 }
 
 class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
   filePondRef: FilePond | null
 
-  state = { imageLoaded: false, hover: false }
+  state = { imageLoaded: false }
 
   static contextType = ThemeContext
 
@@ -74,11 +75,22 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
 
     return (
       <Pane
-        cursor={this.state.imageLoaded ? 'ns-resize' : 'pointer'}
+        cursor="pointer"
+        position="relative"
+        onClick={(e: any) => {
+          if (this.props.onClick) {
+            if (e.target.className !== 'filepond--drop-label') {
+              e.preventDefault()
+              e.stopPropagation()
+              this.props.onClick(this.filePondRef)
+            }
+          }
+        }}
         css={generateStyles(this.context)}
         {...containerProps}
       >
         <FilePond
+          allowBrowse={this.props.onClick ? false : true}
           server={server}
           onaddfile={error => {
             if (error) return
@@ -102,15 +114,19 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
           imagePreviewMaxFileSize="2MB"
           instantUpload={false}
           labelIdle={ReactDOMServer.renderToString(
-           <Text>
+            <Text>
               Drag & Drop your files or
               <Button
                 is="span"
                 marginLeft={8}
                 fontSize="12px !important"
                 appearance="primary"
-                onClick={() => this.filePondRef && this.filePondRef.browse()}
-                >
+                onClick={
+                  !this.props.onClick &&
+                  this.filePondRef &&
+                  this.filePondRef.browse
+                }
+              >
                 Browse
               </Button>
             </Text>

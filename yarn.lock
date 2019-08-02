@@ -6533,15 +6533,15 @@ filepond-plugin-image-resize@^2.0.4:
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-resize/-/filepond-plugin-image-resize-2.0.4.tgz#1f1c77ec692f37d789a9a5600920dd9fc5f26015"
   integrity sha512-4qDB6cGqO/9sxAHnmlI5iJ1sXWgqzusKeTFCLEEba9JiX6eaY+w5BQjkO5zrhF7OuYAvqFAziunIhkZet6BpiQ==
 
-filepond-plugin-image-transform@^3.2.4:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/filepond-plugin-image-transform/-/filepond-plugin-image-transform-3.3.2.tgz#6eeb39c1c58e5d6e694adceec33ed633d99185a9"
-  integrity sha512-S17wqS566OyX/ejvfyPOzt7jbk+3zNzXT2mK79dLxFznasAUyB8FXSV4VqDpwjeCIrGlf6ZEEALKlsblyfCkRQ==
+filepond-plugin-image-transform@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.npmjs.org/filepond-plugin-image-transform/-/filepond-plugin-image-transform-3.3.3.tgz#7990d450e80d5302e2a0cc645b7d0c85bb5f3e35"
+  integrity sha512-L7nLdEY9+Gb4n3XBIDlPfhcTyhOFAn+liXwpt17sU/ubzmaqsK2ZGGNkgmeL9UTTDi7lkUzFcEITEnUDTudnsg==
 
-filepond@^4.4.11:
-  version "4.4.11"
-  resolved "https://registry.npmjs.org/filepond/-/filepond-4.4.11.tgz#8b3e370164c39a5e299bde591d26060240ba2871"
-  integrity sha512-eQPJiqKYQQNccjZ9jTZfqHeKvWXJ7Wq2fuicSQDCiG/bfEWmksaTeaQ51Vce5cNVTjXKfXuWhS4mNE6gzLwGhQ==
+filepond@^4.4.12:
+  version "4.4.12"
+  resolved "https://registry.npmjs.org/filepond/-/filepond-4.4.12.tgz#8c7319efcbd080f1b4d01087c5605eb168db6fad"
+  integrity sha512-LW2gdZgxTTQqK9V4DWQwRbeQzmxmqJ+vFtKGIjxA8l+aui1FLGZ3Nmx+hpSysYgcY4iGIY+a8nK6C7RlEKoFrQ==
 
 filesize@3.6.1, filesize@^3.6.1:
   version "3.6.1"

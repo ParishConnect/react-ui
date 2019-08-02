@@ -1,10 +1,17 @@
 import Box from '@parishconnect/box'
+import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { FeaturedImageUpload, Heading, Upload } from '../src'
+import { Dialog, FeaturedImageUpload, Heading, Image, Upload } from '../src'
 import { createS3 } from './helpers/createS3Config'
 
-const testServer = {}
+const testServer = {
+  load: (url, load, error, progress, abort, headers) => {
+    fetch(url)
+      .then(res => res.blob())
+      .then(blob => load(blob))
+  }
+}
 
 storiesOf('upload', module)
   .add('Upload', () => (
@@ -27,10 +34,51 @@ storiesOf('upload', module)
     </Box>
   ))
   .add('Featured Image', () => (
-    <Box padding={40}>
-      <FeaturedImageUpload
-        server={testServer}
-        containerProps={{ width: 1200, height: 350, marginX: 'auto' }}
-      />
-    </Box>
+    <Component initialState={{ open: false }}>
+      {({ state, setState }) => (
+        <Box padding={40}>
+          <Dialog
+            isShown={state.open}
+            title="Choose an image"
+            hasFooter={false}
+          >
+            <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={8}>
+              <Image
+                cursor="pointer"
+                src="https://picsum.photos/id/10/300/300"
+                height={150}
+                width={150}
+                onClick={() => {
+                  state.filepond &&
+                    state.filepond.addFile(
+                      'https://picsum.photos/id/10/2400/700',
+                      { type: 'local' }
+                    )
+                  setState({ open: false })
+                }}
+              />
+              <Image
+                cursor="pointer"
+                src="https://picsum.photos/id/11/300/300"
+                height={150}
+                width={150}
+                onClick={() => {
+                  state.filepond &&
+                    state.filepond.addFile(
+                      'https://picsum.photos/id/11/2400/700',
+                      { type: 'local' }
+                    )
+                  setState({ open: false })
+                }}
+              />
+            </Box>
+          </Dialog>
+          <FeaturedImageUpload
+            onClick={filepond => setState({ open: true, filepond })}
+            server={testServer}
+            containerProps={{ width: 1200, height: 350, marginX: 'auto' }}
+          />
+        </Box>
+      )}
+    </Component>
   ))
