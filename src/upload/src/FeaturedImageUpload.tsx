@@ -15,6 +15,7 @@ type FeaturedImageUploadProps = FilePondProps & {
   containerProps?: PaneProps
   fileValidateTypeLabelExpectedTypesMap?: object
   imageTransformOutputMimeType?: MimeType
+  innerRef: (ref: FilePond | null) => void
   /**
    * @min 1
    * @max 100
@@ -44,7 +45,8 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
     name: 'parishconnect-upload',
     className: 'parishconnect-upload',
     height: 350,
-    width: 1200
+    width: 1200,
+    instantUpload: false
   }
 
   componentWillMount() {
@@ -70,6 +72,7 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
       containerProps,
       height,
       width,
+      innerRef,
       ...rest
     } = this.props
 
@@ -110,9 +113,11 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
           imageResizeTargetWidth={width}
           imagePreviewHeight={height}
           imageResizeTargetHeight={height}
-          ref={ref => (this.filePondRef = ref)}
+          ref={ref => {
+            this.props.innerRef(ref)
+            this.filePondRef = ref
+          }}
           imagePreviewMaxFileSize="2MB"
-          instantUpload={false}
           labelIdle={ReactDOMServer.renderToString(
             <Text>
               Drag & Drop your files or
