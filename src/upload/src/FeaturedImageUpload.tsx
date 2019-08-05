@@ -15,7 +15,6 @@ type FeaturedImageUploadProps = FilePondProps & {
   containerProps?: PaneProps
   fileValidateTypeLabelExpectedTypesMap?: object
   imageTransformOutputMimeType?: MimeType
-  innerRef: (ref: FilePond | null) => void
   /**
    * @min 1
    * @max 100
@@ -72,7 +71,7 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
       containerProps,
       height,
       width,
-      innerRef,
+      onClick = () => {},
       ...rest
     } = this.props
 
@@ -80,20 +79,11 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
       <Pane
         cursor="pointer"
         position="relative"
-        onClick={(e: any) => {
-          if (this.props.onClick) {
-            if (e.target.className !== 'filepond--drop-label') {
-              e.preventDefault()
-              e.stopPropagation()
-              this.props.onClick(this.filePondRef)
-            }
-          }
-        }}
+        onClick={() => onClick(this.filePondRef)}
         css={generateStyles(this.context)}
         {...containerProps}
       >
         <FilePond
-          allowBrowse={this.props.onClick ? false : true}
           server={server}
           onaddfile={error => {
             if (error) return
@@ -114,7 +104,6 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
           imagePreviewHeight={height}
           imageResizeTargetHeight={height}
           ref={ref => {
-            this.props.innerRef(ref)
             this.filePondRef = ref
           }}
           imagePreviewMaxFileSize="2MB"
@@ -126,11 +115,6 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
                 marginLeft={8}
                 fontSize="12px !important"
                 appearance="primary"
-                onClick={
-                  !this.props.onClick &&
-                  this.filePondRef &&
-                  this.filePondRef.browse
-                }
               >
                 Browse
               </Button>
