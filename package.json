@@ -1,16 +1,15 @@
 {
   "name": "@parishconnect/ui",
   "version": "1.5.15",
-  "description": "React UI Kit fork of evergreen",
+  "description": "React UI Kit for ParishConnect's webapp",
   "contributors": [
-    "Evan Hennessy (https://hennessyevan.com/)"
+    "Evan Hennessy"
   ],
   "keywords": [
-    "aluminum",
     "ui",
     "react"
   ],
-  "repository": "hennessyevan/ui",
+  "repository": "https://github.com/parishconnect/abilities",
   "license": "UNLICENSED",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
@@ -20,23 +19,27 @@
     "esm",
     "dist"
   ],
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com/"
+  },
   "sideEffects": false,
   "scripts": {
-    "start": "yarn dev",
-    "test": "yarn tsc --noEmit",
+    "start": "npm run dev",
+    "test": "npm run tsc --noEmit",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "prepublishOnly": "yarn run build",
+    "prepublishOnly": "npm run build",
     "dev": "start-storybook -p 6006",
     "coverage": "nyc report --reporter=html",
     "build-custom-icons": "node ./tools/build-icons-json.js",
-    "generate-icons": "yarn build-custom-icons && ./tools/generate-icons.js",
+    "generate-icons": "npm run build-custom-icons && ./tools/generate-icons.js",
     "create-package": "./tools/create-package.js",
     "create-package:components": "./tools/create-package-components.js",
     "create-docs-template": "./tools/create-docs-template.js",
     "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
     "build-types": "tsc --declaration --emitDeclarationOnly",
-    "build": "concurrently --names 'types,commonjs,esm' 'yarn run build-types' 'yarn run build-commonjs' 'yarn run build-esm'",
+    "build": "concurrently --names 'types,commonjs,esm' 'npm run build-types' 'npm run build-commonjs' 'npm run build-esm'",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "clean": "git clean -Xdf",
     "release": "np --no-publish --skip-cleanup",
