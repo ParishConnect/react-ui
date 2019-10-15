@@ -1,5 +1,5 @@
 {
-  "name": "@parishconnect/ui",
+  "name": "@parishconnect/react-ui",
   "version": "1.5.15",
   "description": "React UI Kit for ParishConnect's webapp",
   "contributors": [
@@ -9,7 +9,7 @@
     "ui",
     "react"
   ],
-  "repository": "https://github.com/parishconnect/ui",
+  "repository": "https://github.com/parishconnect/react-ui",
   "license": "UNLICENSED",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
