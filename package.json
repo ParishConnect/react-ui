@@ -9,7 +9,7 @@
     "ui",
     "react"
   ],
-  "repository": "https://github.com/parishconnect/abilities",
+  "repository": "https://github.com/parishconnect/ui",
   "license": "UNLICENSED",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
