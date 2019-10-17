@@ -1003,7 +1003,7 @@
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
 
-"@emotion/babel-preset-css-prop@^10.0.14", "@emotion/babel-preset-css-prop@^10.0.17":
+"@emotion/babel-preset-css-prop@^10.0.14":
   version "10.0.17"
   resolved "https://registry.yarnpkg.com/@emotion/babel-preset-css-prop/-/babel-preset-css-prop-10.0.17.tgz#8ec9b6abe5f95c7dfb455e71810c2d3a12929245"
   integrity sha512-vlgk87XKLlko7CTFOn8Iz1zkKWJjyPXXJRg6yI+GnvhxuSjurjctx+Z/bAKgQgXOdDNs0cmU90A3kOemq5XtzA==
@@ -1148,9 +1148,9 @@
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
 "@parishconnect/box@^2.2.8":
-  version "2.2.8"
-  resolved "https://npm.pkg.github.com/download/@parishconnect/box/2.2.8/ae0c05e148e71a988a3f4975646b8e96cbc96c88c413f23e96b2756fe120919e#f5d03833547adf84cff66cbc0df7a0a7118191fe"
-  integrity sha512-UzkkccPO1UdOhRO9+Yf/uKisMxQoSY3/SblSa2JabShH78awjtUDSBx0+vajnHlQxK6UqWrsEaw/VrNAEVr77w==
+  version "2.2.9"
+  resolved "https://npm.pkg.github.com/download/@parishconnect/box/2.2.9/d9a0f8ba37d670e1bc094708fe44fa30760ed1a0b830b93e72aaf83e857c55bd#665e5de0b0974dffa9ee638d1eac08c0ace41adc"
+  integrity sha512-P8jZVxYAvLAesAwMqJ+xr2NjFla8+VxKKnJCXXP3OXCmoBHA8MF6n/2QG/CEnXIGsTyhBgZqqKF7XTE0QZdE1A==
   dependencies:
     "@emotion/babel-preset-css-prop" "^10.0.14"
     "@emotion/core" "^10.0.14"

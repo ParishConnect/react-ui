@@ -43,7 +43,7 @@ class Link extends React.PureComponent<TextProps & LinkProps> {
         is="a"
         textDecoration={noUnderline ? 'none' : 'underline'}
         color={undefined}
-        css={{ ...themedCSS, ...css }}
+        css={[themedCSS, css]}
         {...props}
       />
     )

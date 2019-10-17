@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { toaster } from '../../toaster'
 import { Omit } from 'utility-types'
-import { ThemeContext } from '../../theme'
 import { Pane, PaneProps } from '../../layers'
-import { TableRowConsumer } from './TableRowContext'
+import { ThemeContext } from '../../theme'
+import { toaster } from '../../toaster'
 import manageTableCellFocusInteraction from './manageTableCellFocusInteraction'
+import { TableRowConsumer } from './TableRowContext'
 
 export interface TableCellProps extends Omit<PaneProps, 'appearance'> {
   /*

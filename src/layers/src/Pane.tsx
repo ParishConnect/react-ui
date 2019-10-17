@@ -1,17 +1,21 @@
 import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
+import { Omit } from 'utility-types'
 import { BackgroundColor, Elevation } from '../../constants'
 import { ThemeContext } from '../../theme'
 import { LiteralUnion } from '../../utils/utils'
 
 type StringAndBooleanType = string | boolean | undefined
+type PrePaneProps = Omit<BoxProps, ''>
 
-export type PaneProps = BoxProps & {
+export type PaneProps = PrePaneProps & {
   /**
    * Values: 'gradient', 'solid', 'white'
    * --- Uses themeColor property
    */
-  appearance?: LiteralUnion<'gradient' | 'solid' | 'white'>
+  appearance?:
+    | LiteralUnion<'gradient' | 'solid' | 'white'>
+    | LiteralUnion<'gradient' | 'solid' | 'white'>[]
   /**
    * Background property.
    * `tint1`, `tint2` etc. from `theme.colors.background` are available.
@@ -232,7 +236,7 @@ class Pane extends React.PureComponent<PaneProps> {
     if (!appearance) {
       return background
     }
-    if (['gradient', 'solid'].includes(appearance)) {
+    if (['gradient', 'solid'].includes(appearance as string)) {
       return theme.themeColor
     }
     return background
@@ -285,9 +289,15 @@ class Pane extends React.PureComponent<PaneProps> {
 
     const themedBackground = Array.isArray(background)
       ? background.map(b =>
-          this.getBackgroundAppearance(appearance || '', b || '')
+          this.getBackgroundAppearance(
+            (appearance as string) || '',
+            (b as string) || ''
+          )
         )
-      : this.getBackgroundAppearance(appearance || '', background || '')
+      : this.getBackgroundAppearance(
+          (appearance as string) || '',
+          (background as string) || ''
+        )
 
     return (
       <Box

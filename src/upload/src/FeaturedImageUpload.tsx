@@ -79,7 +79,7 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
         cursor="pointer"
         position="relative"
         onClick={() => onClick(this.filePondRef)}
-        css={generateStyles(this.context)}
+        css={generateStyles(this.context) as any}
         {...containerProps}
       >
         <FilePond
