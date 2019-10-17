@@ -2,20 +2,21 @@ import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import { BackgroundColor, Elevation } from '../../constants'
 import { ThemeContext } from '../../theme'
+import { LiteralUnion } from '../../utils/utils'
 
 type StringAndBooleanType = string | boolean | undefined
 
-export type PaneProps = {
+export type PaneProps = BoxProps & {
   /**
    * Values: 'gradient', 'solid', 'white'
    * --- Uses themeColor property
    */
-  appearance?: 'gradient' | 'solid' | 'white'
+  appearance?: LiteralUnion<'gradient' | 'solid' | 'white'>
   /**
    * Background property.
    * `tint1`, `tint2` etc. from `theme.colors.background` are available.
    */
-  background?: BackgroundColor
+  background?: BackgroundColor | BackgroundColor[]
   /**
    * Elevation of the Pane.
    * Values: 0, 1, 2, 3, 4.
@@ -65,9 +66,9 @@ export type PaneProps = {
    * Sets the position of the identifier.
    */
   identifierPosition?: 'top' | 'right' | 'bottom' | 'left'
-} & Omit<BoxProps, 'appearance'>
+}
 
-class Pane extends React.PureComponent<any> {
+class Pane extends React.PureComponent<PaneProps> {
   public static contextType = ThemeContext
 
   getHoverElevationStyle = (hoverElevation: number, css: object): object => {

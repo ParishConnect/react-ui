@@ -1,7 +1,7 @@
 import { linearGradient } from '../helpers'
+import gradients from './gradients'
 import palette from './palette'
 import scales from './scales'
-import gradients from './gradients'
 
 /**
  * This object are functional colors being used the default theme.
@@ -91,7 +91,7 @@ export default {
   },
 
   /**
-   * Used for Alerts and other (future) componentes that express intent.
+   * Used for Alerts and other components that express intent.
    */
   intent: {
     none: palette.blue.base,

@@ -5,9 +5,8 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import FilePondPluginImageResize from 'filepond-plugin-image-resize'
 import FilePluginImageTransform from 'filepond-plugin-image-transform'
 import * as React from 'react'
-import ReactDOMServer from 'react-dom/server'
 import { FilePond, FilePondProps, registerPlugin } from 'react-filepond'
-import { Button, Pane, Text, ThemeContext } from '../../index'
+import { Pane, ThemeContext } from '../../index'
 import { PaneProps } from '../../layers/index'
 import { generateStyles } from '../utils/generateStyles'
 
@@ -107,19 +106,6 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
             this.filePondRef = ref
           }}
           imagePreviewMaxFileSize="2MB"
-          labelIdle={ReactDOMServer.renderToString(
-            <Text>
-              Drag & Drop your files or
-              <Button
-                is="span"
-                marginLeft={8}
-                fontSize="12px !important"
-                appearance="primary"
-              >
-                Browse
-              </Button>
-            </Text>
-          )}
           {...(rest as FilePondProps)}
         />
       </Pane>

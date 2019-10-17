@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { Pane, Card } from '../src/layers'
-import { defaultTheme as theme } from '../src/theme'
 import { BackgroundColor } from '../src/constants'
+import { Card, Pane } from '../src/layers'
+import { defaultTheme as theme } from '../src/theme'
 
 const cardStyle = {
   float: 'left' as any,

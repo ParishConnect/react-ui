@@ -13,23 +13,6 @@
  * The following properties are NOT REQUIRED by Aluminum.
  * It's exposed for convenience and documentation.
  */
-import {
-  colors,
-  elevations,
-  gradients,
-  fills,
-  palette,
-  scales
-} from './foundational-styles/'
-
-/**
- * Typography.
- * ---
- * The following properties are NOT REQUIRED by Aluminum.
- * It's exposed for convenience and documentation.
- */
-import { headings, text, fontFamilies, paragraph } from './typography/'
-
 /**
  * Component Specific.
  * ---
@@ -38,55 +21,69 @@ import { headings, text, fontFamilies, paragraph } from './typography/'
 import {
   avatarColors,
   badgeColors,
-  spinnerColor,
-  overlayBackgroundColor,
-  getButtonCSS,
-  getLinkCSS,
-  getCheckboxCSS,
-  getRadioCSS,
-  getTextInputCSS,
-  getTextareaCSS,
-  getTextDropdownButtonCSS,
-  getTabCSS,
-  getTableCellCSS,
-  getTooltipProps,
-  getRowCSS,
-  getMenuItemCSS,
-  getSelectCSS,
-  getSegmentedControlRadioCSS,
-  getSwitchCSS,
   getAlertProps,
-  getCodeProps,
+  getAvatarInitialsFontSize,
   getAvatarProps,
   getBadgeProps,
-  getAvatarInitialsFontSize
+  getButtonCSS,
+  getCheckboxCSS,
+  getCodeProps,
+  getLinkCSS,
+  getMenuItemCSS,
+  getRadioCSS,
+  getRowCSS,
+  getSegmentedControlRadioCSS,
+  getSelectCSS,
+  getSwitchCSS,
+  getTabCSS,
+  getTableCellCSS,
+  getTextareaCSS,
+  getTextDropdownButtonCSS,
+  getTextInputCSS,
+  getTooltipProps,
+  overlayBackgroundColor,
+  spinnerColor
 } from './component-specific/'
-
+import {
+  colors,
+  elevations,
+  fills,
+  gradients,
+  palette,
+  scales
+} from './foundational-styles/'
 /**
  * Theme Helpers.
  * ---
  * These ARE REQUIRED for Aluminum to work.
  */
 import {
-  getBorderRadiusForControlHeight,
-  getTextSizeForControlHeight,
-  getTextSizeForBlockHeight,
-  getIconSizeForButton,
-  getIconSizeForInput,
-  getIconSizeForSelect,
-  getIconSizeForIconButton,
   getBackground,
+  getBorderRadiusForControlHeight,
   getElevation,
+  getFontFamily,
+  getHeadingStyle,
   getIconColor,
   getIconForIntent,
-  getHeadingStyle,
-  getTextStyle,
+  getIconSizeForButton,
+  getIconSizeForIconButton,
+  getIconSizeForInput,
+  getIconSizeForSelect,
   getParagraphStyle,
-  getFontFamily,
   getTextColor,
-  isThemeColor,
-  getThemeColor
+  getTextSizeForBlockHeight,
+  getTextSizeForControlHeight,
+  getTextStyle,
+  getThemeColor,
+  isThemeColor
 } from './theme-helpers/'
+/**
+ * Typography.
+ * ---
+ * The following properties are NOT REQUIRED by Aluminum.
+ * It's exposed for convenience and documentation.
+ */
+import { fontFamilies, headings, paragraph, text } from './typography/'
 
 export default {
   // Theme Color

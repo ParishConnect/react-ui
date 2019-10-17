@@ -1,3 +1,9 @@
+import {
+  colors,
+  palette
+} from '../../theme/src/default-theme/foundational-styles'
+import { LiteralUnion } from '../../utils/utils'
+
 export type ThemeColor =
   | 'blue'
   | 'red'
@@ -19,7 +25,7 @@ export type BackgroundTint =
   | 'purpleTint'
   | 'tealTint'
 
-export type BackgroundColor =
+export type BackgroundColor = LiteralUnion<
   | BackgroundTint
   | 'neutral'
   | 'green'
@@ -28,21 +34,23 @@ export type BackgroundColor =
   | 'blue'
   | 'purple'
   | 'teal'
-  | string
+>
 
-export interface BorderColor {
-  default: 'default'
-  muted: 'muted'
-}
+export type BorderColor = LiteralUnion<'default' | 'muted'>
 
-export type Elevation = 0 | 1 | 2 | 3 | 4 | number | undefined
+export type Elevation = 0 | 1 | 2 | 3 | 4
 
 export interface Colors {
-  background: BackgroundColor | string
+  background: BackgroundColor
   border: BorderColor
   text: object
   icon: object
-  intent: object
+  intent: {
+    none: string
+    success: string
+    danger: string
+    warning: string
+  }
 }
 
 export interface ThemeType {
@@ -50,11 +58,11 @@ export interface ThemeType {
    * default 'blue'
    */
   themeColor: string
-  colors: Colors
+  colors: typeof colors
   elevations: object
   gradients: object
   fills: object
-  palette: object
+  palette: typeof palette
   scales: object
 
   // Component Specific.

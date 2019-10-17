@@ -6,6 +6,8 @@ export interface IKeyBlacklist<T> {
   exclude: Array<keyof T>
 }
 
+export type LiteralUnion<T extends U, U = string | number> = T | (U & {})
+
 export function measureTextWidth(
   text: string,
   className = '',

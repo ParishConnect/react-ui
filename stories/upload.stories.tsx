@@ -2,6 +2,7 @@ import Box from '@parishconnect/box'
 import Component from '@reactions/component'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { FilePondServerConfigProps } from 'react-filepond'
 import {
   Dialog,
   FeaturedImageUpload,
@@ -13,7 +14,7 @@ import {
 } from '../src'
 import { createS3 } from './helpers/createS3Config'
 
-const testServer = {
+const testServer: FilePondServerConfigProps['server'] = {
   load: (url, load, error, progress, abort, headers) => {
     fetch(url)
       .then(res => res.blob())
@@ -95,7 +96,7 @@ storiesOf('upload', module)
               if (err) return
               setState({ open: false })
             }}
-            onClick={ref => setState({ open: true, filepond: ref })}
+            onClick={filepond => setState({ open: true, filepond })}
             allowBrowse={state.open}
             server={testServer}
             containerProps={{ width: 1200, height: 350, marginX: 'auto' }}
