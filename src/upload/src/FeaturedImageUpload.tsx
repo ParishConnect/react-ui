@@ -21,6 +21,7 @@ type FeaturedImageUploadProps = FilePondProps & {
   imageTransformOutputQuality?: number
   height?: number
   width?: number
+  oninit?: (filepond: FilePond | null) => void
   onClick?: (filePond?: FilePond | null) => void
   [key: string]: any
 }
@@ -70,6 +71,7 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
       containerProps,
       height,
       width,
+      oninit,
       onClick = () => {},
       ...rest
     } = this.props
@@ -102,6 +104,7 @@ class FeaturedImageUpload extends React.Component<FeaturedImageUploadProps> {
           imageResizeTargetWidth={width}
           imagePreviewHeight={height}
           imageResizeTargetHeight={height}
+          oninit={() => oninit && oninit(this.filePondRef)}
           ref={ref => {
             this.filePondRef = ref
           }}
