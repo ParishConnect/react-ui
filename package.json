@@ -1,6 +1,6 @@
 {
   "name": "@parishconnect/react-ui",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "React UI Kit for ParishConnect's webapp",
   "contributors": [
     "Evan Hennessy"
