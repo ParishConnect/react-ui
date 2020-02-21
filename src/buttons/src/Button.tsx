@@ -123,6 +123,7 @@ class Button extends React.PureComponent<ButtonProps> {
         marginTop={0} // Removes weird margins in Safari
         marginBottom={0} // Removes weird margins in Safari
         size={textSize}
+        type="button"
         color={color || ''} // Prevent the Text color overriding the emotion appearanceStyle color
         height={height}
         lineHeight={`${height}px`}

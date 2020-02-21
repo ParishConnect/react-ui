@@ -1,5 +1,4 @@
 import { css, keyframes } from '@emotion/core'
-import { Keyframes } from '@emotion/serialize'
 import Box, { BoxProps } from '@parishconnect/box'
 import * as React from 'react'
 import { Position, PositionEnum, PositionType } from '../../constants'
@@ -27,7 +26,7 @@ const sharedStyles: any = {
   }
 }
 
-const withAnimations = (animateIn: Keyframes, animateOut: Keyframes) => {
+const withAnimations = (animateIn: string, animateOut: string) => {
   return {
     '&[data-state="entering"], &[data-state="entered"]': {
       animation: `${animateIn} ${ANIMATION_DURATION}ms ${animationEasing.deceleration} both`
