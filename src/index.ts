@@ -328,7 +328,6 @@ export {
 export { SideSheet } from './side-sheet'
 export { Spinner } from './spinner'
 export { Stack, StackingContext } from './stack'
-export { Suggest } from './suggest'
 export { Switch } from './switch'
 export {
   SearchTableHeaderCell,
