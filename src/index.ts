@@ -370,4 +370,3 @@ export {
   Ul,
   UnorderedList
 } from './typography'
-export { FeaturedImageUpload, Upload } from './upload'
