@@ -13,7 +13,6 @@ export {
   DatePicker,
   DateTimePicker,
   InlineDatePicker,
-  RecurrencePicker,
   TimePicker
 } from './datetime-picker'
 export { Dialog } from './dialog'
