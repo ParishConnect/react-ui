@@ -1,9 +1,11 @@
 import Box from '@parishconnect/box'
-import addDays from 'date-fns/add_days'
-import getDay from 'date-fns/get_day'
-import getDaysInMonth from 'date-fns/get_days_in_month'
-import isSameDay from 'date-fns/is_same_day'
-import startOfMonth from 'date-fns/start_of_month'
+import {
+  addDays,
+  getDay,
+  getDaysInMonth,
+  isSameDay,
+  startOfMonth
+} from 'date-fns'
 import * as React from 'react'
 import { Button } from '../../buttons'
 import { majorScale } from '../../scales'
@@ -18,7 +20,7 @@ interface DateFnsOptions {
   [key: string]: any
 }
 
-type DateFnsType = number | string | Date
+type DateFnsType = number | Date
 
 const makeDaysArray = (
   pivot: DateFnsType,

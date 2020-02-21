@@ -6,10 +6,7 @@ module.exports = ({ config }) => {
         loader: require.resolve('cache-loader')
       },
       {
-        loader: require.resolve('babel-loader'),
-        options: {
-          plugins: ['lodash']
-        }
+        loader: require.resolve('babel-loader')
       }
     ]
   })

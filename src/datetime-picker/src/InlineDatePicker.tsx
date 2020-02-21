@@ -1,8 +1,5 @@
 import Box from '@parishconnect/box'
-import addDays from 'date-fns/add_days'
-import addMonths from 'date-fns/add_months'
-import addWeeks from 'date-fns/add_weeks'
-import addYears from 'date-fns/add_years'
+import { addDays, addMonths, addWeeks, addYears } from 'date-fns'
 import * as React from 'react'
 import uuid from 'uuid'
 import { Button, IconButton } from '../../buttons'
@@ -165,7 +162,7 @@ export default class InlineDatePicker extends React.Component<
         tabIndex={0}
         onKeyDown={this.onKeyDown}
         role="presentation"
-        {...props as any}
+        {...(props as any)}
         css={{ outline: 'none' }}
       >
         <Box

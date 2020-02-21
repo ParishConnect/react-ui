@@ -1,11 +1,11 @@
 import Box, { splitBoxProps } from '@parishconnect/box'
-import { format, startOfMinute } from 'date-fns'
+import { startOfMinute } from 'date-fns'
 import { DateTime } from 'luxon'
 import * as React from 'react'
-import { IconButton } from '../../buttons/index'
+import { Button } from '../../buttons/index'
 import { PositionEnum } from '../../constants/index'
 import { FormField } from '../../form-field/index'
-import { XIcon } from '../../icons/index'
+import { CheckIcon } from '../../icons'
 import { Pane } from '../../layers/index'
 import { Popover } from '../../popover'
 import { TextInput } from '../../text-input'
@@ -13,10 +13,16 @@ import { Heading } from '../../typography/index'
 import { TimePicker } from '../index'
 import InlineDatePicker from './InlineDatePicker'
 
-const DEFAULT_FORMAT_STRING = 'MMMM Do, YYYY h:mm A'
-
-function defaultDateFormatter(date) {
-  return date instanceof Date ? format(date, DEFAULT_FORMAT_STRING) : date
+function defaultDateFormatter(date: Date | string) {
+  return date instanceof Date
+    ? DateTime.fromJSDate(date).toLocaleString({
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      })
+    : date
 }
 
 interface DateTimePickerProps {
@@ -229,12 +235,12 @@ export default class DateTimePicker extends React.Component<
                 display="flex"
                 borderBottom
                 paddingY={4}
+                position="relative"
                 paddingX={8}
               >
-                <Heading marginLeft={8} size={400}>
+                <Heading padding={8} size={400}>
                   Pick a Time
                 </Heading>
-                <IconButton onClick={close} appearance="minimal" icon={XIcon} />
               </Pane>
               <TimePicker
                 margin={16}
@@ -243,6 +249,18 @@ export default class DateTimePicker extends React.Component<
                 showArrowButtons={showArrowButtons}
                 value={value}
               />
+              <Button
+                marginTop="auto"
+                marginLeft="auto"
+                appearance="primary"
+                position="absolute"
+                bottom={16}
+                right={16}
+                onClick={close}
+                iconBefore={CheckIcon}
+              >
+                Confirm
+              </Button>
             </Box>
           </Box>
         )}

@@ -1,26 +1,26 @@
 import Box from '@parishconnect/box'
 import {
+  addDays,
   addMonths,
+  addWeeks,
   addYears,
   differenceInCalendarMonths,
-  isSameDay,
-  startOfDay,
   isDate,
+  isSameDay,
   setHours,
-  setMinutes
+  setMinutes,
+  startOfDay
 } from 'date-fns'
-import addDays from 'date-fns/add_days'
-import addWeeks from 'date-fns/add_weeks'
+import { Info } from 'luxon'
 import * as React from 'react'
 import VirtualList from 'react-tiny-virtual-list'
 import uuid from 'uuid'
+import { IconButton } from '../../buttons/index'
+import { XIcon } from '../../icons/index'
 import { Pane } from '../../layers/index'
 import { majorScale, minorScale } from '../../scales'
 import { Code, Heading, Text } from '../../typography'
 import Calendar, { DateBox } from './Calendar'
-import { IconButton } from '../../buttons/index'
-import { XIcon } from '../../icons/index'
-import { Info } from 'luxon'
 
 const arrowKeys = {
   ArrowDown: 'down',
