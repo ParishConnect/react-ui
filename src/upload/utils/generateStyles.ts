@@ -511,7 +511,7 @@ export const generateStyles = (theme: ThemeType) => css`
   }
 
   .filepond--item-panel {
-    background-color: #64605e;
+    background-color: ${theme.getBackground('tint1')};
   }
 
   [data-filepond-item-state='processing-complete'] .filepond--item-panel {
@@ -666,7 +666,7 @@ export const generateStyles = (theme: ThemeType) => css`
 
   .filepond--panel-root {
     border-radius: 0.5em;
-    background-color: #f1f0ef;
+    background-color: ${theme.getBackground('tint2')};
   }
 
   .filepond--panel {
