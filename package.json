@@ -1,6 +1,6 @@
 {
   "name": "@parishconnect/react-ui",
-  "version": "1.6.2",
+  "version": "1.6.4",
   "description": "React UI Kit for ParishConnect's webapp",
   "contributors": [
     "Evan Hennessy"
@@ -11,12 +11,10 @@
   ],
   "repository": "https://github.com/parishconnect/react-ui",
   "license": "UNLICENSED",
-  "main": "commonjs/index.js",
-  "module": "esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/react-ui.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "commonjs",
-    "esm",
     "dist"
   ],
   "publishConfig": {
@@ -27,19 +25,11 @@
   "scripts": {
     "start": "yarn dev",
     "test": "yarn tsc --noEmit",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
     "prepublishOnly": "yarn build",
     "dev": "start-storybook -p 6006",
-    "coverage": "nyc report --reporter=html",
     "build-custom-icons": "node ./tools/build-icons-json.js",
     "generate-icons": "yarn build-custom-icons && ./tools/generate-icons.js",
-    "create-package": "./tools/create-package.js",
-    "create-package:components": "./tools/create-package-components.js",
-    "create-docs-template": "./tools/create-docs-template.js",
-    "build-commonjs": "BABEL_ENV=commonjs babel src --out-dir commonjs --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
-    "build-esm": "BABEL_ENV=esm babel src --out-dir esm --ignore '**/stories','**/test' --source-maps inline --extensions '.js,.ts,.tsx'",
-    "build-types": "tsc --declaration --emitDeclarationOnly",
-    "build": "concurrently --names 'types,commonjs,esm' 'yarn build-types' 'yarn build-commonjs' 'yarn build-esm'",
+    "build": "tsdx build",
     "build-storybook": "build-storybook -s .storybook/static -o .out",
     "clean": "git clean -Xdf",
     "release": "np --no-publish --skip-cleanup",
