@@ -23,7 +23,7 @@ const getTextColorForIntent = (
       return colors.text.warning
     default:
       return (
-        (palette[defaultColor] && palette[defaultColor].base) ||
+        (palette[defaultColor] && palette[defaultColor].text) ||
         colors.text.default
       )
   }

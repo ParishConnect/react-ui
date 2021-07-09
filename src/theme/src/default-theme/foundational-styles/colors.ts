@@ -54,21 +54,21 @@ export default {
     muted: scales.neutral.N8,
     default: scales.neutral.N9,
     dark: scales.neutral.N10,
-    selected: palette.blue.base,
+    selected: palette.blue.text,
 
     // Theme
-    green: palette.green.base,
-    orange: palette.orange.base,
-    red: palette.red.base,
-    blue: palette.blue.base,
-    purple: palette.purple.base,
-    teal: palette.teal.base,
+    green: palette.green.text,
+    orange: palette.orange.text,
+    red: palette.red.text,
+    blue: palette.blue.text,
+    purple: palette.purple.text,
+    teal: palette.teal.text,
 
     // Intent.
-    success: palette.green.dark,
-    info: palette.blue.dark,
-    danger: palette.red.dark,
-    warning: palette.orange.dark
+    success: palette.green.text,
+    info: palette.blue.text,
+    danger: palette.red.text,
+    warning: palette.orange.text
   },
 
   /**

@@ -87,7 +87,7 @@ import { fontFamilies, headings, paragraph, text } from './typography/'
 
 export default {
   // Theme Color
-  themeColor: 'blue',
+  themeColor: 'teal',
   toasterPosition: 'right',
   // Foundational Styles.
   colors,
