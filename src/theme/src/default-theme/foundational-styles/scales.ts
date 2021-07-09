@@ -34,7 +34,7 @@ export default {
     B5: '#b7d4ef',
     B6: '#8fbce6',
     B7: '#579ad9', // Large Text AA
-    B8: '#3d8bd4', // Normal Text AA
+    B8: '#316faa', // Normal Text AA
     B9: '#1070ca', // Normal Text AAA
     B10: '#084b8a', // Normal Text AAA
 

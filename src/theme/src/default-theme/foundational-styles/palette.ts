@@ -19,14 +19,14 @@ export default {
     lightest: '#fef6f6',
     light: '#fae2e2',
     base: '#E34040',
-    dark: '#d62626'
+    dark: '#d12525'
   },
 
   orange: {
     lightest: '#fdf8f3',
     light: '#FEDFCD',
     base: '#F98C52',
-    dark: '#F25C08'
+    dark: '#ba4706'
   },
 
   yellow: {
@@ -40,7 +40,7 @@ export default {
     lightest: '#f1faf5',
     light: '#d4eee2',
     base: '#00c652',
-    dark: '#16A085'
+    dark: '#117a65'
   },
 
   teal: {
